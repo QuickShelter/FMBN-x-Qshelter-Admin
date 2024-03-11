@@ -227,7 +227,7 @@ const outright: IBuyOutrightlyRequest = {
     "apartment_ids": "[915]",
     "offer_accepted": false,
     "initial_payment": 100,
-    "initial_payment_made": false,
+    "initial_payment_made": true,
     "initial_payment_currency": "NGN",
     "property": {
       "id": "43",
@@ -338,7 +338,19 @@ const outright: IBuyOutrightlyRequest = {
       "total_sold": 3,
       "total_available": 445
     },
-    "contributions": [],
+    "contributions": [
+      {
+        "id": "120",
+        "balance": 50,
+        "duration": null,
+        "created_at": "2024-03-04 15:19:15.000000",
+        "total_paid": 0,
+        "updated_at": "2024-03-04 15:19:15.000000",
+        "application_id": "269",
+        "monthly_payment": null,
+        "latest_start_date": "2024-08-31 15:19:15.000000"
+      }
+    ],
     "offers": [],
     "milestones": []
   }
