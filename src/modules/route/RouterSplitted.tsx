@@ -11,9 +11,9 @@ import UnImplemented from "../pages/UnImplemented";
 import ProjectView from "../pages/ProjectView";
 import RoleBasedRouteGuard from "../common/guards/RoleBasedRouteGuard";
 import CenteredLoader from "../common/CenteredLoader";
+import Home from "../pages/Home";
+import SignIn from "../pages/SignIn";
 
-const Home = lazy(() => import("../pages/Home"));
-const SignIn = lazy(() => import("../pages/SignIn"));
 const Users = lazy(() => import("../pages/Users"));
 const Transactions = lazy(() => import("../pages/Transactions"));
 const PropertyView = lazy(() => import("../pages/PropertyView"));
