@@ -15,6 +15,7 @@ import EmploymentInformation from "./tabs/EmploymentInformation";
 import Documents from "./tabs/Documents";
 import Profile from "../Profile";
 import OutrightPurchaseRequestTemplate from "@/modules/common/export-templates/OutrightPurchaseRequestTemplate";
+import { useNavigate } from "react-router-dom";
 
 interface IProps {
   request: IBuyOutrightlyRequest;
@@ -28,6 +29,7 @@ type IDeveloperTabs =
 
 export default function BuyOutrightly({ request }: IProps) {
   const { profile } = useAppSelector((state) => state.auth);
+  const navigate = useNavigate()
   const { data: user, isLoading: isUserLoading } = useGetUserByIdQuery({
     id: request.data.user_id ?? "",
     user_id: profile?.id ?? "",
@@ -72,12 +74,25 @@ export default function BuyOutrightly({ request }: IProps) {
     }
   }
 
-  const handleApprove = () => {
-    return updateStatus('approve')
+  const handleApprove = async () => {
+    const response = await updateStatus('approve')
+
+
+    if (response.ok) {
+      navigate('/requests');
+    }
+
+    return response
   }
 
-  const handleDecline = () => {
-    return updateStatus('decline')
+  const handleDecline = async () => {
+    const response = await updateStatus('decline')
+
+    if (response.ok) {
+      navigate('/requests');
+    }
+
+    return response
   }
 
   return (
