@@ -1,0 +1,151 @@
+.container {
+  --padding-left-section: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding-block: 2rem;
+}
+
+.back {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  text-decoration: none;
+  width: fit-content;
+}
+
+.top {
+  display: flex;
+}
+
+.sectionHeading {
+  color: #091525;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 120%;
+  /* 19.2px */
+}
+
+.container hr {
+  height: 1px;
+  border: none;
+  width: 100%;
+  background-color: var(--dark-blue-100);
+}
+
+.formButtons {
+  margin-left: auto;
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 1rem;
+  align-items: center;
+}
+
+.formButtons button {
+  height: fit-content;
+}
+
+.form {
+  padding: 1.25rem;
+  display: grid;
+  gap: 3rem;
+  grid-template-columns:
+    auto calc(var(--small-slider-width) + 2 * var(--padding-left-section));
+}
+
+.container fieldset {
+  border: none;
+
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  gap: 1.25rem;
+}
+
+.container .left fieldset {
+  width: 100%;
+}
+
+.left {
+  display: flex;
+  /* padding: 20px 24px; */
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  align-self: stretch;
+}
+
+.left>h3 {
+  color: var(--dark-blue-500, #091525);
+
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 120%;
+  /* 19.2px */
+  margin-bottom: 0;
+}
+
+.right {
+  padding: var(--padding);
+  height: fit-content;
+}
+
+.imageButtons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.right label {
+  color: var(--dark-blue-500, #091525);
+
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+@media screen and (max-width: 1150px) {
+  .form {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  /* 
+  .imageWrapper {
+    width: calc(var(--small-slider-width) + 2 * var(--padding-left-section));
+  } */
+
+  .top {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .formButtons {
+    margin-left: 0;
+    display: flex;
+    gap: 2rem;
+  }
+
+  .container {
+    padding: 0;
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .container .imageWrapper {
+    width: fit-content;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .form {
+    padding: 1rem;
+  }
+}

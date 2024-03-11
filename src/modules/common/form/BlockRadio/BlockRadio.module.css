@@ -1,0 +1,32 @@
+.container {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  padding: 8px 14px;
+  align-items: center;
+  flex: 1 0 0;
+
+  border-radius: 8px;
+  border: 1px solid var(--green-200);
+  background: #fff;
+}
+
+.container:has(> .input:checked) {
+  border: 2px solid var(--green-500);
+}
+
+.container .input:checked~.checked {
+  display: inline;
+}
+
+.container .input:checked~.unchecked {
+  display: none;
+}
+
+.container .input:not(:checked)~.unchecked {
+  display: inline;
+}
+
+.container .input:not(:checked)~.checked {
+  display: none;
+}

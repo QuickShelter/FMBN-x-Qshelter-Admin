@@ -1,0 +1,40 @@
+.container:hover a {
+  text-decoration: underline;
+}
+
+.container td {
+  color: var(--dark-blue-400, #10244f);
+
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 140%;
+  /* 19.6px */
+}
+
+.container .profile {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.container .profile .avatar {
+  margin: auto;
+  width: 2rem;
+  height: 2rem;
+}
+
+.avatar::before {
+  background: var(--dark-blue-500, #091525);
+}
+
+.container .profile .name {
+  color: var(--dark-blue-400, #10244f);
+
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 140%;
+  /* 19.6px */
+}

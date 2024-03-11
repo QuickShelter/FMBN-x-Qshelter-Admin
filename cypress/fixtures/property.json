@@ -1,0 +1,117 @@
+{
+    "ok": true,
+    "message": "Request successful.",
+    "status": 200,
+    "body": {
+        "property": {
+            "id": 20,
+            "poster_id": 95,
+            "project_id": 1,
+            "type": "flat",
+            "units": 2,
+            "multiple_buildings": true,
+            "buildings_count": 2,
+            "finished_status": "semi_finished",
+            "youtube_url": null,
+            "display_image": "https://mofidevbucket.s3.amazonaws.com/property_images/64366490991705584033668.jpg",
+            "model_3d_image": "[\"https://mofidevbucket.s3.amazonaws.com/property_images/30894665891705584033061.jpg\"]",
+            "floor_plan_image": "[\"https://mofidevbucket.s3.amazonaws.com/property_images/26800705701705584033309.jpeg\"]",
+            "aerial_image": "[\"https://mofidevbucket.s3.amazonaws.com/property_images/01558276751705584033203.jpg\"]",
+            "property_documents": "[\"https://mofidevbucket.s3.amazonaws.com/property_documents/93907877481705584033515.docx\",\"https://mofidevbucket.s3.amazonaws.com/property_documents/93733547721705584033584.pdf\"]",
+            "title": "20 units of Flats in Ikoyi Lagos",
+            "address": "Lagos, Nigeria",
+            "state": "Lagos State",
+            "city": "Lagos Island",
+            "price": "30000000.00",
+            "status": "available",
+            "created_at": "2024-01-18T13:20:33.000Z",
+            "updated_at": "2024-01-18T13:20:33.000Z",
+            "property_id": null,
+            "buildings": [
+                {
+                    "id": 36,
+                    "property_id": 20,
+                    "name": "Block A",
+                    "apartment_count": 2,
+                    "bedroom_count": 3,
+                    "bathroom_count": 3,
+                    "floor_count": 2,
+                    "random_floor_position": false,
+                    "amenities": null,
+                    "created_at": "2024-01-18T13:20:33.000Z",
+                    "updated_at": "2024-01-18T13:20:33.000Z",
+                    "apartments": [
+                        {
+                            "id": 44,
+                            "building_id": 36,
+                            "name": "Unit 1",
+                            "floor": 0,
+                            "bedroom_count": 3,
+                            "bathroom_count": 3,
+                            "available": true,
+                            "sold": false,
+                            "price": "30000000.00",
+                            "created_at": "2024-01-18T13:20:33.000Z",
+                            "updated_at": "2024-01-18T13:20:33.000Z"
+                        },
+                        {
+                            "id": 45,
+                            "building_id": 36,
+                            "name": "Unit 2",
+                            "floor": 0,
+                            "bedroom_count": 3,
+                            "bathroom_count": 3,
+                            "available": true,
+                            "sold": false,
+                            "price": "30000000.00",
+                            "created_at": "2024-01-18T13:20:33.000Z",
+                            "updated_at": "2024-01-18T13:20:33.000Z"
+                        }
+                    ]
+                },
+                {
+                    "id": 37,
+                    "property_id": 20,
+                    "name": "Block B",
+                    "apartment_count": 2,
+                    "bedroom_count": 4,
+                    "bathroom_count": 4,
+                    "floor_count": 2,
+                    "random_floor_position": false,
+                    "amenities": null,
+                    "created_at": "2024-01-18T13:20:33.000Z",
+                    "updated_at": "2024-01-18T13:20:33.000Z",
+                    "apartments": [
+                        {
+                            "id": 46,
+                            "building_id": 37,
+                            "name": "Unit 1",
+                            "floor": 0,
+                            "bedroom_count": 4,
+                            "bathroom_count": 4,
+                            "available": true,
+                            "sold": false,
+                            "price": "30000000.00",
+                            "created_at": "2024-01-18T13:20:33.000Z",
+                            "updated_at": "2024-01-18T13:20:33.000Z"
+                        },
+                        {
+                            "id": 47,
+                            "building_id": 37,
+                            "name": "Unit 2",
+                            "floor": 0,
+                            "bedroom_count": 4,
+                            "bathroom_count": 4,
+                            "available": true,
+                            "sold": false,
+                            "price": "30000000.00",
+                            "created_at": "2024-01-18T13:20:33.000Z",
+                            "updated_at": "2024-01-18T13:20:33.000Z"
+                        }
+                    ]
+                }
+            ],
+            "milestones": []
+        }
+    }
+}

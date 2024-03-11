@@ -1,0 +1,128 @@
+.nav {
+  /* background-color: #fff; */
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  padding-block: 2rem;
+  padding-left: 42px;
+  height: min(100%, 1200px);
+}
+
+.qLogo {
+  display: none;
+}
+
+.nav .items {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 4rem;
+  height: 100%;
+}
+
+.nav li,
+.nav li a {
+  border-radius: 500px;
+}
+
+.nav menu {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0;
+}
+
+.nav li a {
+  text-decoration: none;
+  width: fit-content;
+  transition: 300ms;
+}
+
+.nav li a:not(:disabled):hover {
+  transform: scale(1.05);
+  color: var(--dark-blue-500);
+}
+
+.nav li a {
+  list-style: none;
+  padding: 14px 16px;
+  width: 100%;
+  padding-right: 7rem;
+  border-radius: 500px;
+}
+
+.nav li.active {
+  background: var(--blue-100, #caecfc);
+}
+
+.nav li>a,
+.nav .logout {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  text-align: center;
+  list-style: none;
+}
+
+.logout {
+  padding-left: 15px;
+}
+
+.nav li>a,
+.nav .logout button {
+  color: var(--blue-400);
+
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.logout button {
+  display: flex;
+  padding-inline: 0;
+  gap: 1rem;
+}
+
+.logo {
+  margin-inline: auto;
+}
+
+.items {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 1050px) {
+  .title {
+    display: none;
+  }
+
+  .nav {
+    padding: 1rem;
+  }
+
+  .desktopLogo {
+    display: none;
+  }
+
+  .qLogo {
+    display: block;
+    aspect-ratio: 1/1;
+    height: 35px;
+    width: 35px;
+  }
+
+  .items li,
+  .items li a {
+    padding-right: 0;
+    padding: 0.5rem;
+    border-radius: 12px;
+  }
+
+  .nav .logout {
+    padding: 0;
+    padding-left: 1rem;
+  }
+}

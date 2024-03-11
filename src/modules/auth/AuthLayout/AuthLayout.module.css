@@ -1,0 +1,29 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  gap: 2rem;
+  margin-top: 2rem;
+  padding: 1.25rem;
+}
+
+.container>.card {
+  display: flex;
+  flex-direction: column;
+  width: min(400px, calc(100%));
+  padding: 3rem 2rem;
+  gap: 24px;
+
+  border-radius: 20px;
+  background: #fff;
+  border: 1px solid var(--dark-blue-100, #edf3fc);
+  box-shadow: 0px 8px 16px 0px #f4f8fd;
+}
+
+.container header {
+  background: #fff;
+  box-shadow: 0px 8px 16px 0px #f4f8fd;
+  width: 100%;
+  padding: 10px 0 10px 7rem;
+}

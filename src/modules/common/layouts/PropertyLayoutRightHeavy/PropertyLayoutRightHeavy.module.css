@@ -1,0 +1,10 @@
+.wrapper {
+  --padding-left-section: 24px;
+  padding: 20px;
+  display: grid;
+  gap: 3rem;
+  grid-template-columns:
+    auto
+    calc(var(--large-slider-width) + 2 * var(--padding-left-section));
+  width: fit-content;
+}

@@ -1,0 +1,16 @@
+{
+    "ok": true,
+    "message": "Request successful.",
+    "status": 200,
+    "body": {
+        "user_count": 44,
+        "developer_count": 8,
+        "active_projects": 1,
+        "pending_projects": 2,
+        "all_sold": 0,
+        "total_nhf_sales": 180000330,
+        "total_outright_sales": 770000550,
+        "total_rto_sales": 260000220,
+        "total_contribution_sales": 0
+    }
+}

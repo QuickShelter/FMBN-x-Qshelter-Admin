@@ -1,0 +1,41 @@
+.container {
+  --thickness: 4px;
+  --size: 100px;
+  width: var(--size);
+  display: block;
+  margin: 2rem auto 0 auto;
+}
+
+.sm {
+  --thickness: 2px;
+  --size: 300px;
+}
+
+.md {
+  --thickness: 4px;
+  --size: 2rem;
+}
+
+.lg {
+  --thickness: 4px;
+  --size: 3rem;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

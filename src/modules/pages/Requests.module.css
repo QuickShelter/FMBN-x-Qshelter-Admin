@@ -1,0 +1,23 @@
+.container {
+  padding: 1.25rem;
+  padding-right: 42px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.container .stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.filternExport {
+  display: flex;
+  gap: 1rem;
+}
+
+@media screen and (max-width: 420px) {
+  .container {
+    padding-inline: 1rem;
+  }
+}

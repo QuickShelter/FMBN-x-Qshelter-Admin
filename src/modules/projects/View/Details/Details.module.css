@@ -1,0 +1,14 @@
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-self: stretch;
+}
+
+.card {
+  display: flex;
+  padding-bottom: 0px;
+  justify-content: space-between;
+  align-self: stretch;
+  border-bottom: 1px solid var(--dark-blue-100, #edf3fc);
+}

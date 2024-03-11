@@ -1,0 +1,36 @@
+{
+    "ok": true,
+    "message": "Request successful.",
+    "status": 200,
+    "body": {
+        "user": {
+            "id": 147,
+            "first_name": "Ayorinde",
+            "last_name": "Akindeko",
+            "phone": "+2347030131960",
+            "email": "2benay+10@gmail.com",
+            "password": "$2a$10$sRB6RXjcaCcGoDnw6p6bJObt5s8cq4r4tiAfeiWfu3yAYbTL0huZi",
+            "email_verified": true,
+            "bvn_verified": true,
+            "bvn": "00000000000",
+            "roles": "[\"legal\",\"mortgage_operations\",\"finance\",\"user\",\"user\"]",
+            "avatar": "https://mofidevbucket.s3.amazonaws.com/avatar/15451685111705940173126.jpeg",
+            "gender": null,
+            "dob": "Fri Jan 20 2006",
+            "country": "Nigeria",
+            "is_first_time_login": false,
+            "identity_document": "https://mofidevbucket.s3.amazonaws.com/identity_documents/37227103231705940173328.pdf",
+            "identity_document_verified": false,
+            "employment_status": "self_employed",
+            "monthly_net_salary": "23245343.00",
+            "is_nhf_active": false,
+            "pfa": "CRUSADERSTERLING PENSIONS LIMITED",
+            "rsa": "PEN123234234354",
+            "business_sector": null,
+            "years_of_work": 1323,
+            "suspended": false,
+            "created_at": "2024-01-22T16:13:09.000Z",
+            "updated_at": "2024-01-30T15:42:13.250Z"
+        }
+    }
+}

@@ -1,0 +1,40 @@
+{
+    "ok": true,
+    "message": "Request successful.",
+    "status": 200,
+    "body": {
+        "user": {
+            "id": 7,
+            "first_name": "Mofi",
+            "last_name": "Admin",
+            "phone": "",
+            "email": "admin@admin.com",
+            "email_verified": true,
+            "bvn_verified": true,
+            "bvn": "1234567890",
+            "roles": [
+                "admin"
+            ],
+            "avatar": "",
+            "gender": "Male",
+            "dob": "27-February-2002",
+            "country": null,
+            "is_first_time_login": true,
+            "identity_document": null,
+            "identity_document_verified": false,
+            "employment_status": null,
+            "monthly_net_salary": null,
+            "is_nhf_active": false,
+            "pfa": null,
+            "rsa": null,
+            "business_sector": null,
+            "years_of_work": null,
+            "suspended": false,
+            "created_at": "2024-01-08T12:28:29.000Z",
+            "updated_at": "2024-01-08T12:28:29.000Z"
+        },
+        "token": {
+            "authToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo3LCJyb2xlcyI6WyJhZG1pbiJdLCJpYXQiOjE3MDU1ODMzMTcsImV4cCI6MTcwNTU5NzcxN30.FJTg6oxryqw2eAvW13_sA16PxHyDDSMoxIhcw1itFNM"
+        }
+    }
+}

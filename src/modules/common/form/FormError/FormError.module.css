@@ -1,0 +1,17 @@
+.container {
+  display: flex;
+  padding: 12px;
+  align-items: center;
+  gap: 10px;
+
+  border-radius: 8px;
+  background: #ffeeeb;
+}
+
+.container .text {
+  color: var(--system-error);
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px; /* 200% */
+}

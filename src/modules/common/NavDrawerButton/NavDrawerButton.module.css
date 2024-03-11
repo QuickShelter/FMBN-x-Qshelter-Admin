@@ -1,0 +1,22 @@
+.container {
+  padding: 1rem;
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: fit-content;
+  z-index: 4;
+}
+
+.button {}
+
+.menuIcon {
+  width: 35px;
+  height: 35px;
+}
+
+@media screen and (min-width: 420px) {
+  .container {
+    display: none;
+  }
+}

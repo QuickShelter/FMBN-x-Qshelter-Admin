@@ -1,0 +1,39 @@
+.dropdown {
+  display: flex;
+  max-width: 500px;
+  padding: 20px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 16px;
+
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0px 8px 16px 0px #f4f8fd;
+
+  z-index: 3;
+  min-width: 300px;
+  right: 0;
+}
+
+.dropdown h3 {
+  color: var(--dark-blue-300, #7081a0);
+
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 120%;
+  /* 16.8px */
+  margin: 0;
+}
+
+.dropdown button[type="submit"] {
+  width: 100%;
+}
+
+.dropdown .dates {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 1rem;
+}

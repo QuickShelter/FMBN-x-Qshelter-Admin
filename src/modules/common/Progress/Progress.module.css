@@ -1,0 +1,21 @@
+progress {
+  height: 6px; /* Set a fixed height */
+  appearance: none; /* Remove default styles */
+  /*border: 1px solid #ccc; /* Add a border for better visibility */
+  border-radius: 5px; /* Add border radius for rounded corners */
+  overflow: hidden; /* Hide the default progress bar shadow */
+}
+
+/* Style the progress bar track */
+progress::-webkit-progress-bar {
+  background-color: var(--grey-100); /* Set the background color of the track */
+  border-radius: 5px; /* Match the border radius of the progress element */
+}
+
+/* Style the progress bar itself */
+progress::-webkit-progress-value {
+  background-color: var(
+    --green-500
+  ); /* Set the background color of the progress bar */
+  border-radius: 5px; /* Match the border radius of the progress element */
+}

@@ -1,0 +1,21 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  background: #fcfcfc;
+  text-align: center;
+  display: flex;
+}
+
+.content {
+}
+
+.container .content h4 {
+  color: var(--dark-blue-300, #7081a0);
+
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%; /* 22.4px */
+}

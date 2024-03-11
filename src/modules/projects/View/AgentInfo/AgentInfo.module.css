@@ -1,0 +1,38 @@
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-self: stretch;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.card h5 {
+  margin-block: 0;
+  color: var(--dark-blue-300, #7081a0);
+
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%; /* 18.2px */
+}
+
+.card span {
+  color: var(--dark-blue-400, #10244f);
+
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 140%; /* 19.6px */
+}
+
+@media screen and (max-width: 420px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+  }
+}

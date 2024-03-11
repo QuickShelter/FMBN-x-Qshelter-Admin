@@ -1,0 +1,45 @@
+.container {
+  position: fixed;
+  border-radius: 0.8rem;
+  border: 1px solid var(--dark-blue-100, #edf3fc);
+  background: #fff;
+}
+
+.bottom0 {
+  padding-bottom: 0;
+}
+
+.children {
+  overflow-y: scroll;
+  max-height: 70vh;
+}
+
+.container::backdrop {
+  background-color: var(--dark-blue-500, #091525);
+  opacity: 0.5;
+}
+
+.closeForm {
+  position: sticky;
+  top: 0;
+  height: 2rem;
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  background-color: #fff;
+  z-index: 3;
+}
+
+.close {
+  margin-top: auto;
+  height: 4rem;
+}
+
+/* .bottomPadding {
+  background-color: #fff;
+  position: absolute;
+  bottom: -0rem;
+  width: 100%;
+  z-index: 3;
+  height: 5px;
+} */

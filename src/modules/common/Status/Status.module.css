@@ -1,0 +1,32 @@
+.container {
+  display: inline-flex;
+  /* padding: 10px 20px; */
+  padding: 5px 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  border-radius: 20px;
+  z-index: 1;
+
+  color: var(--dark-blue-400);
+
+  /* font-size: 15px; */
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  background: var(--blue-50, #e2f5fd);
+  text-transform: capitalize;
+
+  width: fit-content;
+}
+
+.status {
+  font-weight: 600;
+  /* display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1; */
+  white-space: no-wrap;
+  overflow: hidden;
+}

@@ -1,0 +1,993 @@
+{
+  "properties": [
+    {
+      "id": 1,
+      "images": [
+        "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=875&q=80",
+        "https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=871&q=80",
+        "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDR8fHxlbnwwfHx8fHw%3D&auto=format&fit=crop&w=600&q=60",
+        "https://images.unsplash.com/photo-1558036117-15d82a90b9b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDl8fHxlbnwwfHx8fHw%3D&auto=format&fit=crop&w=600&q=60"
+      ],
+      "price": "13500000",
+      "summary": "3 Bedroom Flat in Lekki",
+      "propertyInfo": "3 Bedroom Flat in Lekki",
+      "description": "Introducing an exquisite residential masterpiece, a collection of 15 newly built 4-bedroom semi-detached duplexes with a BQ (Boys' Quarter), nestled in the heart of Nigeria's vibrant cityscape. This architectural marvel seamlessly blends contemporary design with luxurious comfort, offering an unparalleled living experience for discerning individuals and families. Each unit of this splendid development boasts a spacious and well-thought-out floor plan, spanning across multiple levels to provide abundant living space. The ground floor greets you with a grand entrance leading to a tastefully designed living area, adorned with high ceilings and large windows that allow natural light to flood the interior. The thoughtfully placed dining area creates a seamless flow, perfect for hosting gatherings and creating lasting memories.",
+      "address": "12 Tokunbo Waterside, Lekki Phase I",
+      "saleStatus": "sold",
+      "status": "Land & Infrastructure",
+      "approved_at": "3rd Aug, 2023",
+      "approved_by": "Victor Chukwueke・2nd Aug, 2023",
+      "documents": [
+        "CofO-1987_ 2021-01-2021.pdf",
+        "0219821_Title deed - Benjamin%Akindeko - .pdf"
+      ]
+    },
+    {
+      "id": 2,
+      "images": [
+        "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=875&q=80",
+        "https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=871&q=80",
+        "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDR8fHxlbnwwfHx8fHw%3D&auto=format&fit=crop&w=600&q=60",
+        "https://images.unsplash.com/photo-1558036117-15d82a90b9b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDl8fHxlbnwwfHx8fHw%3D&auto=format&fit=crop&w=600&q=60"
+      ],
+      "price": "13500000",
+      "summary": "3 Bedroom Flat in Lekki",
+      "propertyInfo": "3 Bedroom Flat in Lekki",
+      "description": "Introducing an exquisite residential masterpiece, a collection of 15 newly built 4-bedroom semi-detached duplexes with a BQ (Boys' Quarter), nestled in the heart of Nigeria's vibrant cityscape. This architectural marvel seamlessly blends contemporary design with luxurious comfort, offering an unparalleled living experience for discerning individuals and families. Each unit of this splendid development boasts a spacious and well-thought-out floor plan, spanning across multiple levels to provide abundant living space. The ground floor greets you with a grand entrance leading to a tastefully designed living area, adorned with high ceilings and large windows that allow natural light to flood the interior. The thoughtfully placed dining area creates a seamless flow, perfect for hosting gatherings and creating lasting memories.",
+      "address": "12 Tokunbo Waterside, Lekki Phase I",
+      "status": "Completed",
+      "saleStatus": "sold",
+      "approved_at": "3rd Aug, 2023",
+      "approved_by": "Victor Chukwueke・2nd Aug, 2023",
+      "documents": [
+        "CofO-1987_ 2021-01-2021.pdf",
+        "0219821_Title deed - Benjamin%Akindeko - .pdf"
+      ]
+    },
+    {
+      "id": 3,
+      "images": [
+        "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=875&q=80",
+        "https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=871&q=80",
+        "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDR8fHxlbnwwfHx8fHw%3D&auto=format&fit=crop&w=600&q=60",
+        "https://images.unsplash.com/photo-1558036117-15d82a90b9b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDl8fHxlbnwwfHx8fHw%3D&auto=format&fit=crop&w=600&q=60"
+      ],
+      "price": "13500000",
+      "summary": "3 Bedroom Flat in Lekki",
+      "propertyInfo": "3 Bedroom Duplex in Victoria Island",
+      "description": "Introducing an exquisite residential masterpiece, a collection of 15 newly built 4-bedroom semi-detached duplexes with a BQ (Boys' Quarter), nestled in the heart of Nigeria's vibrant cityscape. This architectural marvel seamlessly blends contemporary design with luxurious comfort, offering an unparalleled living experience for discerning individuals and families. Each unit of this splendid development boasts a spacious and well-thought-out floor plan, spanning across multiple levels to provide abundant living space. The ground floor greets you with a grand entrance leading to a tastefully designed living area, adorned with high ceilings and large windows that allow natural light to flood the interior. The thoughtfully placed dining area creates a seamless flow, perfect for hosting gatherings and creating lasting memories.",
+      "address": "12 Tokunbo Waterside, Lekki Phase I",
+      "status": "Off-plan Development",
+      "saleStatus": "mortgage",
+      "approved_at": "3rd Aug, 2023",
+      "approved_by": "Victor Chukwueke・2nd Aug, 2023",
+      "documents": [
+        "CofO-1987_ 2021-01-2021.pdf",
+        "0219821_Title deed - Benjamin%Akindeko - .pdf"
+      ]
+    },
+    {
+      "id": 4,
+      "images": [
+        "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=875&q=80",
+        "https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=871&q=80",
+        "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDR8fHxlbnwwfHx8fHw%3D&auto=format&fit=crop&w=600&q=60",
+        "https://images.unsplash.com/photo-1558036117-15d82a90b9b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDl8fHxlbnwwfHx8fHw%3D&auto=format&fit=crop&w=600&q=60"
+      ],
+      "price": "13500000",
+      "summary": "3 Bedroom Flat in Lekki",
+      "propertyInfo": "3 Bedroom Flat in Lekki",
+      "description": "Introducing an exquisite residential masterpiece, a collection of 15 newly built 4-bedroom semi-detached duplexes with a BQ (Boys' Quarter), nestled in the heart of Nigeria's vibrant cityscape. This architectural marvel seamlessly blends contemporary design with luxurious comfort, offering an unparalleled living experience for discerning individuals and families. Each unit of this splendid development boasts a spacious and well-thought-out floor plan, spanning across multiple levels to provide abundant living space. The ground floor greets you with a grand entrance leading to a tastefully designed living area, adorned with high ceilings and large windows that allow natural light to flood the interior. The thoughtfully placed dining area creates a seamless flow, perfect for hosting gatherings and creating lasting memories.",
+      "address": "12 Tokunbo Waterside, Lekki Phase I",
+      "status": "Off-plan Development",
+      "saleStatus": "mortgage",
+      "approved_at": "3rd Aug, 2023",
+      "approved_by": "Victor Chukwueke・2nd Aug, 2023",
+      "documents": [
+        "CofO-1987_ 2021-01-2021.pdf",
+        "0219821_Title deed - Benjamin%Akindeko - .pdf"
+      ]
+    },
+    {
+      "id": 5,
+      "images": [
+        "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=875&q=80",
+        "https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=871&q=80",
+        "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDR8fHxlbnwwfHx8fHw%3D&auto=format&fit=crop&w=600&q=60",
+        "https://images.unsplash.com/photo-1558036117-15d82a90b9b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDl8fHxlbnwwfHx8fHw%3D&auto=format&fit=crop&w=600&q=60"
+      ],
+      "price": "13500000",
+      "summary": "3 Bedroom Flat in Lekki",
+      "propertyInfo": "3 Bedroom Flat in Lekki",
+      "description": "Introducing an exquisite residential masterpiece, a collection of 15 newly built 4-bedroom semi-detached duplexes with a BQ (Boys' Quarter), nestled in the heart of Nigeria's vibrant cityscape. This architectural marvel seamlessly blends contemporary design with luxurious comfort, offering an unparalleled living experience for discerning individuals and families. Each unit of this splendid development boasts a spacious and well-thought-out floor plan, spanning across multiple levels to provide abundant living space. The ground floor greets you with a grand entrance leading to a tastefully designed living area, adorned with high ceilings and large windows that allow natural light to flood the interior. The thoughtfully placed dining area creates a seamless flow, perfect for hosting gatherings and creating lasting memories.",
+      "address": "12 Tokunbo Waterside, Lekki Phase I",
+      "status": "Off-plan Development",
+      "saleStatus": "mortgage",
+      "approved_at": "3rd Aug, 2023",
+      "approved_by": "Victor Chukwueke・2nd Aug, 2023",
+      "documents": [
+        "CofO-1987_ 2021-01-2021.pdf",
+        "0219821_Title deed - Benjamin%Akindeko - .pdf"
+      ]
+    },
+    {
+      "id": 6,
+      "images": [
+        "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=875&q=80",
+        "https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=871&q=80",
+        "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDR8fHxlbnwwfHx8fHw%3D&auto=format&fit=crop&w=600&q=60",
+        "https://images.unsplash.com/photo-1558036117-15d82a90b9b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDl8fHxlbnwwfHx8fHw%3D&auto=format&fit=crop&w=600&q=60"
+      ],
+      "price": "13500000",
+      "summary": "3 Bedroom Flat in Lekki",
+      "propertyInfo": "3 Bedroom Flat in Lekki",
+      "description": "Introducing an exquisite residential masterpiece, a collection of 15 newly built 4-bedroom semi-detached duplexes with a BQ (Boys' Quarter), nestled in the heart of Nigeria's vibrant cityscape. This architectural marvel seamlessly blends contemporary design with luxurious comfort, offering an unparalleled living experience for discerning individuals and families. Each unit of this splendid development boasts a spacious and well-thought-out floor plan, spanning across multiple levels to provide abundant living space. The ground floor greets you with a grand entrance leading to a tastefully designed living area, adorned with high ceilings and large windows that allow natural light to flood the interior. The thoughtfully placed dining area creates a seamless flow, perfect for hosting gatherings and creating lasting memories.",
+      "address": "12 Tokunbo Waterside, Lekki Phase I",
+      "status": "Off-plan Development",
+      "saleStatus": "mortgage",
+      "approved_at": "3rd Aug, 2023",
+      "approved_by": "Victor Chukwueke・2nd Aug, 2023",
+      "documents": [
+        "CofO-1987_ 2021-01-2021.pdf",
+        "0219821_Title deed - Benjamin%Akindeko - .pdf"
+      ]
+    },
+    {
+      "id": 7,
+      "images": [
+        "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=875&q=80",
+        "https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=871&q=80",
+        "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDR8fHxlbnwwfHx8fHw%3D&auto=format&fit=crop&w=600&q=60",
+        "https://images.unsplash.com/photo-1558036117-15d82a90b9b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDl8fHxlbnwwfHx8fHw%3D&auto=format&fit=crop&w=600&q=60"
+      ],
+      "price": "13500000",
+      "summary": "3 Bedroom Flat in Lekki",
+      "propertyInfo": "3 Bedroom Flat in Lekki",
+      "description": "Introducing an exquisite residential masterpiece, a collection of 15 newly built 4-bedroom semi-detached duplexes with a BQ (Boys' Quarter), nestled in the heart of Nigeria's vibrant cityscape. This architectural marvel seamlessly blends contemporary design with luxurious comfort, offering an unparalleled living experience for discerning individuals and families. Each unit of this splendid development boasts a spacious and well-thought-out floor plan, spanning across multiple levels to provide abundant living space. The ground floor greets you with a grand entrance leading to a tastefully designed living area, adorned with high ceilings and large windows that allow natural light to flood the interior. The thoughtfully placed dining area creates a seamless flow, perfect for hosting gatherings and creating lasting memories.",
+      "address": "12 Tokunbo Waterside, Lekki Phase I",
+      "status": "Off-plan Development",
+      "saleStatus": "mortgage",
+      "approved_at": "3rd Aug, 2023",
+      "approved_by": "Victor Chukwueke・2nd Aug, 2023",
+      "documents": [
+        "CofO-1987_ 2021-01-2021.pdf",
+        "0219821_Title deed - Benjamin%Akindeko - .pdf"
+      ]
+    },
+    {
+      "id": 8,
+      "images": [
+        "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=875&q=80",
+        "https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=871&q=80",
+        "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDR8fHxlbnwwfHx8fHw%3D&auto=format&fit=crop&w=600&q=60",
+        "https://images.unsplash.com/photo-1558036117-15d82a90b9b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDl8fHxlbnwwfHx8fHw%3D&auto=format&fit=crop&w=600&q=60"
+      ],
+      "price": "13500000",
+      "summary": "3 Bedroom Flat in Lekki",
+      "propertyInfo": "3 Bedroom Flat in Lekki",
+      "description": "Introducing an exquisite residential masterpiece, a collection of 15 newly built 4-bedroom semi-detached duplexes with a BQ (Boys' Quarter), nestled in the heart of Nigeria's vibrant cityscape. This architectural marvel seamlessly blends contemporary design with luxurious comfort, offering an unparalleled living experience for discerning individuals and families. Each unit of this splendid development boasts a spacious and well-thought-out floor plan, spanning across multiple levels to provide abundant living space. The ground floor greets you with a grand entrance leading to a tastefully designed living area, adorned with high ceilings and large windows that allow natural light to flood the interior. The thoughtfully placed dining area creates a seamless flow, perfect for hosting gatherings and creating lasting memories.",
+      "address": "12 Tokunbo Waterside, Lekki Phase I",
+      "status": "Off-plan Development",
+      "saleStatus": "mortgage",
+      "approved_at": "3rd Aug, 2023",
+      "approved_by": "Victor Chukwueke・2nd Aug, 2023",
+      "documents": [
+        "CofO-1987_ 2021-01-2021.pdf",
+        "0219821_Title deed - Benjamin%Akindeko - .pdf"
+      ]
+    },
+    {
+      "id": 9,
+      "images": [
+        "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=875&q=80",
+        "https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=871&q=80",
+        "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDR8fHxlbnwwfHx8fHw%3D&auto=format&fit=crop&w=600&q=60",
+        "https://images.unsplash.com/photo-1558036117-15d82a90b9b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDl8fHxlbnwwfHx8fHw%3D&auto=format&fit=crop&w=600&q=60"
+      ],
+      "price": "13500000",
+      "summary": "3 Bedroom Flat in Lekki",
+      "propertyInfo": "3 Bedroom Flat in Lekki",
+      "description": "Introducing an exquisite residential masterpiece, a collection of 15 newly built 4-bedroom semi-detached duplexes with a BQ (Boys' Quarter), nestled in the heart of Nigeria's vibrant cityscape. This architectural marvel seamlessly blends contemporary design with luxurious comfort, offering an unparalleled living experience for discerning individuals and families. Each unit of this splendid development boasts a spacious and well-thought-out floor plan, spanning across multiple levels to provide abundant living space. The ground floor greets you with a grand entrance leading to a tastefully designed living area, adorned with high ceilings and large windows that allow natural light to flood the interior. The thoughtfully placed dining area creates a seamless flow, perfect for hosting gatherings and creating lasting memories.",
+      "address": "12 Tokunbo Waterside, Lekki Phase I",
+      "status": "Off-plan Development",
+      "saleStatus": "mortgage",
+      "approved_at": "3rd Aug, 2023",
+      "approved_by": "Victor Chukwueke・2nd Aug, 2023",
+      "documents": [
+        "CofO-1987_ 2021-01-2021.pdf",
+        "0219821_Title deed - Benjamin%Akindeko - .pdf"
+      ]
+    },
+    {
+      "id": 10,
+      "images": [
+        "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=875&q=80",
+        "https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=871&q=80",
+        "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDR8fHxlbnwwfHx8fHw%3D&auto=format&fit=crop&w=600&q=60",
+        "https://images.unsplash.com/photo-1558036117-15d82a90b9b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDl8fHxlbnwwfHx8fHw%3D&auto=format&fit=crop&w=600&q=60"
+      ],
+      "price": "13500000",
+      "summary": "3 Bedroom Flat in Lekki",
+      "propertyInfo": "3 Bedroom Flat in Lekki",
+      "description": "Introducing an exquisite residential masterpiece, a collection of 15 newly built 4-bedroom semi-detached duplexes with a BQ (Boys' Quarter), nestled in the heart of Nigeria's vibrant cityscape. This architectural marvel seamlessly blends contemporary design with luxurious comfort, offering an unparalleled living experience for discerning individuals and families. Each unit of this splendid development boasts a spacious and well-thought-out floor plan, spanning across multiple levels to provide abundant living space. The ground floor greets you with a grand entrance leading to a tastefully designed living area, adorned with high ceilings and large windows that allow natural light to flood the interior. The thoughtfully placed dining area creates a seamless flow, perfect for hosting gatherings and creating lasting memories.",
+      "address": "12 Tokunbo Waterside, Lekki Phase I",
+      "status": "Off-plan Development",
+      "saleStatus": "mortgage",
+      "approved_at": "3rd Aug, 2023",
+      "approved_by": "Victor Chukwueke・2nd Aug, 2023",
+      "documents": [
+        "CofO-1987_ 2021-01-2021.pdf",
+        "0219821_Title deed - Benjamin%Akindeko - .pdf"
+      ]
+    },
+    {
+      "id": 11,
+      "images": [
+        "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=875&q=80",
+        "https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=871&q=80",
+        "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDR8fHxlbnwwfHx8fHw%3D&auto=format&fit=crop&w=600&q=60",
+        "https://images.unsplash.com/photo-1558036117-15d82a90b9b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDl8fHxlbnwwfHx8fHw%3D&auto=format&fit=crop&w=600&q=60"
+      ],
+      "price": "13500000",
+      "summary": "3 Bedroom Flat in Lekki",
+      "propertyInfo": "3 Bedroom Flat in Lekki",
+      "description": "Introducing an exquisite residential masterpiece, a collection of 15 newly built 4-bedroom semi-detached duplexes with a BQ (Boys' Quarter), nestled in the heart of Nigeria's vibrant cityscape. This architectural marvel seamlessly blends contemporary design with luxurious comfort, offering an unparalleled living experience for discerning individuals and families. Each unit of this splendid development boasts a spacious and well-thought-out floor plan, spanning across multiple levels to provide abundant living space. The ground floor greets you with a grand entrance leading to a tastefully designed living area, adorned with high ceilings and large windows that allow natural light to flood the interior. The thoughtfully placed dining area creates a seamless flow, perfect for hosting gatherings and creating lasting memories.",
+      "address": "12 Tokunbo Waterside, Lekki Phase I",
+      "status": "Off-plan Development",
+      "saleStatus": "mortgage",
+      "approved_at": "3rd Aug, 2023",
+      "approved_by": "Victor Chukwueke・2nd Aug, 2023",
+      "documents": [
+        "CofO-1987_ 2021-01-2021.pdf",
+        "0219821_Title deed - Benjamin%Akindeko - .pdf"
+      ]
+    },
+    {
+      "id": 12,
+      "images": [
+        "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=875&q=80",
+        "https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=871&q=80",
+        "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDR8fHxlbnwwfHx8fHw%3D&auto=format&fit=crop&w=600&q=60",
+        "https://images.unsplash.com/photo-1558036117-15d82a90b9b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDl8fHxlbnwwfHx8fHw%3D&auto=format&fit=crop&w=600&q=60"
+      ],
+      "price": "13500000",
+      "summary": "3 Bedroom Flat in Lekki",
+      "propertyInfo": "3 Bedroom Flat in Lekki",
+      "description": "Introducing an exquisite residential masterpiece, a collection of 15 newly built 4-bedroom semi-detached duplexes with a BQ (Boys' Quarter), nestled in the heart of Nigeria's vibrant cityscape. This architectural marvel seamlessly blends contemporary design with luxurious comfort, offering an unparalleled living experience for discerning individuals and families. Each unit of this splendid development boasts a spacious and well-thought-out floor plan, spanning across multiple levels to provide abundant living space. The ground floor greets you with a grand entrance leading to a tastefully designed living area, adorned with high ceilings and large windows that allow natural light to flood the interior. The thoughtfully placed dining area creates a seamless flow, perfect for hosting gatherings and creating lasting memories.",
+      "address": "12 Tokunbo Waterside, Lekki Phase I",
+      "status": "Off-plan Development",
+      "saleStatus": "mortgage",
+      "approved_at": "3rd Aug, 2023",
+      "approved_by": "Victor Chukwueke・2nd Aug, 2023",
+      "documents": [
+        "CofO-1987_ 2021-01-2021.pdf",
+        "0219821_Title deed - Benjamin%Akindeko - .pdf"
+      ]
+    },
+    {
+      "id": 13,
+      "images": [
+        "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=875&q=80",
+        "https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=871&q=80",
+        "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDR8fHxlbnwwfHx8fHw%3D&auto=format&fit=crop&w=600&q=60",
+        "https://images.unsplash.com/photo-1558036117-15d82a90b9b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDl8fHxlbnwwfHx8fHw%3D&auto=format&fit=crop&w=600&q=60"
+      ],
+      "price": "13500000",
+      "summary": "3 Bedroom Flat in Lekki",
+      "propertyInfo": "3 Bedroom Flat in Lekki",
+      "description": "Introducing an exquisite residential masterpiece, a collection of 15 newly built 4-bedroom semi-detached duplexes with a BQ (Boys' Quarter), nestled in the heart of Nigeria's vibrant cityscape. This architectural marvel seamlessly blends contemporary design with luxurious comfort, offering an unparalleled living experience for discerning individuals and families. Each unit of this splendid development boasts a spacious and well-thought-out floor plan, spanning across multiple levels to provide abundant living space. The ground floor greets you with a grand entrance leading to a tastefully designed living area, adorned with high ceilings and large windows that allow natural light to flood the interior. The thoughtfully placed dining area creates a seamless flow, perfect for hosting gatherings and creating lasting memories.",
+      "address": "12 Tokunbo Waterside, Lekki Phase I",
+      "status": "Off-plan Development",
+      "saleStatus": "mortgage",
+      "approved_at": "3rd Aug, 2023",
+      "approved_by": "Victor Chukwueke・2nd Aug, 2023",
+      "documents": [
+        "CofO-1987_ 2021-01-2021.pdf",
+        "0219821_Title deed - Benjamin%Akindeko - .pdf"
+      ]
+    },
+    {
+      "id": 14,
+      "images": [
+        "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=875&q=80",
+        "https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=871&q=80",
+        "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDR8fHxlbnwwfHx8fHw%3D&auto=format&fit=crop&w=600&q=60",
+        "https://images.unsplash.com/photo-1558036117-15d82a90b9b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDl8fHxlbnwwfHx8fHw%3D&auto=format&fit=crop&w=600&q=60"
+      ],
+      "price": "13500000",
+      "summary": "3 Bedroom Flat in Lekki",
+      "propertyInfo": "3 Bedroom Flat in Lekki",
+      "description": "Introducing an exquisite residential masterpiece, a collection of 15 newly built 4-bedroom semi-detached duplexes with a BQ (Boys' Quarter), nestled in the heart of Nigeria's vibrant cityscape. This architectural marvel seamlessly blends contemporary design with luxurious comfort, offering an unparalleled living experience for discerning individuals and families. Each unit of this splendid development boasts a spacious and well-thought-out floor plan, spanning across multiple levels to provide abundant living space. The ground floor greets you with a grand entrance leading to a tastefully designed living area, adorned with high ceilings and large windows that allow natural light to flood the interior. The thoughtfully placed dining area creates a seamless flow, perfect for hosting gatherings and creating lasting memories.",
+      "address": "12 Tokunbo Waterside, Lekki Phase I",
+      "status": "Off-plan Development",
+      "saleStatus": "mortgage",
+      "approved_at": "3rd Aug, 2023",
+      "approved_by": "Victor Chukwueke・2nd Aug, 2023",
+      "documents": [
+        "CofO-1987_ 2021-01-2021.pdf",
+        "0219821_Title deed - Benjamin%Akindeko - .pdf"
+      ]
+    },
+    {
+      "id": 15,
+      "images": [
+        "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=875&q=80",
+        "https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=871&q=80",
+        "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDR8fHxlbnwwfHx8fHw%3D&auto=format&fit=crop&w=600&q=60",
+        "https://images.unsplash.com/photo-1558036117-15d82a90b9b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDl8fHxlbnwwfHx8fHw%3D&auto=format&fit=crop&w=600&q=60"
+      ],
+      "price": "13500000",
+      "summary": "3 Bedroom Flat in Lekki",
+      "propertyInfo": "3 Bedroom Flat in Lekki",
+      "description": "Introducing an exquisite residential masterpiece, a collection of 15 newly built 4-bedroom semi-detached duplexes with a BQ (Boys' Quarter), nestled in the heart of Nigeria's vibrant cityscape. This architectural marvel seamlessly blends contemporary design with luxurious comfort, offering an unparalleled living experience for discerning individuals and families. Each unit of this splendid development boasts a spacious and well-thought-out floor plan, spanning across multiple levels to provide abundant living space. The ground floor greets you with a grand entrance leading to a tastefully designed living area, adorned with high ceilings and large windows that allow natural light to flood the interior. The thoughtfully placed dining area creates a seamless flow, perfect for hosting gatherings and creating lasting memories.",
+      "address": "12 Tokunbo Waterside, Lekki Phase I",
+      "status": "Off-plan Development",
+      "saleStatus": "mortgage",
+      "approved_at": "3rd Aug, 2023",
+      "approved_by": "Victor Chukwueke・2nd Aug, 2023",
+      "documents": [
+        "CofO-1987_ 2021-01-2021.pdf",
+        "0219821_Title deed - Benjamin%Akindeko - .pdf"
+      ]
+    },
+    {
+      "id": 16,
+      "images": [
+        "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=875&q=80",
+        "https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=871&q=80",
+        "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDR8fHxlbnwwfHx8fHw%3D&auto=format&fit=crop&w=600&q=60",
+        "https://images.unsplash.com/photo-1558036117-15d82a90b9b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDl8fHxlbnwwfHx8fHw%3D&auto=format&fit=crop&w=600&q=60"
+      ],
+      "price": "13500000",
+      "summary": "3 Bedroom Flat in Lekki",
+      "propertyInfo": "3 Bedroom Flat in Lekki",
+      "description": "Introducing an exquisite residential masterpiece, a collection of 15 newly built 4-bedroom semi-detached duplexes with a BQ (Boys' Quarter), nestled in the heart of Nigeria's vibrant cityscape. This architectural marvel seamlessly blends contemporary design with luxurious comfort, offering an unparalleled living experience for discerning individuals and families. Each unit of this splendid development boasts a spacious and well-thought-out floor plan, spanning across multiple levels to provide abundant living space. The ground floor greets you with a grand entrance leading to a tastefully designed living area, adorned with high ceilings and large windows that allow natural light to flood the interior. The thoughtfully placed dining area creates a seamless flow, perfect for hosting gatherings and creating lasting memories.",
+      "address": "12 Tokunbo Waterside, Lekki Phase I",
+      "status": "Off-plan Development",
+      "saleStatus": "mortgage",
+      "approved_at": "3rd Aug, 2023",
+      "approved_by": "Victor Chukwueke・2nd Aug, 2023",
+      "documents": [
+        "CofO-1987_ 2021-01-2021.pdf",
+        "0219821_Title deed - Benjamin%Akindeko - .pdf"
+      ]
+    },
+    {
+      "id": 17,
+      "images": [
+        "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=875&q=80",
+        "https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=871&q=80",
+        "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDR8fHxlbnwwfHx8fHw%3D&auto=format&fit=crop&w=600&q=60",
+        "https://images.unsplash.com/photo-1558036117-15d82a90b9b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDl8fHxlbnwwfHx8fHw%3D&auto=format&fit=crop&w=600&q=60"
+      ],
+      "price": "13500000",
+      "summary": "3 Bedroom Flat in Lekki",
+      "propertyInfo": "3 Bedroom Flat in Lekki",
+      "description": "Introducing an exquisite residential masterpiece, a collection of 15 newly built 4-bedroom semi-detached duplexes with a BQ (Boys' Quarter), nestled in the heart of Nigeria's vibrant cityscape. This architectural marvel seamlessly blends contemporary design with luxurious comfort, offering an unparalleled living experience for discerning individuals and families. Each unit of this splendid development boasts a spacious and well-thought-out floor plan, spanning across multiple levels to provide abundant living space. The ground floor greets you with a grand entrance leading to a tastefully designed living area, adorned with high ceilings and large windows that allow natural light to flood the interior. The thoughtfully placed dining area creates a seamless flow, perfect for hosting gatherings and creating lasting memories.",
+      "address": "12 Tokunbo Waterside, Lekki Phase I",
+      "status": "Off-plan Development",
+      "saleStatus": "mortgage",
+      "approved_at": "3rd Aug, 2023",
+      "approved_by": "Victor Chukwueke・2nd Aug, 2023",
+      "documents": [
+        "CofO-1987_ 2021-01-2021.pdf",
+        "0219821_Title deed - Benjamin%Akindeko - .pdf"
+      ]
+    },
+    {
+      "id": 18,
+      "images": [
+        "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=875&q=80",
+        "https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=871&q=80",
+        "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDR8fHxlbnwwfHx8fHw%3D&auto=format&fit=crop&w=600&q=60",
+        "https://images.unsplash.com/photo-1558036117-15d82a90b9b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDl8fHxlbnwwfHx8fHw%3D&auto=format&fit=crop&w=600&q=60"
+      ],
+      "price": "13500000",
+      "summary": "3 Bedroom Flat in Lekki",
+      "propertyInfo": "3 Bedroom Flat in Lekki",
+      "description": "Introducing an exquisite residential masterpiece, a collection of 15 newly built 4-bedroom semi-detached duplexes with a BQ (Boys' Quarter), nestled in the heart of Nigeria's vibrant cityscape. This architectural marvel seamlessly blends contemporary design with luxurious comfort, offering an unparalleled living experience for discerning individuals and families. Each unit of this splendid development boasts a spacious and well-thought-out floor plan, spanning across multiple levels to provide abundant living space. The ground floor greets you with a grand entrance leading to a tastefully designed living area, adorned with high ceilings and large windows that allow natural light to flood the interior. The thoughtfully placed dining area creates a seamless flow, perfect for hosting gatherings and creating lasting memories.",
+      "address": "12 Tokunbo Waterside, Lekki Phase I",
+      "status": "Off-plan Development",
+      "saleStatus": "mortgage",
+      "approved_at": "3rd Aug, 2023",
+      "approved_by": "Victor Chukwueke・2nd Aug, 2023",
+      "documents": [
+        "CofO-1987_ 2021-01-2021.pdf",
+        "0219821_Title deed - Benjamin%Akindeko - .pdf"
+      ]
+    },
+    {
+      "id": 19,
+      "images": [
+        "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=875&q=80",
+        "https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=871&q=80",
+        "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDR8fHxlbnwwfHx8fHw%3D&auto=format&fit=crop&w=600&q=60",
+        "https://images.unsplash.com/photo-1558036117-15d82a90b9b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDl8fHxlbnwwfHx8fHw%3D&auto=format&fit=crop&w=600&q=60"
+      ],
+      "price": "13500000",
+      "summary": "3 Bedroom Flat in Lekki",
+      "propertyInfo": "3 Bedroom Flat in Lekki",
+      "description": "Introducing an exquisite residential masterpiece, a collection of 15 newly built 4-bedroom semi-detached duplexes with a BQ (Boys' Quarter), nestled in the heart of Nigeria's vibrant cityscape. This architectural marvel seamlessly blends contemporary design with luxurious comfort, offering an unparalleled living experience for discerning individuals and families. Each unit of this splendid development boasts a spacious and well-thought-out floor plan, spanning across multiple levels to provide abundant living space. The ground floor greets you with a grand entrance leading to a tastefully designed living area, adorned with high ceilings and large windows that allow natural light to flood the interior. The thoughtfully placed dining area creates a seamless flow, perfect for hosting gatherings and creating lasting memories.",
+      "address": "12 Tokunbo Waterside, Lekki Phase I",
+      "status": "Off-plan Development",
+      "saleStatus": "mortgage",
+      "approved_at": "3rd Aug, 2023",
+      "approved_by": "Victor Chukwueke・2nd Aug, 2023",
+      "documents": [
+        "CofO-1987_ 2021-01-2021.pdf",
+        "0219821_Title deed - Benjamin%Akindeko - .pdf"
+      ]
+    },
+    {
+      "id": 20,
+      "images": [
+        "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=875&q=80",
+        "https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=871&q=80",
+        "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDR8fHxlbnwwfHx8fHw%3D&auto=format&fit=crop&w=600&q=60",
+        "https://images.unsplash.com/photo-1558036117-15d82a90b9b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDl8fHxlbnwwfHx8fHw%3D&auto=format&fit=crop&w=600&q=60"
+      ],
+      "price": "13500000",
+      "summary": "3 Bedroom Flat in Lekki",
+      "propertyInfo": "3 Bedroom Flat in Lekki",
+      "description": "Introducing an exquisite residential masterpiece, a collection of 15 newly built 4-bedroom semi-detached duplexes with a BQ (Boys' Quarter), nestled in the heart of Nigeria's vibrant cityscape. This architectural marvel seamlessly blends contemporary design with luxurious comfort, offering an unparalleled living experience for discerning individuals and families. Each unit of this splendid development boasts a spacious and well-thought-out floor plan, spanning across multiple levels to provide abundant living space. The ground floor greets you with a grand entrance leading to a tastefully designed living area, adorned with high ceilings and large windows that allow natural light to flood the interior. The thoughtfully placed dining area creates a seamless flow, perfect for hosting gatherings and creating lasting memories.",
+      "address": "12 Tokunbo Waterside, Lekki Phase I",
+      "status": "Off-plan Development",
+      "saleStatus": "mortgage",
+      "approved_at": "3rd Aug, 2023",
+      "approved_by": "Victor Chukwueke・2nd Aug, 2023",
+      "documents": [
+        "CofO-1987_ 2021-01-2021.pdf",
+        "0219821_Title deed - Benjamin%Akindeko - .pdf"
+      ]
+    },
+    {
+      "id": 21,
+      "images": [
+        "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=875&q=80",
+        "https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=871&q=80",
+        "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDR8fHxlbnwwfHx8fHw%3D&auto=format&fit=crop&w=600&q=60",
+        "https://images.unsplash.com/photo-1558036117-15d82a90b9b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDl8fHxlbnwwfHx8fHw%3D&auto=format&fit=crop&w=600&q=60"
+      ],
+      "price": "13500000",
+      "summary": "3 Bedroom Flat in Lekki",
+      "propertyInfo": "3 Bedroom Flat in Lekki",
+      "description": "Introducing an exquisite residential masterpiece, a collection of 15 newly built 4-bedroom semi-detached duplexes with a BQ (Boys' Quarter), nestled in the heart of Nigeria's vibrant cityscape. This architectural marvel seamlessly blends contemporary design with luxurious comfort, offering an unparalleled living experience for discerning individuals and families. Each unit of this splendid development boasts a spacious and well-thought-out floor plan, spanning across multiple levels to provide abundant living space. The ground floor greets you with a grand entrance leading to a tastefully designed living area, adorned with high ceilings and large windows that allow natural light to flood the interior. The thoughtfully placed dining area creates a seamless flow, perfect for hosting gatherings and creating lasting memories.",
+      "address": "12 Tokunbo Waterside, Lekki Phase I",
+      "status": "Off-plan Development",
+      "approved_at": "3rd Aug, 2023",
+      "saleStatus": "mortgage",
+      "approved_by": "Victor Chukwueke・2nd Aug, 2023",
+      "documents": [
+        "CofO-1987_ 2021-01-2021.pdf",
+        "0219821_Title deed - Benjamin%Akindeko - .pdf"
+      ]
+    },
+    {
+      "id": 22,
+      "images": [
+        "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=875&q=80",
+        "https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=871&q=80",
+        "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDR8fHxlbnwwfHx8fHw%3D&auto=format&fit=crop&w=600&q=60",
+        "https://images.unsplash.com/photo-1558036117-15d82a90b9b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDl8fHxlbnwwfHx8fHw%3D&auto=format&fit=crop&w=600&q=60"
+      ],
+      "price": "13500000",
+      "summary": "3 Bedroom Flat in Lekki",
+      "propertyInfo": "3 Bedroom Flat in Lekki",
+      "description": "Introducing an exquisite residential masterpiece, a collection of 15 newly built 4-bedroom semi-detached duplexes with a BQ (Boys' Quarter), nestled in the heart of Nigeria's vibrant cityscape. This architectural marvel seamlessly blends contemporary design with luxurious comfort, offering an unparalleled living experience for discerning individuals and families. Each unit of this splendid development boasts a spacious and well-thought-out floor plan, spanning across multiple levels to provide abundant living space. The ground floor greets you with a grand entrance leading to a tastefully designed living area, adorned with high ceilings and large windows that allow natural light to flood the interior. The thoughtfully placed dining area creates a seamless flow, perfect for hosting gatherings and creating lasting memories.",
+      "address": "12 Tokunbo Waterside, Lekki Phase I",
+      "status": "Off-plan Development",
+      "saleStatus": "mortgage",
+      "approved_at": "3rd Aug, 2023",
+      "approved_by": "Victor Chukwueke・2nd Aug, 2023",
+      "documents": [
+        "CofO-1987_ 2021-01-2021.pdf",
+        "0219821_Title deed - Benjamin%Akindeko - .pdf"
+      ]
+    }
+  ],
+  "profile": {
+    "email": "benjaminakindeko@gmail.com",
+    "phone": "0801 234 5678",
+    "firstName": "Benjamin",
+    "lastName": "Akindeko",
+    "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aGVhZHNob3QlMjBhZnJpY2FufGVufDB8fDB8fHww&auto=format&fit=crop&w=600&q=60",
+    "type": "super admin"
+  },
+  "login-activities": [
+    {
+      "device": "Macbook",
+      "accessedAt": "1 August at 05:02pm",
+      "location": "Lagos, Nigeria"
+    },
+    {
+      "device": "Macbook",
+      "accessedAt": "5 August at 05:02pm",
+      "location": "Lagos, Nigeria"
+    },
+    {
+      "device": "Windows",
+      "accessedAt": "23 September at 12:10am",
+      "location": "Lagos, Nigeria"
+    },
+    {
+      "device": "Macbook",
+      "accessedAt": "2 October at 05:02pm",
+      "location": "Lagos, Nigeria"
+    }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "role": "vendor",
+      "email": "benjaminakindeko@gmail.com",
+      "phone": "0801 234 5678",
+      "firstName": "Benjamin",
+      "lastName": "Akindeko",
+      "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aGVhZHNob3QlMjBhZnJpY2FufGVufDB8fDB8fHww&auto=format&fit=crop&w=600&q=60",
+      "dateOfBirth": "10th Aug, 1989 (34 Years)",
+      "dateJoined": "3rd Aug, 2023",
+      "lastLogin": "3/10/23, 13:07"
+    },
+    {
+      "id": "2",
+      "role": "buyer",
+      "email": "benjaminakindeko@gmail.com",
+      "phone": "0801 234 5678",
+      "firstName": "Benjamin",
+      "lastName": "Akindeko",
+      "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aGVhZHNob3QlMjBhZnJpY2FufGVufDB8fDB8fHww&auto=format&fit=crop&w=600&q=60",
+      "dateJoined": "3rd Aug, 2023",
+      "dateOfBirth": "10th Aug, 1989 (34 Years)",
+      "lastLogin": "3/10/23, 13:07"
+    },
+    {
+      "id": "3",
+      "role": "vendor",
+      "email": "benjaminakindeko@gmail.com",
+      "phone": "0801 234 5678",
+      "firstName": "Benjamin",
+      "lastName": "Akindeko",
+      "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aGVhZHNob3QlMjBhZnJpY2FufGVufDB8fDB8fHww&auto=format&fit=crop&w=600&q=60",
+      "dateJoined": "3rd Aug, 2023",
+      "dateOfBirth": "10th Aug, 1989 (34 Years)",
+      "lastLogin": "3/10/23, 13:07"
+    },
+    {
+      "id": "4",
+      "role": "vendor",
+      "email": "benjaminakindeko@gmail.com",
+      "phone": "0801 234 5678",
+      "firstName": "Benjamin",
+      "lastName": "Akindeko",
+      "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aGVhZHNob3QlMjBhZnJpY2FufGVufDB8fDB8fHww&auto=format&fit=crop&w=600&q=60",
+      "dateJoined": "3rd Aug, 2023",
+      "dateOfBirth": "10th Aug, 1989 (34 Years)",
+      "lastLogin": "3/10/23, 13:07"
+    },
+    {
+      "id": "5",
+      "role": "vendor",
+      "email": "benjaminakindeko@gmail.com",
+      "phone": "0801 234 5678",
+      "firstName": "Benjamin",
+      "lastName": "Akindeko",
+      "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aGVhZHNob3QlMjBhZnJpY2FufGVufDB8fDB8fHww&auto=format&fit=crop&w=600&q=60",
+      "dateJoined": "3rd Aug, 2023",
+      "dateOfBirth": "10th Aug, 1989 (34 Years)",
+      "lastLogin": "3/10/23, 13:07"
+    },
+    {
+      "id": "6",
+      "role": "buyer",
+      "email": "benjaminakindeko@gmail.com",
+      "phone": "0801 234 5678",
+      "firstName": "Benjamin",
+      "lastName": "Akindeko",
+      "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aGVhZHNob3QlMjBhZnJpY2FufGVufDB8fDB8fHww&auto=format&fit=crop&w=600&q=60",
+      "dateJoined": "3rd Aug, 2023",
+      "dateOfBirth": "10th Aug, 1989 (34 Years)",
+      "lastLogin": "3/10/23, 13:07"
+    },
+    {
+      "id": "7",
+      "role": "vendor",
+      "email": "benjaminakindeko@gmail.com",
+      "phone": "0801 234 5678",
+      "firstName": "Benjamin",
+      "lastName": "Akindeko",
+      "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aGVhZHNob3QlMjBhZnJpY2FufGVufDB8fDB8fHww&auto=format&fit=crop&w=600&q=60",
+      "dateJoined": "3rd Aug, 2023",
+      "dateOfBirth": "10th Aug, 1989 (34 Years)",
+      "lastLogin": "3/10/23, 13:07"
+    },
+    {
+      "id": "8",
+      "role": "vendor",
+      "email": "benjaminakindeko@gmail.com",
+      "phone": "0801 234 5678",
+      "firstName": "Benjamin",
+      "lastName": "Akindeko",
+      "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aGVhZHNob3QlMjBhZnJpY2FufGVufDB8fDB8fHww&auto=format&fit=crop&w=600&q=60",
+      "dateJoined": "3rd Aug, 2023",
+      "dateOfBirth": "10th Aug, 1989 (34 Years)",
+      "lastLogin": "3/10/23, 13:07"
+    },
+    {
+      "id": "9",
+      "role": "vendor",
+      "email": "benjaminakindeko@gmail.com",
+      "phone": "0801 234 5678",
+      "firstName": "Benjamin",
+      "lastName": "Akindeko",
+      "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aGVhZHNob3QlMjBhZnJpY2FufGVufDB8fDB8fHww&auto=format&fit=crop&w=600&q=60",
+      "dateJoined": "3rd Aug, 2023",
+      "dateOfBirth": "10th Aug, 1989 (34 Years)",
+      "lastLogin": "3/10/23, 13:07"
+    },
+    {
+      "id": "10",
+      "role": "vendor",
+      "email": "benjaminakindeko@gmail.com",
+      "phone": "0801 234 5678",
+      "firstName": "Benjamin",
+      "lastName": "Akindeko",
+      "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aGVhZHNob3QlMjBhZnJpY2FufGVufDB8fDB8fHww&auto=format&fit=crop&w=600&q=60",
+      "dateJoined": "3rd Aug, 2023",
+      "dateOfBirth": "10th Aug, 1989 (34 Years)",
+      "lastLogin": "3/10/23, 13:07"
+    },
+    {
+      "id": "11",
+      "role": "vendor",
+      "email": "benjaminakindeko@gmail.com",
+      "phone": "0801 234 5678",
+      "firstName": "Benjamin",
+      "lastName": "Akindeko",
+      "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aGVhZHNob3QlMjBhZnJpY2FufGVufDB8fDB8fHww&auto=format&fit=crop&w=600&q=60",
+      "dateJoined": "3rd Aug, 2023",
+      "dateOfBirth": "10th Aug, 1989 (34 Years)",
+      "lastLogin": "3/10/23, 13:07"
+    },
+    {
+      "id": "12",
+      "role": "vendor",
+      "email": "benjaminakindeko@gmail.com",
+      "phone": "0801 234 5678",
+      "firstName": "Benjamin",
+      "lastName": "Akindeko",
+      "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aGVhZHNob3QlMjBhZnJpY2FufGVufDB8fDB8fHww&auto=format&fit=crop&w=600&q=60",
+      "dateJoined": "3rd Aug, 2023",
+      "dateOfBirth": "10th Aug, 1989 (34 Years)",
+      "lastLogin": "3/10/23, 13:07"
+    },
+    {
+      "id": "13",
+      "role": "vendor",
+      "email": "benjaminakindeko@gmail.com",
+      "phone": "0801 234 5678",
+      "firstName": "Benjamin",
+      "lastName": "Akindeko",
+      "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aGVhZHNob3QlMjBhZnJpY2FufGVufDB8fDB8fHww&auto=format&fit=crop&w=600&q=60",
+      "dateJoined": "3rd Aug, 2023",
+      "dateOfBirth": "10th Aug, 1989 (34 Years)",
+      "lastLogin": "3/10/23, 13:07"
+    },
+    {
+      "id": "14",
+      "role": "vendor",
+      "email": "benjaminakindeko@gmail.com",
+      "phone": "0801 234 5678",
+      "firstName": "Benjamin",
+      "lastName": "Akindeko",
+      "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aGVhZHNob3QlMjBhZnJpY2FufGVufDB8fDB8fHww&auto=format&fit=crop&w=600&q=60",
+      "dateJoined": "3rd Aug, 2023",
+      "dateOfBirth": "10th Aug, 1989 (34 Years)",
+      "lastLogin": "3/10/23, 13:07"
+    },
+    {
+      "id": "15",
+      "role": "admin",
+      "email": "benjaminakindeko@gmail.com",
+      "phone": "0801 234 5678",
+      "firstName": "Benjamin",
+      "lastName": "Akindeko",
+      "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aGVhZHNob3QlMjBhZnJpY2FufGVufDB8fDB8fHww&auto=format&fit=crop&w=600&q=60",
+      "dateJoined": "3rd Aug, 2023",
+      "dateOfBirth": "10th Aug, 1989 (34 Years)",
+      "lastLogin": "3/10/23, 13:07"
+    },
+    {
+      "id": "16",
+      "role": "admin",
+      "email": "benjaminakindeko@gmail.com",
+      "phone": "0801 234 5678",
+      "firstName": "Benjamin",
+      "lastName": "Akindeko",
+      "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aGVhZHNob3QlMjBhZnJpY2FufGVufDB8fDB8fHww&auto=format&fit=crop&w=600&q=60",
+      "dateJoined": "3rd Aug, 2023",
+      "dateOfBirth": "10th Aug, 1989 (34 Years)",
+      "lastLogin": "3/10/23, 13:07",
+      "password": "$2a$10$wCnTbduB.HuoCd2GkCuve.TdjWc19izZkp5b2zpzapS/GKZ4pDRPi"
+    },
+    {
+      "id": "GQQ5X1A",
+      "role": "admin",
+      "email": "janedoe@gmail.com",
+      "password": "$2a$10$wCnTbduB.HuoCd2GkCuve.TdjWc19izZkp5b2zpzapS/GKZ4pDRPi",
+      "phone": "0801 234 5678",
+      "firstName": "Jane",
+      "lastName": "Doe",
+      "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aGVhZHNob3QlMjBhZnJpY2FufGVufDB8fDB8fHww&auto=format&fit=crop&w=600&q=60",
+      "dateJoined": "3rd Aug, 2023",
+      "dateOfBirth": "10th Aug, 1989 (34 Years)",
+      "lastLogin": "3/10/23, 13:07"
+    }
+  ],
+  "requests": [
+    {
+      "id": "1",
+      "request": "5 Units of 3 Bedroom Terrace (Semi finished) located in Galadimawa",
+      "requestedBy": "Felix Ogor",
+      "userType": "buyer",
+      "type": "mortgage_application",
+      "date": "Sun 13 Aug, 2023"
+    },
+    {
+      "id": "2",
+      "request": "5 Units of 3 Bedroom Terrace (Semi finished) located in Galadimawa",
+      "requestedBy": "Felix Ogor",
+      "userType": "buyer",
+      "type": "mortgage_application",
+      "date": "Sun 13 Aug, 2023"
+    },
+    {
+      "id": "3",
+      "request": "5 Units of 3 Bedroom Terrace (Semi finished) located in Galadimawa",
+      "requestedBy": "Felix Ogor",
+      "userType": "buyer",
+      "type": "mortgage_application",
+      "date": "Sun 13 Aug, 2023"
+    },
+    {
+      "id": "4",
+      "request": "5 Units of 3 Bedroom Terrace (Semi finished) located in Galadimawa",
+      "requestedBy": "Felix Ogor",
+      "userType": "buyer",
+      "type": "mortgage_application",
+      "date": "Sun 13 Aug, 2023"
+    },
+    {
+      "id": "5",
+      "request": "5 Units of 3 Bedroom Terrace (Semi finished) located in Galadimawa",
+      "requestedBy": "Felix Ogor",
+      "userType": "buyer",
+      "type": "mortgage_application",
+      "date": "Sun 13 Aug, 2023"
+    },
+    {
+      "id": "6",
+      "request": "5 Units of 3 Bedroom Terrace (Semi finished) located in Galadimawa",
+      "requestedBy": "Felix Ogor",
+      "userType": "buyer",
+      "type": "mortgage_application",
+      "date": "Sun 13 Aug, 2023"
+    },
+    {
+      "id": "7",
+      "request": "5 Units of 3 Bedroom Terrace (Semi finished) located in Galadimawa",
+      "requestedBy": "Felix Ogor",
+      "userType": "buyer",
+      "type": "mortgage_application",
+      "date": "Sun 13 Aug, 2023"
+    },
+    {
+      "id": "8",
+      "request": "5 Units of 3 Bedroom Terrace (Semi finished) located in Galadimawa",
+      "requestedBy": "Felix Ogor",
+      "userType": "buyer",
+      "type": "mortgage_application",
+      "date": "Sun 13 Aug, 2023"
+    },
+    {
+      "id": "9",
+      "request": "5 Units of 3 Bedroom Terrace (Semi finished) located in Galadimawa",
+      "requestedBy": "Felix Ogor",
+      "userType": "buyer",
+      "type": "mortgage_application",
+      "date": "Sun 13 Aug, 2023"
+    },
+    {
+      "id": "10",
+      "request": "5 Units of 3 Bedroom Terrace (Semi finished) located in Galadimawa",
+      "requestedBy": "Felix Ogor",
+      "userType": "buyer",
+      "type": "mortgage_application",
+      "date": "Sun 13 Aug, 2023"
+    },
+    {
+      "id": "11",
+      "request": "5 Units of 3 Bedroom Terrace (Semi finished) located in Galadimawa",
+      "requestedBy": "Felix Ogor",
+      "userType": "buyer",
+      "type": "mortgage_application",
+      "date": "Sun 13 Aug, 2023"
+    },
+    {
+      "id": "12",
+      "request": "5 Units of 3 Bedroom Terrace (Semi finished) located in Galadimawa",
+      "requestedBy": "Felix Ogor",
+      "userType": "buyer",
+      "type": "mortgage_application",
+      "date": "Sun 13 Aug, 2023"
+    },
+    {
+      "id": "13",
+      "request": "5 Units of 3 Bedroom Terrace (Semi finished) located in Galadimawa",
+      "requestedBy": "Felix Ogor",
+      "userType": "buyer",
+      "type": "mortgage_application",
+      "date": "Sun 13 Aug, 2023"
+    },
+    {
+      "id": "14",
+      "request": "5 Units of 3 Bedroom Terrace (Semi finished) located in Galadimawa",
+      "requestedBy": "Felix Ogor",
+      "userType": "buyer",
+      "type": "mortgage_application",
+      "date": "Sun 13 Aug, 2023"
+    },
+    {
+      "request": "5 Units of 3 Bedroom Terrace (Semi finished) located in Galadimawa",
+      "requestedBy": "Felix Ogor",
+      "userType": "buyer",
+      "type": "mortgage_application",
+      "date": "Sun 13 Aug, 2023"
+    },
+    {
+      "request": "5 Units of 3 Bedroom Terrace (Semi finished) located in Galadimawa",
+      "requestedBy": "Felix Ogor",
+      "userType": "buyer",
+      "type": "mortgage_application",
+      "date": "Sun 13 Aug, 2023"
+    },
+    {
+      "request": "5 Units of 3 Bedroom Terrace (Semi finished) located in Galadimawa",
+      "requestedBy": "Felix Ogor",
+      "userType": "buyer",
+      "type": "mortgage_application",
+      "date": "Sun 13 Aug, 2023"
+    },
+    {
+      "request": "5 Units of 3 Bedroom Terrace (Semi finished) located in Galadimawa",
+      "requestedBy": "Felix Ogor",
+      "userType": "buyer",
+      "type": "mortgage_application",
+      "date": "Sun 13 Aug, 2023"
+    },
+    {
+      "request": "5 Units of 3 Bedroom Terrace (Semi finished) located in Galadimawa",
+      "requestedBy": "Felix Ogor",
+      "userType": "buyer",
+      "type": "mortgage_application",
+      "date": "Sun 13 Aug, 2023"
+    },
+    {
+      "request": "5 Units of 3 Bedroom Terrace (Semi finished) located in Galadimawa",
+      "requestedBy": "Felix Ogor",
+      "userType": "buyer",
+      "type": "mortgage_application",
+      "date": "Sun 13 Aug, 2023"
+    },
+    {
+      "request": "5 Units of 3 Bedroom Terrace (Semi finished) located in Galadimawa",
+      "requestedBy": "Felix Ogor",
+      "userType": "buyer",
+      "type": "mortgage_application",
+      "date": "Sun 13 Aug, 2023"
+    },
+    {
+      "request": "5 Units of 3 Bedroom Terrace (Semi finished) located in Galadimawa",
+      "requestedBy": "Felix Ogor",
+      "userType": "buyer",
+      "type": "mortgage_application",
+      "date": "Sun 13 Aug, 2023"
+    },
+    {
+      "request": "5 Units of 3 Bedroom Terrace (Semi finished) located in Galadimawa",
+      "requestedBy": "Felix Ogor",
+      "userType": "buyer",
+      "type": "mortgage_application",
+      "date": "Sun 13 Aug, 2023"
+    },
+    {
+      "request": "5 Units of 3 Bedroom Terrace (Semi finished) located in Galadimawa",
+      "requestedBy": "Felix Ogor",
+      "userType": "buyer",
+      "type": "mortgage_application",
+      "date": "Sun 13 Aug, 2023"
+    },
+    {
+      "request": "5 Units of 3 Bedroom Terrace (Semi finished) located in Galadimawa",
+      "requestedBy": "Felix Ogor",
+      "userType": "buyer",
+      "type": "mortgage_application",
+      "date": "Sun 13 Aug, 2023"
+    },
+    {
+      "request": "5 Units of 3 Bedroom Terrace (Semi finished) located in Galadimawa",
+      "requestedBy": "Felix Ogor",
+      "userType": "buyer",
+      "type": "mortgage_application",
+      "date": "Sun 13 Aug, 2023"
+    },
+    {
+      "request": "5 Units of 3 Bedroom Terrace (Semi finished) located in Galadimawa",
+      "requestedBy": "Felix Ogor",
+      "userType": "buyer",
+      "type": "mortgage_application",
+      "date": "Sun 13 Aug, 2023"
+    },
+    {
+      "request": "5 Units of 3 Bedroom Terrace (Semi finished) located in Galadimawa",
+      "requestedBy": "Felix Ogor",
+      "userType": "buyer",
+      "type": "mortgage_application",
+      "date": "Sun 13 Aug, 2023"
+    },
+    {
+      "request": "5 Units of 3 Bedroom Terrace (Semi finished) located in Galadimawa",
+      "requestedBy": "Felix Ogor",
+      "userType": "buyer",
+      "type": "mortgage_application",
+      "date": "Sun 13 Aug, 2023"
+    },
+    {
+      "request": "5 Units of 3 Bedroom Terrace (Semi finished) located in Galadimawa",
+      "requestedBy": "Felix Ogor",
+      "userType": "buyer",
+      "type": "mortgage_application",
+      "date": "Sun 13 Aug, 2023"
+    },
+    {
+      "request": "5 Units of 3 Bedroom Terrace (Semi finished) located in Galadimawa",
+      "requestedBy": "Felix Ogor",
+      "userType": "buyer",
+      "type": "mortgage_application",
+      "date": "Sun 13 Aug, 2023"
+    }
+  ],
+  "transactions": [
+    {
+      "id": "1",
+      "walletId": "3299420494",
+      "type": "equity_contribution",
+      "amount": "17000000",
+      "date": "Sun 13 Aug, 2023",
+      "customer": {
+        "id": "1",
+        "firstName": "Benjamin",
+        "lastName": "Akindeko",
+        "phone": "0801 234 5678"
+      },
+      "property": {
+        "id": "1"
+      }
+    },
+    {
+      "id": "2",
+      "walletId": "3299420494",
+      "amount": "17000000",
+      "type": "equity_contribution",
+      "date": "Sun 13 Aug, 2023",
+      "customer": {
+        "id": "1",
+        "firstName": "Benjamin",
+        "lastName": "Akindeko",
+        "phone": "0801 234 5678"
+      },
+      "property": {
+        "id": "1"
+      }
+    }
+  ]
+}

@@ -1,0 +1,238 @@
+{
+    "ok": true,
+    "message": "Request successful.",
+    "status": 200,
+    "body": {
+        "requests": [
+            {
+                "id": 8,
+                "title": "Application for nhf",
+                "type": "nhf",
+                "status": "ready_for_mortgage",
+                "reference_id": "117",
+                "requester_id": "160",
+                "full_desc": "Application for 1 units of 20 Units Apartments at Ajah from Ayorinde Akindeko",
+                "created_at": "2024-01-23T10:54:01.000Z",
+                "updated_at": "2024-01-23T10:54:01.000Z",
+                "user": {
+                    "id": 160,
+                    "first_name": "Ayorinde",
+                    "last_name": "Akindeko",
+                    "email": "2benay+6@gmail.com",
+                    "phone": "+234809896607",
+                    "avatar": "https://mofidevbucket.s3.amazonaws.com/avatar/84270194731706006797289.png"
+                },
+                "property": {
+                    "title": "20 Units Apartments at Ajah",
+                    "type": "apartments",
+                    "display_image": "https://mofidevbucket.s3.amazonaws.com/property_images/18401385081706003530484.jpg",
+                    "status": "approved",
+                    "state": "Lagos State",
+                    "city": "Eti Osa",
+                    "address": "Ajah, Lagos State",
+                    "id": 27
+                }
+            },
+            {
+                "id": 7,
+                "title": "Application for rto",
+                "type": "rto",
+                "status": "ready_for_mortgage",
+                "reference_id": "116",
+                "requester_id": "159",
+                "full_desc": "Application for 1 units of 10 Units of 3 Bedroom Apartments from Victor Chuks",
+                "created_at": "2024-01-23T10:13:34.000Z",
+                "updated_at": "2024-01-23T10:13:34.000Z",
+                "user": {
+                    "id": 159,
+                    "first_name": "Victor",
+                    "last_name": "Chuks",
+                    "email": "chukwuekevictor+1@gmail.com",
+                    "phone": "+2349121471223",
+                    "avatar": "https://mofidevbucket.s3.amazonaws.com/avatar/67689059641706002125866.png"
+                },
+                "property": {
+                    "title": "10 Units of 3 Bedroom Apartments",
+                    "type": "apartments",
+                    "display_image": "https://mofidevbucket.s3.amazonaws.com/property_images/39916869851706004466979.jpg",
+                    "status": "approved",
+                    "state": "Kano State",
+                    "city": "Kabo",
+                    "address": "Kabo, Kano",
+                    "id": 28
+                }
+            },
+            {
+                "id": 6,
+                "title": "Application for nhf",
+                "type": "nhf",
+                "status": "ready_for_mortgage",
+                "reference_id": "113",
+                "requester_id": "146",
+                "full_desc": "Application for 1 units of 20 units of Flats in Ikoyi Lagos from Daniel Adewale",
+                "created_at": "2024-01-23T07:45:28.000Z",
+                "updated_at": "2024-01-23T07:45:28.000Z",
+                "user": {
+                    "id": 146,
+                    "first_name": "Daniel",
+                    "last_name": "Adewale",
+                    "email": "adewaled03+18@gmail.com",
+                    "phone": "",
+                    "avatar": "https://mofidevbucket.s3.amazonaws.com/avatar/57213279401705919193608.jpeg"
+                },
+                "property": {
+                    "title": "20 units of Flats in Ikoyi Lagos",
+                    "type": "flat",
+                    "display_image": "https://mofidevbucket.s3.amazonaws.com/property_images/64366490991705584033668.jpg",
+                    "status": "approved",
+                    "state": "Lagos State",
+                    "city": "Lagos Island",
+                    "address": "Lagos, Nigeria",
+                    "id": 20
+                }
+            },
+            {
+                "id": 5,
+                "title": "Application for nhf",
+                "type": "nhf",
+                "status": "ready_for_mortgage",
+                "reference_id": "112",
+                "requester_id": "155",
+                "full_desc": "Application for 1 units of 20 units of Flats in Ikoyi Lagos from Victor Chukwueke",
+                "created_at": "2024-01-22T23:25:38.000Z",
+                "updated_at": "2024-01-22T23:25:38.000Z",
+                "user": {
+                    "id": 155,
+                    "first_name": "Victor",
+                    "last_name": "Chukwueke",
+                    "email": "chukwuekevictor+3@gmail.com",
+                    "phone": "+2349121471226",
+                    "avatar": "https://mofidevbucket.s3.amazonaws.com/avatar/57448565701705964634606.png"
+                },
+                "property": {
+                    "title": "20 units of Flats in Ikoyi Lagos",
+                    "type": "flat",
+                    "display_image": "https://mofidevbucket.s3.amazonaws.com/property_images/64366490991705584033668.jpg",
+                    "status": "approved",
+                    "state": "Lagos State",
+                    "city": "Lagos Island",
+                    "address": "Lagos, Nigeria",
+                    "id": 20
+                }
+            },
+            {
+                "id": 4,
+                "title": "Cancellation of Application",
+                "type": "nhf",
+                "status": "cancelled",
+                "reference_id": "111",
+                "requester_id": "155",
+                "full_desc": "Application for 1 units of 20 units of Flats in Ikoyi Lagos from Victor Chukwueke",
+                "created_at": "2024-01-22T23:24:50.000Z",
+                "updated_at": "2024-01-22T23:25:38.000Z",
+                "user": {
+                    "id": 155,
+                    "first_name": "Victor",
+                    "last_name": "Chukwueke",
+                    "email": "chukwuekevictor+3@gmail.com",
+                    "phone": "+2349121471226",
+                    "avatar": "https://mofidevbucket.s3.amazonaws.com/avatar/57448565701705964634606.png"
+                },
+                "property": {
+                    "title": "20 units of Flats in Ikoyi Lagos",
+                    "type": "flat",
+                    "display_image": "https://mofidevbucket.s3.amazonaws.com/property_images/64366490991705584033668.jpg",
+                    "status": "approved",
+                    "state": "Lagos State",
+                    "city": "Lagos Island",
+                    "address": "Lagos, Nigeria",
+                    "id": 20
+                }
+            },
+            {
+                "id": 3,
+                "title": "Cancellation of Application",
+                "type": "nhf",
+                "status": "cancelled",
+                "reference_id": "110",
+                "requester_id": "155",
+                "full_desc": null,
+                "created_at": "2024-01-22T23:24:45.000Z",
+                "updated_at": "2024-01-22T23:24:45.000Z",
+                "user": {
+                    "id": 155,
+                    "first_name": "Victor",
+                    "last_name": "Chukwueke",
+                    "email": "chukwuekevictor+3@gmail.com",
+                    "phone": "+2349121471226",
+                    "avatar": "https://mofidevbucket.s3.amazonaws.com/avatar/57448565701705964634606.png"
+                },
+                "property": {
+                    "title": "20 units of Flats at Yaba, Lagos",
+                    "type": "bungalows",
+                    "display_image": "https://mofidevbucket.s3.amazonaws.com/property_images/37685299551705395705371.jpeg",
+                    "status": "approved",
+                    "state": "Lagos State",
+                    "city": "Lagos Island",
+                    "address": "Lagos, Nigeria",
+                    "id": 18
+                }
+            },
+            {
+                "id": 2,
+                "title": "Test",
+                "type": "nhf",
+                "status": "string",
+                "reference_id": "109",
+                "requester_id": "152",
+                "full_desc": "Just testing",
+                "created_at": "2024-01-22T22:52:17.000Z",
+                "updated_at": "2024-01-22T22:52:17.000Z",
+                "user": {
+                    "id": 152,
+                    "first_name": "Ayorinde",
+                    "last_name": "Akindeko",
+                    "email": "2benay+4@gmail.com",
+                    "phone": "+234123449443",
+                    "avatar": "https://mofidevbucket.s3.amazonaws.com/avatar/86825048261705961378003.png"
+                },
+                "property": {
+                    "title": "20 units of Flats in Ikoyi Lagos",
+                    "type": "flat",
+                    "display_image": "https://mofidevbucket.s3.amazonaws.com/property_images/64366490991705584033668.jpg",
+                    "status": "approved",
+                    "state": "Lagos State",
+                    "city": "Lagos Island",
+                    "address": "Lagos, Nigeria",
+                    "id": 20
+                }
+            },
+            {
+                "id": 1,
+                "title": "Application to acquire 2 units outrightly.",
+                "type": "outrightly_bought",
+                "status": "on_going",
+                "reference_id": "24",
+                "requester_id": "81",
+                "full_desc": null,
+                "created_at": null,
+                "updated_at": null,
+                "user": {},
+                "property": {
+                    "title": "4 Bedrooms Duplex",
+                    "type": "apartments",
+                    "display_image": "",
+                    "status": "pending",
+                    "state": "Lagos",
+                    "city": "Lagos",
+                    "address": "Osborne Offshore, Ikoyi",
+                    "id": 15
+                }
+            }
+        ],
+        "limit": 16,
+        "offset": 0,
+        "total_count": 8,
+        "total_pages": 1
+    }
+}

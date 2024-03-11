@@ -1,0 +1,68 @@
+.container {
+  position: relative;
+  background-color: #fff;
+  z-index: 3;
+}
+
+.button {
+  background-color: #00000000;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.button:hover {
+  cursor: pointer;
+}
+
+.button:hover .hovered {
+  display: flex;
+}
+
+.button .hovered {
+  display: none;
+}
+
+.button:hover .unhovered {
+  display: none;
+}
+
+.button .unhovered {
+  display: flex;
+}
+
+.icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.dropdown {
+  position: absolute;
+  top: 2rem;
+  right: 0;
+  background-color: var(--bg);
+  transition: 300ms;
+  width: fit-content;
+
+  flex-direction: column;
+  gap: 0.5rem;
+
+  border: 1px solid var(--dark-blue-100, #edf3fc);
+  background: #fff;
+  box-shadow: 0px 8px 16px 0px #f4f8fd;
+}
+
+.show {
+  display: flex;
+}
+
+.hide {
+  display: none;
+}
+
+.showIcon {
+  transform: rotate(180deg);
+}
+
+@media screen and (max-width: 420px) {
+}

@@ -1,0 +1,107 @@
+.container {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  padding-right: 3rem;
+  gap: 2rem;
+}
+
+.container .sectionHeader {
+  color: var(--black-400);
+
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 140%; /* 25.2px */
+}
+
+.chartHeader {
+  color: var(--dark-blue-300);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%; /* 22.4px */
+  margin-top: 1rem;
+}
+
+.container h2 {
+  color: var(--Dark-Blue-500, #091525);
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 140%; /* 25.2px */
+}
+
+.chartnApprovals {
+  display: grid;
+  grid-template-columns: auto 260px;
+  gap: 1rem;
+}
+
+.left {
+  display: flex;
+  padding: 24px 32px 48px 32px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  flex: 1 0 0;
+
+  border-radius: 20px;
+  border: 1px solid var(--dark-blue-100, #edf3fc);
+  background: #fff;
+  box-shadow: 0px 8px 16px 0px #f4f8fd;
+}
+
+.salesSummary .card div {
+  color: var(--dark-blue-400, #10244f);
+
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 140%; /* 28px */
+}
+
+.chart {
+  display: flex;
+  gap: 2rem;
+}
+
+.salesSummary {
+  margin-bottom: 2.5rem;
+}
+
+.container .doughnut {
+  width: 180px;
+  height: 180px;
+}
+
+.container .legend {
+  width: 180px;
+  height: 180px;
+}
+
+@media screen and (max-width: 1050px) {
+  .chartnApprovals {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .approvals {
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .container {
+    padding-right: 0;
+    padding: 1.25rem;
+  }
+
+  .container h2 {
+    font-weight: 500;
+  }
+
+  .container .chart {
+    display: flex;
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,43 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding-inline: 20px;
+  width: 340px;
+}
+
+.container h3,
+.container p {
+  margin-block: 0;
+}
+
+.container>div:first-child {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.file {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  border-radius: 8px;
+  background: var(--dark-blue-100, #edf3fc);
+  padding-inline: 12px;
+  gap: 10px;
+  align-self: stretch;
+}
+
+.document {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  overflow: hidden;
+
+  color: var(--dark-blue-500);
+}
+
+.container .submit {
+  padding-block: 12px;
+}

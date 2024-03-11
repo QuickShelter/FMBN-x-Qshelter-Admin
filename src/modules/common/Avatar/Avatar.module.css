@@ -1,0 +1,16 @@
+.container {
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  width: 40px;
+}
+
+.placeholder {
+  background: #012635;
+  width: 40px;
+  height: 40px;
+  border-radius: 10rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}

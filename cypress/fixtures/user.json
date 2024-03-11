@@ -1,0 +1,38 @@
+{
+    "ok": true,
+    "message": "Request successful.",
+    "status": 200,
+    "body": {
+        "user": {
+            "id": 160,
+            "first_name": "Ayorinde",
+            "last_name": "Akindeko",
+            "phone": "+234809896607",
+            "email": "2benay+6@gmail.com",
+            "password": "$2a$10$sRB6RXjcaCcGoDnw6p6bJObt5s8cq4r4tiAfeiWfu3yAYbTL0huZi",
+            "email_verified": true,
+            "bvn_verified": true,
+            "bvn": "00000000000",
+            "roles": [
+                "user"
+            ],
+            "avatar": "https://mofidevbucket.s3.amazonaws.com/avatar/84270194731706006797289.png",
+            "gender": null,
+            "dob": "Thu Jan 12 2006",
+            "country": "Nigeria",
+            "is_first_time_login": false,
+            "identity_document": "https://mofidevbucket.s3.amazonaws.com/identity_documents/94737490551706006797393.png",
+            "identity_document_verified": false,
+            "employment_status": "self_employed",
+            "monthly_net_salary": "1000000.00",
+            "is_nhf_active": false,
+            "pfa": "ARM PENSION MANAGERS LIMITED",
+            "rsa": "PEN23455345634",
+            "business_sector": null,
+            "years_of_work": 6,
+            "suspended": false,
+            "created_at": "2024-01-23T10:44:51.000Z",
+            "updated_at": "2024-01-23T10:46:37.000Z"
+        }
+    }
+}

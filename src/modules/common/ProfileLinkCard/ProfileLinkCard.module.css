@@ -1,0 +1,70 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.container .role {
+  text-transform: capitalize;
+  color: var(--dark-blue-300);
+  font-family: Livvic;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  flex-direction: column;
+}
+
+.container svg {
+  transition: 300ms;
+}
+
+.container:hover svg {
+  transform: translateX(0.6rem);
+}
+
+.profileGrid {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.2rem 0.5rem;
+  align-items: center;
+}
+
+.profileGrid img {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+}
+
+.profileGrid strong {
+  grid-column: 2;
+  grid-row: 1;
+
+  color: var(--dark-blue-400, #10244f);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 140%; /* 19.6px */
+}
+
+.profileGrid span {
+  grid-column: 2;
+  grid-row: 2;
+
+  color: var(--dark-blue-400, #10244f);
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.avatar {
+  width: 32px;
+}
+
+.avatar::before {
+  background: var(--dark-blue-500, #091525);
+}

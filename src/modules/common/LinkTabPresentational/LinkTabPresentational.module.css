@@ -1,0 +1,36 @@
+.container {
+  display: flex;
+  width: fit-content;
+  gap: 1.5rem;
+  width: 100%;
+  border-bottom: 1px solid var(--green-100, #eef3f0);
+}
+
+.button {
+  padding: 10px 0;
+  background: #00000000;
+  border: none;
+  font-size: 16px;
+}
+
+.button.active {
+  color: var(--green-500);
+  border-bottom: 2px solid var(--green-500);
+  margin-bottom: -1px;
+}
+
+.button:not(:disabled):hover {
+  transform: scale(1.05);
+  color: var(--dark-blue-500);
+}
+
+@media screen and (max-width: 420px) {
+  .container {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    gap: 0
+  }
+
+  .button {}
+}

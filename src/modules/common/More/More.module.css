@@ -1,0 +1,23 @@
+.container {
+  position: relative;
+  width: fit-content;
+  height: fit-content;
+}
+
+.dropdown {
+  border-radius: 20px;
+  border: 1px solid var(--dark-blue-100, #edf3fc);
+  box-shadow: 0px 8px 16px 0px #f4f8fd;
+
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  top: 1.5rem;
+  right: -1rem;
+  width: 10rem;
+  min-height: 2rem;
+  border: 1px solid var(--dark-blue-100, #edf3fc);
+  background-color: #fff;
+  padding-block: 0.5rem;
+  z-index: 3;
+}

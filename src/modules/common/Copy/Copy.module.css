@@ -1,0 +1,18 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.text {
+  max-width: 33ch;
+  text-overflow: ellipsis;
+}
+
+@media screen and (max-width: 420px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+  }
+}

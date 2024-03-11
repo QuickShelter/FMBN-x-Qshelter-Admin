@@ -1,0 +1,60 @@
+.container {
+  display: flex;
+  margin-inline: auto;
+  justify-content: flex-start;
+  overflow-x: scroll;
+  max-width: 100%;
+}
+
+.nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container ul {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.container li {
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--green-100);
+  border-radius: 50px;
+
+  color: var(--black-400);
+  text-align: center;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  text-transform: uppercase;
+}
+
+.container .active {
+  background: var(--black-400);
+}
+
+.container .active a {
+  color: #ffffff;
+}
+
+.singleMove {
+  text-decoration: none;
+  display: flex;
+  padding: 0.5rem;
+  align-items: center;
+  gap: 20px;
+  border-radius: 50%;
+  border: 1px solid var(--green-200);
+}
+
+.singleMove:last-child {
+  transform: rotate(180deg);
+}

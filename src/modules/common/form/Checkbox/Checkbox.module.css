@@ -1,0 +1,19 @@
+.container {
+  position: relative;
+}
+
+.container .input:checked ~ .checked {
+  display: inline;
+}
+
+.container .input:checked ~ .unchecked {
+  display: none;
+}
+
+.container .input:not(:checked) ~ .unchecked {
+  display: inline;
+}
+
+.container .input:not(:checked) ~ .checked {
+  display: none;
+}

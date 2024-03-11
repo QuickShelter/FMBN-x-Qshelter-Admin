@@ -1,0 +1,7 @@
+.editModal {
+  width: min(calc(100vw - 2rem), 700px);
+}
+
+.container:hover a {
+  text-decoration: underline;
+}

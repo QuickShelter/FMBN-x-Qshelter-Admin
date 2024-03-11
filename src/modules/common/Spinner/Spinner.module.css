@@ -1,0 +1,50 @@
+.container {
+  --thickness: 4px;
+  --size: 1rem;
+  display: flex;
+  border: var(--thickness) solid #f3f3f3;
+  border: var(--thickness) solid var(--green-200);
+  border-radius: 50%;
+  border-top: var(--thickness) solid #00000000;
+  -webkit-animation: spin 2s linear infinite;
+  /* Safari */
+  animation: spin 2s linear infinite;
+  aspect-ratio: 1/1;
+  width: var(--size);
+}
+
+.sm {
+  --thickness: 2px;
+  --size: 1rem;
+}
+
+.md {
+  --thickness: 4px;
+  --size: 2rem;
+}
+
+.lg {
+  --thickness: 4px;
+  --size: 3rem;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

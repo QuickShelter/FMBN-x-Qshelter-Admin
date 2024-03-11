@@ -1,0 +1,42 @@
+.container {
+  display: block;
+  position: relative;
+  overflow: hidden;
+}
+
+.slider {
+  left: 0;
+  /* If you do all, remember that the width of the slider also changes,
+  and we dont want that to transition */
+  transition: left 300ms;
+  display: flex;
+  position: relative;
+  justify-content: flex-start;
+}
+
+.container>button {
+  border-radius: 100px;
+  background: #fafafa;
+  display: flex;
+  padding: 4px;
+  align-items: flex-start;
+  gap: 5px;
+  border: none;
+
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+}
+
+.container>button:disabled {
+  background: #fafafa70;
+}
+
+.container>button:first-child {
+  left: 20px;
+}
+
+.container>button:last-child {
+  right: 20px;
+}

@@ -1,0 +1,23 @@
+.container {
+  padding: 1.25rem;
+  padding-right: 42px;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.panel {
+  display: flex;
+  justify-content: space-between;
+}
+
+.filternExport {
+  display: flex;
+  gap: 1rem;
+}
+
+@media screen and (max-width: 420px) {
+  .container {
+    padding-inline: 1rem;
+  }
+}

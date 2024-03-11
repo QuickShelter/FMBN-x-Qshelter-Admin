@@ -1,0 +1,27 @@
+.wrapper {
+  padding: 20px;
+  --padding-left-section: 24px;
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns:
+    calc(var(--large-slider-width) + 2 * var(--padding-left-section))
+    auto;
+  width: fit-content;
+}
+
+@media screen and (max-width: 1050px) {
+  .wrapper {
+    --padding-left-section: 0px;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .wrapper {
+    --padding-left-section: 0px;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+  }
+}

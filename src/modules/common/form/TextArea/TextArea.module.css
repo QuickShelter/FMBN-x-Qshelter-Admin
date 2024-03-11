@@ -1,0 +1,30 @@
+.container {
+  resize: vertical;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #e2e6f1;
+  background: #fff;
+  position: relative;
+}
+
+.container,
+.container::placeholder {
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%;
+  /* 19.6px */
+}
+
+.container::placeholder {
+  color: #c2c7d6;
+}
+
+.container:disabled {
+  background-color: var(--dark-blue-100);
+}
+
+.container:focus-visible {
+  /* outline: var(--blue-500) auto 1px; */
+  outline: none;
+}

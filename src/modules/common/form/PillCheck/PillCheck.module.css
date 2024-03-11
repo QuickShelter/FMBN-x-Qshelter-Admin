@@ -1,0 +1,21 @@
+.container {
+  position: relative;
+}
+
+.container .pill{
+  user-select: none;
+}
+
+.container .input:checked ~ .pill {
+  background-color: var(--black-400);
+  color: #fff;
+}
+
+.container .input:not(:checked) ~ .pill {
+  background-color: #fff;
+  color: var(--black-400);
+}
+
+.container label{
+  user-select: none;
+}
