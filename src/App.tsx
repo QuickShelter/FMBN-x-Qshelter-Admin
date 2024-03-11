@@ -4,7 +4,7 @@ import "./App.css";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
 import { RouterProvider } from "react-router-dom";
-import Router from "./modules/route/Router";
+import Router from "./modules/route/RouterSplitted";
 
 function App() {
   return (

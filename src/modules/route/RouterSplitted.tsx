@@ -1,30 +1,31 @@
+import { Suspense, lazy } from "react";
 import { Navigate, createBrowserRouter } from "react-router-dom";
 import AppLayout from "../common/layouts/AppLayout/AppLayout";
-import SignIn from "../pages/SignIn";
-import Home from "../pages/Home";
 import NotFound from "../pages/NotFound/NotFound";
-import ProperyEdit from "../pages/PropertyEdit";
-import Requests from "../pages/Requests";
-import Users from "../pages/Users";
-import UserView from "../pages/UserView";
-import RequestView from "../pages/RequestView";
 import ForgotPassword from "../pages/ForgotPassword";
-import Transactions from "../pages/Transactions";
 import TransactionView from "../pages/TransactionView";
 import ProtectedRoute from "./ProtectedRoute";
 import AuthRoute from "./AuthRoute";
 import UnImplemented from "../pages/UnImplemented";
 // import Test from "../pages/Test";
-import Projects from "../pages/Projects";
 import ProjectView from "../pages/ProjectView";
-import Properties from "../pages/Properties";
-import PropertyView from "../pages/PropertyView";
-import Units from "../pages/Units";
-import UnitView from "../pages/UnitView";
-import UnitsView from "../projects/View/Applications/UnitsView";
 import RoleBasedRouteGuard from "../common/guards/RoleBasedRouteGuard";
-import { Suspense } from "react";
-import Spinner from "../common/Spinner";
+import CenteredLoader from "../common/CenteredLoader";
+
+const Home = lazy(() => import("../pages/Home"));
+const SignIn = lazy(() => import("../pages/SignIn"));
+const Users = lazy(() => import("../pages/Users"));
+const Transactions = lazy(() => import("../pages/Transactions"));
+const PropertyView = lazy(() => import("../pages/PropertyView"));
+const Projects = lazy(() => import("../pages/Projects"));
+const UnitsView = lazy(() => import("../projects/View/Applications/UnitsView"));
+const UnitView = lazy(() => import("../pages/UnitView"));
+const Requests = lazy(() => import("../pages/Requests"));
+const Properties = lazy(() => import("../pages/Properties"));
+const UserView = lazy(() => import("../pages/UserView"));
+const Units = lazy(() => import("../pages/Units"));
+const PropertyEdit = lazy(() => import("../pages/PropertyEdit"));
+const RequestView = lazy(() => import("../pages/RequestView"));
 
 const Router = createBrowserRouter([
   {
@@ -44,10 +45,8 @@ const Router = createBrowserRouter([
         path: "/dashboard",
         element: (
           <ProtectedRoute>
-            {/* <Home /> */}
-            <Suspense fallback={<Spinner size="lg" />}>
-              <Home
-              />
+            <Suspense fallback={<CenteredLoader size="md" />}>
+              <Home />
             </Suspense>
           </ProtectedRoute>
         ),
@@ -56,7 +55,9 @@ const Router = createBrowserRouter([
         path: "/signin",
         element: (
           <AuthRoute>
-            <SignIn />
+            <Suspense fallback={<CenteredLoader size="md" />}>
+              <SignIn />
+            </Suspense>
           </AuthRoute>
         ),
       },
@@ -72,14 +73,6 @@ const Router = createBrowserRouter([
         path: "/projects",
         children: [
           {
-            path: "/projects/:id/edit",
-            element: (
-              <ProtectedRoute>
-                <ProperyEdit />
-              </ProtectedRoute>
-            ),
-          },
-          {
             path: "/projects/:id",
             element: (
               <ProtectedRoute>
@@ -91,7 +84,9 @@ const Router = createBrowserRouter([
             path: "/projects/:id/units",
             element: (
               <ProtectedRoute>
-                <UnitsView />
+                <Suspense fallback={<CenteredLoader size="md" />}>
+                  <UnitsView />
+                </Suspense>
               </ProtectedRoute>
             ),
           },
@@ -99,7 +94,9 @@ const Router = createBrowserRouter([
             path: "/projects",
             element: (
               <RoleBasedRouteGuard allowedRoles={['legal_admin']}>
-                <Projects />
+                <Suspense fallback={<CenteredLoader size="md" />}>
+                  <Projects />
+                </Suspense>
               </RoleBasedRouteGuard>
             ),
           },
@@ -112,7 +109,9 @@ const Router = createBrowserRouter([
             path: "/properties/:id/edit",
             element: (
               <RoleBasedRouteGuard allowedRoles={['sales_admin']}>
-                <ProperyEdit />
+                <Suspense fallback={<CenteredLoader size="md" />}>
+                  <PropertyEdit />
+                </Suspense>
               </RoleBasedRouteGuard>
             ),
           },
@@ -120,7 +119,9 @@ const Router = createBrowserRouter([
             path: "/properties/:id",
             element: (
               <ProtectedRoute>
-                <PropertyView />
+                <Suspense fallback={<CenteredLoader size="md" />}>
+                  <PropertyView />
+                </Suspense>
               </ProtectedRoute>
             ),
           },
@@ -128,7 +129,9 @@ const Router = createBrowserRouter([
             path: "/properties/:id/building/:building_id/units",
             element: (
               <ProtectedRoute>
-                <Units />
+                <Suspense fallback={<CenteredLoader size="md" />}>
+                  <Units />
+                </Suspense>
               </ProtectedRoute>
             ),
           },
@@ -136,7 +139,9 @@ const Router = createBrowserRouter([
             path: "/properties/:property_id/units/:id",
             element: (
               <RoleBasedRouteGuard allowedRoles={['sales_admin', 'mortgage_ops_admin']}>
-                <UnitView />
+                <Suspense fallback={<CenteredLoader size="md" />}>
+                  <UnitView />
+                </Suspense>
               </RoleBasedRouteGuard>
             ),
           },
@@ -144,7 +149,9 @@ const Router = createBrowserRouter([
             path: "/properties",
             element: (
               <ProtectedRoute>
-                <Properties />
+                <Suspense fallback={<CenteredLoader size="md" />}>
+                  <Properties />
+                </Suspense>
               </ProtectedRoute>
             ),
           },
@@ -154,18 +161,12 @@ const Router = createBrowserRouter([
         path: "/users",
         children: [
           {
-            path: "/users/:id/edit",
-            element: (
-              <ProtectedRoute>
-                <ProperyEdit />
-              </ProtectedRoute>
-            ),
-          },
-          {
             path: "/users/:id",
             element: (
               <ProtectedRoute>
-                <UserView />
+                <Suspense fallback={<CenteredLoader size="md" />}>
+                  <UserView />
+                </Suspense>
               </ProtectedRoute>
             ),
           },
@@ -173,7 +174,9 @@ const Router = createBrowserRouter([
             path: "/users",
             element: (
               <ProtectedRoute>
-                <Users />
+                <Suspense fallback={<CenteredLoader size="md" />}>
+                  <Users />
+                </Suspense>
               </ProtectedRoute>
             ),
           },
@@ -183,18 +186,12 @@ const Router = createBrowserRouter([
         path: "/requests",
         children: [
           {
-            path: "/requests/:id/edit",
-            element: (
-              <ProtectedRoute>
-                <ProperyEdit />
-              </ProtectedRoute>
-            ),
-          },
-          {
             path: "/requests/:id",
             element: (
               <ProtectedRoute>
-                <RequestView />
+                <Suspense fallback={<CenteredLoader size="md" />}>
+                  <RequestView />
+                </Suspense>
               </ProtectedRoute>
             ),
           },
@@ -202,7 +199,9 @@ const Router = createBrowserRouter([
             path: "/requests",
             element: (
               <ProtectedRoute>
-                <Requests />
+                <Suspense fallback={<CenteredLoader size="md" />}>
+                  <Requests />
+                </Suspense>
               </ProtectedRoute>
             ),
           },
@@ -215,7 +214,9 @@ const Router = createBrowserRouter([
             path: "/transactions",
             element: (
               <RoleBasedRouteGuard allowedRoles={['finance_admin']}>
-                <Transactions />
+                <Suspense fallback={<CenteredLoader size="md" />}>
+                  <Transactions />
+                </Suspense>
               </RoleBasedRouteGuard>
             ),
           },
