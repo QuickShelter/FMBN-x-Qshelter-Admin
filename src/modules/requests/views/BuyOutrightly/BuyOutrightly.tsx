@@ -62,7 +62,7 @@ export default function BuyOutrightly({ request }: IProps) {
   const updateStatus = async (action: 'approve' | 'decline') => {
     const payload: IOutrightApprovalDto = {
       user_id: profile?.id ?? "",
-      application_id: request?.data?.contributions?.[0]?.application_id ?? ""
+      application_id: request?.data?.id ?? ""
     }
 
     if (action === 'approve') {

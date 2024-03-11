@@ -1,9 +1,7 @@
-import { DetailedHTMLProps, HTMLAttributes } from "react";
 import styles from "./LinkTabPresentational.module.css";
 import { Link } from "react-router-dom";
 
-interface IProps
-  extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+interface IProps {
   tabs: {
     label: string;
     value: string; //IPropertySaleStatus | IRequestType | ITransactionType | IRole | "";
@@ -12,10 +10,10 @@ interface IProps
   currentValue: string | null | undefined | (string | null)[]
 }
 
-export default function LinkTabPresentational({ currentValue, className, tabs, ...rest }: IProps) {
+export default function LinkTabPresentational({ currentValue, tabs }: IProps) {
 
   return (
-    <nav {...rest} className={`${className} ${styles.container} px-4 md:px-6 flex-wrap`}>
+    <>
       {tabs.map(({ label, value, link }) => {
         return (
           <Link
@@ -28,6 +26,6 @@ export default function LinkTabPresentational({ currentValue, className, tabs, .
           </Link>
         );
       })}
-    </nav>
+    </>
   );
 }

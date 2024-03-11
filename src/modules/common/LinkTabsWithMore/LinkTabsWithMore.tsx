@@ -58,8 +58,8 @@ export default function LinkTabWithMore(props: IProps) {
 
   return (
     <nav {...rest} className={`${props.className} ${styles.container} px-4 md:px-6 flex-wrap`}>
-      <div className="flex items-center">
-        <LinkTabPresentational className="flex-nowrap" tabs={main} currentValue={currentValue} />
+      <div className="flex items-center justify-between w-full">
+        <LinkTabPresentational tabs={main} currentValue={currentValue} />
         <details ref={ref as RefObject<HTMLDetailsElement>} className={`${styles.dropdown} relative`}>
           <summary className="cursor-pointer flex items-center gap-1 text-base">More <ChevronDown className={styles.moreIcon} /></summary>
           <Card className={`${styles.moreCard} rounded-none flex flex-col absolute bg-[#fff] z-10 px-4 py-4`}>
