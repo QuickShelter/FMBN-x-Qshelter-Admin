@@ -5,6 +5,7 @@ import { TDocumentDefinitions } from "pdfmake/interfaces";
 import PropertyHelper from "./PropertyHelper";
 import FormatHelper from "./FormatHelper";
 import StringHelper from "./StringHelper";
+import EnvironmentHelper from "./EnvironmentHelper";
 
 export default class ExportHelper {
   /**
@@ -271,7 +272,7 @@ export default class ExportHelper {
       },
     };
 
-    pdfMake.createPdf(docDefinition).download("Renewed Hope Projects.pdf");
+    pdfMake.createPdf(docDefinition).download(`${EnvironmentHelper.PROJECT_OWNER} Projects.pdf`);
   }
 
   public static exportUsersPDF(data: IUser[]) {

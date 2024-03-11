@@ -5,6 +5,7 @@ import DetailCard from "../DetailCard";
 import FormatHelper from "@/helpers/FormatHelper";
 import Image from "../Image";
 import ArrayHelper from "@/helpers/ArrayHelper";
+import EnvironmentHelper from "@/helpers/EnvironmentHelper";
 
 interface IProps
     extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
@@ -17,7 +18,7 @@ const PropertyTemplate = ({ className, _property: property, developer, ...rest }
     const imgStyle = "w-[10rem] h-[10rem] object-cover"
 
     return < div {...rest} className={`${className} flex flex-col gap-4 px-6 py-6`} >
-        <h1 className="font-lg">Renewed Hope Property</h1>
+        <h1 className="font-lg">{EnvironmentHelper.PROJECT_OWNER} Property</h1>
         <div className="grid grid-cols-2 gap-4">
             <DetailCard label="Title" value={property.title} />
             <DetailCard label="Address" value={property.address} />

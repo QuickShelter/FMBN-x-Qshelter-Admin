@@ -5,16 +5,18 @@ import FormatHelper from "@/helpers/FormatHelper";
 import StringHelper from "@/helpers/StringHelper";
 import RequestHelper from "@/helpers/RequestHelper";
 import CurrencyHelper from "@/helpers/CurrencyHelper";
+import EnvironmentHelper from "@/helpers/EnvironmentHelper";
 
 interface IProps
     extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
     request: IBuyOutrightlyRequest;
     user: IUser
 }
+
 const OutrightPurchaseRequestTemplate = ({ className, user, request, ...rest }: IProps) => {
 
     return < div {...rest} className={`${className} flex flex-col gap-4 px-6 py-6`} >
-        <h1 className="font-lg">Renewed Hope Property Price Update Request</h1>
+        <h1 className="font-lg">{EnvironmentHelper.PROJECT_OWNER} Property Price Update Request</h1>
         <div className="grid grid-cols-2 gap-4">
             <DetailCard label="Purchase Type" value={RequestHelper.typeToHumanMap[request.type]} />
             <DetailCard label="Property Code" value={request?.data.property?.id} />

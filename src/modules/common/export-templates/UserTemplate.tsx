@@ -4,6 +4,7 @@ import DetailCard from "../DetailCard";
 import FormatHelper from "@/helpers/FormatHelper";
 import StringHelper from "@/helpers/StringHelper";
 import { formatDate } from "@/helpers/dateFormat";
+import EnvironmentHelper from "@/helpers/EnvironmentHelper";
 
 interface IProps
     extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
@@ -12,7 +13,7 @@ interface IProps
 const UserTemplate = ({ className, user, ...rest }: IProps) => {
 
     return < div {...rest} className={`${className} flex flex-col gap-4 px-6 py-6`} >
-        <h1 className="font-lg">Renewed Hope User</h1>
+        <h1 className="font-lg">{EnvironmentHelper.PROJECT_OWNER} User</h1>
         {user.avatar && <img className="w-[200px] h-[200px]" alt="" src={user.avatar} />}
         <div className="grid grid-cols-2 gap-4">
             <DetailCard label="First Name" value={user.first_name} />

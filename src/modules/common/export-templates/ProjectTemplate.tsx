@@ -3,6 +3,7 @@ import { DetailedHTMLProps, HTMLAttributes } from "react";
 import DetailCard from "../DetailCard";
 import FormatHelper from "@/helpers/FormatHelper";
 import StringHelper from "@/helpers/StringHelper";
+import EnvironmentHelper from "@/helpers/EnvironmentHelper";
 
 interface IProps
     extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
@@ -12,7 +13,7 @@ const ProjectTemplate = ({ className, project, ...rest }: IProps) => {
     const developer = project.developer
 
     return < div {...rest} className={`${className} flex flex-col gap-4 px-6 py-6`} >
-        <h1 className="font-lg">Renewed Hope Project</h1>
+        <h1 className="font-lg">{EnvironmentHelper.PROJECT_OWNER} Project</h1>
         <div className="grid grid-cols-2 gap-4">
             <DetailCard label="State" value={project.state} />
             <DetailCard label="City" value={project.city} />

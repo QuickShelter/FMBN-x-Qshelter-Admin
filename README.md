@@ -1,6 +1,6 @@
 # quick-shelter-admin-dash
 
-Admin dashboard for Renewed Hope
+Admin dashboard for FMBN
 
 # Notes
 

@@ -4,6 +4,7 @@ import DetailCard from "../DetailCard";
 import FormatHelper from "@/helpers/FormatHelper";
 import StringHelper from "@/helpers/StringHelper";
 import UserHelper from "@/helpers/UserHelper";
+import EnvironmentHelper from "@/helpers/EnvironmentHelper";
 
 interface IProps
     extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
@@ -13,7 +14,7 @@ interface IProps
 const PropertyPriceChangeTemplate = ({ className, user, request, ...rest }: IProps) => {
 
     return < div {...rest} className={`${className} flex flex-col gap-4 px-6 py-6`} >
-        <h1 className="font-lg">Renewed Hope Property Price Update Request</h1>
+        <h1 className="font-lg">{EnvironmentHelper.PROJECT_OWNER} Property Price Update Request</h1>
         <div className="grid grid-cols-2 gap-4">
             <DetailCard label="Price" value={request?.data?.price ? FormatHelper.nairaFormatter.format(request?.data?.price) : null} />
             <DetailCard label="Pending Price" value={request?.data?.pending_price ? FormatHelper.nairaFormatter.format(request?.data?.pending_price) : null} />
