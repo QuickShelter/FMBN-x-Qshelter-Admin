@@ -27,7 +27,8 @@ interface IProps
   isLoading: boolean
   handleApprove?: () => Promise<IResponse<IRequest>>,
   handleDecline?: () => Promise<IResponse<IRequest>>,
-  exportTemplate: ReactElement
+  exportTemplate: ReactElement,
+  canApprove?: boolean
 }
 
 /**
@@ -36,7 +37,7 @@ interface IProps
  * @param props
  * @returns
  */
-export default function Profile({ className, exportTemplate, user, request, isLoading, handleApprove: approve, handleDecline: decline, ...rest }: IProps) {
+export default function Profile({ canApprove = true, className, exportTemplate, user, request, isLoading, handleApprove: approve, handleDecline: decline, ...rest }: IProps) {
   const [showDeclineModal, setShowDeclineModal] = useState(false);
   const [showApprovalModal, setShowApproveModal] = useState(false);
   const avatarComponent = <Avatar className="w-[4rem] h-[4rem] rounded-full" user={user} />
@@ -63,7 +64,6 @@ export default function Profile({ className, exportTemplate, user, request, isLo
         );
       }
     } catch (error) {
-      console.log(error)
       const err = error as IAPIError
       dispatch(
         setToast({
@@ -160,7 +160,7 @@ export default function Profile({ className, exportTemplate, user, request, isLo
               </div>
               <div className="gap-2 flex flex-wrap sm:flex items-center">
                 <ApproveDeclineButtons
-                  canApprove={true}
+                  canApprove={canApprove}
                   handleApprove={approve ? () => setShowApproveModal(true) : undefined}
                   handleDecline={decline ? () => setShowDeclineModal(true) : undefined}
                   isLoading={isLoading}

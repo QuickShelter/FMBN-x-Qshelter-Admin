@@ -494,7 +494,8 @@ export interface IPropertyMilestone {
   media: string | null,
   updated_by: string | null,
   youtube_url: string | null,
-  approved: string | null,
+  status: IStatus,
+  status_reason: string | null,
   created_at: string | null,
   updated_at: string | null,
   deleted_at: string | null,
@@ -1245,11 +1246,15 @@ export interface IProperty {
   deleted_at: string | null;
   buildings: IBuilding[];
   milestones: IPropertyMilestone[];
-  about: string | null;
+  about?: string | null;
+  pending_price?: null;
 
   //
   //photos?: IPhoto[];
   property_documents?: string | null;
+  total_units?: number | null,
+  total_sold?: number | null,
+  total_available?: number | null,
 }
 
 export interface IRestCountryData {
@@ -1276,6 +1281,7 @@ export interface IApartment {
   available: boolean;
   sold: boolean;
   price: number;
+  pending_price?: number | null;
   created_at: string | null;
   updated_at: string | null;
   deleted_at: string | null;
@@ -1307,6 +1313,9 @@ export interface IBuilding {
   deleted_at: string | null;
   apartments: IApartment[];
   amenities: string | null;
+  total_units?: number | null,
+  total_sold?: number | null,
+  total_available?: number | null,
 }
 
 export interface IMakeAdminDto {

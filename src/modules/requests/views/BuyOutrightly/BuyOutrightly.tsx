@@ -16,6 +16,7 @@ import Documents from "./tabs/Documents";
 import Profile from "../Profile";
 import OutrightPurchaseRequestTemplate from "@/modules/common/export-templates/OutrightPurchaseRequestTemplate";
 import { useNavigate } from "react-router-dom";
+import RequestHelper from "@/helpers/RequestHelper";
 
 interface IProps {
   request: IBuyOutrightlyRequest;
@@ -106,7 +107,7 @@ export default function BuyOutrightly({ request }: IProps) {
         </div>
         <Hr />
         <div className="px-4 sm:px-[3rem] py-4 sm:py-6 flex flex-col gap-4">
-          {user && <Profile exportTemplate={<OutrightPurchaseRequestTemplate request={request} user={user} />} handleApprove={handleApprove} handleDecline={handleDecline} request={request} className="" user={user} isLoading={isApproving || isDeclining} />}
+          {user && request && <Profile canApprove={RequestHelper.checkOutrightPaymentCompleted(request)} exportTemplate={<OutrightPurchaseRequestTemplate request={request} user={user} />} handleApprove={handleApprove} handleDecline={handleDecline} request={request} className="" user={user} isLoading={isApproving || isDeclining} />}
           {isUserLoading && <Spinner size="sm" />}
         </div>
         <Tab

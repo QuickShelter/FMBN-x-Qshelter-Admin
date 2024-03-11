@@ -43,6 +43,22 @@ export default class RequestHelper {
       || request.type === 'contribution';
   }
 
+  public static checkOutrightPaymentCompleted(request: IBuyOutrightlyRequest): boolean {
+    if (!request?.data?.initial_payment_made) {
+      return false
+    }
+
+    const contributions = request?.data?.contributions ?? []
+
+    // Original value is 1. Multiply by 0 if balance is 0, and 1 if greater
+    const notCompletedContributions = contributions?.reduce((accumulator, currentValue) => {
+      const multiplier = currentValue.balance > 0 ? 1 : 0
+      return accumulator * multiplier
+    }, 1);
+
+    return !notCompletedContributions
+  }
+
   public static isNhfRequest(request?: IRequest | IPaginatedRequest | null): request is INhfRequest {
     if (!request) return false
 
