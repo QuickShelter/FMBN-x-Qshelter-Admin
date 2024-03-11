@@ -6,6 +6,7 @@ import PageTitleAndActions from "../PageTitleAndActions";
 import PageTitle from "../PageTitle";
 import StringHelper from "@/helpers/StringHelper";
 import Grid2 from "../layouts/Grid2";
+import EnvironmentHelper from "@/helpers/EnvironmentHelper";
 
 interface IProps
     extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
@@ -17,7 +18,7 @@ const ApplicationFormRequestTemplate = ({ className, request, ...rest }: IProps)
 
     return <div {...rest} className={`${className} flex flex-col gap-8 p-4 py-5`}>
         <PageTitleAndActions>
-            <PageTitle>Indication of Interest Request</PageTitle>
+            <PageTitle>{EnvironmentHelper.PROJECT_OWNER} Application Form Request</PageTitle>
         </PageTitleAndActions>
         <div className="flex flex-col gap-8">
             <div className="flex flex-col gap-4">

@@ -16,7 +16,7 @@ interface IProps
 const OutrightPurchaseRequestTemplate = ({ className, user, request, ...rest }: IProps) => {
 
     return < div {...rest} className={`${className} flex flex-col gap-4 px-6 py-6`} >
-        <h1 className="font-lg">{EnvironmentHelper.PROJECT_OWNER} Property Price Update Request</h1>
+        <h1 className="font-lg">{EnvironmentHelper.PROJECT_OWNER} Outright Purchase Request</h1>
         <div className="grid grid-cols-2 gap-4">
             <DetailCard label="Purchase Type" value={RequestHelper.typeToHumanMap[request.type]} />
             <DetailCard label="Property Code" value={request?.data.property?.id} />

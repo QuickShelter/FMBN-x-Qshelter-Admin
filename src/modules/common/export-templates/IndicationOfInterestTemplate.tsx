@@ -6,6 +6,7 @@ import PageTitleAndActions from "../PageTitleAndActions";
 import PageTitle from "../PageTitle";
 import Card from "../Card";
 import Hr from "../Hr";
+import EnvironmentHelper from "@/helpers/EnvironmentHelper";
 
 interface IProps
     extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
@@ -17,7 +18,7 @@ const IndicationOfInterestTemplate = ({ className, interestedPerson, request, ..
 
     return <div {...rest} className={`${className} flex flex-col gap-8 p-4 py-5`}>
         <PageTitleAndActions>
-            <PageTitle>Indication of Interest Request</PageTitle>
+            <PageTitle>{EnvironmentHelper.PROJECT_OWNER} Indication of Interest Request</PageTitle>
         </PageTitleAndActions>
         <Card className="flex flex-col">
             <div className="flex flex-col gap-4 p-4 sm:p-6">
