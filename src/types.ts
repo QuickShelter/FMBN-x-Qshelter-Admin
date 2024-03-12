@@ -1419,6 +1419,7 @@ export interface IPropertyUpdateDto {
   floor_plan_image: (IBase64Upload | string)[] | null,
   aerial_image: (IBase64Upload | string)[] | null,
   display_image: (IBase64Upload | string)[] | null,
+  youtube_url: string | undefined,
 
   // Needed
   // status: string | undefined;
@@ -1546,8 +1547,8 @@ export interface IPropertySearchParams extends IQueryParams {
   saleStatus?: string | null;
   status?: string | null;
   type?: string | null;
-  to_date?: string | null;
   from_date?: string | null;
+  to_date?: string | null;
   offset?: number;
   user_id?: string;
   baths?: string;

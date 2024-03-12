@@ -50,6 +50,7 @@ export default function Edit({ _property: property }: IProps) {
   const defaultValues: IPropertyUpdateDto = useMemo(() => {
     return {
       about: property.about ?? "",
+      youtube_url: property.youtube_url ?? "",
       property_id: property.id,
       title: property.title ?? "",
       address: property.address ?? "",
@@ -336,6 +337,28 @@ export default function Edit({ _property: property }: IProps) {
                   </div>
                   {errors.finished_status && (
                     <FormError>{errors.finished_status?.message}</FormError>
+                  )}
+                </FormGroup>
+                <FormGroup>
+                  <FormLabel htmlFor="youtube_url">
+                    YouTube URL
+                  </FormLabel>
+                  <Controller
+                    name="youtube_url"
+                    control={control}
+                    //rules={{ required: true }}
+                    render={({ field }) => (
+                      <TextInput
+                        {...field}
+                        id="youtube_url"
+                        placeholder="YouTube URL"
+                      />
+                    )}
+                  />
+                  {errors.youtube_url && (
+                    <FormError>
+                      {errors.youtube_url?.message}
+                    </FormError>
                   )}
                 </FormGroup>
                 <FormGroup>

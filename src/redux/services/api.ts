@@ -301,6 +301,10 @@ export const api = createApi({
           delete dto.price
         }
 
+        if (!dto.youtube_url) {
+          delete dto.youtube_url
+        }
+
         const payload = {
           ...dto,
           display_image: ImageHelper.prepImagesForRequest(display_image)?.[0], // Because display image is not an array

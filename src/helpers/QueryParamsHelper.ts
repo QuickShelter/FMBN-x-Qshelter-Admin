@@ -10,7 +10,7 @@ import { createSearchParams } from "react-router-dom";
 import queryString from "query-string";
 
 class QueryParamsHelper {
-  public static stripInvalidPropertyParams(
+  public static stripInvalidTransactionParams(
     data: ITransactionSearchParams
   ): Record<string, string> {
     const qParams: Record<string, string> = {};
@@ -38,6 +38,47 @@ class QueryParamsHelper {
 
     if (date_to && date_to !== "") {
       qParams["date_to"] = date_to;
+    }
+
+    return qParams;
+  }
+
+  public static stripInvalidPropertyParams(
+    data: IPropertySearchParams
+  ): Record<string, string> {
+    const qParams: Record<string, string> = {};
+    const { search, offset, status, from_date, to_date, baths, beds, type } = data;
+
+    if (search && search !== "") {
+      qParams["search"] = search;
+    }
+
+    if (baths && baths !== "") {
+      qParams["baths"] = baths;
+    }
+
+    if (beds && beds !== "") {
+      qParams["beds"] = beds;
+    }
+
+    if (from_date && from_date !== "") {
+      qParams["from_date"] = from_date;
+    }
+
+    if (to_date && to_date !== "") {
+      qParams["to_date"] = to_date;
+    }
+
+    if (offset) {
+      qParams["offset"] = `${offset}`;
+    }
+
+    if (status && status !== "") {
+      qParams["status"] = status;
+    }
+
+    if (type && type !== "") {
+      qParams["type"] = type;
     }
 
     return qParams;
@@ -75,43 +116,6 @@ class QueryParamsHelper {
 
     if (to_date && to_date !== "") {
       qParams["to_date"] = to_date;
-    }
-
-    return qParams;
-  }
-
-  public static stripInvalidTransactionParams(
-    data: ITransactionsSearchParams
-  ): Record<string, string> {
-    const qParams: Record<string, string> = {};
-    const { search, offset, limit, type, date_from, date_to, status } = data;
-
-    if (search && search !== "") {
-      qParams["search"] = search;
-    }
-
-    if (offset) {
-      qParams["offset"] = `${offset}`;
-    }
-
-    if (limit) {
-      qParams["limit"] = `${limit}`;
-    }
-
-    if (status) {
-      qParams["status"] = status;
-    }
-
-    if (type) {
-      qParams["type"] = type;
-    }
-
-    if (date_from && date_from !== "") {
-      qParams["date_from"] = date_from;
-    }
-
-    if (date_to && date_to !== "") {
-      qParams["date_to"] = date_to;
     }
 
     return qParams;
