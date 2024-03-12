@@ -25,7 +25,7 @@ export default function Listing(props: IProps) {
         <th>Type</th>
         <th>Wallet ID</th>
         <th>Date</th>
-        <th></th>
+        <th>Action</th>
       </thead>
       <tbody>
         {transactions?.map((request, index) => (
