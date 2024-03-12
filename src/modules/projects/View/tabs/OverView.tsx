@@ -59,7 +59,7 @@ export default function OverView({ className, proposedDevelopment, developer, ..
           />
           <DetailCard
             label="Does any of the principals have a track record in Property Development?"
-            value={developer?.hasAuditedAccounts ? "Yes" : "No"}
+            value={developer?.hasTrackRecordInPropertyDevelopment ? "Yes" : "No"}
           />
         </div>
       </div>
