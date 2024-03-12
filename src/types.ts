@@ -1108,14 +1108,13 @@ export interface IBasePaginationData {
   limit: number;
 }
 
-
-
 export interface IPaginatedTransactionResponseBody {
   offset: number;
   limit: number;
   transactions: ITransaction[];
   total_count: number,
   total_pages: number
+  transaction_volume: number | null
 }
 
 export interface IPaginatedRequestResponseBody {

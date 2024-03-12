@@ -86,21 +86,9 @@ export default function Transactions() {
   let _offset: number = Number(searchParams.get("offset")) ?? 0;
   _offset = _offset < 0 ? 0 : _offset;
 
-  const stats: { label: string; value: number | string }[] = [
-    { label: "Transaction Processed", value: 102 },
-    {
-      label: "Transaction Volume",
-      value: FormatHelper.nairaFormatter.format(131500000),
-    },
-    {
-      label: "Funding Disbursed",
-      value: FormatHelper.nairaFormatter.format(131500000),
-    },
-  ];
-
   /**
    * Initial query params
-   */
+  */
   const _queryParams = useMemo(
     () => ({
       offset: Number(_offset),
@@ -117,6 +105,14 @@ export default function Transactions() {
     ...QueryParamsHelper.stripInvalidTransactionParams(_queryParams),
     user_id: profile?.id,
   });
+
+  const stats: { label: string; value: number | string | null | undefined }[] = [
+    { label: "Transaction Processed", value: data?.total_count },
+    {
+      label: "Transaction Volume",
+      value: FormatHelper.nairaFormatter.format(data?.transaction_volume),
+    }
+  ];
 
   const setOffset = (value: number) =>
     setSearchParams(

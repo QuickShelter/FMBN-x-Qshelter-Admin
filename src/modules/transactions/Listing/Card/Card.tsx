@@ -1,11 +1,7 @@
-import { DetailedHTMLProps, HTMLAttributes, useState } from "react";
+import { DetailedHTMLProps, HTMLAttributes } from "react";
 import styles from "./Card.module.css";
 import { ITransaction } from "@/types";
-import More from "@/modules/common/More/More";
-import Button from "@/modules/common/Button/Button";
-import buttonStyles from "@/module-styles/buttons.module.css";
-import { useAppDispatch, useAppSelector } from "@/redux/store";
-import { setToast } from "@/redux/services/toastSlice";
+import { useAppSelector } from "@/redux/store";
 import { Link } from "react-router-dom";
 import UserHelper from "@/helpers/UserHelper";
 import FormatHelper from "@/helpers/FormatHelper";
@@ -13,7 +9,7 @@ import { useGetUserByIdQuery } from "@/redux/services/api";
 import Spinner from "@/modules/common/Spinner";
 import { formatDate } from "@/helpers/dateFormat";
 import StringHelper from "@/helpers/StringHelper";
-import Hr from "@/modules/common/Hr";
+import LinkButton from "@/modules/common/LinkButton";
 
 interface IProps
   extends DetailedHTMLProps<
@@ -29,8 +25,6 @@ export default function Card(props: IProps) {
 
   const { profile } = useAppSelector((state) => state.auth);
   const { amount, type, created_at, id, user_id, wallet_id } = data;
-  const [show, setShow] = useState(false);
-  const dispatch = useAppDispatch();
 
   const { data: customer, isLoading: isLoadingUser } = useGetUserByIdQuery({
     id: user_id ?? "",
@@ -43,11 +37,14 @@ export default function Card(props: IProps) {
       <td className={styles.profile}>
         {isLoadingUser && <Spinner size="sm" />}
         {customer && (
-          <Link className="flex gap-2 items-center" to={`/transactions/${id}`}>
-            {/* <Avatar className={styles.avatar} user={customer} /> */}
-
-            {UserHelper.getFullName(customer)}
-          </Link>
+          <div className="flex flex-col gap-1">
+            <LinkButton className={styles.name} to={`/users/${id}`}>
+              {UserHelper.getFullName(customer)}
+            </LinkButton>
+            <LinkButton className={styles.email} to={`mailto:${customer?.email}`}>
+              {customer?.email}
+            </LinkButton>
+          </div>
         )}
       </td>
       <td>{FormatHelper.nairaFormatter.format(amount)}</td>
@@ -60,31 +57,9 @@ export default function Card(props: IProps) {
       <td>{wallet_id}</td>
       <td className="whitespace-nowrap">{formatDate(new Date(created_at))}</td>
       <td>
-        <More
-          show={show}
-          onClose={() => setShow(false)}
-          onOpen={() => setShow(true)}
-        >
-          <Button
-            stretch
-            variant="clear"
-            onClick={() => {
-              dispatch(
-                setToast({
-                  message: "Error: Unimplemented functionality",
-                  type: "error",
-                })
-              );
-              setShow(false);
-            }}
-          >
-            Delete
-          </Button>
-          <Hr />
-          <Link to={`/transactions/${id}`} className={buttonStyles.clear}>
-            View
-          </Link>
-        </More>
+        <Link to={`/transactions/${id}`} className={styles.cta}>
+          View
+        </Link>
       </td>
     </tr>
   );
