@@ -2,6 +2,7 @@ import {
   IProjectSearchParams,
   IPropertySearchParams,
   IRequestsSearchParams,
+  ITransactionSearchParams,
   ITransactionsSearchParams,
   IUserSearchParams,
 } from "@/types";
@@ -10,17 +11,13 @@ import queryString from "query-string";
 
 class QueryParamsHelper {
   public static stripInvalidPropertyParams(
-    data: IPropertySearchParams
+    data: ITransactionSearchParams
   ): Record<string, string> {
     const qParams: Record<string, string> = {};
-    const { search, offset, status, from_date, sortBy, to_date, beds, baths, location, type } = data;
+    const { search, offset, status, date_from, date_to, type } = data;
 
     if (search && search !== "") {
       qParams["search"] = search;
-    }
-
-    if (sortBy && sortBy !== "") {
-      qParams["sortBy"] = sortBy;
     }
 
     if (offset) {
@@ -31,32 +28,17 @@ class QueryParamsHelper {
       qParams["status"] = status;
     }
 
-    if (beds && beds !== "") {
-      qParams["beds"] = beds;
-    }
-
-    if (baths && baths !== "") {
-      qParams["baths"] = baths;
-    }
-
-    if (location && location !== "") {
-      qParams["location"] = location;
-    }
-
     if (type && type !== "") {
       qParams["type"] = type;
     }
 
-    if (from_date && from_date !== "") {
-      qParams["from_date"] = from_date;
+    if (date_from && date_from !== "") {
+      qParams["date_from"] = date_from;
     }
 
-    if (to_date && to_date !== "") {
-      qParams["to_date"] = to_date;
+    if (date_to && date_to !== "") {
+      qParams["date_to"] = date_to;
     }
-
-    // console.log(from_date)
-    // console.log(to_date)
 
     return qParams;
   }

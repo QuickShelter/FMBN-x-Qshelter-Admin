@@ -1572,6 +1572,17 @@ export interface IProjectSearchParams extends IQueryParams {
   user_id?: string;
 }
 
+export interface ITransactionSearchParams extends IQueryParams {
+  status?: string | null;
+  type?: string | null;
+  date_from?: string | null;
+  date_to?: string | null;
+  offset?: number;
+  search?: string;
+  page?: number;
+  user_id?: string;
+}
+
 export interface IRequestsSearchParams extends IQueryParams {
   buyer?: string;
   type?: string;
