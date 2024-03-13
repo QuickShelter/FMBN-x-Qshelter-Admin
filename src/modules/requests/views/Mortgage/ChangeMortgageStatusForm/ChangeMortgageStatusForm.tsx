@@ -179,7 +179,7 @@ export default function ChangeMortgageStatusForm({ request, closeModal, ...rest 
                     fileName: file?.name ?? "",
                     size: file?.size ? `${DocumentHelper.displaySize(file?.size)}` : ''
                   })
-                  field.onChange();
+                  field.onChange(event.target.files?.[0]);
                 }} hidden type="file" />
             </label>
           )}
