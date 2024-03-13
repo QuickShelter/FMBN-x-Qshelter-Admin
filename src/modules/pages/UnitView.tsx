@@ -129,7 +129,7 @@ export default function UnitView() {
                 </Button>
               </RoleGuard>
             }
-            {!isLoadingRequest && <Spinner size="sm" />}
+            {isLoadingRequest && <Spinner size="sm" />}
             {mortgage &&
               <RoleGuard allowedRoles={['mortgage_ops_admin']}>
                 <Button
