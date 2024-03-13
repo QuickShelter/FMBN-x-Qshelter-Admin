@@ -116,7 +116,7 @@ export default function UnitView() {
               </div>
             </div>
           </div>
-          <div className="flex gap-4 flex-wrap">
+          <div className="flex gap-4 flex-wrap items-center">
             {unit &&
               <RoleGuard allowedRoles={['sales_admin']}>
                 <Button
@@ -129,7 +129,7 @@ export default function UnitView() {
                 </Button>
               </RoleGuard>
             }
-            {isLoadingRequest && <Spinner size="sm" />}
+            {!isLoadingRequest && <Spinner size="sm" />}
             {mortgage &&
               <RoleGuard allowedRoles={['mortgage_ops_admin']}>
                 <Button
