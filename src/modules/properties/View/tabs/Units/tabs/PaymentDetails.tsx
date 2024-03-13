@@ -15,7 +15,7 @@ interface IProps
 export default function PaymentDetails({ request, className, ...rest }: IProps) {
     return (
         <div {...rest} className={`${className} flex flex-col gap-5`}>
-            {RequestHelper.isBuyoutrightlyRequest(request) || RequestHelper.isBuyoutrightlyRequest(request) ?
+            {RequestHelper.isBuyoutrightlyRequest(request) || RequestHelper.isMortgageRequest(request) ?
                 <div className="flex flex-col gap-8">
                     <div className="card-no-mobile p-4">
                         <Grid2>
