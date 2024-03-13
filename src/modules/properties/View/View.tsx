@@ -37,6 +37,7 @@ import Buildings from "./tabs/Units/Buildings";
 import Amenities from "./tabs/Amenities";
 import Documents from "./tabs/Documents";
 import ApproveDeclineButtons from "../../common/ApproveDeclineButtons";
+import StringHelper from "@/helpers/StringHelper";
 
 interface IProps {
   _property: IProperty;
@@ -139,7 +140,6 @@ export default function View({ _property: property }: IProps) {
     setShowDeclineModal(true)
   }
 
-
   const handleDelete = useCallback(async () => {
     try {
       const payload: { id: string, user_id: string } = {
@@ -226,7 +226,7 @@ export default function View({ _property: property }: IProps) {
           <div className="flex flex-col gap-2">
             <div className="text-base font-medium text-app-green-300 leading-snug">
               <div>
-                {property.city} <Dot /> {type}
+                {property.city} <Dot /> {StringHelper.stripUnderscores(type)}
               </div>
               <div>{property.address}</div>
             </div>
