@@ -64,8 +64,8 @@ export default function ChangeMortgageStatusForm({ request, closeModal, ...rest 
         value: "completed",
       },
       {
-        label: "Send offer from Bank",
-        value: "send_offer_from_bank",
+        label: "Send offer Letter from Bank",
+        value: "send_offer_letter_from_bank",
       },
       {
         label: "Documents Sent to bank",
