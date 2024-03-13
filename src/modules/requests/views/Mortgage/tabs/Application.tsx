@@ -26,6 +26,7 @@ export default function Application({ className, request, ...rest }: IProps) {
       <div className="sm:grid sm:grid-cols-2 grid grid-cols-2 gap-4">
         <DetailCard label="Type" value={RequestHelper.typeToHumanMap[request.type]} />
         <DetailCard label="Property Code" value={request?.data.property?.id} />
+        <DetailCard label="TIN" value={request?.data?.mortgage?.mortgage_applicant?.tin} />
         <DetailCard label="Price" value={FormatHelper.nairaFormatter.format(request?.data.property?.price)} />
         <DetailCard label="Mortgage Amount" value={FormatHelper.nairaFormatter.format(applicationData?.mortgage_amount)} />
         {request.type === 'commercial_mortgage' ? <DetailCard label="Initial Payment" value={request.data.initial_payment} /> : null}

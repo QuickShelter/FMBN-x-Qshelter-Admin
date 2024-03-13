@@ -329,12 +329,12 @@ export interface IDetail {
 
 export interface IApplicant {
   id: string;
+  pfa: string | null;
   user_id: string;
   partner_code: string | null;
   current_employer: string | null;
   credit_score_id: string | null;
   former_employer: string | null;
-  pfa: string | null;
   rsa_balance: string | null;
   created_at: string;
   updated_at: string;
@@ -861,25 +861,26 @@ export interface IBankStatement {
 }
 
 export interface IMortgageApplicant {
-  "id": string,
-  "pfa": string | null,
-  "user_id": string | null,
-  "industry": string | null,
-  "parent_id": string | 0,
-  "created_at": string | null,
-  "deleted_at": string | null,
-  "updated_at": string | null,
-  "rsa_balance": string | null,
-  "have_pension": string | null,
-  "date_of_birth": string | null,
-  "credit_score_id": string | null,
-  "former_employer": string | null,
-  "current_employer": string | null,
-  "employment_status": string | null,
-  "years_in_business": string | null,
-  "monthly_net_income": string | null,
-  "monthly_net_salary": string | null,
-  "mortgage_applicant_documents": IMortgageDocument[]
+  id: string,
+  pfa: string | null,
+  tin: string | null;
+  user_id: string | null,
+  industry: string | null,
+  parent_id: string | 0,
+  created_at: string | null,
+  deleted_at: string | null,
+  updated_at: string | null,
+  rsa_balance: string | null,
+  have_pension: string | null,
+  date_of_birth: string | null,
+  credit_score_id: string | null,
+  former_employer: string | null,
+  current_employer: string | null,
+  employment_status: string | null,
+  years_in_business: string | null,
+  monthly_net_income: string | null,
+  monthly_net_salary: string | null,
+  mortgage_applicant_documents: IMortgageDocument[]
 }
 
 export interface IPriceUpdateRequest extends IRequest {
