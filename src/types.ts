@@ -261,7 +261,7 @@ export type IRequestsTab =
   | "services";
 
 export type IMortgageStatus =
-  | "send_offer_from_bank"
+  | "send_offer_letter_from_bank"
   | "document_sent_to_bank"
   | "pending"
   | "approved"

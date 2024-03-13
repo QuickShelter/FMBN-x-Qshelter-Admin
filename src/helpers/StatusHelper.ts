@@ -4,7 +4,7 @@ import ColorHelper from "./ColorHelper";
 export class StatusHelper {
   public static mortgageStatusToColor: Record<IMortgageStatus, string> = {
     document_sent_to_bank: ColorHelper.systemSuccess,
-    send_offer_from_bank: ColorHelper.systemSuccess,
+    send_offer_letter_from_bank: ColorHelper.systemSuccess,
     declined: ColorHelper.systemError,
     approved: ColorHelper.emerald500,
     pending: ColorHelper.systemWarning,

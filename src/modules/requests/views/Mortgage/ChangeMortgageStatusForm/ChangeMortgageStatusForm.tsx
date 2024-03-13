@@ -37,7 +37,7 @@ interface IData {
 export default function ChangeMortgageStatusForm({ request, closeModal, ...rest }: IProps) {
   const dispatch = useAppDispatch();
   const admin_id = useAppSelector((state) => state.auth.profile?.id);
-  const [showDoc, setShowDoc] = useState(request?.data?.mortgage?.status === 'send_offer_from_bank')
+  const [showDoc, setShowDoc] = useState(request?.data?.mortgage?.status === 'send_offer_letter_from_bank')
   const [fileData, setFileData] = useState({
     fileName: '',
     size: ''
@@ -143,7 +143,7 @@ export default function ChangeMortgageStatusForm({ request, closeModal, ...rest 
           render={({ field }) => (
             <Select {...field} onChange={(e) => {
               const newStatus = e.target.value as (IMortgageStatus | "")
-              setShowDoc(newStatus === 'send_offer_from_bank')
+              setShowDoc(newStatus === 'send_offer_letter_from_bank')
               field.onChange(newStatus)
             }}>
               {statusOptions.map(({ label, value }) => (
