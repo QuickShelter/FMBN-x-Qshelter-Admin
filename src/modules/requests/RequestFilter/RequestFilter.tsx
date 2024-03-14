@@ -1,4 +1,4 @@
-import { DetailedHTMLProps, HTMLAttributes, useState } from "react";
+import { DetailedHTMLProps, HTMLAttributes, useMemo, useState } from "react";
 import styles from "./RequestFilter.module.css";
 import Button from "@/modules/common/Button/Button";
 import DateInput from "@/modules/common/form/DateInput";
@@ -7,12 +7,13 @@ import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import FormError from "@/modules/common/form/FormError";
 import DropDownButton from "@/modules/common/DropDownButton";
 import Filter from "@/modules/common/icons/Filter";
-import { IRequestFilter } from "@/types";
+import { IRequestFilter, IRequestStatus, IRequestType } from "@/types";
 import FormGroup from "@/modules/common/form/FormGroup";
 import FormLabel from "@/modules/common/form/FormLabel";
 import CheckRadio from "@/modules/common/form/CheckRadio";
 import QueryParamsHelper from "@/helpers/QueryParamsHelper";
 import { useSearchParams } from "react-router-dom";
+import StringHelper from "@/helpers/StringHelper";
 
 interface IProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
@@ -33,6 +34,8 @@ export default function RequestFilter({
     status: searchParams.get("status") ?? '',
   };
 
+  const requestType = searchParams.get("type") ?? ''
+
   const {
     control,
     handleSubmit,
@@ -41,12 +44,33 @@ export default function RequestFilter({
 
   const onSubmit: SubmitHandler<IRequestFilter> = (data) => {
     setSearchParams(
-      QueryParamsHelper.generateRequestQueryParams(QueryParamsHelper.stripInvalidRequestParams({
+      QueryParamsHelper.generateRequestQueryParams({
         ...qparams, ...data
-      }))
+      })
     );
     setShow(false)
   };
+
+  const possibleStatuses: IRequestStatus[] = useMemo(() => {
+    const mortgageClass: IRequestStatus[] = ['ready_for_mortgage', 'cancelled', 'completed', 'approved', 'send_offer_letter_from_bank']
+
+    switch (requestType as IRequestType) {
+      case 'nhf':
+        return mortgageClass
+
+      case 'rto':
+        return mortgageClass
+
+      case 'contribution':
+        return mortgageClass
+
+      case 'application_form':
+        return ['received', 'approved']
+
+      default:
+        return ['on_going', 'pending', 'completed', 'cancelled']
+    }
+  }, [requestType])
 
   return (
     <DropDownButton
@@ -81,40 +105,25 @@ export default function RequestFilter({
         </div>
         {errors.date_from && <FormError>{errors.date_from.message}</FormError>}
         {errors.date_to && <FormError>{errors.date_to.message}</FormError>}
-        <FormGroup>
-          <FormLabel>
-            <Controller
-              name="status"
-              control={control}
-              render={({ field }) => (
-                <CheckRadio
-                  {...field}
-                  id="status"
-                  value="pending"
-                  defaultChecked={status === "on_going"}
-                />
-              )}
-            />
-            Pending
-          </FormLabel>
-        </FormGroup>
-        <FormGroup>
-          <FormLabel>
-            <Controller
-              name="status"
-              control={control}
-              render={({ field }) => (
-                <CheckRadio
-                  {...field}
-                  id="status"
-                  value="competed"
-                  defaultChecked={status === "completed"}
-                />
-              )}
-            />
-            Treated
-          </FormLabel>
-        </FormGroup>
+        {possibleStatuses?.map(status =>
+          <FormGroup>
+            <FormLabel>
+              <Controller
+                name="status"
+                control={control}
+                render={({ field }) => (
+                  <CheckRadio
+                    {...field}
+                    id="status"
+                    value={status}
+                    defaultChecked={field.value === status}
+                  />
+                )}
+              />
+              {StringHelper.stripUnderscores(status)}
+            </FormLabel>
+          </FormGroup>
+        )}
         {errors.status && <FormError>{errors.status.message}</FormError>}
         <Button type="submit">Apply</Button>
       </form>

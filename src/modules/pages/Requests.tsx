@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet";
 import { useGetAllRequestsQuery } from "@/redux/services/api";
 import Listing from "../requests/Listing/Listing";
-import { IRequestType } from "@/types";
+import { IRequestStatus, IRequestType } from "@/types";
 import { useEffect, useContext, useMemo, useCallback, useState } from "react";
 import styles from "./Projects.module.css";
 import Button from "../common/Button/Button";
@@ -90,13 +90,17 @@ export default function Requests() {
    * */
   const _type: IRequestType = (searchParams.get("type") ?? "") as IRequestType;
   /**
+   * Current type param
+   * */
+  const _status: IRequestStatus = (searchParams.get("status") ?? "") as IRequestStatus;
+  /**
    * Current from param
    * */
-  const _from_date: string = searchParams.get("from_date") ?? "";
+  const _date_from: string = searchParams.get("date_from") ?? "";
   /**
    * Current to param
    * */
-  const _to_date: string | null = searchParams.get("to_date") ?? "";
+  const _date_to: string | null = searchParams.get("date_to") ?? "";
   /**
    * Actual current page
    */
@@ -110,13 +114,13 @@ export default function Requests() {
       return QueryParamsHelper.generateRequestQueryParams(
         QueryParamsHelper.stripInvalidRequestParams({
           offset: 0,
-          from_date: _from_date,
-          to_date: _to_date,
+          date_from: _date_from,
+          date_to: _date_to,
           type: value,
         })
       );
     },
-    [_from_date, _to_date]
+    [_date_from, _date_to]
   );
 
   /**
@@ -128,10 +132,11 @@ export default function Requests() {
         offset: offset,
         q: _name,
         type: _type,
-        from_date: _from_date,
-        to_date: _to_date,
+        date_from: _date_from,
+        date_to: _date_to,
+        status: _status
       }),
-    [offset, _type, _to_date, _from_date, _name]
+    [offset, _type, _date_to, _date_from, _name, _status]
   );
 
   const { profile } = useAppSelector((state) => state.auth);
@@ -144,7 +149,7 @@ export default function Requests() {
 
   const setOffset = (value: number) =>
     setSearchParams(
-      QueryParamsHelper.generatePropertyQueryParams({
+      QueryParamsHelper.generateRequestQueryParams({
         ..._queryParams,
         offset: value - 1,
       })
@@ -152,7 +157,7 @@ export default function Requests() {
 
   const setSearch = (value: string) => {
     setSearchParams(
-      QueryParamsHelper.generatePropertyQueryParams({
+      QueryParamsHelper.generateRequestQueryParams({
         ..._queryParams,
         search: value,
         limit: 16,

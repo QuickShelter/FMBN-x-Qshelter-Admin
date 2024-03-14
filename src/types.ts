@@ -384,7 +384,8 @@ export type IRequestStatus =
   | "cancelled"
   | "on_going"
   | "completed"
-  | "ready_for_mortgage";
+  | "received"
+  | "ready_for_mortgage" | IMortgageStatus;
 
 export enum RequestType {
   developer_application = "developer_application",

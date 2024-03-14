@@ -70,9 +70,9 @@ export default function TransactionFilter({ className, qparams, ...rest
 
   const onSubmit: SubmitHandler<ITransactionFilterDto> = (data) => {
     setSearchParams(
-      QueryParamsHelper.generatePropertyQueryParams(QueryParamsHelper.stripInvalidPropertyParams({
+      QueryParamsHelper.generateTransactionQueryParams({
         ...qparams, ...data
-      }))
+      })
     );
     setShow(false)
   }
