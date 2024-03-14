@@ -88,7 +88,7 @@ class QueryParamsHelper {
     data: IRequestsSearchParams
   ): Record<string, string> {
     const qParams: Record<string, string> = {};
-    const { search, offset, page, type, from_date, to_date, status } = data;
+    const { search, offset, page, type, date_from, date_to, status } = data;
 
     if (search && search !== "") {
       qParams["search"] = search;
@@ -110,12 +110,12 @@ class QueryParamsHelper {
       qParams["type"] = type;
     }
 
-    if (from_date && from_date !== "") {
-      qParams["from_date"] = from_date;
+    if (date_from && date_from !== "") {
+      qParams["date_from"] = date_from;
     }
 
-    if (to_date && to_date !== "") {
-      qParams["to_date"] = to_date;
+    if (date_to && date_to !== "") {
+      qParams["date_to"] = date_to;
     }
 
     return qParams;

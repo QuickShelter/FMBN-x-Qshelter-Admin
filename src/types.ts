@@ -125,9 +125,9 @@ export interface IUserMetricData {
 }
 
 export interface IRequestFilter {
-  from_date?: string;
-  to_date?: string;
-  status?: IRequestTopLevelStatus;
+  date_from?: string;
+  date_to?: string;
+  status?: string;
 }
 
 export interface IUserFilterDto {
@@ -1588,9 +1588,11 @@ export interface ITransactionSearchParams extends IQueryParams {
 export interface IRequestsSearchParams extends IQueryParams {
   buyer?: string;
   type?: string;
+  date_from?: string,
+  date_to?: string,
   category?: string;
   search?: string;
-  status?: IRequestStatus;
+  status?: string;
   q?: string;
   offset?: number;
   user_id?: string;

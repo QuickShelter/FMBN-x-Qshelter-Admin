@@ -7,33 +7,32 @@ import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import FormError from "@/modules/common/form/FormError";
 import DropDownButton from "@/modules/common/DropDownButton";
 import Filter from "@/modules/common/icons/Filter";
-import { IRequestFilter, IRequestStatus } from "@/types";
+import { IRequestFilter } from "@/types";
 import FormGroup from "@/modules/common/form/FormGroup";
 import FormLabel from "@/modules/common/form/FormLabel";
 import CheckRadio from "@/modules/common/form/CheckRadio";
+import QueryParamsHelper from "@/helpers/QueryParamsHelper";
+import { useSearchParams } from "react-router-dom";
 
 interface IProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
-  handleSubmit: SubmitHandler<IRequestFilter>;
-  to_date?: string;
-  from_date?: string;
-  status: IRequestStatus;
+  qparams: Record<string, string | null | number | ''>
 }
 
 export default function RequestFilter({
-  handleSubmit: _onSubmit,
-  to_date,
-  from_date,
-  status,
+  className,
+  qparams,
   ...rest
 }: IProps) {
+  const [show, setShow] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams()
+
   const defaultValues: IRequestFilter = {
-    from_date,
-    to_date,
-    status: "pending",
+    date_from: searchParams.get("date_from") ?? '',
+    date_to: searchParams.get("date_to") ?? '',
+    status: searchParams.get("status") ?? '',
   };
 
-  const [show, setShow] = useState(false);
   const {
     control,
     handleSubmit,
@@ -41,8 +40,12 @@ export default function RequestFilter({
   } = useForm<IRequestFilter>({ defaultValues });
 
   const onSubmit: SubmitHandler<IRequestFilter> = (data) => {
-    setShow(false);
-    _onSubmit(data);
+    setSearchParams(
+      QueryParamsHelper.generateRequestQueryParams(QueryParamsHelper.stripInvalidRequestParams({
+        ...qparams, ...data
+      }))
+    );
+    setShow(false)
   };
 
   return (
@@ -52,32 +55,32 @@ export default function RequestFilter({
       show={show}
       setShow={setShow}
       {...rest}
-      className={`${rest.className} ${styles.container}`}
+      className={`${className} ${styles.container}`}
     >
       <form onSubmit={handleSubmit(onSubmit)} className={styles.dropdown}>
         <h3>Date Range</h3>
         <div className={styles.dates}>
           <div className={styles.dates}>
             <Controller
-              name="from_date"
+              name="date_from"
               control={control}
               render={({ field }) => <DateInput {...field} />}
             />
             <Controller
-              name="to_date"
+              name="date_to"
               control={control}
               render={({ field }) => (
                 <DateInput {...field} max={formatDate(new Date())} />
               )}
             />
           </div>
-          {errors.to_date && <FormError>{errors.to_date.message}</FormError>}
-          {errors.from_date && (
-            <FormError>{errors.from_date.message}</FormError>
+          {errors.date_to && <FormError>{errors.date_to.message}</FormError>}
+          {errors.date_from && (
+            <FormError>{errors.date_from.message}</FormError>
           )}
         </div>
-        {errors.from_date && <FormError>{errors.from_date.message}</FormError>}
-        {errors.to_date && <FormError>{errors.to_date.message}</FormError>}
+        {errors.date_from && <FormError>{errors.date_from.message}</FormError>}
+        {errors.date_to && <FormError>{errors.date_to.message}</FormError>}
         <FormGroup>
           <FormLabel>
             <Controller

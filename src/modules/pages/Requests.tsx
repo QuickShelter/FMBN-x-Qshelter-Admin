@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet";
 import { useGetAllRequestsQuery } from "@/redux/services/api";
 import Listing from "../requests/Listing/Listing";
-import { IRequestFilter, IRequestStatus, IRequestType } from "@/types";
+import { IRequestType } from "@/types";
 import { useEffect, useContext, useMemo, useCallback, useState } from "react";
 import styles from "./Projects.module.css";
 import Button from "../common/Button/Button";
@@ -17,7 +17,6 @@ import { ContentRefContext } from "@/context/ContentContext";
 import Panel from "../common/Panel";
 import TableWrapper from "../common/TableWrapper";
 import RequestFilter from "../requests/RequestFilter";
-import { SubmitHandler } from "react-hook-form";
 import { useAppSelector } from "@/redux/store";
 import TopCards from "../common/TopCards";
 import Card from "../common/Card";
@@ -90,8 +89,6 @@ export default function Requests() {
    * Current type param
    * */
   const _type: IRequestType = (searchParams.get("type") ?? "") as IRequestType;
-  const _status: IRequestStatus = (searchParams.get("status") ??
-    "") as IRequestStatus;
   /**
    * Current from param
    * */
@@ -164,15 +161,6 @@ export default function Requests() {
     );
   };
 
-  const handleSubmit: SubmitHandler<IRequestFilter> = (data) => {
-    const params = QueryParamsHelper.generateUserQueryParams({
-      ..._queryParams,
-      ...data,
-    });
-
-    setSearchParams(params);
-  };
-
   const contentRef = useContext(ContentRefContext);
 
   useEffect(() => {
@@ -233,10 +221,7 @@ export default function Requests() {
               </Modal>
               <div className={styles.filternExport}>
                 <RequestFilter
-                  from_date={_from_date}
-                  to_date={_to_date}
-                  status={_status}
-                  handleSubmit={handleSubmit}
+                  qparams={_queryParams}
                 />
                 <Button
                   onClick={() => setShowExportModal(true)}
