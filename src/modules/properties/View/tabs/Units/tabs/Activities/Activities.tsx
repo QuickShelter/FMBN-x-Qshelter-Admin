@@ -7,10 +7,12 @@ import Spinner from "@/modules/common/Spinner";
 interface IProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   activities: IMortgageActivity[] | null,
-  isLoading: boolean
+  isLoading: boolean,
+  offerUrl: string | null
+  reasonForBankDecline: string | null
 }
 
-export default function Activities({ className, isLoading, activities = [], ...rest }: IProps) {
+export default function Activities({ className, isLoading, reasonForBankDecline, offerUrl, activities = [], ...rest }: IProps) {
   if (!activities || activities.length < 1) {
     return <div className="flex flex-col gap-5">No activity on the unit</div>
   }
@@ -23,16 +25,13 @@ export default function Activities({ className, isLoading, activities = [], ...r
 
   return (
     <div {...rest} className={`${className} flex flex-col gap-5`}>
-      <h3 className="text-neutral-950 text-sm font-medium leading-[21px]">
-        Activites
-      </h3>
       <div {...rest} className={`${className}`}>
         {activities
           .map((activity, index) => {
             return (
               <div key={index}>
-                <ActivityCard activity={activity} />
-                <Hr className="my-4" />
+                <ActivityCard activity={activity} offerUrl={offerUrl} reasonForBankDecline={reasonForBankDecline} />
+                {(index < activities.length - 1) && <Hr className="my-4" />}
               </div>
             );
           })}

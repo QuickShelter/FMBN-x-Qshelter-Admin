@@ -60,7 +60,7 @@ export default function UnitView() {
         return userId && <Subscriber userId={userId} />
 
       default:
-        return <Activities isLoading={isLoadingRequest} activities={mortgage?.mortgage_status_logs ?? null} />;
+        return <Activities offerUrl={mortgage?.offer_letter_url ?? null} isLoading={isLoadingRequest} activities={mortgage?.mortgage_status_logs ?? null} reasonForBankDecline={null} />;
     }
   }, [tab, applicationId, userId, request, isLoadingRequest]);
 
