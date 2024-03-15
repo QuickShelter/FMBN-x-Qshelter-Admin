@@ -1,4 +1,4 @@
-import { DetailedHTMLProps, HTMLAttributes, useMemo } from "react";
+import { DetailedHTMLProps, HTMLAttributes } from "react";
 import styles from "./Card.module.css";
 import { IPaginatedRequest } from "@/types";
 import FormatHelper from "@/helpers/FormatHelper";
@@ -7,7 +7,6 @@ import ChevronRight from "@/modules/common/icons/ChevronRight";
 import { useGetPropertyByIdQuery, useGetUserByIdQuery } from "@/redux/services/api";
 import { useAppSelector } from "@/redux/store";
 import UserHelper from "@/helpers/UserHelper";
-import AnalyticsHelper from "@/helpers/AnalyticsHelper";
 import PropertyCardSkeleton from "@/modules/common/PropertyCardSkeleton";
 import RequestHelper from "@/helpers/RequestHelper";
 import Status from "@/modules/common/Status";
@@ -28,16 +27,6 @@ export default function Card(props: IProps) {
 
   const { data: property, isFetching } = useGetPropertyByIdQuery(request.property.id ?? "");
 
-  const data = useMemo(() => {
-    const data = { bedCount: 0 };
-
-    const bedCount = AnalyticsHelper.getNBedsFromProperty(property);
-
-    data.bedCount = Number(bedCount);
-
-    return data;
-  }, [property]);
-
   if (isFetching) <PropertyCardSkeleton />
 
   return (
@@ -50,23 +39,14 @@ export default function Card(props: IProps) {
         />
         <div className="flex flex-col gap-2">
           <div className={styles.title}>{property?.title}</div>
-          <div className={styles.description}>
-            {data.bedCount} Beds{" "}
-            {/* {request.type && (
-              <>
-                <Dot />
-                {StringHelper.stripUnderscores(request.type)}
-              </>
-            )} */}
-          </div>
           <div className={styles.price}>
             {property?.price &&
               FormatHelper.nairaFormatter.format(
                 property?.price
               )}
           </div>
-          <div className="px-2 py-1.5 whitespace-nowrap bg-zinc-100 rounded-[100px] justify-start items-start gap-2.5 text-neutral-950 text-xs font-medium leading-3 inline-flex w-fit">
-            Created by {user ? UserHelper.getFullName(user) : null} •{" "}
+          <div className="mt-auto px-2 py-1.5 whitespace-nowrap bg-zinc-100 rounded-[100px] justify-start items-start gap-2.5 text-neutral-950 text-xs font-medium leading-3 inline-flex w-fit">
+            Requested by <span className="font-semibold">{user ? UserHelper.getFullName(user) : null}</span> •{" "}
             {FormatHelper.dateFormatter.format(request.created_at)}
           </div>
         </div>

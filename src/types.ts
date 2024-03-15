@@ -480,6 +480,14 @@ export interface IBuyOutrightlyRequest extends IBasePropertyRequest {
   };
 }
 
+export interface IMortgageActivity {
+  id: string,
+  status: IMortgageStatus,
+  comment: string | null,
+  created_at: string | null,
+  updated_at: string | null,
+  mortgage_application_id: string | null
+}
 
 export interface IMilestone {
   id: string,
@@ -791,7 +799,7 @@ export interface IMortgage {
   mortgage_applicant: IMortgageApplicant,
   bank_statements: IBankStatement[],
   orders: string | null,
-  mortgage_status_logs: string | null,
+  mortgage_status_logs: IMortgageActivity[] | null,
   mortgage_application_documents: IMortgageDocument[]
 }
 

@@ -41,9 +41,6 @@ export default function UnitView() {
 
   const resolvedTab = useMemo(() => {
     switch (tab) {
-      case "activities":
-        return <Activities applicationId={applicationId ?? null} />;
-
       case 'payment_details':
         if (isLoadingRequest) {
           return <div className={`flex flex-1 justify-center items-center`}>
@@ -63,7 +60,7 @@ export default function UnitView() {
         return userId && <Subscriber userId={userId} />
 
       default:
-        return <Activities applicationId={applicationId ?? null} />;
+        return <Activities isLoading={isLoadingRequest} activities={mortgage?.mortgage_status_logs ?? null} />;
     }
   }, [tab, applicationId, userId, request, isLoadingRequest]);
 
