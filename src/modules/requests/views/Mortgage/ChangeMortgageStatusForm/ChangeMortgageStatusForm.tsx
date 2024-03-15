@@ -1,4 +1,4 @@
-import { DetailedHTMLProps, HTMLAttributes, useState } from "react";
+import { DetailedHTMLProps, HTMLAttributes, useMemo, useState } from "react";
 import styles from "./ChangeMortgageStatusForm.module.css";
 import FormGroup from "@/modules/common/form/FormGroup/FormGroup";
 import FormLabel from "@/modules/common/form/FormLabel/FormLabel";
@@ -38,9 +38,9 @@ export default function ChangeMortgageStatusForm({ request, closeModal, ...rest 
   const dispatch = useAppDispatch();
   const admin_id = useAppSelector((state) => state.auth.profile?.id);
   const [showDoc, setShowDoc] = useState(request?.data?.mortgage?.status === 'send_offer_letter_from_bank')
-  const [fileData, setFileData] = useState({
-    fileName: '',
-    size: ''
+  const [fileData, setFileData] = useState<{ fileName: string | null, size: string | null }>({
+    fileName: null,
+    size: null
   })
 
   const {
@@ -83,6 +83,19 @@ export default function ChangeMortgageStatusForm({ request, closeModal, ...rest 
 
   const [updateMortgage, { isLoading }] =
     useUpdateMortgageApplicationStatusMutation();
+
+
+  const resolveCanSubmit = useMemo(() => {
+    if (isLoading) {
+      return false
+    }
+
+    if (showDoc && !fileData.fileName) {
+      return false
+    }
+
+    return true
+  }, [showDoc, isLoading, fileData])
 
   const onSubmit: SubmitHandler<IData> = async (data) => {
     if (!data.status || data.status.length == 0) {
@@ -188,7 +201,7 @@ export default function ChangeMortgageStatusForm({ request, closeModal, ...rest 
       </FormGroup>}
       <Button
         className={styles.submit}
-        disabled={isLoading}
+        disabled={!resolveCanSubmit}
         isLoading={isLoading}
         type="submit"
       >
