@@ -1,4 +1,4 @@
-import { DetailedHTMLProps, HTMLAttributes, useCallback, useState } from "react";
+import { DetailedHTMLProps, HTMLAttributes, useCallback, useMemo, useState } from "react";
 import Document from "@/modules/common/icons/Document";
 import { IAPIError, IMortgageDocument, IMortgageDocumentStatus, IRequestApiDocumentStatusUpdateDto } from "@/types";
 import { useUpdateMortgageDocumentStatusMutation } from "@/redux/services/api";
@@ -11,6 +11,7 @@ import RequestApiDocumentDeclineModal from "./RequestApiDocumentDeclineModal";
 import StringHelper from "@/helpers/StringHelper";
 import RoleGuard from "../guards/RoleGuard";
 import ApprovalButtons from "../ApprovalButtons";
+import DocumentHelper from "@/helpers/DocumentHelper";
 
 interface IProps
     extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
@@ -80,6 +81,14 @@ export default function RequestApiDocument({ document, hideApproval = false, cla
         setShowDeclineModal(true)
     }
 
+    const resolvedName = useMemo(() => {
+        if (document?.name && DocumentHelper.documentNameMap[document.name]) {
+            return DocumentHelper.documentNameMap[document.name]
+        }
+
+        return StringHelper.camelCaseToTitleCase(document?.name)
+    }, [document?.name])
+
     return (
         <div className={`${className} flex justify-between gap-4 flex-wrap`}>
             <RequestApiDocumentDeclineModal document={document} show={showDeclineModal} onClose={() => setShowDeclineModal(false)} />
@@ -89,7 +98,7 @@ export default function RequestApiDocument({ document, hideApproval = false, cla
                     <Document />
                 </div>}
                 <div className="flex flex-col gap-2 w-full">
-                    <div className="text-ellipsis white-space-wrap w-fit max-w-full overflow-hidden">{StringHelper.camelCaseToTitleCase(document.name) ?? document.url}</div>
+                    <div className="text-ellipsis white-space-wrap w-fit max-w-full overflow-hidden">{resolvedName ?? document.url}</div>
                 </div>
             </div>
             <div className={`flex gap-2 items-start flex-wrap`}>

@@ -43,4 +43,14 @@ export default class DocumentHelper {
 
         throw new Error("Type not found");
     }
+
+    public static documentNameMap: Record<string, string> = {
+        acceptanceLetter: 'Employment Letter',
+        staffId: 'Staff ID',
+        paySlip: 'Pay Slip',
+        nhfLoanForm: 'NHF Loan Form',
+        signedPropertyDocument: 'Sign Property Document',
+        utilityDocument: 'Utiity Document',
+        birthCertificateLetter: 'Birth Certicate Letter',
+    }
 }
