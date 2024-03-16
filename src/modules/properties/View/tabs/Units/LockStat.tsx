@@ -25,7 +25,7 @@ export default function LockStat({
           {nLockedUnits} of {nUnits} Units
         </div>
       </div>
-      <Progress value={nLockedUnits / nUnits} max={nUnits} className="w-full" />
+      <Progress value={nLockedUnits} max={nUnits} className="w-full" />
     </div>
   );
 }
