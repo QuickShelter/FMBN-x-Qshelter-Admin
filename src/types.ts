@@ -266,6 +266,7 @@ export type IMortgageStatus =
   | "paid_equity"
   | "pending"
   | "approved"
+  | "completed"
   | "declined";
 
 export type IPropertyStatus = "pending" | "approved" | "rejected";

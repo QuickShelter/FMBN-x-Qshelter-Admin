@@ -20,6 +20,7 @@ import FormError from "@/modules/common/form/FormError";
 import DocumentHelper from "@/helpers/DocumentHelper";
 import BlockRadio from "@/modules/common/form/BlockRadio";
 import TextArea from "@/modules/common/form/TextArea";
+import Checkbox from "@/modules/common/form/Checkbox";
 
 interface IProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLFormElement>, HTMLFormElement> {
@@ -40,8 +41,10 @@ type IOfferOption = 'offer' | 'reject'
 
 export default function ChangeMortgageStatusForm({ request, closeModal, ...rest }: IProps) {
   const dispatch = useAppDispatch();
+  const [showCompleteMessage, setShowCompleteMessage] = useState(false)
   const admin_id = useAppSelector((state) => state.auth.profile?.id);
   const mortgage = request?.data?.mortgage
+  const [agreed, setAgreed] = useState(false)
   const [showDoc, setShowDoc] = useState(mortgage?.status === 'send_offer_letter_from_bank')
   const [showReceipt, setShowReceipt] = useState(mortgage?.status === 'paid_equity')
   const [fileData, setFileData] = useState<{ fileName: string | null, size: string | null }>({
@@ -54,6 +57,7 @@ export default function ChangeMortgageStatusForm({ request, closeModal, ...rest 
   const {
     control,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm<IData>({
     defaultValues: {
@@ -97,9 +101,12 @@ export default function ChangeMortgageStatusForm({ request, closeModal, ...rest 
   const [updateMortgage, { isLoading }] =
     useUpdateMortgageApplicationStatusMutation();
 
-
   const resolveCanSubmit = useMemo(() => {
     if (isLoading) {
+      return false
+    }
+
+    if (showCompleteMessage && !agreed) {
       return false
     }
 
@@ -108,7 +115,7 @@ export default function ChangeMortgageStatusForm({ request, closeModal, ...rest 
     }
 
     return true
-  }, [showDoc, isLoading, fileData])
+  }, [showDoc, isLoading, fileData, agreed])
 
   const onSubmit: SubmitHandler<IData> = async (data) => {
     if (!data.status || data.status.length == 0) {
@@ -173,8 +180,14 @@ export default function ChangeMortgageStatusForm({ request, closeModal, ...rest 
           render={({ field }) => (
             <Select {...field} onChange={(e) => {
               const newStatus = e.target.value as (IMortgageStatus | "")
-              setShowDoc(newStatus === 'send_offer_letter_from_bank')
-              setShowReceipt(newStatus === 'paid_equity')
+              setFileData({
+                fileName: null,
+                size: null
+              })
+              setValue('file', null)
+              setShowCompleteMessage(newStatus === 'completed' && mortgage.status !== 'completed')
+              setShowDoc(newStatus === 'send_offer_letter_from_bank' && mortgage.status !== 'send_offer_letter_from_bank')
+              setShowReceipt(newStatus === 'paid_equity' && mortgage.status !== 'paid_equity')
               field.onChange(newStatus)
             }}>
               {statusOptions.map(({ label, value }) => (
@@ -187,6 +200,12 @@ export default function ChangeMortgageStatusForm({ request, closeModal, ...rest 
         />
         {errors.status && <FormError>{errors?.status?.message}</FormError>}
       </FormGroup>
+      {showCompleteMessage &&
+        <div className="flex flex-col gap-4">
+          <p className="text-sm font-light">Are you sure you want to complete this mortgage? Please note that this action cannot be reversed?</p>
+          <FormLabel className="flex flex-nowrap gap-4 items-center"><span className="text-sm">I understand</span><Checkbox checked={agreed} onChange={(e => setAgreed(e.target.checked))} /></FormLabel>
+        </div>
+      }
       {showDoc && <div className="flex gap-4">
         <BlockRadio checked={offerOption == 'offer'} value='offer' onChange={handleChangeOfferOption} label="Offer" />
         <BlockRadio checked={offerOption == 'reject'} value={'reject'} onChange={handleChangeOfferOption} label="Reject" />
