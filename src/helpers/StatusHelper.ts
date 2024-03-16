@@ -8,6 +8,8 @@ export class StatusHelper {
     declined: ColorHelper.systemError,
     approved: ColorHelper.emerald500,
     pending: ColorHelper.systemWarning,
+    paid_equity: ColorHelper.systemSuccess,
+    completed: ColorHelper.systemSuccess
   };
 
   public static projectStatusToColor: Record<
