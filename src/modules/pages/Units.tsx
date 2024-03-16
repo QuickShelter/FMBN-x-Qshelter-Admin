@@ -220,11 +220,11 @@ export default function Units() {
         </div>
         {(apartments && apartments.length > 0) ?
           <div className="px-4 py-5 sm:px-6 py-6 flex flex-col">
-            {apartments?.map((apartment, key) => {
+            {apartments?.map((apartment, index) => {
               return (
                 <div className="flex flex-col">
-                  {property && <UnitInTabCard onChangeChecked={handleChangeOfferOption} isChecked={selectedUnits.find(item => item.id == apartment.id)?.isChecked} _property={property} unit={apartment} key={key} />}
-                  {apartments.length - 1 ? <Hr className="my-4" /> : null}
+                  {property && <UnitInTabCard onChangeChecked={handleChangeOfferOption} isChecked={selectedUnits.find(item => item.id == apartment.id)?.isChecked} _property={property} unit={apartment} key={apartment.id} />}
+                  {index < apartments.length - 1 ? <Hr className="my-4" /> : null}
                 </div>
               );
             })}
