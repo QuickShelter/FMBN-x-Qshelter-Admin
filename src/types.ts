@@ -263,6 +263,7 @@ export type IRequestsTab =
 export type IMortgageStatus =
   | "send_offer_letter_from_bank"
   | "document_sent_to_bank"
+  | "paid_equity"
   | "pending"
   | "approved"
   | "declined";

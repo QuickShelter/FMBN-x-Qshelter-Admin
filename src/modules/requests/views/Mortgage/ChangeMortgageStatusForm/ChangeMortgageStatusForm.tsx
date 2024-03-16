@@ -69,6 +69,10 @@ export default function ChangeMortgageStatusForm({ request, closeModal, ...rest 
         value: "completed",
       },
       {
+        label: "Paid Equity",
+        value: "paid_equity",
+      },
+      {
         label: "Send offer Letter from Bank",
         value: "send_offer_letter_from_bank",
       },

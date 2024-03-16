@@ -14,8 +14,8 @@ import AnalyticsHelper from "@/helpers/AnalyticsHelper";
 import StringHelper from "@/helpers/StringHelper";
 import { IApartment, IUnitStatus } from "@/types";
 import Button from "../common/Button";
-import Checkbox from "../common/form/Checkbox";
 import ConfirmationModal from "../common/modals/ConfirmationModal";
+import ToggleCheckbox from "../common/form/ToggleCheckbox";
 
 type IUnits = "" | IUnitStatus;
 
@@ -192,7 +192,7 @@ export default function Units() {
         <div className="p-4 flex gap-4 justify-between items-center flex-wrap">
           <div className="flex gap-4 items-center">
             <label className="">
-              <Checkbox checked={selectAll} onChange={e => {
+              <ToggleCheckbox checked={selectAll} onChange={e => {
                 setSelectAll(e.target.checked)
                 setIsDirty(true)
 
@@ -213,8 +213,8 @@ export default function Units() {
           </div>
           {isDirty &&
             <div className="flex gap-4">
-              <Button onClick={() => setShowSoldModal(true)} variant="outline">Mark Sold</Button>
-              <Button onClick={() => setShowLockedModal(true)} variant="outline">Mark Locked</Button>
+              <Button onClick={() => setShowSoldModal(true)} disabled={getCheckedIds(selectedUnits).length < 1} variant="outline">Mark Sold</Button>
+              <Button onClick={() => setShowLockedModal(true)} variant="outline" disabled={getCheckedIds(selectedUnits).length < 1}>Mark Locked</Button>
             </div>
           }
         </div>
