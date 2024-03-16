@@ -135,6 +135,7 @@ export default function LargeImageSlider(props: IProps) {
     >
       <Modal
         closeFormClassName="h-0"
+        closeBtnClassName="bg-[white] w-[2rem] mr-4 mt-4 rounded-full h-[2rem] p-0 aspect-square"
         className=""
         show={showImage}
         onCancel={() => setShowImage(false)}

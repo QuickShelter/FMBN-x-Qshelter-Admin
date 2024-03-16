@@ -10,12 +10,13 @@ interface IProps
   > {
   noBottomPadding?: boolean;
   show: boolean;
+  closeBtnClassName?: string,
   onCancel: () => void;
   closeFormClassName?: string;
 }
 
 const Modal = (props: IProps) => {
-  const { noBottomPadding = false, show, onCancel } = props;
+  const { noBottomPadding = false, show, onCancel, children, closeBtnClassName, className, closeFormClassName } = props;
   const ref = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
@@ -32,25 +33,25 @@ const Modal = (props: IProps) => {
       ref={ref}
       {...props}
       onCancel={onCancel}
-      className={`${props.className} ${styles.container}`}
+      className={`${className} ${styles.container}`}
     >
       <div
         className={`${styles.wrapper} ${noBottomPadding ? styles.bottom0 : ""}`}
       >
         <form
           method="dialog"
-          className={`${props.closeFormClassName} ${styles.closeForm}`}
+          className={`${closeFormClassName} ${styles.closeForm}`}
         >
           <Button
             type="button"
-            className={`${styles.close} outline-none focus:outline-none`}
+            className={`${styles.close} ${closeBtnClassName} outline-none focus:outline-none`}
             variant="clear"
             onClick={onCancel}
           >
             <Close />
           </Button>
         </form>
-        <div className={styles.children}>{props.children}</div>
+        <div className={styles.children}>{children}</div>
         {props.noBottomPadding ? null : (
           <div className={styles.bottomPadding}></div>
         )}

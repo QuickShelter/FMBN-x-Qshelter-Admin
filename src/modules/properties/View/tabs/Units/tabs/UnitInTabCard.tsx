@@ -7,11 +7,14 @@ import Dot from "@/modules/common/Dot";
 import { IApartment, IProperty } from "@/types";
 import PropertyHelper from "@/helpers/PropertyHelper";
 import StringHelper from "@/helpers/StringHelper";
+import Checkbox from "@/modules/common/form/Checkbox";
 
 interface IProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   unit: IApartment
   _property: IProperty
+  isChecked?: boolean
+  onChangeChecked: (id: string, isChecked: boolean) => void
 }
 
 /**
@@ -20,15 +23,13 @@ interface IProps
  * @param props
  * @returns
  */
-export default function UnitInTabCard({ className, _property: property, unit, ...rest }: IProps) {
+export default function UnitInTabCard({ className, onChangeChecked, isChecked = false, _property: property, unit, ...rest }: IProps) {
 
   const status = PropertyHelper.resolveUnitStatus(unit)
 
   return (
-    <div {...rest} className={`${className} `}>
-      <Link
-        data-test-id='unit-card-link'
-        to={`/properties/${property.id}/units/${unit.id}`}
+    <div {...rest} className={`${className}`}>
+      <div
         className="flex gap-3 justify-between group"
       >
         <div className="flex flex-col gap-4 sm:flex-row items-center">
@@ -52,20 +53,29 @@ export default function UnitInTabCard({ className, _property: property, unit, ..
               {FormatHelper.nairaFormatter.format(unit.price)}
             </div>
             <div className="px-2 py-1.5 whitespace-nowrap bg-zinc-100 rounded-[100px] justify-start items-start gap-2.5 text-neutral-950 text-xs font-medium leading-3 inline-flex w-fit">
-              Created by <Dot />{" "}
+              Created{' '}
               {FormatHelper.dateFormatter.format(unit.created_at)}
             </div>
           </div>
         </div>
-        <div className={"flex flex-nowrap items-center h-fit gap-4"}>
-          {status && (
-            <Status
-              status={status}
-            />
-          )}
-          <ChevronRight className="thrust-child" />
+        <div className="flex flex-col justify-between items-end">
+          <Link
+            data-test-id='unit-card-link'
+            to={`/properties/${property.id}/units/${unit.id}`} className={"flex flex-nowrap items-center h-fit gap-4"}>
+            {status && (
+              <Status
+                status={status}
+              />
+            )}
+            <ChevronRight className="thrust-child" />
+          </Link>
+          <label>
+            <Checkbox checked={isChecked} onChange={(e) => {
+              onChangeChecked(unit.id, e.target.checked)
+            }} className="" />
+          </label>
         </div>
-      </Link>
+      </div>
     </div>
   );
 }

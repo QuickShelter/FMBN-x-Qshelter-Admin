@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Card from "../common/Card";
 import Hr from "../common/Hr";
 import PageBackButton from "../common/PageBackButton";
@@ -12,47 +12,115 @@ import Spinner from "../common/Spinner";
 import FormatHelper from "@/helpers/FormatHelper";
 import AnalyticsHelper from "@/helpers/AnalyticsHelper";
 import StringHelper from "@/helpers/StringHelper";
-import { IUnitStatus } from "@/types";
+import { IApartment, IUnitStatus } from "@/types";
+import Button from "../common/Button";
+import Checkbox from "../common/form/Checkbox";
+import ConfirmationModal from "../common/modals/ConfirmationModal";
 
 type IUnits = "" | IUnitStatus;
 
 export default function Units() {
   const { id, building_id } = useParams();
   const { data: property, isLoading } = useGetPropertyByIdQuery(id ?? "");
-  const [tab, setTab] = useState<IUnits>("");
   const building = property?.buildings.filter(building => building.id == building_id)?.[0]
 
+  const [showSoldModal, setShowSoldModal] = useState(false)
+  const [showLockedModal, setShowLockedModal] = useState(false)
+  const [tab, setTab] = useState<IUnits>("");
+  const [selectAll, setSelectAll] = useState(false)
+  const [isDirty, setIsDirty] = useState(false)
+
+  const decideTab = (apartment: IApartment) => {
+    if (tab === '') {
+      return true
+    }
+
+    if (tab === 'available') {
+      return apartment.available
+    }
+
+    if (tab === 'locked') {
+      return !apartment.available
+    }
+
+    if (tab === 'sold') {
+      return apartment.sold
+    }
+
+    if (tab === 'mortgaging') {
+      return apartment.mortgaging
+    }
+
+    return false
+  }
+
   const apartments = useMemo(() => {
+    if (!building?.apartments) {
+      return []
+    }
+
     return building?.apartments?.filter(apartment => {
-
-      if (tab === '') {
-        return true
-      }
-
-      if (tab === 'available') {
-        return apartment.available
-      }
-
-      if (tab === 'locked') {
-        return !apartment.available
-      }
-
-      if (tab === 'sold') {
-        return apartment.sold
-      }
-
-      if (tab === 'mortgaging') {
-        return apartment.mortgaging
-      }
-
-      return false
+      return decideTab(apartment)
     })
   }, [tab, building?.apartments])
+
+
+  const _selections = useMemo(() => {
+    const items = apartments?.map(apartment => {
+      return {
+        id: apartment.id,
+        isChecked: false
+      }
+    })
+
+    return items
+  }, [apartments])
+
+  const [selectedUnits, setSelectedUnits] = useState<{ id: string, isChecked: boolean }[]>(_selections)
+
+  useEffect(() => {
+    setSelectedUnits(apartments?.map(apartment => {
+      return {
+        id: apartment.id,
+        isChecked: false
+      }
+    }))
+  }, [apartments, _selections])
+
+
+  const handleChangeOfferOption = (id: string, isChecked: boolean) => {
+    setIsDirty(true)
+    setSelectAll(false)
+
+    setSelectedUnits(prevState => {
+      return prevState.map(item => {
+        if (item.id == id) {
+          return {
+            id,
+            isChecked
+          }
+        }
+
+        return item
+      })
+    })
+  }
 
   if (isLoading) {
     return <div className="flex flex-1 justify-center items-center">
       <Spinner size="md" />
     </div>
+  }
+
+  const getCheckedIds = (units: { id: String, isChecked: boolean }[]) => {
+    return units?.filter(item => item.isChecked)?.map(item => item.id)
+  }
+
+  const handleMarkSold = () => {
+    console.log(getCheckedIds(selectedUnits))
+  }
+  const handleMarkLocked = () => {
+    console.log(getCheckedIds(selectedUnits))
   }
 
   return (
@@ -62,6 +130,20 @@ export default function Units() {
         <div className="px-6 py-4">
           <PageBackButton text="Back" />
         </div>
+        <ConfirmationModal
+          prompt="Are you sure?"
+          onCancel={() => setShowSoldModal(false)}
+          show={showSoldModal}
+          primaryButton={<Button onClick={handleMarkSold} variant="primary">Yes</Button>}
+          secondaryButton={<Button onClick={() => setShowSoldModal(false)} variant="outline">No</Button>}
+        />
+        <ConfirmationModal
+          prompt="Are you sure?"
+          onCancel={() => setShowLockedModal(false)}
+          show={showLockedModal}
+          primaryButton={<Button onClick={handleMarkLocked} variant="primary">Yes</Button>}
+          secondaryButton={<Button onClick={() => setShowLockedModal(false)} variant="outline">No</Button>}
+        />
         <Hr />
         <div className="flex flex-col gap-6 p-4 sm:px-12 sm:py-6">
           <div className="flex flex-col gap-2">
@@ -107,12 +189,41 @@ export default function Units() {
             },
           ]}
         />
+        <div className="p-4 flex gap-4 justify-between items-center flex-wrap">
+          <div className="flex gap-4 items-center">
+            <label className="">
+              <Checkbox checked={selectAll} onChange={e => {
+                setSelectAll(e.target.checked)
+                setIsDirty(true)
+
+                if (selectAll) {
+                  setSelectedUnits(prev => prev.map(item => ({
+                    id: item.id,
+                    isChecked: false
+                  })))
+                } else {
+                  setSelectedUnits(prev => prev.map(item => ({
+                    id: item.id,
+                    isChecked: true
+                  })))
+                }
+              }} />
+            </label>
+            <div className="flex flex-nowrap whitespace-nowrap">{selectedUnits?.filter(item => item.isChecked).length} Selected</div>
+          </div>
+          {isDirty &&
+            <div className="flex gap-4">
+              <Button onClick={() => setShowSoldModal(true)} variant="outline">Mark Sold</Button>
+              <Button onClick={() => setShowLockedModal(true)} variant="outline">Mark Locked</Button>
+            </div>
+          }
+        </div>
         {(apartments && apartments.length > 0) ?
           <div className="px-4 py-5 sm:px-6 py-6 flex flex-col">
             {apartments?.map((apartment, key) => {
               return (
                 <div className="flex flex-col">
-                  {property && <UnitInTabCard _property={property} unit={apartment} key={key} />}
+                  {property && <UnitInTabCard onChangeChecked={handleChangeOfferOption} isChecked={selectedUnits.find(item => item.id == apartment.id)?.isChecked} _property={property} unit={apartment} key={key} />}
                   {apartments.length - 1 ? <Hr className="my-4" /> : null}
                 </div>
               );

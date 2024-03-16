@@ -33,7 +33,7 @@ export default function ConfirmationModal(props: IProps) {
       onSubmit={handleSubmit}
       {...rest}
       closeFormClassName=""
-      className={`${props.className}`}
+      className={`${props.className} min-w-[300px]`}
     >
       <div className={`flex flex-col gap-6`}>
         <div className="mt-4 text-slate-900 text-l font-normal leading-normal px-4">
