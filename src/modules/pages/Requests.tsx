@@ -43,7 +43,7 @@ const tabs: { label: string, value: IRequestType | "" }[] = [
     value: "rto",
   },
   {
-    label: "Contribution",
+    label: "Commercial Mortgage",
     value: "contribution",
   },
   {
@@ -197,7 +197,7 @@ export default function Requests() {
       <Card className="flex flex-col gap-4 pb-6">
         <div className="hidden lg:block">
           <LinkTabsWithMore
-            threshold={7}
+            threshold={6}
             className="pt-2 text-[12px] sm:text-sm"
             field="type"
             tabs={tabs.map(tab => ({

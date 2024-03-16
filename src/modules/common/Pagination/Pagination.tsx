@@ -128,15 +128,14 @@ export default function Pagination({
 
   if (!nPages || nPages < 2) return null;
 
-
   return (
     <div className={styles.container}>
       <nav className={styles.nav} aria-label="navigation">
         <ul className={styles.list}>
           <span
-            onClick={() =>
+            onClick={() => {
               setCurrentPage(currentPage > 1 ? currentPage - 1 : currentPage)
-            }
+            }}
             className={styles.singleMove}
           >
             <Link to={baseUrl}>
@@ -158,7 +157,6 @@ export default function Pagination({
               <li
                 key={_page}
                 onClick={() => {
-                  console.log(_page);
                   if (_page === LAST) {
                     setCurrentPage(nPages);
                   } else if (_page === FIRST) {

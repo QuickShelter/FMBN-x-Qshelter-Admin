@@ -34,7 +34,6 @@ interface IData {
   file: any,
   admin_id: string,
   id: string,
-  is_online_payment?: boolean
 }
 
 type IOfferOption = 'offer' | 'reject'
@@ -64,7 +63,6 @@ export default function ChangeMortgageStatusForm({ request, closeModal, ...rest 
       status: request.data.mortgage.status,
       admin_id: admin_id ?? '',
       id: request?.data?.mortgage?.id,
-      is_online_payment: false
     },
   });
 

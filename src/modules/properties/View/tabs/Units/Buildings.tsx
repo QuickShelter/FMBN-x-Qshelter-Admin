@@ -10,6 +10,7 @@ import { useAppDispatch } from "@/redux/store";
 import useGetCurrentUser from "@/hooks/useGetCurrentUser";
 import { useUpdateUnitByIdMutation } from "@/redux/services/api";
 import { setToast } from "@/redux/services/toastSlice";
+import Pagination from "@/modules/common/Pagination";
 
 interface IProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
@@ -20,6 +21,8 @@ interface IProps
 export default function Buildings({ className, propertyId, buildings, ...rest }: IProps) {
   const [showSoldModal, setShowSoldModal] = useState(false)
   const dispatch = useAppDispatch();
+  const [page, setPage] = useState(1)
+  const LIMIT = 5
   const userId = useGetCurrentUser()?.id
   const [showLockedModal, setShowLockedModal] = useState(false)
   const [selectAll, setSelectAll] = useState(false)
@@ -123,7 +126,10 @@ export default function Buildings({ className, propertyId, buildings, ...rest }:
   }
 
   return (
-    <div {...rest} className={`${className} p-5 sm:p-6`}>
+    <div {...rest} className={`${className} p-5 sm:p-6 flex flex-col gap-4`}>
+      <div>
+        <h3 className="font-medium">{buildings.length} Buildings</h3>
+      </div>
       <ConfirmationModal
         prompt="Are you sure?"
         onCancel={() => setShowSoldModal(false)}
@@ -138,7 +144,7 @@ export default function Buildings({ className, propertyId, buildings, ...rest }:
         primaryButton={<Button onClick={handleMarkLocked} isLoading={isChangingStatus} variant="primary">Yes</Button>}
         secondaryButton={<Button onClick={() => setShowLockedModal(false)} variant="outline">No</Button>}
       />
-      <div className="p-4 flex gap-4 justify-between items-center flex-wrap">
+      <div className="flex gap-4 justify-between items-center flex-wrap">
         <div className="flex gap-4 items-center">
           <label className="">
             <ToggleCheckbox checked={selectAll} onChange={e => {
@@ -168,15 +174,21 @@ export default function Buildings({ className, propertyId, buildings, ...rest }:
         }
       </div>
       <div className="">
-        {buildings.map((building, index) => {
+        {buildings.slice((page - 1) * LIMIT, Math.min(LIMIT * (page), buildings.length)).map((building, index) => {
           return (
             <div key={index}>
               <Card isChecked={selected.find(item => item.id == building.id)?.isChecked} onChangeChecked={handleChangeOfferOption} propertyId={propertyId} building={building} />
-              {index < buildings.length - 1 ? <Hr className="" /> : null}
+              {index < Math.min(buildings?.length % LIMIT, LIMIT) - 1 ? <Hr className="" /> : null}
             </div>
           );
         })}
       </div>
+      <Pagination
+        baseUrl=""
+        setCurrentPage={setPage}
+        nPages={Math.ceil(buildings.length / LIMIT)}
+        currentPage={page}
+      />
     </div>
   );
 }
