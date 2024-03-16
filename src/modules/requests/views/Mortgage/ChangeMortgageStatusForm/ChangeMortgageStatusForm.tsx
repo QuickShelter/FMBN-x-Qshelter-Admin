@@ -1,4 +1,4 @@
-import { DetailedHTMLProps, HTMLAttributes, useMemo, useState } from "react";
+import { ChangeEventHandler, DetailedHTMLProps, HTMLAttributes, useMemo, useState } from "react";
 import styles from "./ChangeMortgageStatusForm.module.css";
 import FormGroup from "@/modules/common/form/FormGroup/FormGroup";
 import FormLabel from "@/modules/common/form/FormLabel/FormLabel";
@@ -18,6 +18,8 @@ import { useUpdateMortgageApplicationStatusMutation } from "@/redux/services/api
 import PaperClip from "@/modules/common/icons/PaperClip";
 import FormError from "@/modules/common/form/FormError";
 import DocumentHelper from "@/helpers/DocumentHelper";
+import BlockRadio from "@/modules/common/form/BlockRadio";
+import TextArea from "@/modules/common/form/TextArea";
 
 interface IProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLFormElement>, HTMLFormElement> {
@@ -33,6 +35,7 @@ interface IData {
   id: string
 }
 
+type IOfferOption = 'offer' | 'reject'
 
 export default function ChangeMortgageStatusForm({ request, closeModal, ...rest }: IProps) {
   const dispatch = useAppDispatch();
@@ -42,6 +45,8 @@ export default function ChangeMortgageStatusForm({ request, closeModal, ...rest 
     fileName: null,
     size: null
   })
+  const [offerOption, setOfferOption] = useState<IOfferOption>('offer')
+  const [comment, setComment] = useState('')
 
   const {
     control,
@@ -137,6 +142,10 @@ export default function ChangeMortgageStatusForm({ request, closeModal, ...rest 
     }
   };
 
+  const handleChangeOfferOption: ChangeEventHandler<HTMLInputElement> = (e) => {
+    setOfferOption(e.target.value as IOfferOption)
+  }
+
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
@@ -169,7 +178,14 @@ export default function ChangeMortgageStatusForm({ request, closeModal, ...rest 
         />
         {errors.status && <FormError>{errors?.status?.message}</FormError>}
       </FormGroup>
-      {showDoc && <FormGroup>
+      {showDoc && <div className="flex gap-4">
+        <BlockRadio checked={offerOption == 'offer'} value='offer' onChange={handleChangeOfferOption} label="Offer" />
+        <BlockRadio checked={offerOption == 'reject'} value={'reject'} onChange={handleChangeOfferOption} label="Reject" />
+      </div>}
+      {showDoc && offerOption == 'reject' &&
+        <TextArea placeholder="Reason" value={comment} onChange={(e) => setComment(e.target.value)} />
+      }
+      {showDoc && offerOption == 'offer' && <FormGroup>
         <FormLabel>Bank Offer</FormLabel>
         <Controller
           name="file"
