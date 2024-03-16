@@ -434,10 +434,11 @@ export const api = createApi({
         admin_id: string;
         status: IMortgageStatus;
         file?: string,
-        comment?: string
+        comment?: string,
+        is_online_payment?: boolean
       }
     >({
-      query: ({ id, admin_id, status,
+      query: ({ id, admin_id, status, is_online_payment,
         comment,
         file }) => {
         let payload = {}
@@ -448,10 +449,9 @@ export const api = createApi({
           formData.append("status", status)
           formData.append("admin_id", admin_id)
           formData.append("comment", _comment)
+          formData.append("file", file)
 
-          if (file) {
-            formData.append("file", file)
-          }
+          formData.append("is_online_payment", is_online_payment ? "true" : "false")
 
           payload = formData
         } else {

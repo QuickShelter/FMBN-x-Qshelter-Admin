@@ -32,7 +32,8 @@ interface IData {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   file: any,
   admin_id: string,
-  id: string
+  id: string,
+  is_online_payment?: boolean
 }
 
 type IOfferOption = 'offer' | 'reject'
@@ -40,7 +41,9 @@ type IOfferOption = 'offer' | 'reject'
 export default function ChangeMortgageStatusForm({ request, closeModal, ...rest }: IProps) {
   const dispatch = useAppDispatch();
   const admin_id = useAppSelector((state) => state.auth.profile?.id);
-  const [showDoc, setShowDoc] = useState(request?.data?.mortgage?.status === 'send_offer_letter_from_bank')
+  const mortgage = request?.data?.mortgage
+  const [showDoc, setShowDoc] = useState(mortgage?.status === 'send_offer_letter_from_bank')
+  const [showReceipt, setShowReceipt] = useState(mortgage?.status === 'paid_equity')
   const [fileData, setFileData] = useState<{ fileName: string | null, size: string | null }>({
     fileName: null,
     size: null
@@ -56,7 +59,8 @@ export default function ChangeMortgageStatusForm({ request, closeModal, ...rest 
     defaultValues: {
       status: request.data.mortgage.status,
       admin_id: admin_id ?? '',
-      id: request?.data?.mortgage?.id
+      id: request?.data?.mortgage?.id,
+      is_online_payment: false
     },
   });
 
@@ -170,6 +174,7 @@ export default function ChangeMortgageStatusForm({ request, closeModal, ...rest 
             <Select {...field} onChange={(e) => {
               const newStatus = e.target.value as (IMortgageStatus | "")
               setShowDoc(newStatus === 'send_offer_letter_from_bank')
+              setShowReceipt(newStatus === 'paid_equity')
               field.onChange(newStatus)
             }}>
               {statusOptions.map(({ label, value }) => (
@@ -191,6 +196,36 @@ export default function ChangeMortgageStatusForm({ request, closeModal, ...rest 
       }
       {showDoc && offerOption == 'offer' && <FormGroup>
         <FormLabel>Bank Offer</FormLabel>
+        <Controller
+          name="file"
+          defaultValue={undefined}
+          control={control}
+          //rules={{ required: 'Please select a file' }}
+          render={({ field }) => (
+            <label className="text-sm font-medium leading-[21px] flex flex-nowrap gap-1 items-center w-fit">
+              <div>
+                <div className="flex gap-1 flex-nowrap text-blue-600 border-b border-blue-600 w-fit"><PaperClip /> Upload File</div>
+                <div className="flex flex-col gap-1">
+                  <div>{fileData.fileName}</div>
+                  <div>{fileData.size}</div>
+                </div>
+              </div>
+              <input {...field} value={field.value?.fileName}
+                onChange={(event) => {
+                  const file = event?.target?.files?.[0]
+                  setFileData({
+                    fileName: file?.name ?? "",
+                    size: file?.size ? `${DocumentHelper.displaySize(file?.size)}` : ''
+                  })
+                  field.onChange(event.target.files?.[0]);
+                }} hidden type="file" />
+            </label>
+          )}
+        />
+        {errors.file && <FormError>{errors?.file?.message?.toString()}</FormError>}
+      </FormGroup>}
+      {showReceipt && <FormGroup>
+        <FormLabel>Evidence of Payment</FormLabel>
         <Controller
           name="file"
           defaultValue={undefined}
