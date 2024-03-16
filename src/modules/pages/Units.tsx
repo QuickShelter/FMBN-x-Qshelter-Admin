@@ -64,7 +64,6 @@ export default function Units() {
     })
   }, [tab, building?.apartments])
 
-
   const _selections = useMemo(() => {
     const items = apartments?.map(apartment => {
       return {
@@ -86,7 +85,6 @@ export default function Units() {
       }
     }))
   }, [apartments, _selections])
-
 
   const handleChangeOfferOption = (id: string, isChecked: boolean) => {
     setIsDirty(true)

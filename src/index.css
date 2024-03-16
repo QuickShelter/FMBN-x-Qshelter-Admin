@@ -167,3 +167,7 @@ select:-webkit-autofill:focus {
 .thrust-child-right {
   @apply transition-transform transform origin-left group-hover:translate-x-1;
 }
+
+.underline-child {
+  @apply group-hover:underline;
+}

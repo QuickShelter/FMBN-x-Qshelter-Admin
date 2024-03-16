@@ -6,21 +6,25 @@ import { IBuilding } from "@/types";
 import FormatHelper from "@/helpers/FormatHelper";
 import AnalyticsHelper from "@/helpers/AnalyticsHelper";
 import Dot from "@/modules/common/Dot";
+import Checkbox from "@/modules/common/form/Checkbox";
+import styles from './Card.module.css'
 
 interface IProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   building: IBuilding;
   propertyId: string
+  isChecked?: boolean
+  onChangeChecked: (id: string, isChecked: boolean) => void
 }
 
-export default function Card({ className, propertyId, building, ...rest }: IProps) {
+export default function Card({ className, propertyId, onChangeChecked, isChecked = false, building, ...rest }: IProps) {
 
   return (
     <div
       {...rest}
-      className={`${className} group flex flex-col gap-2 sm:gap-6 py-6 py-4 sm:flex-row justify-between`}
+      className={`${className} ${styles.card} group flex flex-col gap-2 sm:gap-6 py-6 py-4 sm:flex-row justify-between`}
     >
-      <Link data-test-id="building-card-link" to={`/properties/${propertyId}/building/${building.id}/units`} className="flex flex-1 flex-col">
+      <div className="flex flex-1 flex-col">
         <div className="flex gap-6 flex-1">
           {/* <Image
             className="w-[100px] h-[100px] rounded-[9px]"
@@ -46,8 +50,18 @@ export default function Card({ className, propertyId, building, ...rest }: IProp
             <LockStat className="mt-4" nLockedUnits={AnalyticsHelper.getNLockedUnitsOfBuilding(building)} nUnits={building.apartment_count ?? 0} />
           </div>
         </div>
-      </Link>
-      <ChevronRight className="thrust-child" />
+      </div>
+      <div className="flex flex-col justify-between items-end">
+        <Link
+          data-test-id="building-card-link" to={`/properties/${propertyId}/building/${building.id}/units`} className={"flex font-medium flex-nowrap items-center h-fit gap-4"}>
+          View <ChevronRight className="thrust-child" />
+        </Link>
+        <label>
+          <Checkbox checked={isChecked} onChange={(e) => {
+            onChangeChecked(building.id, e.target.checked)
+          }} className="" />
+        </label>
+      </div>
     </div>
   );
 }

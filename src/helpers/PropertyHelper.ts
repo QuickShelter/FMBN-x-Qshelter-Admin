@@ -20,6 +20,18 @@ export default class PropertyHelper {
     return amenities
   }
 
+  public static getUnitsFromBuildings: (building: IBuilding[]) => IApartment[] = (buildings) => {
+    const units: IApartment[] = []
+
+    buildings.forEach(building => {
+      building.apartments.forEach(element => {
+        units.push(element)
+      });
+    });
+
+    return units
+  }
+
   public static getAmenitiesFromProperty: (property: IProperty) => string[] = (property) => {
     if (!property?.buildings || property?.buildings?.length < 1) {
       return []
