@@ -8,12 +8,12 @@
   transform: translateY(-50%);
 }
 
-.input:checked ~ .container .knob {
+.input:checked~.container .knob {
   right: 0;
   background-color: #fff;
 }
 
-.input:not(:checked) ~ .container .knob {
+.input:not(:checked)~.container .knob {
   left: 0;
   background-color: #fff;
 }
@@ -24,13 +24,11 @@
   border: 1px solid var(--green-200);
   border-radius: 300px;
   width: 40px;
-  height: 21px;
-  background-color:var(--green-200);;
+  height: 20px;
+  align-items: center;
+  background-color: var(--green-200);
 }
 
-.input:checked ~ .container {
+.input:checked~.container {
   background-color: var(--green-500);
-  border-radius: 300px;
-  width: 40px;
-  height: 21px;
 }
