@@ -7,20 +7,25 @@ import Tab from "../common/Tab";
 import LockStat from "../properties/View/tabs/Units/LockStat";
 import UnitInTabCard from "../properties/View/tabs/Units/tabs/UnitInTabCard";
 import { useParams } from "react-router-dom";
-import { useGetPropertyByIdQuery } from "@/redux/services/api";
+import { useGetPropertyByIdQuery, useUpdateUnitByIdMutation } from "@/redux/services/api";
 import Spinner from "../common/Spinner";
 import FormatHelper from "@/helpers/FormatHelper";
 import AnalyticsHelper from "@/helpers/AnalyticsHelper";
 import StringHelper from "@/helpers/StringHelper";
-import { IApartment, IUnitStatus } from "@/types";
+import { IAPIError, IApartment, IUnitStatus, IUnitUpdateDto } from "@/types";
 import Button from "../common/Button";
 import ConfirmationModal from "../common/modals/ConfirmationModal";
 import ToggleCheckbox from "../common/form/ToggleCheckbox";
+import { useAppDispatch } from "@/redux/store";
+import { setToast } from "@/redux/services/toastSlice";
+import useGetCurrentUser from "@/hooks/useGetCurrentUser";
 
 type IUnits = "" | IUnitStatus;
 
 export default function Units() {
   const { id, building_id } = useParams();
+  const dispatch = useAppDispatch();
+  const userId = useGetCurrentUser()?.id
   const { data: property, isLoading } = useGetPropertyByIdQuery(id ?? "");
   const building = property?.buildings.filter(building => building.id == building_id)?.[0]
 
@@ -110,15 +115,66 @@ export default function Units() {
     </div>
   }
 
-  const getCheckedIds = (units: { id: String, isChecked: boolean }[]) => {
+  const getCheckedIds = (units: { id: string, isChecked: boolean }[]) => {
     return units?.filter(item => item.isChecked)?.map(item => item.id)
   }
 
+  const [updateUnit, { isLoading: isChangingStatus }] = useUpdateUnitByIdMutation()
+
+  const closeModals = () => {
+    setShowLockedModal(false)
+    setShowSoldModal(false)
+  }
+
+  const handleUpdateStatus = async (payload: IUnitUpdateDto[]) => {
+    try {
+      const response = await updateUnit(payload).unwrap()
+
+      if (response?.ok) {
+        dispatch(
+          setToast({
+            message: "Updated",
+            type: "success",
+          })
+        );
+        setSelectAll(false)
+      }
+    } catch (error) {
+      dispatch(
+        setToast({
+          message:
+            (error as IAPIError)?.data?.data?.error ?? "Something went wrong",
+          type: "error",
+        })
+      );
+    } finally {
+      closeModals()
+    }
+  };
+
   const handleMarkSold = () => {
-    console.log(getCheckedIds(selectedUnits))
+    const raw = getCheckedIds(selectedUnits)
+    const processed: IUnitUpdateDto[] = raw.map(id => {
+      return {
+        id,
+        user_id: userId ?? '',
+        sold: true,
+        available: false
+      }
+    })
+    handleUpdateStatus(processed)
   }
   const handleMarkLocked = () => {
-    console.log(getCheckedIds(selectedUnits))
+    const raw = getCheckedIds(selectedUnits)
+    const processed: IUnitUpdateDto[] = raw.map(id => {
+      return {
+        id,
+        user_id: userId ?? '',
+        sold: false,
+        available: false
+      }
+    })
+    handleUpdateStatus(processed)
   }
 
   return (
@@ -132,14 +188,14 @@ export default function Units() {
           prompt="Are you sure?"
           onCancel={() => setShowSoldModal(false)}
           show={showSoldModal}
-          primaryButton={<Button onClick={handleMarkSold} variant="primary">Yes</Button>}
+          primaryButton={<Button onClick={handleMarkSold} variant="primary" isLoading={isChangingStatus}>Yes</Button>}
           secondaryButton={<Button onClick={() => setShowSoldModal(false)} variant="outline">No</Button>}
         />
         <ConfirmationModal
           prompt="Are you sure?"
           onCancel={() => setShowLockedModal(false)}
           show={showLockedModal}
-          primaryButton={<Button onClick={handleMarkLocked} variant="primary">Yes</Button>}
+          primaryButton={<Button onClick={handleMarkLocked} isLoading={isChangingStatus} variant="primary">Yes</Button>}
           secondaryButton={<Button onClick={() => setShowLockedModal(false)} variant="outline">No</Button>}
         />
         <Hr />

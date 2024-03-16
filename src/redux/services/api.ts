@@ -325,7 +325,7 @@ export const api = createApi({
       ],
     }),
     updateUnitById: builder.mutation<
-      IResponse<IApartment>, IUnitUpdateDto
+      IResponse<IApartment>, IUnitUpdateDto | IUnitUpdateDto[]
     >({
       query: (payload) => {
         return {

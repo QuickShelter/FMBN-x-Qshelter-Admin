@@ -1,4 +1,4 @@
-import { IBuilding } from "@/types";
+import { IAPIError, IBuilding, IUnitUpdateDto } from "@/types";
 import { DetailedHTMLProps, HTMLAttributes, useMemo, useState } from "react";
 import Card from "./Card";
 import Hr from "@/modules/common/Hr";
@@ -6,6 +6,10 @@ import Button from "@/modules/common/Button";
 import ToggleCheckbox from "@/modules/common/form/ToggleCheckbox";
 import ConfirmationModal from "@/modules/common/modals/ConfirmationModal";
 import PropertyHelper from "@/helpers/PropertyHelper";
+import { useAppDispatch } from "@/redux/store";
+import useGetCurrentUser from "@/hooks/useGetCurrentUser";
+import { useUpdateUnitByIdMutation } from "@/redux/services/api";
+import { setToast } from "@/redux/services/toastSlice";
 
 interface IProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
@@ -15,6 +19,8 @@ interface IProps
 
 export default function Buildings({ className, propertyId, buildings, ...rest }: IProps) {
   const [showSoldModal, setShowSoldModal] = useState(false)
+  const dispatch = useAppDispatch();
+  const userId = useGetCurrentUser()?.id
   const [showLockedModal, setShowLockedModal] = useState(false)
   const [selectAll, setSelectAll] = useState(false)
   const [isDirty, setIsDirty] = useState(false)
@@ -57,12 +63,63 @@ export default function Buildings({ className, propertyId, buildings, ...rest }:
     return unitIds
   }
 
-  const handleMarkSold = () => {
-    console.log(getCheckedIds(selected))
+
+  const [updateUnit, { isLoading: isChangingStatus }] = useUpdateUnitByIdMutation()
+
+  const closeModals = () => {
+    setShowLockedModal(false)
+    setShowSoldModal(false)
   }
 
+  const handleUpdateStatus = async (payload: IUnitUpdateDto[]) => {
+    try {
+      const response = await updateUnit(payload).unwrap()
+
+      if (response?.ok) {
+        dispatch(
+          setToast({
+            message: "Updated",
+            type: "success",
+          })
+        );
+        setSelectAll(false)
+      }
+    } catch (error) {
+      dispatch(
+        setToast({
+          message:
+            (error as IAPIError)?.data?.data?.error ?? "Something went wrong",
+          type: "error",
+        })
+      );
+    } finally {
+      closeModals()
+    }
+  };
+
+  const handleMarkSold = () => {
+    const raw = getCheckedIds(selected)
+    const processed: IUnitUpdateDto[] = raw.map(id => {
+      return {
+        id,
+        user_id: userId ?? '',
+        sold: true,
+        available: false
+      }
+    })
+    handleUpdateStatus(processed)
+  }
   const handleMarkLocked = () => {
-    console.log(getCheckedIds(selected))
+    const raw = getCheckedIds(selected)
+    const processed: IUnitUpdateDto[] = raw.map(id => {
+      return {
+        id,
+        user_id: userId ?? '',
+        sold: false,
+        available: false
+      }
+    })
+    handleUpdateStatus(processed)
   }
 
   return (
@@ -71,14 +128,14 @@ export default function Buildings({ className, propertyId, buildings, ...rest }:
         prompt="Are you sure?"
         onCancel={() => setShowSoldModal(false)}
         show={showSoldModal}
-        primaryButton={<Button onClick={handleMarkSold} variant="primary">Yes</Button>}
+        primaryButton={<Button onClick={handleMarkSold} isLoading={isChangingStatus} variant="primary">Yes</Button>}
         secondaryButton={<Button onClick={() => setShowSoldModal(false)} variant="outline">No</Button>}
       />
       <ConfirmationModal
         prompt="Are you sure?"
         onCancel={() => setShowLockedModal(false)}
         show={showLockedModal}
-        primaryButton={<Button onClick={handleMarkLocked} variant="primary">Yes</Button>}
+        primaryButton={<Button onClick={handleMarkLocked} isLoading={isChangingStatus} variant="primary">Yes</Button>}
         secondaryButton={<Button onClick={() => setShowLockedModal(false)} variant="outline">No</Button>}
       />
       <div className="p-4 flex gap-4 justify-between items-center flex-wrap">

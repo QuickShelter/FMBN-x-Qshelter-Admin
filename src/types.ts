@@ -990,13 +990,13 @@ export type IUnitStatus = 'available' | 'sold' | 'mortgaging' | 'locked'
 export interface IUnitUpdateDto {
   user_id: string,
   id: string
-  name: string | null,
-  bedroom_count: number | null,
-  bathroom_count: number | null,
-  floor: number | null,
+  name?: string | null,
+  bedroom_count?: number | null,
+  bathroom_count?: number | null,
+  floor?: number | null,
   price?: number | null,
-  available: boolean | null;
-  sold: boolean | null;
+  available?: boolean | null;
+  sold?: boolean | null;
 }
 
 export interface IUnitStatusUpdateDto {
