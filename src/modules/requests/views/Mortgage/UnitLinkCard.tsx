@@ -18,7 +18,8 @@ export default function UnitLinkCard({ _property: property, building, unitId, ..
     const unit = PropertyHelper.getApartmentsFromProperty(property)?.find(unit => unit.id == unitId)
 
     return (
-        <div {...rest} className={`${rest.className} group`}>
+        <div {...rest} className={`${rest.className} group  underline-child`}>
+            <h3 className="font-semibold text-[16px]">Unit Details</h3>
             <Link data-test-id="unit-card-link" className={`flex justify-between pr-4 py-4 items-center gap-4`} to={`/properties/${property.id}/units/${unitId}`}>
                 <div className="group flex flex-col gap-4">
                     <h3 className="text-neutral-950 text-sm font-semibold leading-[21px] grid grid-cols-2">
@@ -33,7 +34,10 @@ export default function UnitLinkCard({ _property: property, building, unitId, ..
                         {unit?.bathroom_count ?? 0} Bathrooms
                     </span>
                 </div>
-                <ChevronRight className="thrust-child-right" />
+                <div className="flex items-center gap-4">
+                    <span className="underline-target">View</span>
+                    <ChevronRight className="thrust-child-right" />
+                </div>
             </Link>
         </div>
     );

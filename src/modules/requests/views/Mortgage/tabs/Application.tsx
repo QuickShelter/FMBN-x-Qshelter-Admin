@@ -22,7 +22,7 @@ export default function Application({ className, request, ...rest }: IProps) {
       {...rest}
       className={`${className} card-no-mobile flex flex-col py-6 sm:px-6 px-0 py-4 gap-4`}
     >
-      <h2 className="text-neutral-950 text-[15px] font-medium leading-snug">Application</h2>
+      <h2 className="text-neutral-950 text-[15px] font-medium leading-snug font-semibold">Application Details</h2>
       <div className="sm:grid sm:grid-cols-2 grid grid-cols-2 gap-4">
         <DetailCard label="Type" value={RequestHelper.typeToHumanMap[request.type]} />
         <DetailCard label="Property Code" value={request?.data.property?.id} />
