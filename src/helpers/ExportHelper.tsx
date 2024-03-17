@@ -314,7 +314,7 @@ export default class ExportHelper {
 
   public static exportTransactionsPDF(data: ITransaction[]) {
     const tableBody = [];
-    const tableHeader = ["S/N", "Wallet ID", "Amount", "Currency", "Status", "Date"];
+    const tableHeader = ["S/N", "Wallet ID", "Currency", "Amount", "Type", "Status", "Date"];
 
     // Add table header
     tableBody.push(tableHeader);
@@ -324,14 +324,18 @@ export default class ExportHelper {
       tableBody.push([
         index + 1,
         transaction.wallet_id,
-        transaction.amount,
         transaction.currency,
+        transaction.amount,
+        transaction.type,
         StringHelper.stripUnderscores(transaction.status) ?? "N/A",
         new Date(transaction.created_at).toLocaleDateString(),
       ]);
     });
 
     this.initializeFont();
+
+    const credit = data?.filter(item => item.type === 'credit').reduce((acc, curr) => Number(acc) + Number(curr.amount), 0)
+    const debit = data?.filter(item => item.type === 'debit').reduce((acc, curr) => Number(acc) + Number(curr.amount), 0)
 
     const docDefinition = {
       content: [
@@ -341,13 +345,17 @@ export default class ExportHelper {
             body: tableBody,
           },
         },
+        '\n',
+        `Total Credit = ${credit}`,
+        '\n',
+        `Total Debit = ${debit}`,
       ],
       defaultStyle: {
         font: "Roboto",
       },
     };
 
-    pdfMake.createPdf(docDefinition).download("table.pdf");
+    pdfMake.createPdf(docDefinition).download("transactions.pdf");
   }
 
   public static exportPropertiesPDF(data: IProperty[]) {

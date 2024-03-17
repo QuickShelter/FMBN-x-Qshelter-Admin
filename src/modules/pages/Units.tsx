@@ -244,8 +244,9 @@ export default function Units() {
           ]}
         />
         <div className="p-4 flex gap-4 justify-between items-center flex-wrap">
-          <div className="flex gap-4 items-center">
-            <label className="">
+          <div className="flex gap-4 flex-col">
+            <label className="flex gap-4 items-center font-semibold">
+              Mark All Units
               <ToggleCheckbox checked={selectAll} onChange={e => {
                 setSelectAll(e.target.checked)
                 setIsDirty(true)

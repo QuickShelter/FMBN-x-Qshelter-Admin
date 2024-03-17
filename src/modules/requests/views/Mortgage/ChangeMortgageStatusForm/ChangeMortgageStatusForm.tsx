@@ -223,7 +223,7 @@ export default function ChangeMortgageStatusForm({ request, closeModal, ...rest 
               <div>
                 <div className="flex gap-1 flex-nowrap text-blue-600 border-b border-blue-600 w-fit"><PaperClip /> Upload File</div>
                 <div className="flex flex-col gap-1">
-                  <div>{fileData.fileName}</div>
+                  <div className="w-[33ch] truncate text-ellipsis overflow-hidden">{fileData.fileName}</div>
                   <div>{fileData.size}</div>
                 </div>
               </div>

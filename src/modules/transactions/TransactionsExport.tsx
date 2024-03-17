@@ -1,20 +1,14 @@
 import { DetailedHTMLProps, HTMLAttributes } from "react";
-import { IAPIError, IPaginatedTransactionResponseBody } from "@/types";
+import { IAPIError, IPaginatedTransactionResponseBody, ITransactionExportDto } from "@/types";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
 import { setToast } from "@/redux/services/toastSlice";
 import { useLazyGetAllTransactionsQuery } from "@/redux/services/api";
-import ExportForm from "@/modules/common/ExportForm";
 import ExportHelper from "@/helpers/ExportHelper";
+import TransactionsExportForm from "./TransactionExportForm/TransactionsExportForm";
 
 interface IProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLFormElement>, HTMLFormElement> {
   onClose: () => void;
-}
-
-interface IExportDto {
-  from_date: string;
-  to_date: string;
-  format: "pdf" | "csv";
 }
 
 export default function TransactionsExport(props: IProps) {
@@ -25,7 +19,7 @@ export default function TransactionsExport(props: IProps) {
   const { error, isFetching } = result;
 
   const onExport = async (
-    { format, ...params }: IExportDto
+    { format, ...params }: ITransactionExportDto
   ) => {
     const { from_date, to_date, ...rest } = params
     const date_from = from_date
@@ -54,12 +48,12 @@ export default function TransactionsExport(props: IProps) {
   };
 
   return (
-    <ExportForm
+    <TransactionsExportForm
       {...props}
-      module="request"
+      module="transaction"
       onExport={onExport}
       isFetching={isFetching}
-      title="Users"
+      title="Transactions"
     />
   );
 }

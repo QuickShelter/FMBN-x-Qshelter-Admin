@@ -145,8 +145,9 @@ export default function Buildings({ className, propertyId, buildings, ...rest }:
         secondaryButton={<Button onClick={() => setShowLockedModal(false)} variant="outline">No</Button>}
       />
       <div className="flex gap-4 justify-between items-center flex-wrap">
-        <div className="flex gap-4 items-center">
-          <label className="">
+        <div className="flex gap-4 flex-col">
+          <label className="flex gap-4 items-center font-semibold">
+            Mark All Blocks
             <ToggleCheckbox checked={selectAll} onChange={e => {
               setSelectAll(e.target.checked)
               setIsDirty(true)

@@ -622,6 +622,14 @@ export interface IExportDto {
   format: IExportFormat;
 }
 
+export interface ITransactionExportDto {
+  from_date: string;
+  to_date: string;
+  format: IExportFormat;
+  type: ITransactionType | undefined | ""
+  status: ITransactionStatus | undefined | ""
+}
+
 export interface IInterestedPerson {
   first_name: string | null;
   last_name: string | null;
