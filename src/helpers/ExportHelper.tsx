@@ -1,4 +1,4 @@
-import { IPaginatedRequest, IProject, IProperty, IRequest, ITransaction, IUser } from "@/types";
+import { IPaginatedRequest, IProject, IProperty, IRequest, ITransaction, ITransactionType, IUser } from "@/types";
 import pdfMake from "pdfmake/build/pdfmake";
 import UserHelper from "./UserHelper";
 import { TDocumentDefinitions } from "pdfmake/interfaces";
@@ -6,6 +6,7 @@ import PropertyHelper from "./PropertyHelper";
 import FormatHelper from "./FormatHelper";
 import StringHelper from "./StringHelper";
 import EnvironmentHelper from "./EnvironmentHelper";
+import CurrencyHelper from "./CurrencyHelper";
 
 export default class ExportHelper {
   /**
@@ -312,7 +313,7 @@ export default class ExportHelper {
     pdfMake.createPdf(docDefinition).download("table.pdf");
   }
 
-  public static exportTransactionsPDF(data: ITransaction[]) {
+  public static exportTransactionsPDF(data: ITransaction[], type: ITransactionType | undefined | '') {
     const tableBody = [];
     const tableHeader = ["S/N", "Wallet ID", "Currency", "Amount", "Type", "Status", "Date"];
 
@@ -334,8 +335,10 @@ export default class ExportHelper {
 
     this.initializeFont();
 
-    const credit = data?.filter(item => item.type === 'credit').reduce((acc, curr) => Number(acc) + Number(curr.amount), 0)
-    const debit = data?.filter(item => item.type === 'debit').reduce((acc, curr) => Number(acc) + Number(curr.amount), 0)
+    const creditNaira = data?.filter(item => item.type === 'credit' && item.currency === 'NGN').reduce((acc, curr) => Number(acc) + Number(curr.amount), 0)
+    const creditDollars = data?.filter(item => item.type === 'credit' && item.currency === 'USD').reduce((acc, curr) => Number(acc) + Number(curr.amount), 0)
+    const debitNaira = data?.filter(item => item.type === 'debit' && item.currency === 'NGN').reduce((acc, curr) => Number(acc) + Number(curr.amount), 0)
+    const debitDollar = data?.filter(item => item.type === 'debit' && item.currency === 'USD').reduce((acc, curr) => Number(acc) + Number(curr.amount), 0)
 
     const docDefinition = {
       content: [
@@ -346,9 +349,8 @@ export default class ExportHelper {
           },
         },
         '\n',
-        `Total Credit = ${credit}`,
-        '\n',
-        `Total Debit = ${debit}`,
+        type == 'debit' || !type ? `Total Debit = ${CurrencyHelper.format(debitNaira, 'NGN')}\t|\t ${CurrencyHelper.format(debitDollar, 'USD')}\n\n` : '',
+        type == 'credit' || !type ? `Total Credit = ${CurrencyHelper.format(creditNaira, 'NGN')}\t|\t${CurrencyHelper.format(creditDollars, 'USD')}\n` : '',
       ],
       defaultStyle: {
         font: "Roboto",

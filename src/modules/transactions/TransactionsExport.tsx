@@ -43,7 +43,7 @@ export default function TransactionsExport(props: IProps) {
     if (format === "csv" && data) {
       ExportHelper.exportTransactionsCsv(data);
     } else if (format === "pdf" && data) {
-      ExportHelper.exportTransactionsPDF(data);
+      ExportHelper.exportTransactionsPDF(data, params.type);
     }
   };
 
