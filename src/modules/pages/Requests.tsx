@@ -43,6 +43,10 @@ const tabs: { label: string, value: IRequestType | "" }[] = [
     value: "rto",
   },
   {
+    label: "RSA",
+    value: "rsa",
+  },
+  {
     label: "Commercial Mortgage",
     value: "contribution",
   },

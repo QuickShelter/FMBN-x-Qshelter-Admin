@@ -19,6 +19,7 @@ import {
   IPriceUpdateRequest,
   IRequest,
   IRequestType,
+  IRsaRequest,
   IRtoRequest,
   RequestType,
 } from "@/types";
@@ -32,6 +33,7 @@ export default class RequestHelper {
     return request.type === RequestType.outrightly_bought;
   }
 
+
   public static isMortgageRequest(
     request?: IRequest | IPaginatedRequest | null
   ): request is IMortgageRequest {
@@ -39,6 +41,7 @@ export default class RequestHelper {
 
     return request.type === 'nhf'
       || request.type === 'rto'
+      || request.type === 'rsa'
       || request.type === 'commercial_mortgage'
       || request.type === 'contribution';
   }
@@ -77,7 +80,7 @@ export default class RequestHelper {
     return request.type === "rto";
   }
 
-  public static isRsaRequest(request?: IRequest | IPaginatedRequest | null): request is INhfRequest {
+  public static isRsaRequest(request?: IRequest | IPaginatedRequest | null): request is IRsaRequest {
     if (!request) return false
 
     return request.type === "rsa";
