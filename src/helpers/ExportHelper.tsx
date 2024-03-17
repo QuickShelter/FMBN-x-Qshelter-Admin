@@ -327,7 +327,7 @@ export default class ExportHelper {
         transaction.wallet_id,
         transaction.currency,
         transaction.amount,
-        transaction.type,
+        StringHelper.stripUnderscores(transaction.type) ?? "N/A",
         StringHelper.stripUnderscores(transaction.status) ?? "N/A",
         new Date(transaction.created_at).toLocaleDateString(),
       ]);
