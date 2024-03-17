@@ -9,7 +9,6 @@ import { useGetUserByIdQuery } from "@/redux/services/api";
 import Spinner from "@/modules/common/Spinner";
 import { formatDate } from "@/helpers/dateFormat";
 import StringHelper from "@/helpers/StringHelper";
-import LinkButton from "@/modules/common/LinkButton";
 
 interface IProps
   extends DetailedHTMLProps<
@@ -37,13 +36,13 @@ export default function Card(props: IProps) {
       <td className={styles.profile}>
         {isLoadingUser && <Spinner size="sm" />}
         {customer && (
-          <div className="flex flex-col gap-1">
-            <LinkButton className={styles.name} to={`/users/${id}`}>
+          <div className="flex flex-col gap-0">
+            <Link className={styles.name} to={`/users/${id}`}>
               {UserHelper.getFullName(customer)}
-            </LinkButton>
-            <LinkButton className={styles.email} to={`mailto:${customer?.email}`}>
+            </Link>
+            <Link className={styles.email} to={`mailto:${customer?.email}`}>
               {customer?.email}
-            </LinkButton>
+            </Link>
           </div>
         )}
       </td>

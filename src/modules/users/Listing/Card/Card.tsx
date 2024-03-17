@@ -7,12 +7,12 @@ import Avatar from "@/modules/common/Avatar/Avatar";
 import Hr from "@/modules/common/Hr/Hr";
 import Eye from "@/modules/common/icons/Eye";
 import Edit from "@/modules/common/icons/Edit";
-import LinkButton from "@/modules/common/LinkButton";
 import UserHelper from "@/helpers/UserHelper";
 import MakeAdmin from "@/modules/common/icons/MakeAdmin";
 import AdminInviteConfirmationModal from "@/modules/common/AdminInviteModal";
 import ProfileEditModal from "../../View/ProfileEditModal";
 import { Link } from "react-router-dom";
+import LinkButton from "@/modules/common/LinkButton";
 
 interface IProps
   extends DetailedHTMLProps<
@@ -52,16 +52,16 @@ export default function Card(props: IProps) {
         onCancel={() => setShowEditModal(false)}
       />
       <td className={styles.profile}>
-        <LinkButton className={styles.avatarLink} to={`/users/${id}`}>
+        <Link className={styles.avatarLink} to={`/users/${id}`}>
           <Avatar className={styles.avatar} user={user} />
-        </LinkButton>
+        </Link>
         <div className="flex flex-col gap-1">
-          <LinkButton className={styles.email} to={`mailto:${email}`}>
+          <Link className={styles.email} to={`mailto:${email}`}>
             {email}
-          </LinkButton>
-          <LinkButton data-test-id="user-card-link" className={styles.name} to={`/users/${id}`}>
+          </Link>
+          <Link data-test-id="user-card-link" className={styles.name} to={`/users/${id}`}>
             {`${first_name} ${last_name}`}
-          </LinkButton>
+          </Link>
         </div>
       </td>
       <td>
