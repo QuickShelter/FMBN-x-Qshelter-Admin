@@ -1591,6 +1591,7 @@ export interface IProjectSearchParams extends IQueryParams {
   search?: string;
   page?: number;
   user_id?: string;
+  sortBy?: string
 }
 
 export interface ITransactionSearchParams extends IQueryParams {

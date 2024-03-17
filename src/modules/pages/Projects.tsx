@@ -1,14 +1,13 @@
 import { Helmet } from "react-helmet";
 import { useGetAllProjectsQuery, useGetProjectsStatsQuery } from "@/redux/services/api";
 import Listing from "../projects/Listing/Listing";
-import { IProjectSortType, IProjectStatus } from "@/types";
+import { IProjectStatus } from "@/types";
 import {
   useState,
   useEffect,
   useContext,
   useMemo,
   useCallback,
-  ChangeEventHandler,
 } from "react";
 import styles from "./Projects.module.css";
 import Button from "../common/Button/Button";
@@ -65,8 +64,8 @@ export default function Projects() {
      * Initial query params
      */
   const _queryParams = useMemo(
-    () =>
-      QueryParamsHelper.stripInvalidPropertyParams({
+    () => {
+      return QueryParamsHelper.stripInvalidProjectParams({
         page: _page,
         search: _search,
         status: _status,
@@ -74,24 +73,23 @@ export default function Projects() {
         to_date: _to_date,
         type: _type,
         sortBy: _sort
-      }),
+      })
+    },
     [_page, _search, _status, _from_date, _to_date, _type, _sort]
   );
 
   const setProjectStatus = useCallback(
     (value: IProjectStatus | "") => {
-      return QueryParamsHelper.generatePropertyQueryParams(
-        QueryParamsHelper.stripInvalidPropertyParams({
+      return QueryParamsHelper.generateProjectQueryParams(
+        {
           ..._queryParams,
           page: 1,
           status: value
-        })
+        }
       );
     },
     [_queryParams]
   );
-
-
 
   const {
     data: pagination,
@@ -109,22 +107,12 @@ export default function Projects() {
 
   const setSearch = (value: string) => {
     setSearchParams(
-      QueryParamsHelper.generatePropertyQueryParams({
+      QueryParamsHelper.generateProjectQueryParams({
         ..._queryParams,
         search: value,
         page: 1,
       })
     );
-  };
-
-  const handleSortChange: ChangeEventHandler = (e) => {
-    const target = e.target as HTMLSelectElement;
-    const params = QueryParamsHelper.generatePropertyQueryParams({
-      ..._queryParams,
-      sortBy: target.value as IProjectSortType,
-    });
-
-    setSearchParams(params);
   };
 
   const contentRef = useContext(ContentRefContext);
@@ -188,8 +176,7 @@ export default function Projects() {
                 <ProjectFilter
                   qparams={_queryParams}
                 />
-                <ProjectSort defaultValue={_sort} onChange={handleSortChange}
-                />
+                <ProjectSort qparams={_queryParams} />
                 <Modal
                   show={showExportModal}
                   onCancel={() => setShowExportModal(false)}

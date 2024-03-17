@@ -832,9 +832,10 @@ export const api = createApi({
     // PROJECTS
     getAllProjects: builder.query<
       IDevApiPagination<IProject>,
-      ITransactionsSearchParams
+      IProjectSearchParams
     >({
-      query: ({ status, from_date, to_date, ...rest }: IProjectSearchParams) => {
+      query: (params: IProjectSearchParams) => {
+        const { status, from_date, to_date, ...rest } = params
         let dateParam = {}
         const dateRangeKey = 'filter.createdAt'
 
@@ -845,8 +846,6 @@ export const api = createApi({
         } else if (from_date && to_date) {
           dateParam = { [dateRangeKey]: `$gte:${formatDate(new Date(from_date))}&${dateRangeKey}:$gte:${formatDate(new Date(to_date))}` }
         }
-
-        console.log(dateParam)
 
         return {
           url: `/developer/api/proposed-developments/paginate`,
