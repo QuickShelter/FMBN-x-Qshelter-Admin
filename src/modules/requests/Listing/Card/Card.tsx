@@ -19,15 +19,15 @@ interface IProps
 export default function Card(props: IProps) {
   const { data: request, ...rest } = props;
   const { profile } = useAppSelector((state) => state.auth);
-  const { data: user } = useGetUserByIdQuery({
+  const { data: user, isLoading: isLoadingUser } = useGetUserByIdQuery({
     id: request?.requester_id ?? "",
     user_id: profile?.id ?? "",
   });
 
 
-  const { data: property, isFetching } = useGetPropertyByIdQuery(request.property.id ?? "");
+  const { data: property, isFetching: isFetchingProperty } = useGetPropertyByIdQuery(request.property.id ?? "");
 
-  if (isFetching) <PropertyCardSkeleton />
+  if (isFetchingProperty) <PropertyCardSkeleton />
 
   return (
     <div {...rest} className={`${props.className} ${styles.container} group`}>
@@ -38,7 +38,7 @@ export default function Card(props: IProps) {
           className="w-[100px] h-[100px] aspect-square shrink-0 rounded-[9px]"
         />
         <div className="flex flex-col gap-2">
-          <div className={styles.title}>{property?.title}</div>
+          <div className={styles.title}>{isFetchingProperty ? 'Loading...' : property?.title}</div>
           <div className={styles.price}>
             {property?.price &&
               FormatHelper.nairaFormatter.format(
@@ -46,8 +46,13 @@ export default function Card(props: IProps) {
               )}
           </div>
           <div className="mt-auto px-2 py-1.5 whitespace-nowrap bg-zinc-100 rounded-[100px] justify-start items-start gap-2.5 text-neutral-950 text-xs font-medium leading-3 inline-flex w-fit">
-            Requested by <span className="font-semibold">{user ? UserHelper.getFullName(user) : null}</span> •{" "}
-            {FormatHelper.dateFormatter.format(request.created_at)}
+            {isLoadingUser ?
+              <span>Loading...</span> :
+              <span>Requested by {' '}
+                <span className="font-semibold">{user ? UserHelper.getFullName(user) : null}</span> •{" "}
+                <span>{FormatHelper.dateFormatter.format(request.created_at)}</span>
+              </span>
+            }
           </div>
         </div>
       </div>
