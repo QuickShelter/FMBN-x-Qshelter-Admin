@@ -142,7 +142,7 @@ export default function Mortgage({ request }: IProps) {
         />
         <div className="py-5 px-6 gap-4 flex flex-col">
           <div>{resolvedTab}</div>
-          {request?.data?.mortgage?.status === 'pending' && <div className="flex">
+          {request?.data?.mortgage?.status === 'pending' && tab == 'application' && <div className="flex">
             <Button onClick={() => setShowCancelModal(true)} className="ml-auto" variant="outline-danger">Cancel</Button>
           </div>}
         </div>

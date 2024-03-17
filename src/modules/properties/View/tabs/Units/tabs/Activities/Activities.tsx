@@ -13,20 +13,26 @@ interface IProps
 }
 
 export default function Activities({ className, isLoading, reasonForBankDecline, offerUrl, activities = [], ...rest }: IProps) {
-  if (!activities || activities.length < 1) {
-    return <div className="flex flex-col gap-5">No activity on the unit</div>
-  }
-
   if (isLoading) {
     return <div className={`flex flex-1 justify-center items-center`}>
       <Spinner size='md' />
     </div>
   }
 
+  if (!activities || activities.length < 1) {
+    return <div className="flex flex-col gap-5">No activity on the unit</div>
+  }
+
+  const _activities = [...activities]
+
+  _activities.sort((a, b) => {
+    return Number(b.id) - Number(a.id)
+  })
+
   return (
     <div {...rest} className={`${className} flex flex-col gap-5`}>
       <div {...rest} className={`${className}`}>
-        {activities
+        {_activities
           .map((activity, index) => {
             return (
               <div key={index}>

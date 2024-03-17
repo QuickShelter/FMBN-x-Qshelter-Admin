@@ -52,5 +52,9 @@ export default class DocumentHelper {
         signedPropertyDocument: 'Sign Property Document',
         utilityDocument: 'Utiity Document',
         birthCertificateLetter: 'Birth Certicate Letter',
+        jobOfferLetter: "Job Offer Letter",
+        jobConfirmationLetter: "Job Confirmation Letter",
+        jobAppointmentLetter: "Job Appointment Letter",
+        employmentVerificationLetter: "Employment Verification Letter"
     }
 }

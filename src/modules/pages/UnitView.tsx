@@ -7,7 +7,6 @@ import Tab from "../common/Tab";
 import Activities from "../properties/View/tabs/Units/tabs/Activities/Activities";
 import Button from "../common/Button";
 import Refresh from "../common/icons/Refresh";
-import Export from "../common/icons/Export";
 import Modal from "../common/Modal";
 import { useGetPropertyByIdQuery, useGetRequestByUnitIdQuery } from "@/redux/services/api";
 import Spinner from "../common/Spinner";
@@ -19,8 +18,6 @@ import PropertyHelper from "@/helpers/PropertyHelper";
 import PaymentDetails from "../properties/View/tabs/Units/tabs/PaymentDetails";
 import Subscriber from "../properties/View/tabs/Units/tabs/Subscriber";
 import ChangeUnitStatusForm from "../units/ChangeUnitStatusForm";
-import ColorHelper from "@/helpers/ColorHelper";
-import ChangeMortgageStatusForm from "../requests/views/Mortgage/ChangeMortgageStatusForm";
 import RoleGuard from "../common/guards/RoleGuard";
 import Status from "../common/Status";
 
@@ -32,7 +29,6 @@ export default function UnitView() {
   const unit = property ? PropertyHelper.getApartmentsFromProperty(property).find(unit => unit.id == id) : null
   const [tab, setTab] = useState<IUnits>("activities");
   const [showUnitStatusModal, setShowUnitStatusModal] = useState(false);
-  const [showStatusModal, setShowStatusModal] = useState(false);
   const { profile } = useAppSelector(state => state.auth)
   const { data: request, isLoading: isLoadingRequest } = useGetRequestByUnitIdQuery({ id: id ?? '', user_id: profile?.id ?? '' })
   const mortgage = request?.data?.mortgage
@@ -82,13 +78,6 @@ export default function UnitView() {
       >
         {unit && <ChangeUnitStatusForm closeModal={() => setShowUnitStatusModal(false)} unit={unit} />}
       </Modal>
-      <Modal
-        className=""
-        show={showStatusModal}
-        onCancel={() => setShowStatusModal(false)}
-      >
-        {mortgage && <ChangeMortgageStatusForm closeModal={() => setShowStatusModal(false)} request={request} />}
-      </Modal>
       <PageTitle className="pb-8">Properties</PageTitle>
       <Card className="">
         <div className="px-6 py-4">
@@ -126,24 +115,6 @@ export default function UnitView() {
                 </Button>
               </RoleGuard>
             }
-            {isLoadingRequest && <Spinner size="md" />}
-            {mortgage &&
-              <RoleGuard allowedRoles={['mortgage_ops_admin']}>
-                <Button
-                  testId="mortgage-change-status-modal-trigger"
-                  onClick={() => setShowStatusModal(true)}
-                  variant="outline"
-                  trailingIcon={<Refresh fill={ColorHelper.green300} />}
-                >
-                  Mortgage Status
-                </Button>
-              </RoleGuard>
-            }
-            <RoleGuard allowedRoles={['sales_admin']}>
-              <Button variant="outline" trailingIcon={<Export />}>
-                Export
-              </Button>
-            </RoleGuard>
           </div>
         </div>
         <Tab

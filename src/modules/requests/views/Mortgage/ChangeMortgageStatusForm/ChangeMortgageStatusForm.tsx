@@ -34,6 +34,7 @@ interface IData {
   file: any,
   admin_id: string,
   id: string,
+  comment: string
 }
 
 type IOfferOption = 'offer' | 'reject'
@@ -51,7 +52,6 @@ export default function ChangeMortgageStatusForm({ request, closeModal, ...rest 
     size: null
   })
   const [offerOption, setOfferOption] = useState<IOfferOption>('offer')
-  const [comment, setComment] = useState('')
 
   const {
     control,
@@ -63,6 +63,7 @@ export default function ChangeMortgageStatusForm({ request, closeModal, ...rest 
       status: request.data.mortgage.status,
       admin_id: admin_id ?? '',
       id: request?.data?.mortgage?.id,
+      comment: ''
     },
   });
 
@@ -75,16 +76,16 @@ export default function ChangeMortgageStatusForm({ request, closeModal, ...rest 
         value: "completed",
       },
       {
-        label: "Paid Equity",
-        value: "paid_equity",
-      },
-      {
         label: "Send offer Letter from Bank",
         value: "send_offer_letter_from_bank",
       },
       {
         label: "Documents Sent to bank",
         value: "document_sent_to_bank",
+      },
+      {
+        label: "Paid Equity",
+        value: "paid_equity",
       },
       {
         label: "Approved",
@@ -209,7 +210,14 @@ export default function ChangeMortgageStatusForm({ request, closeModal, ...rest 
         <BlockRadio checked={offerOption == 'reject'} value={'reject'} onChange={handleChangeOfferOption} label="Reject" />
       </div>}
       {showDoc && offerOption == 'reject' &&
-        <TextArea placeholder="Reason" value={comment} onChange={(e) => setComment(e.target.value)} />
+        <Controller
+          name="comment"
+          control={control}
+          rules={{ required: 'Please provide a reason' }}
+          render={({ field }) => (
+            <TextArea {...field} placeholder="Reason" />
+          )}
+        />
       }
       {showDoc && offerOption == 'offer' && <FormGroup>
         <FormLabel>Bank Offer</FormLabel>
@@ -230,6 +238,7 @@ export default function ChangeMortgageStatusForm({ request, closeModal, ...rest 
               <input {...field} value={field.value?.fileName}
                 onChange={(event) => {
                   const file = event?.target?.files?.[0]
+                  console.log(field.value)
                   setFileData({
                     fileName: file?.name ?? "",
                     size: file?.size ? `${DocumentHelper.displaySize(file?.size)}` : ''

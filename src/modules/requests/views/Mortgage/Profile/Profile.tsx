@@ -19,6 +19,11 @@ import { Link } from "react-router-dom";
 import ApprovalButtons from "@/modules/common/ApprovalButtons";
 import Desktop from "@/modules/common/Desktop";
 import Mobile from "@/modules/common/Mobile";
+import Modal from "@/modules/common/Modal";
+import ChangeMortgageStatusForm from "../ChangeMortgageStatusForm";
+import Refresh from "@/modules/common/icons/Refresh";
+import ColorHelper from "@/helpers/ColorHelper";
+import Export from "@/modules/common/icons/Export";
 
 interface IProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
@@ -42,6 +47,7 @@ export default function Profile({ className, user, request, ...rest }: IProps) {
   const [targetStatus, setTargetStatus] = useState<IMortgageStatus | null>(mortgage?.status ?? 'pending')
   const [updateMortgageStatus, { isLoading }] = useUpdateMortgageApplicationStatusMutation()
   const mortgageId = mortgage?.id ?? ''
+  const [showStatusModal, setShowStatusModal] = useState(false);
   const avatarComponent = <Avatar className="w-[4rem] h-[4rem] rounded-full" user={user} />
 
   const updateStatus = useCallback(async (status: IMortgageStatus) => {
@@ -100,6 +106,13 @@ export default function Profile({ className, user, request, ...rest }: IProps) {
         primaryButton={<Button testId="mortgage-approval-button" disabled={isLoading} onClick={handleApprove}>{isLoading ? <Spinner size="sm" /> : null} Approve</Button>}
         onCancel={() => setShowApproveModal(false)}
       />
+      <Modal
+        className=""
+        show={showStatusModal}
+        onCancel={() => setShowStatusModal(false)}
+      >
+        {mortgage && <ChangeMortgageStatusForm closeModal={() => setShowStatusModal(false)} request={request} />}
+      </Modal>
       <MortgageDeclineModal
         show={showDeclineModal}
         onCancel={() => setShowDeclineModal(false)}
@@ -141,6 +154,27 @@ export default function Profile({ className, user, request, ...rest }: IProps) {
                     handleApprove={handleApprove}
                     handleDecline={handleDecline}
                     handleUndo={handleUndo} />
+                </RoleGuard>
+                <RoleGuard allowedRoles={['mortgage_ops_admin']}>
+                  <div className="flex gap-4 flex-wrap items-center">
+                    {mortgage && mortgage?.status !== 'pending' &&
+                      <RoleGuard allowedRoles={['mortgage_ops_admin']}>
+                        <Button
+                          testId="mortgage-change-status-modal-trigger"
+                          onClick={() => setShowStatusModal(true)}
+                          variant="outline"
+                          trailingIcon={<Refresh fill={ColorHelper.green300} />}
+                        >
+                          Mortgage Status
+                        </Button>
+                      </RoleGuard>
+                    }
+                    <RoleGuard allowedRoles={['sales_admin']}>
+                      <Button variant="outline" trailingIcon={<Export />}>
+                        Export
+                      </Button>
+                    </RoleGuard>
+                  </div>
                 </RoleGuard>
                 {/* <Button className="w-fit" variant="outline" leadingIcon={<Export />}>
                   Export

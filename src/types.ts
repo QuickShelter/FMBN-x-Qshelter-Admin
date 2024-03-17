@@ -404,7 +404,6 @@ export enum RequestType {
   indication_of_interest = "indication_of_interest",
 }
 
-
 export type IRequestType =
   | "nhf"
   | "rto"
