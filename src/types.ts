@@ -647,6 +647,33 @@ export interface IApplicationFormRequestPaginated extends IRequest {
   data: string;
 }
 
+export interface IApplicationFormRequestNoFilePaginated extends IApplicationFormRequestPaginated {
+  data: string;
+}
+
+export interface IApplicationFormRequestWithFilePaginated extends IApplicationFormRequestPaginated {
+  data: string;
+}
+
+
+export interface IApplicationFormRequest extends IRequest {
+  data: IApplicationFormData | IApplicationFormWithFileData
+}
+
+export interface IApplicationFormWithFileData {
+  form_link: string | null,
+  name: string | null,
+  email: string | null
+};
+
+export interface IApplicationFormNoFileRequest extends IApplicationFormRequest {
+  data: IApplicationFormData;
+}
+
+export interface IApplicationFormWithFileRequest extends IApplicationFormRequest {
+  data: IApplicationFormWithFileData
+}
+
 export interface IMilestoneRequestPaginated extends IRequest {
   user: {
     id: string | null;
@@ -656,10 +683,6 @@ export interface IMilestoneRequestPaginated extends IRequest {
     phone: string | null;
     avatar: string | null;
   }
-}
-
-export interface IApplicationFormRequest extends IRequest {
-  data: IApplicationFormData;
 }
 
 export interface IPropertyPriceChangeApprovalDto {

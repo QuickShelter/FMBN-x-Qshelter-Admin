@@ -7,8 +7,9 @@ import Hr from "@/modules/common/Hr";
 import RequestHelper from "@/helpers/RequestHelper";
 import IndicationOfIntererstCard from "./Card/IndicationOfIntererstCard";
 import PriceUpdateCard from "./Card/PriceUpdateCard";
-import ApplicationFormRequestCard from "./Card/ApplicationFormRequestCard";
 import MilestoneCard from "./Card/MilestoneCard";
+import ApplicationFormRequestWithFileCard from "./Card/ApplicationFormRequestWithFileCard";
+import ApplicationFormNoFileRequestCard from "./Card/ApplicationFormRequestNoFileCard";
 
 interface IProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
@@ -33,8 +34,11 @@ export default function Listing(props: IProps) {
             {RequestHelper.isIndicationOfInterestPaginated(request) && (
               <IndicationOfIntererstCard key={request.id} data={request} />
             )}
-            {RequestHelper.isApplicationFormRequestPaginated(request) && (
-              <ApplicationFormRequestCard key={request.id} data={request} />
+            {RequestHelper.isApplicationFormNoFileRequestPaginated(request) && (
+              <ApplicationFormNoFileRequestCard key={request.id} data={request} />
+            )}
+            {RequestHelper.isApplicationFormWithFileRequestPaginated(request) && (
+              <ApplicationFormRequestWithFileCard key={request.id} data={request} />
             )}
             {RequestHelper.isMilestoneUpdateRequestPaginated(request) && (
               <MilestoneCard key={request.id} data={request} />

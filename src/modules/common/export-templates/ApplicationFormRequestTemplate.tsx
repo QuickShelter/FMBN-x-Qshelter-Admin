@@ -1,4 +1,4 @@
-import { IApplicationFormRequest } from "@/types";
+import { IApplicationFormNoFileRequest } from "@/types";
 import { DetailedHTMLProps, HTMLAttributes } from "react";
 import DetailCard from "../DetailCard";
 import FormatHelper from "@/helpers/FormatHelper";
@@ -10,7 +10,7 @@ import EnvironmentHelper from "@/helpers/EnvironmentHelper";
 
 interface IProps
     extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
-    request: IApplicationFormRequest;
+    request: IApplicationFormNoFileRequest;
 }
 
 const ApplicationFormRequestTemplate = ({ className, request, ...rest }: IProps) => {

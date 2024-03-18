@@ -1,236 +1,143 @@
-import {
-  IProjectSearchParams,
-  IPropertySearchParams,
-  IRequestsSearchParams,
-  ITransactionSearchParams,
-  ITransactionsSearchParams,
-  IUserSearchParams,
-} from "@/types";
-import { createSearchParams } from "react-router-dom";
-import queryString from "query-string";
+import { IBuilding, IProperty, IProject, IProposedProperty } from "@/types";
 
-class QueryParamsHelper {
-  public static stripInvalidTransactionParams(
-    data: ITransactionSearchParams
-  ): Record<string, string> {
-    const qParams: Record<string, string> = {};
-    const { search, offset, status, date_from, date_to, type } = data;
+export default class AnalyticsHelper {
+  public static getNBedsFromProperty(property?: IProperty | undefined) {
+    if (!property) return 0;
 
-    if (search && search !== "") {
-      qParams["search"] = search;
-    }
+    const bedCounts = property?.buildings?.map((building) =>
+      Number(building?.bedroom_count)
+    );
 
-    if (offset) {
-      qParams["offset"] = `${offset}`;
-    }
+    if (!bedCounts || bedCounts.length < 1) return 0;
 
-    if (status && status !== "") {
-      qParams["status"] = status;
-    }
+    const bedCount = bedCounts.reduce(
+      (accumulator, currentValue) => Number(accumulator) + Number(currentValue),
+      0
+    );
 
-    if (type && type !== "") {
-      qParams["type"] = type;
-    }
-
-    if (date_from && date_from !== "") {
-      qParams["date_from"] = date_from;
-    }
-
-    if (date_to && date_to !== "") {
-      qParams["date_to"] = date_to;
-    }
-
-    return qParams;
+    return bedCount;
   }
 
-  public static stripInvalidPropertyParams(
-    data: IPropertySearchParams
-  ): Record<string, string> {
-    const qParams: Record<string, string> = {};
-    const { search, offset, status, from_date, to_date, baths, beds, type } = data;
+  public static getNBathsFromProperty(property?: IProperty | undefined) {
+    if (!property) return 0;
 
-    if (search && search !== "") {
-      qParams["search"] = search;
-    }
+    const bathCounts = property?.buildings.map((building) =>
+      Number(building.bathroom_count)
+    );
 
-    if (baths && baths !== "") {
-      qParams["baths"] = baths;
-    }
+    if (!bathCounts || bathCounts.length < 1) return 0;
 
-    if (beds && beds !== "") {
-      qParams["beds"] = beds;
-    }
+    const bedCount = bathCounts.reduce(
+      (accumulator, currentValue) => Number(accumulator) + Number(currentValue),
+      0
+    );
 
-    if (from_date && from_date !== "") {
-      qParams["from_date"] = from_date;
-    }
-
-    if (to_date && to_date !== "") {
-      qParams["to_date"] = to_date;
-    }
-
-    if (offset) {
-      qParams["offset"] = `${offset}`;
-    }
-
-    if (status && status !== "") {
-      qParams["status"] = status;
-    }
-
-    if (type && type !== "") {
-      qParams["type"] = type;
-    }
-
-    return qParams;
+    return bedCount;
   }
 
-  public static stripInvalidRequestParams(
-    data: IRequestsSearchParams
-  ): Record<string, string> {
-    const qParams: Record<string, string> = {};
-    const { search, offset, page, type, date_from, date_to, status } = data;
+  public static getTotalTargetPriceFromProposedProperties(
+    properties: IProposedProperty[]
+  ) {
+    if (!properties || properties.length < 1) return 0
 
-    if (search && search !== "") {
-      qParams["search"] = search;
-    }
+    const initialValue = 0;
 
-    if (offset) {
-      qParams["offset"] = `${offset}`;
-    }
+    const total = properties.reduce(
+      (accumulator, property) => accumulator + property.targetPrice,
+      initialValue
+    );
 
-    if (page) {
-      qParams["page"] = `${page}`;
-    }
-
-    if (status) {
-      qParams["status"] = status;
-    }
-
-    if (type && type !== "") {
-      qParams["type"] = type;
-    }
-
-    if (date_from && date_from !== "") {
-      qParams["date_from"] = date_from;
-    }
-
-    if (date_to && date_to !== "") {
-      qParams["date_to"] = date_to;
-    }
-
-    return qParams;
+    return total;
   }
 
-  public static stripInvalidUserParams(
-    data: IUserSearchParams
-  ): Record<string, string> {
-    const qParams: Record<string, string> = {};
-    const { search, offset, role, date_from, date_to, email,
-      //sort
-    } = data;
+  public static getNUnitsProposedProperties(
+    properties: IProposedProperty[]
+  ) {
+    const initialValue = 0;
 
-    if (search && search !== "") {
-      qParams["search"] = search;
-    }
+    const total = properties.reduce(
+      (accumulator, property) => accumulator + (property?.nUnits ? property.nUnits : 0),
+      initialValue
+    );
 
-    if (role && role !== "") {
-      qParams["role"] = role;
-    }
-
-    if (offset) {
-      qParams["offset"] = `${offset}`;
-    }
-
-    // if (sort) {
-    //   qParams["sort"] = `${sort}`;
-    // }
-
-    if (date_from && date_from !== "") {
-      qParams["date_from"] = date_from;
-    }
-
-    if (date_to && date_to !== "") {
-      qParams["date_to"] = date_to;
-    }
-
-    if (email && email !== "") {
-      qParams["email"] = email;
-    }
-
-    return qParams;
+    return total;
   }
 
-  public static stripInvalidProjectParams(
-    data: IProjectSearchParams
-  ): Record<string, string> {
-    const qParams: Record<string, string> = {};
-    const { search, page, from_date, to_date, status, sortBy
-    } = data;
+  public static getTargetPriceOfBuilding(
+    building: IBuilding
+  ) {
+    const prices = building?.apartments.map((building) =>
+      Number(building.price)
+    );
 
-    if (search && search !== "") {
-      qParams["search"] = search;
-    }
+    if (!prices || prices.length < 1) return 0;
 
-    if (sortBy) {
-      qParams["sortBy"] = `${sortBy}`;
-    }
+    const total = prices.reduce(
+      (accumulator, currentValue) => Number(accumulator) + Number(currentValue),
+      0
+    );
 
-    if (page) {
-      qParams["page"] = `${page}`;
-    }
-
-    if (status) {
-      qParams["status"] = `${status}`;
-    }
-
-
-    if (from_date && from_date !== "") {
-      qParams["from_date"] = from_date;
-    }
-
-    if (to_date && to_date !== "") {
-      qParams["to_date"] = to_date;
-    }
-
-    return qParams;
+    return total;
   }
 
-  public static generateQueryString(data: Record<string, string>) {
-    return `?${queryString.stringify(data)}`
+  public static getNSoldUnitsOfBuilding(
+    building: IBuilding
+  ) {
+    const total = building.apartments.reduce(
+      (accumulator, currentValue) => Number(accumulator) + (currentValue.sold ? 1 : 0),
+      0
+    );
+
+    return total;
   }
 
-  public static generatePropertyQueryParams(
-    data: IPropertySearchParams
-  ): string {
-    const stripped = this.stripInvalidPropertyParams(data);
-    return `?${createSearchParams(stripped).toString()}`;
+  public static getNLockedUnitsOfBuilding(
+    building: IBuilding
+  ) {
+    const total = building.apartments.reduce(
+      (accumulator, currentValue) => Number(accumulator) + (currentValue.available ? 0 : 1),
+      0
+    );
+
+    return total;
   }
 
-  public static generateProjectQueryParams(
-    data: IProjectSearchParams
-  ): string {
-    const stripped = this.stripInvalidProjectParams(data);
-    return `?${createSearchParams(stripped).toString()}`;
+  public static getMinAndMaxBedsFromProject(project: IProject) {
+    if (!project.proposedProperties || project.proposedProperties.length < 1) {
+      return { min: 0, max: 0 };
+    }
+
+    const beds = project.proposedProperties.map((property) => {
+      if (!property?.nBeds || isNaN(property?.nBeds)) {
+        return 0;
+      }
+
+      return Number(property.nBeds);
+    });
+
+    const max = Math.max(...beds);
+    const min = Math.min(...beds);
+
+    return { min, max };
   }
 
-  public static generateUserQueryParams(data: IUserSearchParams): string {
-    const stripped = this.stripInvalidUserParams(data);
-    return `?${createSearchParams(stripped).toString()}`;
-  }
 
-  public static generateRequestQueryParams(
-    data: IRequestsSearchParams
-  ): string {
-    const stripped = this.stripInvalidRequestParams(data);
-    return `?${createSearchParams(stripped).toString()}`;
-  }
+  public static getMinAndMaxBedsFromBuilding(building: IBuilding) {
+    if (!building.apartments || building.apartments.length < 1) {
+      return { min: 0, max: 0 };
+    }
 
-  public static generateTransactionQueryParams(
-    data: ITransactionsSearchParams
-  ): string {
-    const stripped = this.stripInvalidTransactionParams(data);
-    return `?${createSearchParams(stripped).toString()}`;
+    const beds = building.apartments.map((apartment) => {
+      if (!apartment.bedroom_count || isNaN(apartment.bedroom_count)) {
+        return 0;
+      }
+
+      return Number(apartment.bedroom_count);
+    });
+
+    const max = Math.max(...beds);
+    const min = Math.min(...beds);
+
+    return { min, max };
   }
 }
-
-export default QueryParamsHelper;

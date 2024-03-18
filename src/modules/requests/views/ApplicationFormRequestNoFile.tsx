@@ -6,19 +6,19 @@ import PageBackButton from "@/modules/common/PageBackButton";
 import DetailCard from "@/modules/common/DetailCard";
 import FormatHelper from "@/helpers/FormatHelper";
 import Grid2 from "@/modules/common/layouts/Grid2";
-import { IApplicationFormRequest } from "@/types";
 import StringHelper from "@/helpers/StringHelper";
 import Button from "@/modules/common/Button";
 import { usePDF } from "react-to-pdf";
 import Export from "@/modules/common/icons/Export";
 import ExportWrapper from "@/modules/common/ExportWrapper";
 import ApplicationFormRequestTemplate from "@/modules/common/export-templates/ApplicationFormRequestTemplate";
+import { IApplicationFormNoFileRequest } from "@/types";
 
 interface IProps {
-  request: IApplicationFormRequest;
+  request: IApplicationFormNoFileRequest;
 }
 
-export default function ApplicationFormRequest({ request }: IProps) {
+export default function ApplicationFormRequestNoFile({ request }: IProps) {
 
   const applicationFormData = request.data
   const { targetRef, toPDF } = usePDF()

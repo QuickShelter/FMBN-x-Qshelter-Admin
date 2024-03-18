@@ -1,4 +1,3 @@
-import AnalyticsHelper from "@/helpers/AnalyticsHelper";
 import FormatHelper from "@/helpers/FormatHelper";
 import { StatusHelper } from "@/helpers/StatusHelper";
 import UserHelper from "@/helpers/UserHelper";
@@ -28,7 +27,7 @@ export default function ProjectCard({ className, project, ...rest }: IProps) {
             <div className="text-app-green-300 text-sm font-normal leading-[14px]">
               {project.state} • {project.city}
             </div>
-            <div>{AnalyticsHelper.getTotalTargetPriceFromProposedProperties(project.proposedProperties)}</div>
+            <div>{FormatHelper.nairaFormatter.format(project.gdv)}</div>
           </div>
           <div className="px-2 py-1.5 bg-zinc-100 rounded-[100px] justify-start items-start gap-2.5 inline-flex w-fit">
             <div className="text-neutral-950 text-xs font-medium leading-3">

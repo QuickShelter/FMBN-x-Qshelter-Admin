@@ -12,8 +12,9 @@ import { useAppSelector } from "@/redux/store";
 import { useGetRequestByIdQuery } from "@/redux/services/api";
 import Mortgage from "../requests/views/Mortgage/Mortgage";
 import IndicationOfInterest from "../requests/views/IndicationOfInterest";
-import ApplicationFormRequest from "../requests/views/ApplicationFormRequest";
 import Contribution from "../requests/views/Contribution/Contribution";
+import ApplicationFormRequestNoFile from "../requests/views/ApplicationFormRequestNoFile";
+import ApplicationFormRequestWithFile from "../requests/views/ApplicationFormRequestWithFile";
 
 export default function RequestView() {
   const { id } = useParams();
@@ -68,8 +69,13 @@ export default function RequestView() {
     }
 
     if (RequestHelper.isApplicationFormRequest(request)) {
-      return request &&
-        <ApplicationFormRequest request={request} />
+      if (request && RequestHelper.isApplicationFormNoFileRequest(request)) {
+        return < ApplicationFormRequestNoFile request={request} />
+      }
+
+      if (request && RequestHelper.isApplicationFormWithFileRequest(request)) {
+        return <ApplicationFormRequestWithFile request={request} />
+      }
     }
   }, [request]);
 

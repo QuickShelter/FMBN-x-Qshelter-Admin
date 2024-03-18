@@ -2,8 +2,13 @@ import {
   IAPIError,
   IApplicationData,
   IApplicationFormData,
+  IApplicationFormNoFileRequest,
   IApplicationFormRequest,
+  IApplicationFormRequestNoFilePaginated,
   IApplicationFormRequestPaginated,
+  IApplicationFormRequestWithFilePaginated,
+  IApplicationFormWithFileData,
+  IApplicationFormWithFileRequest,
   IBasePropertyRequest,
   IBuyOutrightlyRequest,
   IContributionRequest,
@@ -98,10 +103,54 @@ export default class RequestHelper {
     return request.type === "application_form";
   }
 
+  public static isApplicationFormWithFileRequest(request?: IApplicationFormRequest | null): request is IApplicationFormWithFileRequest {
+    if (!request) return false
+
+    return (request.data as IApplicationFormWithFileData).form_link != null;
+  }
+
+  public static isApplicationFormNoFileRequest(request?: IApplicationFormRequest | null): request is IApplicationFormNoFileRequest {
+    if (!request) return false
+
+    return (request.data as IApplicationFormWithFileData).form_link == null;
+  }
+
   public static isApplicationFormRequestPaginated(request?: IRequest | IPaginatedRequest | null): request is IApplicationFormRequestPaginated {
     if (!request) return false
 
     return request.type === "application_form";
+  }
+
+  public static isApplicationFormWithFileRequestPaginated(request?: IRequest | IPaginatedRequest | null): request is IApplicationFormRequestWithFilePaginated {
+    if (!request) return false
+
+    if (!this.isApplicationFormRequestPaginated(request)) {
+      return false
+    }
+
+    if (!request.data) {
+      return false
+    }
+
+    const formData: Record<string, string> = JSON.parse(request.data)
+
+    return formData['form_link'] !== undefined;
+  }
+
+  public static isApplicationFormNoFileRequestPaginated(request?: IRequest | IPaginatedRequest | null): request is IApplicationFormRequestNoFilePaginated {
+    if (!request) return false
+
+    if (!this.isApplicationFormRequestPaginated(request)) {
+      return false
+    }
+
+    if (!request.data) {
+      return false
+    }
+
+    const formData: Record<string, string> = JSON.parse(request.data)
+
+    return formData['form_link'] === undefined;
   }
 
   public static isMilestoneUpdateRequestPaginated(request?: IRequest | IPaginatedRequest | null): request is IMilestoneRequestPaginated {
@@ -149,7 +198,7 @@ export default class RequestHelper {
     }
   }
 
-  public static getApplicationFormData = (request: IApplicationFormRequestPaginated): IApplicationFormData | null => {
+  public static getApplicationFormNoFileData = (request: IApplicationFormRequestPaginated): IApplicationFormData | null => {
     const asString = request.data
 
     if (!asString) {
@@ -158,6 +207,21 @@ export default class RequestHelper {
 
     try {
       const parsed: IApplicationFormData = JSON.parse(asString) as IApplicationFormData
+      return parsed
+    } catch (error) {
+      return null
+    }
+  }
+
+  public static getApplicationFormWithFileData = (request: IApplicationFormRequestPaginated): IApplicationFormWithFileData | null => {
+    const asString = request.data
+
+    if (!asString) {
+      return null
+    }
+
+    try {
+      const parsed = JSON.parse(asString) as IApplicationFormWithFileData
       return parsed
     } catch (error) {
       return null

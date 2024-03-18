@@ -12,7 +12,7 @@ interface IProps
   data: IApplicationFormRequestPaginated;
 }
 
-export default function ApplicationFormRequestCard(props: IProps) {
+export default function ApplicationFormNoFileRequestCard(props: IProps) {
   const { data: request, ...rest } = props;
   const data = RequestHelper.getInterestedPerson(request)
 
