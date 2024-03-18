@@ -62,6 +62,7 @@ import {
   IPropertyPriceChangeApprovalDto,
   IOutrightApprovalDto,
   IMilestoneUpdateApprovalDto,
+  IRsaApprovalDto,
 } from "../../types";
 import EnvironmentHelper from "@/helpers/EnvironmentHelper";
 import { formatDate } from "@/helpers/dateFormat";
@@ -243,14 +244,24 @@ export const api = createApi({
       invalidatesTags: ["Property"],
     }),
 
-    getPropertyById: builder.query<IProperty, string>({
+    getPropertyById: builder.query<IProperty, string | null | undefined>({
       query: (id) => {
+        if (!id || id == "") {
+          throw new Error("ID is required.");
+        }
+
         return {
           url: `/propy/get-property`,
           params: { id },
         };
       },
-      providesTags: (_result, _error, id) => [{ type: "Property", id }],
+      providesTags: (_result, _error, id) => {
+        if (id) {
+          return [{ type: "Property", id }]
+        } else {
+          return []
+        }
+      },
       transformResponse: (response: IResponse<{ property: IProperty }>) => {
         return response.body.property;
       },
@@ -265,6 +276,36 @@ export const api = createApi({
         };
       },
       invalidatesTags: () => ['Request', 'Property'],
+    }),
+
+    approveRsaApplication: builder.mutation<IResponse<IRequest>, IRsaApprovalDto>({
+      query: ({ id, ...body }) => {
+        if (!id || id == "") {
+          throw new Error("ID is required.");
+        }
+
+        return {
+          method: 'PUT',
+          url: `/rsa/api/approve/rsa-application/${id}`,
+          body
+        };
+      },
+      invalidatesTags: () => ['Request'],
+    }),
+
+    declineRsaApplication: builder.mutation<IResponse<IRequest>, IRsaApprovalDto>({
+      query: ({ id, ...body }) => {
+        if (!id || id == "") {
+          throw new Error("ID is required.");
+        }
+
+        return {
+          method: 'PUT',
+          url: `/rsa/api/decline/rsa-application/${id}`,
+          body
+        };
+      },
+      invalidatesTags: () => ['Request'],
     }),
 
     approveMilestoneUpdate: builder.mutation<IResponse<IRequest>, IMilestoneUpdateApprovalDto>({
@@ -1190,6 +1231,10 @@ export const {
   // Transactions
   useGetAllTransactionsQuery,
   useLazyGetAllTransactionsQuery,
+
+  // RSA
+  useApproveRsaApplicationMutation,
+  useDeclineRsaApplicationMutation,
 
   // Settings
   useGetAllLoginActivitiesQuery,

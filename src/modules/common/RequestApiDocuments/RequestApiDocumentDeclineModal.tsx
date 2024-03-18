@@ -60,7 +60,7 @@ export default function RequestApiDocumentDeclineModal({ className, onClose, sho
     <Modal onCancel={onClose} show={show}>
       <div {...rest} className={`${className} flex flex-col gap-4 w-[400px]`}>
         <div className="text-slate-900 text-2xl font-semibold leading-normal px-4">
-          Decline Project
+          Decline Document
         </div>
         <form
           onSubmit={handleSubmit(onSubmit)}

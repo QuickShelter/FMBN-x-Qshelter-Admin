@@ -23,8 +23,8 @@ export default function ApproveDeclineButtons({ className, status, handleApprove
     return (
         <div {...rest}
             className={`${className} flex gap-3 flex-wrap`}>
-            {(status === 'pending' || status === 'on_going' || status === 'rejected' || status === 'cancelled') && handleApprove && < Button onClick={handleApprove} variant="outline" disabled={isLoading || !canApprove}>{isLoading && (targetStatus === 'approved') && <Spinner size="sm" />} Approve</Button>}
-            {(status === 'pending' || status === 'on_going' || status === 'completed' || status === 'approved') && handleDecline && < Button onClick={handleDecline} variant="outline" disabled={isLoading}>{isLoading && (targetStatus === 'rejected') && <Spinner size="sm" />} Decline</Button>}
+            {(status === 'pending' || status === 'on_going' || status === 'rejected' || status === 'cancelled' || 'applied') && handleApprove && < Button onClick={handleApprove} variant="outline" disabled={isLoading || !canApprove}>{isLoading && (targetStatus === 'approved') && <Spinner size="sm" />} Approve</Button>}
+            {(status === 'pending' || status === 'on_going' || status === 'completed' || status === 'approved' || 'applied') && handleDecline && < Button onClick={handleDecline} variant="outline" disabled={isLoading}>{isLoading && (targetStatus === 'rejected') && <Spinner size="sm" />} Decline</Button>}
         </div>
     );
 }

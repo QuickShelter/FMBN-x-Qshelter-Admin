@@ -1,6 +1,7 @@
 import FormatHelper from "@/helpers/FormatHelper";
 import StringHelper from "@/helpers/StringHelper";
 import Card from "@/modules/common/Card";
+import CenteredLoader from "@/modules/common/CenteredLoader";
 import DetailCard from "@/modules/common/DetailCard";
 import { IUser } from "@/types";
 import { DetailedHTMLProps, HTMLAttributes } from "react";
@@ -8,13 +9,19 @@ import { DetailedHTMLProps, HTMLAttributes } from "react";
 interface IProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   user: IUser;
+  isLoading?: boolean
 }
 
 export default function MortgageInfo({
   className,
   user,
+  isLoading,
   ...rest
 }: IProps) {
+  if (isLoading) {
+    return <CenteredLoader size="md" />
+  }
+
   return (
     <Card
       {...rest}
@@ -36,14 +43,9 @@ export default function MortgageInfo({
           }
         />
         <DetailCard
-          className="col-span-2"
+          className=""
           label="Years with current employer"
           value={user.years_of_work}
-        />
-        <DetailCard
-          className="col-span-2"
-          label="RSA Number"
-          value={"-------"}
         />
         <DetailCard className="col-span-2" label="PFA" value={user.pfa} />
       </div>

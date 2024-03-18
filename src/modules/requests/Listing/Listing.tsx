@@ -11,6 +11,7 @@ import MilestoneCard from "./Card/MilestoneCard";
 import ApplicationFormRequestWithFileCard from "./Card/ApplicationFormRequestWithFileCard";
 import ApplicationFormNoFileRequestCard from "./Card/ApplicationFormRequestNoFileCard";
 import SupportCard from "./Card/SupportCard";
+import RsaCard from "./Card/RsaCard";
 
 interface IProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
@@ -46,6 +47,9 @@ export default function Listing(props: IProps) {
             )}
             {RequestHelper.isSupportRequestPaginated(request) && (
               <SupportCard key={request.id} data={request} />
+            )}
+            {RequestHelper.isRsaRequestPaginated(request) && (
+              <RsaCard key={request.id} data={request} />
             )}
             {index < requests.length - 1 ? <Hr className="my-5" /> : null}
           </Link>

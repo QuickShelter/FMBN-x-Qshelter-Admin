@@ -150,7 +150,7 @@ export default function Profile({ canApprove = true, className, exportTemplate, 
                 <Link to={`/users/${user?.id}`} className="font-semibold leading-[21px] text-[15px] text-app-black-400">
                   {UserHelper.getFullName(user)}
                 </Link>
-                <div className="text-app-green-300">
+                <div className="text-app-green-300 text-sm">
                   Created On{" "}
                   {request.created_at ? FormatHelper.dateTimeFormatter.format(new Date(request?.created_at)) : "N/A"}{" "}
                   {/* <span className="relative bottom-1 font-bold px-2">.</span>

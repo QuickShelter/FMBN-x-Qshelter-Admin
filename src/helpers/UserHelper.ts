@@ -2,7 +2,7 @@ import { IDocument, IRole, ITopLevelRoleType, IUser, IUserFromDev } from "@/type
 import StringHelper from "./StringHelper";
 
 export default class UserHelper {
-  public static getFullName(user: { first_name: string | null, last_name: string | null }) {
+  public static getFullName(user: Pick<IUser, 'first_name' | 'last_name'>) {
     return `${user.first_name} ${user.last_name}`;
   }
   public static getFullNameOfDevApiUser(user: IUserFromDev) {

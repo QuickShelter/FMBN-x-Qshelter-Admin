@@ -386,6 +386,7 @@ export type IRequestStatus =
   | "cancelled"
   | "on_going"
   | "completed"
+  | 'applied'
   | "received"
   | "ready_for_mortgage" | IMortgageStatus;
 
@@ -551,30 +552,6 @@ export interface ISupportRequestData {
   phone: string | null
   message: string | null
 }
-
-export interface IRsaRequest extends IBasePropertyRequest {
-  data: {
-    id: string;
-    user_id: string;
-    property_id: string;
-    apartment_ids: string | null;
-    property?: IProperty;
-    plan: IPlan;
-    offers: IOffer[];
-    status: IRequestStatus;
-    initial_payment: number;
-    initial_payment_made: boolean | null;
-    initial_payment_currency: ICurrency;
-    offer_accepted: boolean | null;
-    total_price: number;
-    created_at: string;
-    updated_at: string;
-    contributions?: IContribution[];
-    milestones: IMilestone[]
-  };
-}
-
-
 
 export interface IMilestoneUpdateRequest extends IRequest {
   data: IProperty;
@@ -751,6 +728,26 @@ export interface IIndicationOfInterestRequest extends IRequest {
   data: IInterestedPerson;
 }
 
+export interface IPaymentRequest extends IRequest {
+
+}
+
+export interface IRsaRequestPaginated extends IRequest {
+  user: Pick<IUser, 'id' | 'first_name' | 'last_name' | 'email' | 'phone' | 'avatar'>
+}
+
+export interface IRsaRequest extends IRequest {
+  data: {
+    id: string;
+    user_id: string;
+    mortgage_application_id: string | null;
+    documents: IMortgageDocument[] | null,
+    created_at: string;
+    updated_at: string;
+    mortgage: IMortgage
+  };
+}
+
 export interface IBasePropertyRequest extends IRequest {
   data: {
     id: string;
@@ -772,8 +769,6 @@ export interface IBasePropertyRequest extends IRequest {
     milestones: IMilestone[]
   };
 }
-
-
 
 export interface IMortgageRequest extends IRequest {
   data: {
@@ -894,6 +889,12 @@ export interface IMortgageStatusChangeDto {
   status: IMortgageStatus,
   comment: string,
   affectedDocuments: string[],
+}
+
+export interface IRsaApprovalDto {
+  id: string,
+  admin_id: string,
+  comment: string,
 }
 
 export interface IRequestStatusChangeDto {

@@ -1,11 +1,11 @@
 
 import RequestApiDocuments from "@/modules/common/RequestApiDocuments";
-import { IMortgageRequest } from "@/types";
+import { IMortgageRequest, IRsaRequest } from "@/types";
 import { DetailedHTMLProps, HTMLAttributes } from "react";
 
 interface IProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
-  request: IMortgageRequest;
+  request: IMortgageRequest | IRsaRequest;
 }
 
 export default function Documents({ className, request, ...rest }: IProps) {

@@ -1,18 +1,26 @@
 import FormatHelper from "@/helpers/FormatHelper";
+import RequestHelper from "@/helpers/RequestHelper";
+import CenteredLoader from "@/modules/common/CenteredLoader";
 import DetailCard from "@/modules/common/DetailCard";
-import Hr from "@/modules/common/Hr";
-import PropertyLinkCard from "@/modules/common/PropertyLinkCard";
 import Grid2 from "@/modules/common/layouts/Grid2";
-import { IBuyOutrightlyRequest, IUser } from "@/types";
+import { IRsaRequest, IUser } from "@/types";
 import { DetailedHTMLProps, HTMLAttributes } from "react";
 
 interface IProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
-  request: IBuyOutrightlyRequest;
+  request: IRsaRequest;
   user: IUser
+  isLoading?: boolean
 }
 
-export default function PensionInfo({ className, user, request, ...rest }: IProps) {
+export default function PensionInfo({ className, isLoading, user, request, ...rest }: IProps) {
+  if (isLoading) {
+    return <CenteredLoader size="md" />
+  }
+
+  const applicationData = RequestHelper.getApplicationDataFromRequest(request)
+
+
   return (
     <div
       {...rest}
@@ -20,16 +28,13 @@ export default function PensionInfo({ className, user, request, ...rest }: IProp
     >
       <h2 className="">Pension Details</h2>
       <Grid2>
-        <DetailCard label="Amount Requested" value={FormatHelper.nairaFormatter.format(request.data.initial_payment)} />
-        <DetailCard label="Percentage (Max 25%)" value={request?.data.property?.id} />
+        <DetailCard label="Equity" value={FormatHelper.nairaFormatter.format(applicationData?.equity)} />
+        <DetailCard label="Equity From RSA" value={FormatHelper.nairaFormatter.format(applicationData?.equity_from_rsa)} />
+        <DetailCard label="Percentage (Max 25%)" value={applicationData?.rsa_percentage} />
         <DetailCard label="PFA" value={user?.pfa} />
         <DetailCard label="RSA Number" value={user?.rsa} />
-        <DetailCard label="RSA Balance" value={"--------"} />
+        <DetailCard label="RSA Balance" value={applicationData?.rsa_balance} />
       </Grid2>
-      <Hr className="my-4" />
-      {request?.data?.property && (
-        <PropertyLinkCard _property={request?.data?.property} />
-      )}
     </div>
   );
 }

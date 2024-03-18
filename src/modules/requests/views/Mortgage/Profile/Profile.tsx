@@ -24,6 +24,7 @@ import ChangeMortgageStatusForm from "../ChangeMortgageStatusForm";
 import Refresh from "@/modules/common/icons/Refresh";
 import ColorHelper from "@/helpers/ColorHelper";
 import Export from "@/modules/common/icons/Export";
+import RequestHelper from "@/helpers/RequestHelper";
 
 interface IProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
@@ -150,7 +151,7 @@ export default function Profile({ className, user, request, ...rest }: IProps) {
                     isLoading={isLoading}
                     status={request?.data?.mortgage?.status}
                     targetStatus={targetStatus}
-                    canApprove={true}
+                    canApprove={RequestHelper.allMortgageDocumentsAreApproved(request)}
                     handleApprove={handleApprove}
                     handleDecline={handleDecline}
                     handleUndo={handleUndo} />

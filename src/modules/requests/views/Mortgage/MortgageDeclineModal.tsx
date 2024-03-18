@@ -39,16 +39,16 @@ export default function MortgageDeclineModal({ className, onCancel, show, reques
     comment: '',
     affectedDocuments: [],
     admin_id: profile?.id ?? "",
-    status: request?.data?.mortgage?.status,
+    status: 'declined',
   }
 
   const { control, handleSubmit, formState: { errors } } = useForm({ defaultValues })
 
   const onSubmit: SubmitHandler<IMortgageStatusChangeDto> = async (payload) => {
-    console.log(JSON.stringify(payload.affectedDocuments))
+    const { comment, affectedDocuments, ...rest } = payload
 
     try {
-      await updateMortgageStatus(payload).unwrap()
+      await updateMortgageStatus({ ...rest, comment: `${comment} Affected Documents: ${affectedDocuments ? affectedDocuments.join(', ') + '.' : ''}` }).unwrap()
       dispatch(setToast({
         message: 'Declined',
         type: 'success'
@@ -98,7 +98,7 @@ export default function MortgageDeclineModal({ className, onCancel, show, reques
                 Select affected document(s)
               </div>
               <div className="flex flex-col gap-4">
-                {RequestHelper.getMortgageDocumentsFromRequest(request).map((document, idx) => {
+                {RequestHelper.getMortgageDocumentsFromRequest(request).filter(document => document.status !== 'approved').map((document, idx) => {
                   return <Controller
                     key={document.id}
                     name="affectedDocuments"

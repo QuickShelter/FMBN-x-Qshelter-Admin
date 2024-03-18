@@ -25,6 +25,7 @@ import {
   IRequest,
   IRequestType,
   IRsaRequest,
+  IRsaRequestPaginated,
   IRtoRequest,
   ISupportRequest,
   ISupportRequestData,
@@ -89,6 +90,12 @@ export default class RequestHelper {
   }
 
   public static isRsaRequest(request?: IRequest | IPaginatedRequest | null): request is IRsaRequest {
+    if (!request) return false
+
+    return request.type === "rsa";
+  }
+
+  public static isRsaRequestPaginated(request?: IRequest | IPaginatedRequest | null): request is IRsaRequestPaginated {
     if (!request) return false
 
     return request.type === "rsa";
@@ -306,7 +313,7 @@ export default class RequestHelper {
     property_price_change: 0
   }
 
-  public static getApplicationDataFromRequest: (request: INhfRequest) => IApplicationData | null = (request) => {
+  public static getApplicationDataFromRequest: (request: INhfRequest | IRsaRequest) => IApplicationData | null = (request) => {
     const applicationData = request?.data?.mortgage?.application_data
     return applicationData ? JSON.parse(applicationData) as IApplicationData : null
   }

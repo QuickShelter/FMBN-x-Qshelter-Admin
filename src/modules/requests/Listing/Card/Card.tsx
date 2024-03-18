@@ -24,8 +24,7 @@ export default function Card(props: IProps) {
     user_id: profile?.id ?? "",
   });
 
-
-  const { data: property, isFetching: isFetchingProperty } = useGetPropertyByIdQuery(request.property.id ?? "");
+  const { data: property, isFetching: isFetchingProperty } = useGetPropertyByIdQuery(request?.property?.id ?? "");
 
   if (isFetchingProperty) <PropertyCardSkeleton />
 
@@ -39,6 +38,7 @@ export default function Card(props: IProps) {
         />
         <div className="flex flex-col gap-2">
           <div className={styles.title}>{isFetchingProperty ? 'Loading...' : property?.title}</div>
+          <div className={`${styles.title} max-w-[33ch]`}>{request?.full_desc}</div>
           <div className={styles.price}>
             {property?.price &&
               FormatHelper.nairaFormatter.format(
