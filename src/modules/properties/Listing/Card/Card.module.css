@@ -21,6 +21,7 @@
 
   display: -webkit-box;
   -webkit-line-clamp: 1;
+  padding-bottom: 0.1rem;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -32,15 +33,15 @@
   align-items: center;
 }
 
-.status {
-}
+.status {}
 
 .price {
   color: var(--black-400);
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
-  line-height: 100%; /* 14px */
+  line-height: 100%;
+  /* 14px */
   letter-spacing: -0.28px;
 }
 
