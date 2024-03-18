@@ -26,6 +26,9 @@ import {
   IRequestType,
   IRsaRequest,
   IRtoRequest,
+  ISupportRequest,
+  ISupportRequestData,
+  ISupportRequestPaginated,
   RequestType,
 } from "@/types";
 
@@ -159,6 +162,18 @@ export default class RequestHelper {
     return request.type === "property_milestone";
   }
 
+  public static isSupportRequestPaginated(request?: IRequest | IPaginatedRequest | null): request is ISupportRequestPaginated {
+    if (!request) return false
+
+    return request.type === "support";
+  }
+
+  public static isSupportRequest(request?: IRequest | IPaginatedRequest | null): request is ISupportRequest {
+    if (!request) return false
+
+    return request.type === "support";
+  }
+
   public static isPriceUpdateRequest(
     request?: IRequest | IPaginatedRequest | null
   ): request is IPriceUpdateRequest {
@@ -207,6 +222,21 @@ export default class RequestHelper {
 
     try {
       const parsed: IApplicationFormData = JSON.parse(asString) as IApplicationFormData
+      return parsed
+    } catch (error) {
+      return null
+    }
+  }
+
+  public static getSupportRequestData = (request: ISupportRequestPaginated): ISupportRequestData | null => {
+    const asString = request.data
+
+    if (!asString) {
+      return null
+    }
+
+    try {
+      const parsed = JSON.parse(asString) as ISupportRequestData
       return parsed
     } catch (error) {
       return null

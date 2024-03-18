@@ -152,7 +152,7 @@ export default function Profile({ canApprove = true, className, exportTemplate, 
                 </Link>
                 <div className="text-app-green-300">
                   Created On{" "}
-                  {FormatHelper.dateTimeFormatter.format(new Date(request.created_at))}{" "}
+                  {request.created_at ? FormatHelper.dateTimeFormatter.format(new Date(request?.created_at)) : "N/A"}{" "}
                   {/* <span className="relative bottom-1 font-bold px-2">.</span>
                   Last Login{" "}
                   {FormatHelper.dateFormatter.format(user.last_login_at)} */}

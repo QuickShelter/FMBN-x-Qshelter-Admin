@@ -15,6 +15,7 @@ import IndicationOfInterest from "../requests/views/IndicationOfInterest";
 import Contribution from "../requests/views/Contribution/Contribution";
 import ApplicationFormRequestNoFile from "../requests/views/ApplicationFormRequestNoFile";
 import ApplicationFormRequestWithFile from "../requests/views/ApplicationFormRequestWithFile";
+import Support from "../requests/views/Support";
 
 export default function RequestView() {
   const { id } = useParams();
@@ -66,6 +67,11 @@ export default function RequestView() {
     if (RequestHelper.isPriceUpdateRequest(request)) {
       return request &&
         <PropertyPriceChange request={request} />
+    }
+
+    if (RequestHelper.isSupportRequest(request)) {
+      return request &&
+        <Support request={request} />
     }
 
     if (RequestHelper.isApplicationFormRequest(request)) {

@@ -424,12 +424,12 @@ export type IRequestType =
 
 export interface IRequest {
   id: string;
-  title: string;
+  title: string | null;
   type: IRequestType;
   status: IRequestStatus;
-  created_at: string;
-  updated_at: string;
-  reference_id: string;
+  created_at: string | null;
+  updated_at: string | null;
+  reference_id: string | null;
   requester_id: string | null;
   full_desc: string | null;
 }
@@ -519,6 +519,37 @@ export interface IPresignerCacheItem {
   orginal: string,
   presigned: string,
   expiration: number
+}
+
+export interface ISupportRequest extends IRequest {
+  id: string,
+  title: string | null,
+  reference_id: string | null,
+  requester_id: string | null,
+  full_desc: string | null,
+  created_at: string | null,
+  updated_at: string | null,
+  data: ISupportRequestData | null,
+  user: object | null
+}
+
+export interface ISupportRequestPaginated extends IRequest {
+  id: string,
+  title: string | null,
+  reference_id: string | null,
+  requester_id: string | null,
+  full_desc: string | null,
+  created_at: string | null,
+  updated_at: string | null,
+  data: string | null,
+  user: object | null
+}
+
+export interface ISupportRequestData {
+  name: string | null
+  email: string | null
+  phone: string | null
+  message: string | null
 }
 
 export interface IRsaRequest extends IBasePropertyRequest {
