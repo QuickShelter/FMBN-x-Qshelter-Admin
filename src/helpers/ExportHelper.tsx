@@ -7,8 +7,12 @@ import FormatHelper from "./FormatHelper";
 import StringHelper from "./StringHelper";
 import EnvironmentHelper from "./EnvironmentHelper";
 import CurrencyHelper from "./CurrencyHelper";
+import logo from '../assets/data-urls/logo'
 
 const TRANSACTION_REF_LENGTH = 8
+const LOGO_WIDTH = 100
+const LOGO_ALIGNMENT = 'center'
+const LOGO_MARGIN_BOTTOM = 40
 
 export default class ExportHelper {
   /**
@@ -227,8 +231,14 @@ export default class ExportHelper {
 
     this.initializeFont();
 
-    const docDefinition = {
+    const docDefinition: TDocumentDefinitions = {
       content: [
+        {
+          image: logo,
+          width: LOGO_WIDTH,
+          alignment: LOGO_ALIGNMENT,
+          marginBottom: LOGO_MARGIN_BOTTOM
+        },
         {
           table: {
             headerRows: 1,
@@ -301,8 +311,14 @@ export default class ExportHelper {
 
     this.initializeFont();
 
-    const docDefinition = {
+    const docDefinition: TDocumentDefinitions = {
       content: [
+        {
+          image: logo,
+          width: LOGO_WIDTH,
+          alignment: LOGO_ALIGNMENT,
+          marginBottom: LOGO_MARGIN_BOTTOM
+        },
         {
           table: {
             headerRows: 1,
@@ -316,6 +332,22 @@ export default class ExportHelper {
     };
 
     pdfMake.createPdf(docDefinition).download("table.pdf");
+  }
+
+  public static exportTestPDF() {
+    const docDefinition = {
+      content: [
+        {
+          image: logo,
+          width: 200
+        },
+      ],
+      defaultStyle: {
+        font: "Roboto",
+      }
+    };
+
+    pdfMake.createPdf(docDefinition).download("test.pdf");
   }
 
   public static exportTransactionsPDF(data: ITransaction[], type: ITransactionType | undefined | '') {
@@ -348,8 +380,14 @@ export default class ExportHelper {
 
     const pageOrientation: PageOrientation = "landscape"
 
-    const docDefinition = {
+    const docDefinition: TDocumentDefinitions = {
       content: [
+        {
+          image: logo,
+          width: LOGO_WIDTH,
+          alignment: LOGO_ALIGNMENT,
+          marginBottom: LOGO_MARGIN_BOTTOM
+        },
         {
           table: {
             headerRows: 1,
@@ -392,8 +430,14 @@ export default class ExportHelper {
 
     this.initializeFont();
 
-    const docDefinition = {
+    const docDefinition: TDocumentDefinitions = {
       content: [
+        {
+          image: logo,
+          width: LOGO_WIDTH,
+          alignment: LOGO_ALIGNMENT,
+          marginBottom: LOGO_MARGIN_BOTTOM
+        },
         {
           table: {
             headerRows: 1,

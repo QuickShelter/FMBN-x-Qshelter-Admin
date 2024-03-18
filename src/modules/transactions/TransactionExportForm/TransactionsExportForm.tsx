@@ -10,7 +10,6 @@ import { formatDate } from "@/helpers/dateFormat";
 import { ITransactionExportDto, ITransactionStatus, ITransactionType } from "@/types";
 import FormError from "../../common/form/FormError";
 import DateInput from "../../common/form/DateInput";
-import Spinner from "../../common/Spinner";
 import Select from "../../common/form/Select";
 
 interface IProps
@@ -229,8 +228,8 @@ export default function TransactionsExportForm(props: IProps) {
           )}
         </FormGroup>
       )}
-      <Button type="submit" disabled={isFetching}>
-        {isFetching && <Spinner size="sm" />} Export
+      <Button isLoading={isFetching} type="submit" disabled={isFetching}>
+        Export
       </Button>
     </form>
   );
