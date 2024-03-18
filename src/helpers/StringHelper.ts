@@ -19,6 +19,14 @@ export default class StringHelper {
     return capped.join(" ");
   }
 
+  public static getLastN(str: string | null, n: number) {
+    if (!str || typeof str != 'string') {
+      return null
+    }
+
+    return str.length > n ? str.substring(str.length - n) : str
+  }
+
   public static stripHyphens(value?: string | null) {
     if (!value || value.length < 2) return value;
 

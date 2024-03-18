@@ -1,12 +1,14 @@
 import { IPaginatedRequest, IProject, IProperty, IRequest, ITransaction, ITransactionType, IUser } from "@/types";
 import pdfMake from "pdfmake/build/pdfmake";
 import UserHelper from "./UserHelper";
-import { TDocumentDefinitions } from "pdfmake/interfaces";
+import { PageOrientation, TDocumentDefinitions } from "pdfmake/interfaces";
 import PropertyHelper from "./PropertyHelper";
 import FormatHelper from "./FormatHelper";
 import StringHelper from "./StringHelper";
 import EnvironmentHelper from "./EnvironmentHelper";
 import CurrencyHelper from "./CurrencyHelper";
+
+const TRANSACTION_REF_LENGTH = 8
 
 export default class ExportHelper {
   /**
@@ -95,16 +97,19 @@ export default class ExportHelper {
    * @returns
    */
   public static exportTransactionsCsv = (items: ITransaction[]) => {
-    const headings: string[] = ["S/N", "Wallet ID", "Amount", "Currency", "Status", "Date"];
+    const headings: string[] = ["S/N", "Wallet ID", "Currency", "Amount", "Type", "Status", "Ref", "Date"];
 
     const augList = [
       headings,
-      ...items.map((transaction) =>
+      ...items.map((transaction, index) =>
         [
+          index + 1,
           transaction.wallet_id,
-          transaction.amount,
           transaction.currency,
+          transaction.amount,
+          StringHelper.stripUnderscores(transaction.type) ?? "N/A",
           StringHelper.stripUnderscores(transaction.status) ?? "N/A",
+          StringHelper.getLastN(transaction.ref, TRANSACTION_REF_LENGTH) ?? "N/A",
           new Date(transaction?.created_at).toLocaleDateString(),
         ].map((value) =>
           typeof value === "string" && value.includes(",")
@@ -315,7 +320,7 @@ export default class ExportHelper {
 
   public static exportTransactionsPDF(data: ITransaction[], type: ITransactionType | undefined | '') {
     const tableBody = [];
-    const tableHeader = ["S/N", "Wallet ID", "Currency", "Amount", "Type", "Status", "Date"];
+    const tableHeader = ["S/N", "Wallet ID", "Currency", "Amount", "Type", "Status", "Ref", "Date"];
 
     // Add table header
     tableBody.push(tableHeader);
@@ -329,6 +334,7 @@ export default class ExportHelper {
         transaction.amount,
         StringHelper.stripUnderscores(transaction.type) ?? "N/A",
         StringHelper.stripUnderscores(transaction.status) ?? "N/A",
+        StringHelper.getLastN(transaction?.ref, TRANSACTION_REF_LENGTH) ?? "N/A",
         new Date(transaction.created_at).toLocaleDateString(),
       ]);
     });
@@ -339,6 +345,8 @@ export default class ExportHelper {
     const creditDollars = data?.filter(item => item.type === 'credit' && item.currency === 'USD').reduce((acc, curr) => Number(acc) + Number(curr.amount), 0)
     const debitNaira = data?.filter(item => item.type === 'debit' && item.currency === 'NGN').reduce((acc, curr) => Number(acc) + Number(curr.amount), 0)
     const debitDollar = data?.filter(item => item.type === 'debit' && item.currency === 'USD').reduce((acc, curr) => Number(acc) + Number(curr.amount), 0)
+
+    const pageOrientation: PageOrientation = "landscape"
 
     const docDefinition = {
       content: [
@@ -355,6 +363,7 @@ export default class ExportHelper {
       defaultStyle: {
         font: "Roboto",
       },
+      pageOrientation: pageOrientation,
     };
 
     pdfMake.createPdf(docDefinition).download("transactions.pdf");

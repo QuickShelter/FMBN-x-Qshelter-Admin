@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 import UserHelper from "@/helpers/UserHelper";
 import FormatHelper from "@/helpers/FormatHelper";
 import { useGetUserByIdQuery } from "@/redux/services/api";
-import Spinner from "@/modules/common/Spinner";
 import { formatDate } from "@/helpers/dateFormat";
 import StringHelper from "@/helpers/StringHelper";
 
@@ -34,17 +33,14 @@ export default function Card(props: IProps) {
     <tr {...rest} className={`${props.className} ${styles.container}`}>
       <td>{index}</td>
       <td className={styles.profile}>
-        {isLoadingUser && <Spinner size="sm" />}
-        {customer && (
-          <div className="flex flex-col gap-0">
-            <Link className={styles.name} to={`/users/${id}`}>
-              {UserHelper.getFullName(customer)}
-            </Link>
-            <Link className={styles.email} to={`mailto:${customer?.email}`}>
-              {customer?.email}
-            </Link>
-          </div>
-        )}
+        <div className="flex flex-col gap-0">
+          {isLoadingUser ? <span>Loading...</span> : (customer ? <Link className={styles.name} to={`/users/${id}`}>
+            {UserHelper.getFullName(customer)}
+          </Link> : 'N/A')}
+          {isLoadingUser ? <span></span> : (customer ? <Link className={styles.email} to={`mailto:${customer?.email}`}>
+            {customer?.email}
+          </Link> : 'N/A')}
+        </div>
       </td>
       <td>{FormatHelper.nairaFormatter.format(amount)}</td>
       <td>
