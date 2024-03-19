@@ -669,9 +669,11 @@ export interface IApplicationFormRequest extends IRequest {
 }
 
 export interface IApplicationFormWithFileData {
-  form_link: string | null,
-  name: string | null,
+  form_link: string | null
+  name: string | null
   email: string | null
+  state: string | null
+  project: string | null
 };
 
 export interface IApplicationFormNoFileRequest extends IApplicationFormRequest {

@@ -37,6 +37,8 @@ export default function ApplicationFormRequestWithFile({ request }: IProps) {
               <DetailCard className="col-span-2 sm:max-w-[40ch]" label="Description" value={request.full_desc} />
               <DetailCard label="Applicant Name" value={StringHelper.stripUnderscores(applicationFormData.name)} />
               <DetailCard label="Applicant Email" value={StringHelper.stripUnderscores(applicationFormData.email)} />
+              <DetailCard label="State" value={StringHelper.stripUnderscores(applicationFormData.state)} />
+              <DetailCard label="Project" value={StringHelper.stripUnderscores(applicationFormData.project)} />
               <DetailCard label="Created" value={FormatHelper.dateFormatter.format(request.created_at)} />
             </div>
           </div>
