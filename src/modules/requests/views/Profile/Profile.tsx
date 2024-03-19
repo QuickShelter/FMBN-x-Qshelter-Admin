@@ -55,7 +55,7 @@ export default function Profile({ canApprove = true, className, exportTemplate, 
     try {
       const response = await approve();
 
-      if (response.ok) {
+      if (response.ok || response.success) {
         dispatch(
           setToast({
             message: "Updated",

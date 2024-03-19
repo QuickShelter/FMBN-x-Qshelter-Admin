@@ -63,6 +63,7 @@ import {
   IOutrightApprovalDto,
   IMilestoneUpdateApprovalDto,
   IRsaApprovalDto,
+  IRsaDocumentApprovalDto,
 } from "../../types";
 import EnvironmentHelper from "@/helpers/EnvironmentHelper";
 import { formatDate } from "@/helpers/dateFormat";
@@ -302,6 +303,36 @@ export const api = createApi({
         return {
           method: 'PUT',
           url: `/rsa/api/decline/rsa-application/${id}`,
+          body
+        };
+      },
+      invalidatesTags: () => ['Request'],
+    }),
+
+    approveRsaDocument: builder.mutation<IResponse<IRequest>, IRsaDocumentApprovalDto>({
+      query: ({ id, ...body }) => {
+        if (!id || id == "") {
+          throw new Error("ID is required.");
+        }
+
+        return {
+          method: 'PUT',
+          url: `/rsa/api/approve/document/${id}`,
+          body
+        };
+      },
+      invalidatesTags: () => ['Request'],
+    }),
+
+    declineRsaDocument: builder.mutation<IResponse<IRequest>, IRsaDocumentApprovalDto>({
+      query: ({ id, ...body }) => {
+        if (!id || id == "") {
+          throw new Error("ID is required.");
+        }
+
+        return {
+          method: 'PUT',
+          url: `/rsa/api/decline/document/${id}`,
           body
         };
       },
@@ -1235,6 +1266,8 @@ export const {
   // RSA
   useApproveRsaApplicationMutation,
   useDeclineRsaApplicationMutation,
+  useApproveRsaDocumentMutation,
+  useDeclineRsaDocumentMutation,
 
   // Settings
   useGetAllLoginActivitiesQuery,

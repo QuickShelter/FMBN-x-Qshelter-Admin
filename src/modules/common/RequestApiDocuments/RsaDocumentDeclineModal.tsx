@@ -1,5 +1,5 @@
 import { DetailedHTMLProps, HTMLAttributes } from "react";
-import { IAPIError, IMortgageDocument, IRequestApiDocumentStatusUpdateDto } from "@/types";
+import { IAPIError, IMortgageDocument, IRsaDocumentApprovalDto } from "@/types";
 import { useAppDispatch } from "@/redux/store";
 import { setToast } from "@/redux/services/toastSlice";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
@@ -10,7 +10,7 @@ import Button from "@/modules/common/Button";
 import Spinner from "@/modules/common/Spinner";
 import Modal from "@/modules/common/Modal";
 import TextArea from "../form/TextArea";
-import { useUpdateMortgageDocumentStatusMutation } from "@/redux/services/api";
+import { useDeclineRsaDocumentMutation } from "@/redux/services/api";
 interface IProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   document: IMortgageDocument
@@ -25,21 +25,20 @@ interface IProps
  * @param props
  * @returns
  */
-export default function RequestApiDocumentDeclineModal({ className, handleDecline, onClose, show, document, ...rest }: IProps) {
+export default function RsaDocumentDeclineModal({ className, handleDecline, onClose, show, document, ...rest }: IProps) {
   const dispatch = useAppDispatch()
-  const [updateDocumentStatus, { isLoading }] = useUpdateMortgageDocumentStatusMutation()
+  const [decline, { isLoading }] = useDeclineRsaDocumentMutation()
 
-  const defaultValues: IRequestApiDocumentStatusUpdateDto = {
+  const defaultValues: IRsaDocumentApprovalDto = {
     id: document.id,
-    status: 'declined',
-    reason: ''
+    comment: ''
   }
 
   const { control, handleSubmit, formState: { errors } } = useForm({ defaultValues })
 
-  const onSubmit: SubmitHandler<IRequestApiDocumentStatusUpdateDto> = async (payload) => {
+  const onSubmit: SubmitHandler<IRsaDocumentApprovalDto> = async (payload) => {
     try {
-      await updateDocumentStatus(payload).unwrap();
+      await decline(payload).unwrap();
       dispatch(setToast({
         message: 'Declined',
         type: 'success'
@@ -73,14 +72,13 @@ export default function RequestApiDocumentDeclineModal({ className, handleDeclin
                 Reason for decline
               </FormLabel>
               <Controller
-                name="reason"
+                name="comment"
                 control={control}
-                rules={{ required: 'You must provide a reason' }}
                 render={({ field }) => (
-                  <TextArea {...field} testId="reason" />
+                  <TextArea {...field} testId="comment" />
                 )}
               />
-              {errors.reason && <FormError>{errors.reason.message}</FormError>}
+              {errors.comment && <FormError>{errors.comment.message}</FormError>}
             </FormGroup>
           </div>
           <div className="p-4 flex flex-wrap gap-2 sm:flex-row justify-end items-center">

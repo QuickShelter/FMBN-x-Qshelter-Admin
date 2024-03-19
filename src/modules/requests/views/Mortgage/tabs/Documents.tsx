@@ -1,5 +1,8 @@
 
+import DocumentHelper from "@/helpers/DocumentHelper";
+import RequestHelper from "@/helpers/RequestHelper";
 import RequestApiDocuments from "@/modules/common/RequestApiDocuments";
+import RsaDocuments from "@/modules/common/RequestApiDocuments/RsaDocuments";
 import { IMortgageRequest, IRsaRequest } from "@/types";
 import { DetailedHTMLProps, HTMLAttributes } from "react";
 
@@ -20,23 +23,32 @@ export default function Documents({ className, request, ...rest }: IProps) {
     return doc.name && spousalDocumentNames.includes(doc.name)
   })
 
-
-
   return (
     <div
       {...rest}
       className={`${className}  card-no-mobile flex flex-col gap-2 sm:gap-5 sm:py-6 sm:px-6 px-0 py-4`}
     >
-      <h2>Application Documents</h2>
+      {RequestHelper.isRsaRequest(request) &&
+        <>
+          <h2 className="font-semibold">RSA Documents</h2>
+          <p className="text-xs">The RSA documents must be approved before the request can be approved</p>
+          <RsaDocuments documents={request?.data?.documents?.filter(doc => {
+            return DocumentHelper.getHumanNames(doc.name)
+          })} />
+        </>
+      }
+      <h2 className="font-semibold">Application Documents</h2>
       <RequestApiDocuments documents={appplicationDocuments?.filter(doc => {
         return (doc.name && !spousalDocumentNames.includes(doc.name))
       })} />
-      <h2>Applicant Documents</h2>
+      <h2 className="font-semibold">Applicant Documents</h2>
       <RequestApiDocuments documents={appplicantDocuments?.filter(doc => {
         return doc.name && !spousalDocumentNames.includes(doc.name)
       })} />
-      <h2>Spousal Documents</h2>
-      <RequestApiDocuments documents={spousalDocuments} />
+      {spousalDocuments?.length > 0 ? <>
+        <h2 className="font-semibold">Spousal Documents</h2>
+        <RequestApiDocuments documents={spousalDocuments} />
+      </> : null}
     </div>
   );
 }

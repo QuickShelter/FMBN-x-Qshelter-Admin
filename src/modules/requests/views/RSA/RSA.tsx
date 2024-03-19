@@ -12,9 +12,9 @@ import { useAppSelector } from "@/redux/store";
 import { useApproveRsaApplicationMutation, useDeclineRsaApplicationMutation, useGetUserByIdQuery } from "@/redux/services/api";
 import PensionInfo from "./tabs/PensionInfo";
 import MortgageInfo from "./tabs/MortgageInfo";
-import Documents from "../Mortgage/tabs/Documents";
 import RsaDeclineModal from "./RsaDeclineModal";
 import Profile from "../Profile";
+import Documents from "../Mortgage/tabs/Documents";
 
 interface IProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
@@ -57,7 +57,7 @@ export default function RSA({ request }: IProps) {
   const handleApprove = async () => {
     const response = await approve({
       admin_id: profile?.id ?? '',
-      id: request?.id,
+      id: request?.reference_id ?? "",
       comment: ""
     }).unwrap()
 
@@ -67,7 +67,7 @@ export default function RSA({ request }: IProps) {
   const handleDecline = async () => {
     const response = await decline({
       admin_id: profile?.id ?? '',
-      id: request?.id,
+      id: request?.reference_id ?? "",
       comment: ""
     }).unwrap()
 

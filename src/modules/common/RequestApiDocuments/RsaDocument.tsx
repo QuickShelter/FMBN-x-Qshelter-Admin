@@ -1,10 +1,10 @@
-import { DetailedHTMLProps, HTMLAttributes, useCallback, useState } from "react";
-import { IAPIError, IMortgageDocument, IMortgageDocumentStatus, IRequestApiDocumentStatusUpdateDto } from "@/types";
-import { useUpdateMortgageDocumentStatusMutation } from "@/redux/services/api";
+import { DetailedHTMLProps, HTMLAttributes, useState } from "react";
+import { IAPIError, IMortgageDocument, IMortgageDocumentStatus, IRsaDocumentApprovalDto } from "@/types";
+import { useApproveRsaDocumentMutation } from "@/redux/services/api";
 import { useAppDispatch } from "@/redux/store";
 import { setToast } from "@/redux/services/toastSlice";
 import BaseDocument from "./BaseDocument";
-import RequestApiDocumentDeclineModal from "./RequestApiDocumentDeclineModal";
+import RsaDocumentDeclineModal from "./RsaDocumentDeclineModal";
 
 interface IProps
     extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
@@ -12,23 +12,22 @@ interface IProps
     hideApproval?: boolean
 }
 
-export default function RequestApiDocument({ document, hideApproval = false }: IProps) {
+export default function RsaDocument({ document, hideApproval = false }: IProps) {
     const dispatch = useAppDispatch()
-    const [updateDocumentStatus, { isLoading }] = useUpdateMortgageDocumentStatusMutation()
+    const [approve, { isLoading: isApproving }] = useApproveRsaDocumentMutation()
     const [targetStatus, setTargetStatus] = useState<IMortgageDocumentStatus | null>('pending')
     const [showDeclineModal, setShowDeclineModal] = useState(false)
 
-    const updateStatus = useCallback(async (status: IMortgageDocumentStatus, reason: string | undefined = undefined) => {
-        setTargetStatus(status)
+
+    const handleApprove = async () => {
+        setTargetStatus('approved')
 
         try {
-            const payload: IRequestApiDocumentStatusUpdateDto = {
-                id: document.id,
-                status,
-                reason,
+            const payload: IRsaDocumentApprovalDto = {
+                id: document.id
             }
 
-            await updateDocumentStatus(payload).unwrap();
+            await approve(payload).unwrap();
 
             dispatch(
                 setToast({
@@ -53,15 +52,6 @@ export default function RequestApiDocument({ document, hideApproval = false }: I
         } finally {
             setTargetStatus(null)
         }
-    }, [dispatch, updateDocumentStatus, document.id])
-
-
-    const handleApprove = () => {
-        updateStatus('approved')
-    }
-
-    const handleUndo = () => {
-        updateStatus('pending')
     }
 
     const handleDecline = () => {
@@ -70,7 +60,7 @@ export default function RequestApiDocument({ document, hideApproval = false }: I
 
     return (
         <>
-            <RequestApiDocumentDeclineModal document={document} show={showDeclineModal} onClose={() => setShowDeclineModal(false)} />
+            <RsaDocumentDeclineModal document={document} show={showDeclineModal} onClose={() => setShowDeclineModal(false)} />
             <BaseDocument
                 hideApproval={hideApproval}
                 canApprove={true}
@@ -78,9 +68,9 @@ export default function RequestApiDocument({ document, hideApproval = false }: I
                 targetStatus={targetStatus}
                 handleApprove={handleApprove}
                 handleDecline={handleDecline}
-                handleUndo={handleUndo}
                 document={document}
-                isLoading={isLoading} />
+                isLoading={isApproving}
+            />
         </>
     );
 }

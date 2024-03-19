@@ -1,8 +1,8 @@
 import { DetailedHTMLProps, HTMLAttributes } from "react";
 import Card from "../Card";
 import Hr from "../Hr";
-import RequestApiDocument from "./RequestApiDocument";
 import { IMortgageDocument } from "@/types";
+import RsaDocument from "./RsaDocument";
 
 interface IProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
@@ -10,7 +10,7 @@ interface IProps
   hideApproval?: boolean
 }
 
-export default function RequestApiDocuments(props: IProps) {
+export default function RsaDocuments(props: IProps) {
   const { documents = [], hideApproval = false } = props;
 
   return (
@@ -18,7 +18,7 @@ export default function RequestApiDocuments(props: IProps) {
       {documents.length > 0 ? <div className="flex flex-col">
         {documents?.map((document, index) => (
           <div key={document.id}>
-            <RequestApiDocument hideApproval={hideApproval} document={document} />
+            <RsaDocument hideApproval={hideApproval} document={document} />
             {index < documents.length - 1 ? <Hr className="my-5" /> : null}
           </div>
         ))}

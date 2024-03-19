@@ -17,6 +17,11 @@ export interface INotificationCardData {
   created_at: string;
 }
 
+export interface IRsaDocumentApprovalDto {
+  id: string,
+  comment?: string | null
+}
+
 export interface IPaginatedRequest {
   "id": string,
   "title": string | null,
