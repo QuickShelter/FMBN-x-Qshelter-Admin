@@ -55,6 +55,15 @@ export default class DocumentHelper {
         jobOfferLetter: "Job Offer Letter",
         jobConfirmationLetter: "Job Confirmation Letter",
         jobAppointmentLetter: "Job Appointment Letter",
-        employmentVerificationLetter: "Employment Verification Letter"
+        employmentVerificationLetter: "Employment Verification Letter",
+    }
+
+    public static getHumanNames(name: string | null) {
+        if (!name) {
+            return name
+        }
+
+        const fromMap = DocumentHelper.documentNameMap[name]
+        return fromMap ? fromMap : name
     }
 }

@@ -1,8 +1,8 @@
 import { DetailedHTMLProps, HTMLAttributes } from "react";
-import { IAPIError, IMortgageRequest, IMortgageStatusChangeDto } from "@/types";
+import { IAPIError, IRsaApprovalDto, IRsaRequest } from "@/types";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
 import { setToast } from "@/redux/services/toastSlice";
-import { useUpdateMortgageApplicationStatusMutation } from "@/redux/services/api";
+import { useDeclineRsaApplicationMutation } from "@/redux/services/api";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import FormGroup from "@/modules/common/form/FormGroup";
 import FormLabel from "@/modules/common/form/FormLabel";
@@ -12,12 +12,10 @@ import Spinner from "@/modules/common/Spinner";
 import Modal from "@/modules/common/Modal";
 import TextArea from "@/modules/common/form/TextArea";
 import Hr from "@/modules/common/Hr";
-import RequestHelper from "@/helpers/RequestHelper";
-import DocumentHelper from "@/helpers/DocumentHelper";
 
 interface IProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
-  request: IMortgageRequest
+  request: IRsaRequest
   onCancel: () => void
   show: boolean
 }
@@ -28,33 +26,29 @@ interface IProps
  * @param props
  * @returns
  */
-export default function MortgageDeclineModal({ className, onCancel, show, request, ...rest }: IProps) {
+export default function RsaDeclineModal({ className, onCancel, show, request, ...rest }: IProps) {
   const { profile } = useAppSelector(state => state.auth)
-  const [updateMortgageStatus, { isLoading }] = useUpdateMortgageApplicationStatusMutation()
+  const [decline, { isLoading }] = useDeclineRsaApplicationMutation()
   const dispatch = useAppDispatch()
 
-  const defaultValues: IMortgageStatusChangeDto = {
+  const defaultValues: IRsaApprovalDto = {
     id: request?.data?.mortgage?.id ?? '',
     comment: '',
-    affectedDocuments: [],
     admin_id: profile?.id ?? "",
-    status: 'declined',
   }
 
   const { control, handleSubmit, formState: { errors } } = useForm({ defaultValues })
 
-  const onSubmit: SubmitHandler<IMortgageStatusChangeDto> = async (payload) => {
-    const { comment, affectedDocuments, ...rest } = payload
+  const onSubmit: SubmitHandler<IRsaApprovalDto> = async (payload) => {
 
     try {
-      await updateMortgageStatus({ ...rest, comment: `${comment} Affected Documents: ${affectedDocuments ? affectedDocuments.join(', ') + '.' : ''}` }).unwrap()
+      await decline(payload).unwrap()
       dispatch(setToast({
         message: 'Declined',
         type: 'success'
       }))
     } catch (error) {
       const err = error as IAPIError
-      console.log(error);
       dispatch(
         setToast({
           message: err.data.message,
@@ -91,21 +85,13 @@ export default function MortgageDeclineModal({ className, onCancel, show, reques
               />
               {errors.comment && <FormError>{errors.comment.message}</FormError>}
             </FormGroup>
-            <div className="flex flex-col gap-4">
-              <div className="font-medium">Affected Documents</div>
-              <ol className="text-sm flex flex-col gap-3 list-decimal px-6">
-                {RequestHelper.getMortgageDocumentsFromRequest(request).filter(document => document.status !== 'approved').map((document) => {
-                  return <li className="">{DocumentHelper.getHumanNames(document.name)}</li>
-                })}
-              </ol>
-            </div>
             {/* <FormGroup className="flex flex-col gap-4">
               {errors.affectedDocuments && <FormError>{errors.affectedDocuments.message}</FormError>}
               <div className="text-stone-800 text-[13px] font-medium leading-tight">
                 Select affected document(s)
               </div>
               <div className="flex flex-col gap-4">
-                {RequestHelper.getMortgageDocumentsFromRequest(request).filter(document => document.status !== 'approved').map((document, idx) => {
+                {RequestHelper.getMortgageDocumentsFromRequest(request).map((document, idx) => {
                   return <Controller
                     key={document.id}
                     name="affectedDocuments"
