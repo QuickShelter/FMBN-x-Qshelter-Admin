@@ -748,7 +748,7 @@ export interface IRsaRequest extends IRequest {
     id: string;
     user_id: string;
     mortgage_application_id: string | null;
-    documents: IMortgageDocument[] | null,
+    documents: IRsaApplicationDocument[] | null,
     created_at: string;
     updated_at: string;
     mortgage: IMortgage
@@ -886,6 +886,25 @@ export interface IMortgageDocument {
   admin_comment_by: string | null,
   reupload_counter: string | null,
   documentable_type: string | null
+}
+
+export interface IRsaApplicationDocument {
+  id: string,
+  url: string | null,
+  name: string | null,
+  type: string | null,
+  status: IMortgageDocumentStatus,
+  created_at: string | null,
+  deleted_at: string | null,
+  updated_at: string | null,
+  approved_by: string | null,
+  reference_id: string | null,
+  admin_comment: string | null,
+  documentable_id: string | null,
+  admin_comment_by: string | null,
+  reupload_counter: string | null,
+  documentable_type: string | null
+  rsa_application_id: string | null
 }
 
 export type IMortgageDocumentStatus = 'pending' | 'declined' | 'approved'

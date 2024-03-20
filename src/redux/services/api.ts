@@ -879,7 +879,7 @@ export const api = createApi({
     >({
       query: (params: ITransactionsSearchParams) => ({
         url: `/wallet/list-all-transactions`,
-        params,
+        params: { ...params, limit: LIMIT },
       }),
       transformResponse: (response: IPaginatedTransactionResponse) => {
         return response.body;

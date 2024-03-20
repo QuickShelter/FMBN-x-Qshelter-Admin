@@ -42,7 +42,7 @@ export default function EmploymentInformation({
         <DetailCard
           className="col-span-2"
           label="RSA Number"
-          value={"-------"}
+          value={user.rsa}
         />
         <DetailCard className="col-span-2" label="PFA" value={user.pfa} />
       </div>

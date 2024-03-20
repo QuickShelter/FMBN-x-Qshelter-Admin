@@ -2,6 +2,7 @@ import { DetailedHTMLProps, HTMLAttributes } from "react";
 import styles from "./Listing.module.css";
 import Card from "./Card/Card";
 import { ITransaction } from "@/types";
+import EnvironmentHelper from "@/helpers/EnvironmentHelper";
 
 interface IProps
   extends DetailedHTMLProps<
@@ -31,7 +32,7 @@ export default function Listing(props: IProps) {
         {transactions?.map((request, index) => (
           <Card
             key={request.id}
-            index={(offset) * 5 + index + 1}
+            index={(offset * EnvironmentHelper.PAGINATION_LIMIT) + index + 1}
             data={request}
           />
         ))}

@@ -1,12 +1,12 @@
 import { DetailedHTMLProps, HTMLAttributes } from "react";
 import Card from "../Card";
 import Hr from "../Hr";
-import { IMortgageDocument } from "@/types";
+import { IRsaApplicationDocument } from "@/types";
 import RsaDocument from "./RsaDocument";
 
 interface IProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
-  documents?: IMortgageDocument[];
+  documents?: IRsaApplicationDocument[];
   hideApproval?: boolean
 }
 
