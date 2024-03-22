@@ -19,7 +19,6 @@ interface IProps
    * @returns 
    */
 export default function Toast({ toasts = [], className, ...rest }: IProps) {
-  console.log(JSON.stringify(toasts))
   return (
     <div
       {...rest}
