@@ -17,13 +17,13 @@ import Button from "../common/Button";
 import ConfirmationModal from "../common/modals/ConfirmationModal";
 import ToggleCheckbox from "../common/form/ToggleCheckbox";
 import useGetCurrentUser from "@/hooks/useGetCurrentUser";
-import { useToastContext } from "@/context/ToastContext_";
+import useToast from "@/hooks/useToast";
 
 type IUnits = "" | IUnitStatus;
 
 export default function Units() {
   const { id, building_id } = useParams();
-  const { pushToast } = useToastContext()
+  const { pushToast } = useToast()
   const userId = useGetCurrentUser()?.id
   const { data: property, isLoading } = useGetPropertyByIdQuery(id ?? "");
   const building = property?.buildings.filter(building => building.id == building_id)?.[0]

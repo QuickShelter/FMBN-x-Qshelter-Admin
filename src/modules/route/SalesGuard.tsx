@@ -2,7 +2,7 @@ import { ReactElement, useCallback, useLayoutEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../redux/store";
 import AuthorizationHelper from "@/helpers/AuthorizationHelper";
-import { useToastContext } from "@/context/ToastContext_";
+import useToast from "@/hooks/useToast";
 
 interface IProps {
   children: ReactElement;
@@ -12,7 +12,7 @@ const SalesGuard = ({ children }: IProps) => {
   const { profile } = useAppSelector((state) => state.auth);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const { pushToast } = useToastContext()
+  const { pushToast } = useToast()
 
   const handleGoBack = useCallback(() => {
     navigate(-1);

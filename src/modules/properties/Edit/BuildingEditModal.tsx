@@ -10,7 +10,7 @@ import { useAppSelector } from "@/redux/store";
 import { useUpdateBlockMutation } from "@/redux/services/api";
 import PropertyHelper from "@/helpers/PropertyHelper";
 import Spinner from "@/modules/common/Spinner";
-import { useToastContext } from "@/context/ToastContext_";
+import useToast from "@/hooks/useToast";
 
 interface IProps
     extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
@@ -27,7 +27,7 @@ interface IProps
  */
 export default function BuildingEditModal({ className, building, show, onCancel, ...rest }: IProps) {
     const { profile } = useAppSelector(state => state.auth)
-    const { pushToast } = useToastContext()
+    const { pushToast } = useToast()
     const [updateBlock, { isLoading }] = useUpdateBlockMutation()
 
     const { control, handleSubmit } = useForm<IBuildingEditDto>({

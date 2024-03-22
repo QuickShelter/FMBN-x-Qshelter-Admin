@@ -1,7 +1,7 @@
 import { DetailedHTMLProps, HTMLAttributes } from "react";
 import Button from "../Button/Button";
 import styles from "./Copy.module.css";
-import { useToastContext } from "@/context/ToastContext_";
+import useToast from "@/hooks/useToast";
 
 interface IProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
@@ -9,7 +9,7 @@ interface IProps
 }
 
 export default function Copy({ text, className, ...rest }: IProps) {
-  const { pushToast } = useToastContext()
+  const { pushToast } = useToast()
 
   const handleCopy = async () => {
     try {

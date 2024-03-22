@@ -3,7 +3,7 @@ import { IAPIError, IPaginatedPropertyResponseBody } from "@/types";
 import { useLazyGetAllPropertiesQuery } from "@/redux/services/api";
 import ExportForm from "@/modules/common/ExportForm";
 import ExportHelper from "@/helpers/ExportHelper";
-import { useToastContext } from "@/context/ToastContext_";
+import useToast from "@/hooks/useToast";
 
 interface IProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLFormElement>, HTMLFormElement> {
@@ -17,7 +17,7 @@ interface IExportDto {
 }
 
 export default function PropertiesExport(props: IProps) {
-  const { pushToast } = useToastContext()
+  const { pushToast } = useToast()
 
   const [trigger, result] = useLazyGetAllPropertiesQuery();
   const { error, isFetching } = result;

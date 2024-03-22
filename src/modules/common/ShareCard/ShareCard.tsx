@@ -9,7 +9,7 @@ import X from "../icons/X";
 import { IProperty } from "@/types";
 import Copy from "../Copy";
 import styles from "./ShareCard.module.css";
-import { useToastContext } from "@/context/ToastContext_";
+import useToast from "@/hooks/useToast";
 
 interface IProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
@@ -23,7 +23,7 @@ export default function ShareCard({
   _property: property,
   ...rest
 }: IProps) {
-  const { pushToast } = useToastContext()
+  const { pushToast } = useToast()
 
   const handleCopy = async () => {
     try {

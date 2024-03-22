@@ -16,7 +16,7 @@ import Spinner from "@/modules/common/Spinner/Spinner";
 import { useNavigate } from "react-router-dom";
 import { useNetworkState } from "@uidotdev/usehooks";
 import RequestHelper from "@/helpers/RequestHelper";
-import { useToastContext } from "@/context/ToastContext_";
+import useToast from "@/hooks/useToast";
 
 export default function SignInForm(
   props: DetailedHTMLProps<FormHTMLAttributes<HTMLFormElement>, HTMLFormElement>
@@ -34,7 +34,7 @@ export default function SignInForm(
   const { online } = useNetworkState()
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const { pushToast } = useToastContext()
+  const { pushToast } = useToast()
 
   const [signIn, { isLoading, error }] = useSignInMutation();
 

@@ -9,7 +9,7 @@ import FormError from "@/modules/common/form/FormError";
 import Modal from "@/modules/common/Modal";
 import { useUpdateDeveloperMutation } from "@/redux/services/api";
 import Select from "@/modules/common/form/Select";
-import { useToastContext } from "@/context/ToastContext_";
+import useToast from "@/hooks/useToast";
 
 interface IProps
   extends DetailedHTMLProps<
@@ -45,7 +45,7 @@ const typeOptions: { label: string, value: undefined | IDeveloperModeOfRegistrat
  */
 export default function DeveloperEditModal({ className, developer, ...rest }: IProps) {
   const [updateDeveloper, { isLoading }] = useUpdateDeveloperMutation()
-  const { pushToast } = useToastContext()
+  const { pushToast } = useToast()
 
   const defaultValues = useMemo(() => {
     return {

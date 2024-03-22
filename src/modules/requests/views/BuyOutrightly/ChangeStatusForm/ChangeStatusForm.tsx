@@ -18,7 +18,7 @@ import {
 import { useUpdateMortgageApplicationStatusMutation } from "@/redux/services/api";
 import Spinner from "@/modules/common/Spinner";
 import RequestHelper from "@/helpers/RequestHelper";
-import { useToastContext } from "@/context/ToastContext_";
+import useToast from "@/hooks/useToast";
 
 type IStatus =
   | IRequestStatus
@@ -59,7 +59,7 @@ const statusOptions: {
 
 export default function ChangeStatusForm({ request, ...rest }: IProps) {
   let status: IStatus;
-  const { pushToast } = useToastContext()
+  const { pushToast } = useToast()
 
   const {
     control,

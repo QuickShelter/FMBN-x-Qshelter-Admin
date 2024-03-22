@@ -10,7 +10,7 @@ import Modal from "@/modules/common/Modal";
 import { useGetCountriesQuery, useUpdateProfileMutation } from "@/redux/services/api";
 import CountryInput from "@/modules/common/form/CountryInput";
 import useDatalistSupported from "@/hooks/useDatalistSupported";
-import { useToastContext } from "@/context/ToastContext_";
+import useToast from "@/hooks/useToast";
 
 interface IProps
   extends DetailedHTMLProps<
@@ -40,7 +40,7 @@ export default function ProfileEditModal({ className, user, ...rest }: IProps) {
 
   const datalistSupported = useDatalistSupported()
 
-  const { pushToast } = useToastContext()
+  const { pushToast } = useToast()
   const [updateProfile, { isLoading }] = useUpdateProfileMutation()
 
   const {

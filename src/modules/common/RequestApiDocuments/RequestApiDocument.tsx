@@ -6,7 +6,7 @@ import BaseDocument from "./BaseDocument";
 import RequestApiDocumentDeclineModal from "./RequestApiDocumentDeclineModal";
 import useGetCurrentUser from "@/hooks/useGetCurrentUser";
 import UserHelper from "@/helpers/UserHelper";
-import { useToastContext } from "@/context/ToastContext_";
+import useToast from "@/hooks/useToast";
 
 interface IProps
     extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
@@ -16,7 +16,7 @@ interface IProps
 
 export default function RequestApiDocument({ document, hideApproval = false }: IProps) {
     const dispatch = useAppDispatch()
-    const { pushToast } = useToastContext()
+    const { pushToast } = useToast()
     const [updateDocumentStatus, { isLoading }] = useUpdateMortgageDocumentStatusMutation()
     const [targetStatus, setTargetStatus] = useState<IMortgageDocumentStatus | null>('pending')
     const [showDeclineModal, setShowDeclineModal] = useState(false)

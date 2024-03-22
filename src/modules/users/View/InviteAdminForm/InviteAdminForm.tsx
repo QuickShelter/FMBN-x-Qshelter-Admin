@@ -11,7 +11,7 @@ import Hr from "@/modules/common/Hr";
 import Spinner from "@/modules/common/Spinner";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
 import { useMakeAdminMutation } from "@/redux/services/api";
-import { useToastContext } from "@/context/ToastContext_";
+import useToast from "@/hooks/useToast";
 import { setToast } from "@/redux/services/toastSlice";
 
 interface IProps
@@ -33,7 +33,7 @@ export default function InviteAdminForm({
   const dispatch = useAppDispatch();
   const [makeAdmin, { isLoading }] = useMakeAdminMutation();
   const { profile } = useAppSelector(state => state.auth)
-  const { pushToast } = useToastContext()
+  const { pushToast } = useToast()
 
   const {
     control,

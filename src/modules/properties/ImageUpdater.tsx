@@ -7,7 +7,7 @@ import GalleryExport from "@/modules/common/icons/GalleryExport";
 import buttonStyles from "@/module-styles/buttons.module.css";
 import ControlledImageSlider from "./ControlledImageSlider";
 import ImageHelper from "@/helpers/ImageHelper";
-import { useToastContext } from "@/context/ToastContext_";
+import useToast from "@/hooks/useToast";
 
 interface IProps {
   photos: (IBase64Upload | string)[];
@@ -17,7 +17,7 @@ interface IProps {
 
 export default function ImageUpdater({ photos, field, setValue }: IProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const { pushToast } = useToastContext()
+  const { pushToast } = useToast()
 
   const handleImagePicked: ChangeEventHandler = async (e) => {
     const target = e.target as HTMLInputElement;

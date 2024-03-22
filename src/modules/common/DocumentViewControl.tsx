@@ -6,7 +6,7 @@ import { IAPIError } from "@/types"
 import { useState } from "react"
 import { useCreatePresignedUrlMutation } from "@/redux/services/api"
 import { addUrl } from "@/redux/services/presignerSlice"
-import { useToastContext } from "@/context/ToastContext_"
+import useToast from "@/hooks/useToast"
 
 interface IProps {
     url: string
@@ -14,7 +14,7 @@ interface IProps {
 
 export default function DocumentViewControl({ url }: IProps) {
     const dispatch = useAppDispatch()
-    const { pushToast } = useToastContext()
+    const { pushToast } = useToast()
     const { cache } = useAppSelector(state => state.presigner)
     const [presignedUrl, setPresignedUrl] = useState<string | null | undefined>(() => {
         const item = cache.find(item => item.orginal == url)

@@ -17,7 +17,7 @@ import { useAppSelector } from "@/redux/store";
 import { useDeleteMortgageMutation, useGetUserByIdQuery } from "@/redux/services/api";
 import Button from "@/modules/common/Button";
 import ConfirmationModal from "@/modules/common/modals/ConfirmationModal";
-import { useToastContext } from "@/context/ToastContext_";
+import useToast from "@/hooks/useToast";
 
 interface IProps {
   request: IMortgageRequest;
@@ -37,7 +37,7 @@ export default function Mortgage({ request }: IProps) {
     user_id: profile?.id ?? "",
   });
 
-  const { pushToast } = useToastContext()
+  const { pushToast } = useToast()
 
   const [tab, setTab] = useState<ITab>("application");
 

@@ -32,7 +32,7 @@ import BuildingEditCard from "./BuildingEditCard";
 import BuildingAmenitiesEditCard from "./BuildingAmenitiesEditCard";
 import Pill from "@/modules/common/Pill";
 import TextArea from "@/modules/common/form/TextArea";
-import { useToastContext } from "@/context/ToastContext_";
+import useToast from "@/hooks/useToast";
 
 interface IProps {
   _property: IProperty;
@@ -79,7 +79,7 @@ export default function Edit({ _property: property }: IProps) {
     defaultValues,
   });
 
-  const { pushToast } = useToastContext()
+  const { pushToast } = useToast()
 
   const onSubmit: SubmitHandler<IPropertyUpdateDto> = async (data) => {
     const payload = {

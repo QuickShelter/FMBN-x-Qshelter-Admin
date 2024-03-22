@@ -29,7 +29,7 @@ import Dot from "@/modules/common/Dot";
 import ConfirmationModal from "@/modules/common/modals/ConfirmationModal";
 import Trash from "@/modules/common/icons/Trash";
 import { useNavigate } from "react-router-dom";
-import { useToastContext } from "@/context/ToastContext_";
+import useToast from "@/hooks/useToast";
 
 interface IProps {
   project: IProject;
@@ -40,7 +40,7 @@ type IDeveloperTabs = "overview" | "documents" | "properties";
 export default function View({ project }: IProps) {
   const { developer } = project;
   const { profile } = useAppSelector(state => state.auth)
-  const { pushToast } = useToastContext()
+  const { pushToast } = useToast()
   const { targetRef, toPDF } = usePDF()
   const navigate = useNavigate()
   const [targetStatus, setTargetStatus] = useState<IProjectStatus | null>()

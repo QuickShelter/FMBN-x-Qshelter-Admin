@@ -11,7 +11,7 @@ import Spinner from "@/modules/common/Spinner";
 import Modal from "@/modules/common/Modal";
 import TextArea from "@/modules/common/form/TextArea";
 import Hr from "@/modules/common/Hr";
-import { useToastContext } from "@/context/ToastContext_";
+import useToast from "@/hooks/useToast";
 
 interface IProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
@@ -29,7 +29,7 @@ interface IProps
 export default function RsaDeclineModal({ className, onCancel, show, request, ...rest }: IProps) {
   const { profile } = useAppSelector(state => state.auth)
   const [decline, { isLoading }] = useDeclineRsaApplicationMutation()
-  const { pushToast } = useToastContext()
+  const { pushToast } = useToast()
 
   const defaultValues: IRsaApprovalDto = {
     id: request?.data?.mortgage?.id ?? '',

@@ -8,7 +8,7 @@ import { useSuspendUnsuspendUserMutation } from "@/redux/services/api";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import FormError from "./form/FormError";
 import Spinner from "./Spinner";
-import { useToastContext } from "@/context/ToastContext_";
+import useToast from "@/hooks/useToast";
 import useGetCurrentUser from "@/hooks/useGetCurrentUser";
 interface IProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
@@ -24,7 +24,7 @@ interface IProps
  */
 export default function SuspendUserForm({ className, onClose, user, ...rest }: IProps) {
   const profile = useGetCurrentUser()
-  const { pushToast } = useToastContext()
+  const { pushToast } = useToast()
   const defaultValues = {
     id: user.id ?? "",
     user_id: profile?.id ?? "",

@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from "@/redux/store";
 import { useSuspendUnsuspendUserMutation } from "@/redux/services/api";
 import Spinner from "./Spinner";
 import Hr from "./Hr";
-import { useToastContext } from "@/context/ToastContext_";
+import useToast from "@/hooks/useToast";
 interface IProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   user: IUser;
@@ -21,7 +21,7 @@ interface IProps
 export default function ReinstateUserForm({ className, onClose, user, ...rest }: IProps) {
   const { profile } = useAppSelector(state => state.auth)
   const dispatch = useAppDispatch()
-  const { pushToast } = useToastContext()
+  const { pushToast } = useToast()
 
   const [suspendUser, { isLoading }] = useSuspendUnsuspendUserMutation()
 

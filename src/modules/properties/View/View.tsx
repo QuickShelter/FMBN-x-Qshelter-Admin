@@ -37,7 +37,7 @@ import Amenities from "./tabs/Amenities";
 import Documents from "./tabs/Documents";
 import ApproveDeclineButtons from "../../common/ApproveDeclineButtons";
 import StringHelper from "@/helpers/StringHelper";
-import { useToastContext } from "@/context/ToastContext_";
+import useToast from "@/hooks/useToast";
 
 interface IProps {
   _property: IProperty;
@@ -62,7 +62,7 @@ export default function View({ _property: property }: IProps) {
   const { data: developer } = useGetDeveloperByUserIdQuery(property?.poster_id)
   const [deleteProperty, { isLoading }] = useDeletePropertyMutation()
   const dispatch = useAppDispatch()
-  const { pushToast } = useToastContext()
+  const { pushToast } = useToast()
   const navigate = useNavigate()
   const [targetStatus, setTargetStatus] = useState<IPropertyStatus | null>()
 

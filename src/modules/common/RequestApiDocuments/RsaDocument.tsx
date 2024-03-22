@@ -3,7 +3,7 @@ import { IAPIError, IMortgageDocument, IMortgageDocumentStatus, IRsaDocumentAppr
 import { useApproveRsaDocumentMutation } from "@/redux/services/api";
 import BaseDocument from "./BaseDocument";
 import RsaDocumentDeclineModal from "./RsaDocumentDeclineModal";
-import { useToastContext } from "@/context/ToastContext_";
+import useToast from "@/hooks/useToast";
 
 interface IProps
     extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
@@ -12,7 +12,7 @@ interface IProps
 }
 
 export default function RsaDocument({ document, hideApproval = false }: IProps) {
-    const { pushToast } = useToastContext()
+    const { pushToast } = useToast()
     const [approve, { isLoading: isApproving }] = useApproveRsaDocumentMutation()
     const [targetStatus, setTargetStatus] = useState<IMortgageDocumentStatus | null>('pending')
     const [showDeclineModal, setShowDeclineModal] = useState(false)

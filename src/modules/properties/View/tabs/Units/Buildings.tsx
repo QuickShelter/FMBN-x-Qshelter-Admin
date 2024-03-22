@@ -9,7 +9,7 @@ import PropertyHelper from "@/helpers/PropertyHelper";
 import useGetCurrentUser from "@/hooks/useGetCurrentUser";
 import { useUpdateUnitByIdMutation } from "@/redux/services/api";
 import Pagination from "@/modules/common/Pagination";
-import { useToastContext } from "@/context/ToastContext_";
+import useToast from "@/hooks/useToast";
 
 interface IProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
@@ -19,7 +19,7 @@ interface IProps
 
 export default function Buildings({ className, propertyId, buildings, ...rest }: IProps) {
   const [showSoldModal, setShowSoldModal] = useState(false)
-  const { pushToast } = useToastContext()
+  const { pushToast } = useToast()
   const [page, setPage] = useState(1)
   const LIMIT = 5
   const userId = useGetCurrentUser()?.id

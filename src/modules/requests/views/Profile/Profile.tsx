@@ -17,7 +17,7 @@ import Mobile from "@/modules/common/Mobile";
 import { usePDF } from "react-to-pdf";
 import ExportWrapper from "@/modules/common/ExportWrapper";
 import ApproveDeclineButtons from "@/modules/common/ApproveDeclineButtons";
-import { useToastContext } from "@/context/ToastContext_";
+import useToast from "@/hooks/useToast";
 
 interface IProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
@@ -40,7 +40,7 @@ export default function Profile({ canApprove = true, className, exportTemplate, 
   const [showDeclineModal, setShowDeclineModal] = useState(false);
   const [showApprovalModal, setShowApproveModal] = useState(false);
   const avatarComponent = <Avatar className="w-[4rem] h-[4rem] rounded-full" user={user} />
-  const { pushToast } = useToastContext()
+  const { pushToast } = useToast()
   const { targetRef, toPDF } = usePDF()
   const [targetStatus, setTargetStatus] = useState<IStatus | null>()
 

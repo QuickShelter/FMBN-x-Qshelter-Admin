@@ -13,7 +13,7 @@ import TextArea from "@/modules/common/form/TextArea";
 import Hr from "@/modules/common/Hr";
 import PropertyHelper from "@/helpers/PropertyHelper";
 import { useDeclinePropertyMutation } from "@/redux/services/api";
-import { useToastContext } from "@/context/ToastContext_";
+import useToast from "@/hooks/useToast";
 
 interface IProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
@@ -30,7 +30,7 @@ interface IProps
  */
 export default function DeclinePropertyModal({ className, onClose, show, _property: property, ...rest }: IProps) {
   const { profile } = useAppSelector(state => state.auth)
-  const { pushToast } = useToastContext()
+  const { pushToast } = useToast()
   const documents: string[] = PropertyHelper.getPropertyDocuments(property)
 
   const defaultValues: IDevApiProposedDevelopmentDeclineDto = {

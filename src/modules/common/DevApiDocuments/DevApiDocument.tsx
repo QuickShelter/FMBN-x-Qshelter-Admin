@@ -10,7 +10,7 @@ import Indicator from "../Indicator";
 import ColorHelper from "@/helpers/ColorHelper";
 import DocumentViewControl from "../DocumentViewControl";
 import RoleGuard from "../guards/RoleGuard";
-import { useToastContext } from "@/context/ToastContext_";
+import useToast from "@/hooks/useToast";
 
 interface IProps
     extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
@@ -27,7 +27,7 @@ const colorMap: Record<IDevApiStatus, string> = {
 export default function DevApiDocument({ document, hideApproval = false, className }: IProps) {
     const { profile } = useAppSelector(state => state.auth)
     const dispatch = useAppDispatch()
-    const { pushToast } = useToastContext()
+    const { pushToast } = useToast()
     const [updateDocumentStatus, { isLoading }] = useUpdateDevApiDocumentStatusMutation()
     const [targetStatus, setTargetStatus] = useState<IDevApiStatus | null>('PENDING')
     const [showDeclineModal, setShowDeclineModal] = useState(false)

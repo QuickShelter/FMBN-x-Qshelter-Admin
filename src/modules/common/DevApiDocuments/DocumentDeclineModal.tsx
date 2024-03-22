@@ -10,7 +10,7 @@ import Spinner from "@/modules/common/Spinner";
 import Modal from "@/modules/common/Modal";
 import { useUpdateDevApiDocumentStatusMutation } from "@/redux/services/api";
 import TextArea from "../form/TextArea";
-import { useToastContext } from "@/context/ToastContext_";
+import useToast from "@/hooks/useToast";
 interface IProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   document: IDevApiDocument
@@ -28,7 +28,7 @@ interface IProps
 export default function DocumentDeclineModal({ className, onClose, show, document, type, ...rest }: IProps) {
   const { profile } = useAppSelector(state => state.auth)
   const [updateDevApiDocumentStatus, { isLoading }] = useUpdateDevApiDocumentStatusMutation()
-  const { pushToast } = useToastContext()
+  const { pushToast } = useToast()
 
   const defaultValues: IDevApiDocumentStatusUpdateDto = {
     id: document.id,

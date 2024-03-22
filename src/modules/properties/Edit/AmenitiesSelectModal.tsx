@@ -7,7 +7,7 @@ import PropertyHelper from "@/helpers/PropertyHelper";
 import { useAppSelector } from "@/redux/store";
 import { useUpdateBlockMutation } from "@/redux/services/api";
 import Spinner from "@/modules/common/Spinner";
-import { useToastContext } from "@/context/ToastContext_";
+import useToast from "@/hooks/useToast";
 
 interface IProps
     extends DetailedHTMLProps<HTMLAttributes<HTMLFormElement>, HTMLFormElement> {
@@ -40,7 +40,7 @@ const amenities = [
 export default function AmenitiesSelectModal({ className, block, show, onCancel, ...rest }: IProps) {
     const initialValue = PropertyHelper.getAmenitiesFromBuilding(block)
     const { profile } = useAppSelector(state => state.auth)
-    const { pushToast } = useToastContext()
+    const { pushToast } = useToast()
     const [updateBlock, { isLoading }] = useUpdateBlockMutation()
 
     const onSubmit: FormEventHandler = async (e) => {

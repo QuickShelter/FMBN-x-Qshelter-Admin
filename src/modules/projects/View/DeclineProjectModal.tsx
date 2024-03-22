@@ -12,7 +12,7 @@ import Modal from "@/modules/common/Modal";
 import Checkbox from "@/modules/common/form/Checkbox";
 import TextArea from "@/modules/common/form/TextArea";
 import Hr from "@/modules/common/Hr";
-import { useToastContext } from "@/context/ToastContext_";
+import useToast from "@/hooks/useToast";
 
 interface IProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
@@ -30,7 +30,7 @@ interface IProps
 export default function DeclineProjectModal({ className, onClose, show, project, ...rest }: IProps) {
   const { profile } = useAppSelector(state => state.auth)
   const [updateProposedDevelopmentStatus, { isLoading }] = useDeclineProjectMutation()
-  const { pushToast } = useToastContext()
+  const { pushToast } = useToast()
 
   const defaultValues: IDevApiProposedDevelopmentDeclineDto = {
     id: project.id,

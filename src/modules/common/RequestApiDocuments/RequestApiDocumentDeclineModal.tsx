@@ -9,7 +9,7 @@ import Spinner from "@/modules/common/Spinner";
 import Modal from "@/modules/common/Modal";
 import TextArea from "../form/TextArea";
 import { useUpdateMortgageDocumentStatusMutation } from "@/redux/services/api";
-import { useToastContext } from "@/context/ToastContext_";
+import useToast from "@/hooks/useToast";
 interface IProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   document: IMortgageDocument
@@ -25,7 +25,7 @@ interface IProps
  * @returns
  */
 export default function RequestApiDocumentDeclineModal({ className, handleDecline, onClose, show, document, ...rest }: IProps) {
-  const { pushToast } = useToastContext()
+  const { pushToast } = useToast()
   const [updateDocumentStatus, { isLoading }] = useUpdateMortgageDocumentStatusMutation()
 
   const defaultValues: IRequestApiDocumentStatusUpdateDto = {

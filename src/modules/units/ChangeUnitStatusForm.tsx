@@ -15,7 +15,7 @@ import {
 import FormError from "@/modules/common/form/FormError";
 import { useUpdateUnitByIdMutation } from "@/redux/services/api";
 import PropertyHelper from "@/helpers/PropertyHelper";
-import { useToastContext } from "@/context/ToastContext_";
+import useToast from "@/hooks/useToast";
 
 interface IProps
     extends DetailedHTMLProps<HTMLAttributes<HTMLFormElement>, HTMLFormElement> {
@@ -58,7 +58,7 @@ function resolveAvailability(status: IUnitStatus) {
 export default function ChangeUnitStatusForm({ unit, closeModal, ...rest }: IProps) {
     const profile = useAppSelector((state) => state.auth.profile);
     const [updateUnit, { isLoading }] = useUpdateUnitByIdMutation()
-    const { pushToast } = useToastContext()
+    const { pushToast } = useToast()
 
     const defaultValues = useMemo(() => {
         return {

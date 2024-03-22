@@ -4,7 +4,7 @@ import { useAppSelector } from "@/redux/store";
 import { useLazyGetAllUsersQuery } from "@/redux/services/api";
 import ExportForm from "@/modules/common/ExportForm";
 import ExportHelper from "@/helpers/ExportHelper";
-import { useToastContext } from "@/context/ToastContext_";
+import useToast from "@/hooks/useToast";
 
 interface IProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLFormElement>, HTMLFormElement> {
@@ -18,7 +18,7 @@ interface IExportDto {
 }
 
 export default function UsersExport(props: IProps) {
-  const { pushToast } = useToastContext()
+  const { pushToast } = useToast()
   const { profile } = useAppSelector(state => state.auth)
 
   const [trigger, result] = useLazyGetAllUsersQuery();
