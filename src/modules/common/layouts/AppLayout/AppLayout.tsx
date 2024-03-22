@@ -25,12 +25,13 @@ import ProfileDropDown from "../../Nav/ProfileDropDown";
 import Mobile from "../../Mobile";
 import { useNetworkState, usePrevious } from "@uidotdev/usehooks";
 import useIsGuest from "@/hooks/useIsGuest";
+import { useToastContext } from "@/context/ToastContext_";
 
 interface IProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> { }
 
 export default function AppLayout(props: IProps) {
-  const toasts = useAppSelector((state) => state.toast);
+  const { toasts } = useToastContext()
   const { online } = useNetworkState()
   const previouslyOnline = usePrevious(online)
   const { pathname } = useLocation();

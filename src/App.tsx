@@ -5,11 +5,42 @@ import { Provider } from "react-redux";
 import { store } from "./redux/store";
 import { RouterProvider } from "react-router-dom";
 import Router from "./modules/route/Router";
+import { useState } from "react";
+import { IToastState } from "./types";
+import { ToastContext } from "./context/ToastContext_";
 
 function App() {
+  const [toasts, setToasts] = useState<IToastState[]>([])
+  const popToast = () => {
+    setToasts(prev => {
+      const _toasts = [...prev]
+      _toasts?.shift()
+      return _toasts
+    })
+  }
+  const pushToast = (toast: IToastState) => {
+    setToasts(prev => {
+      const _toasts = [...prev]
+      _toasts?.push({ ...toast, show: true })
+      return _toasts
+    })
+
+    setTimeout(() => {
+      popToast()
+    }, 3000);
+  }
+
   return (
     <Provider store={store}>
-      <RouterProvider router={Router} />
+      <ToastContext.Provider value={
+        {
+          toasts,
+          popToast,
+          pushToast
+        }
+      }>
+        <RouterProvider router={Router} />
+      </ToastContext.Provider>
     </Provider>
   );
 }
