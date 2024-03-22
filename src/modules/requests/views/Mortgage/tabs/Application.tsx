@@ -39,7 +39,7 @@ export default function Application({ className, request, ...rest }: IProps) {
       <Hr className="my-4" />
       {(request?.data?.property != null && building) ?
         unitIds?.map((unitId) => {
-          return <UnitLinkCard unitId={`${unitId}`} building={building} _property={request.data.property} />
+          return <UnitLinkCard key={unitId} unitId={`${unitId}`} building={building} _property={request.data.property} />
         })
         : null}
     </div>

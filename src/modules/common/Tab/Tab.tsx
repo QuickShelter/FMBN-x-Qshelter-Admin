@@ -19,6 +19,7 @@ export default function Tab(props: IProps) {
       {tabs.map(({ label, value }) => {
         return (
           <button
+            key={label}
             className={`${styles.button} ${value == currentTab ? styles.active : ""
               }`}
             onClick={() => setTab(value)}

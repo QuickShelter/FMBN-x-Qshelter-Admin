@@ -289,7 +289,8 @@ export interface IToastState {
   message: string;
   type: IToastType;
   duration?: number;
-  show: boolean;
+  show?: boolean;
+  id?: string
 }
 
 export type IToastSliceState = IToastState[]
@@ -927,8 +928,6 @@ export interface IRequestStatusChangeDto {
   comment: string,
   affectedDocuments: string[],
 }
-
-
 
 export interface IRequestApiDocumentStatusUpdateDto {
   status: IMortgageDocumentStatus,

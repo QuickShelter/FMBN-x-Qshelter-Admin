@@ -18,6 +18,7 @@ export default function TopCards(props: IProps) {
     <section {...rest} className={`${styles.container} ${props.className}`}>
       {data.map(({ label, value, subValue }) => (
         <TopCard
+          key={label}
           shadow={shadow}
           className={cardClassName}
           label={label}

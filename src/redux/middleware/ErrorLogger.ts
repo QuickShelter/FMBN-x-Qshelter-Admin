@@ -18,14 +18,11 @@ export const rtkQueryErrorLogger: Middleware =
 
         if (action.payload.data.message === 'Forbidden') {
           dispatch(
-            set({
-              duration: 3000,
-              toasts: [{
-                message: "Session Expired",
-                type: 'error',
-                show: true
-              }]
-            })
+            set([{
+              message: "Session Expired",
+              type: 'error',
+              show: true
+            }])
           )
 
           const timeout = setTimeout(() => {
@@ -42,14 +39,11 @@ export const rtkQueryErrorLogger: Middleware =
         //console.warn({ "Middleware caught": action });
         if (action.payload.status == "FETCH_ERROR") {
           dispatch(
-            set({
-              duration: 3000,
-              toasts: [{
-                message: "Session Expired",
-                type: 'error',
-                show: true
-              }]
-            })
+            set([{
+              message: "Session Expired",
+              type: 'error',
+              show: true
+            }])
           )
 
 

@@ -29,7 +29,7 @@ export default function Toast({ toasts = [], className, ...rest }: IProps) {
       {toasts?.map((toast, index) => {
         const { message, show, type } = toast
 
-        return <ToastCard key={`${toast.message}/${index}`} message={message} type={type} show={show} />
+        return <ToastCard key={`${toast.message}/${index}`} message={message} type={type} show={show ?? false} />
       })}
     </div>
   );

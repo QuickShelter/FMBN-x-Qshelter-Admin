@@ -50,7 +50,8 @@ export default function MortgageDeclineModal({ className, onCancel, show, reques
       await updateMortgageStatus({ ...rest, comment: `${comment} Affected Documents: ${affectedDocuments ? affectedDocuments.join(', ') + '.' : ''}` }).unwrap()
       dispatch(setToast({
         message: 'Declined',
-        type: 'success'
+        type: 'success',
+        show: true,
       }))
     } catch (error) {
       const err = error as IAPIError
@@ -70,7 +71,7 @@ export default function MortgageDeclineModal({ className, onCancel, show, reques
     <Modal onCancel={onCancel} show={show}>
       <div {...rest} className={`${className} flex flex-col gap-4`}>
         <div className="text-slate-900 text-2xl font-semibold leading-normal px-4">
-          Decline Project
+          Decline Mortgage
         </div>
         <form
           onSubmit={handleSubmit(onSubmit)}
