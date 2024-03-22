@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet";
 import { useGetAllRequestsQuery } from "@/redux/services/api";
 import Listing from "../requests/Listing/Listing";
-import { IRequestStatus, IRequestType } from "@/types";
+import { IRequestStatus, IRequestType, ITopCard } from "@/types";
 import { useEffect, useContext, useMemo, useCallback, useState } from "react";
 import styles from "./Projects.module.css";
 import Button from "../common/Button/Button";
@@ -183,11 +183,23 @@ export default function Requests() {
     navigate(`/requests?${searchParams.toString()}`);
   }, [searchParams, navigate]);
 
-  const stat: { label: string; value: number | string }[] = [
-    { label: "All", value: data?.total_count ?? "" },
-    { label: "Mortgages", value: "" },
-    { label: "Commercial", value: "" },
-    { label: "Price Change", value: "" },
+  const stat: ITopCard[] = [
+    {
+      label: "All",
+      value: data?.total_count ?? ""
+    },
+    {
+      label: "Mortgages",
+      value: ""
+    },
+    {
+      label: "Commercial",
+      value: ""
+    },
+    {
+      label: "Price Change",
+      value: ""
+    },
   ];
 
   return (

@@ -64,6 +64,7 @@ import {
   IMilestoneUpdateApprovalDto,
   IRsaApprovalDto,
   IRsaDocumentApprovalDto,
+  IRequestApiDocumentStatusUpdateDto,
 } from "../../types";
 import EnvironmentHelper from "@/helpers/EnvironmentHelper";
 import { formatDate } from "@/helpers/dateFormat";
@@ -483,17 +484,12 @@ export const api = createApi({
     // Mortgage Document
     updateMortgageDocumentStatus: builder.mutation<
       IMortgageResponse<string[]>,
-      {
-        id: string;
-        status: string;
-      }
+      IRequestApiDocumentStatusUpdateDto
     >({
-      query: ({ id, status }) => ({
+      query: ({ id, ...body }) => ({
         url: `/mortgage/api/update-doc-status/${id}`,
         method: "PUT",
-        body: {
-          status,
-        },
+        body,
       }),
       invalidatesTags: ["Property", "Request"],
     }),

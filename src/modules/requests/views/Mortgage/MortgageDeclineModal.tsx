@@ -95,7 +95,7 @@ export default function MortgageDeclineModal({ className, onCancel, show, reques
               <div className="font-medium">Affected Documents</div>
               <ol className="text-sm flex flex-col gap-3 list-decimal px-6">
                 {RequestHelper.getMortgageDocumentsFromRequest(request).filter(document => document.status !== 'approved').map((document) => {
-                  return <li className="">{DocumentHelper.getHumanNames(document.name)}</li>
+                  return <li key={document.id} className="">{DocumentHelper.getHumanNames(document.name)}</li>
                 })}
               </ol>
             </div>

@@ -32,7 +32,7 @@ export default function RequestApiDocumentDeclineModal({ className, handleDeclin
   const defaultValues: IRequestApiDocumentStatusUpdateDto = {
     id: document.id,
     status: 'declined',
-    reason: ''
+    comment: ''
   }
 
   const { control, handleSubmit, formState: { errors } } = useForm({ defaultValues })
@@ -73,14 +73,14 @@ export default function RequestApiDocumentDeclineModal({ className, handleDeclin
                 Reason for decline
               </FormLabel>
               <Controller
-                name="reason"
+                name="comment"
                 control={control}
-                rules={{ required: 'You must provide a reason' }}
+                rules={{ required: 'You must provide a comment' }}
                 render={({ field }) => (
-                  <TextArea {...field} testId="reason" />
+                  <TextArea {...field} testId="comment" placeholder="Enter comment" />
                 )}
               />
-              {errors.reason && <FormError>{errors.reason.message}</FormError>}
+              {errors.comment && <FormError>{errors.comment.message}</FormError>}
             </FormGroup>
           </div>
           <div className="p-4 flex flex-wrap gap-2 sm:flex-row justify-end items-center">

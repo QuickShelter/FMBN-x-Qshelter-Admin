@@ -19,17 +19,17 @@ interface IProps
    * @param props 
    * @returns 
    */
-export default function Toast({ toasts, className, ...rest }: IProps) {
+export default function Toast({ toasts = [], className, ...rest }: IProps) {
   return (
     <div
       {...rest}
-      className={`z-10 fixed top-5 left-1/2 transform -translate-x-1/2 flex flex-col-reverse gap-4 ${className} ${toasts.length > 0 ? "" : "hidden"
+      className={`z-10 fixed top-5 left-1/2 transform -translate-x-1/2 flex flex-col-reverse gap-4 ${className} ${toasts?.length > 0 ? "" : "hidden"
         }`}
     >
-      {toasts.map((toast) => {
+      {toasts?.map((toast, index) => {
         const { message, show, type } = toast
 
-        return <ToastCard message={message} type={type} show={show} />
+        return <ToastCard key={`${toast.message}/${index}`} message={message} type={type} show={show} />
       })}
     </div>
   );

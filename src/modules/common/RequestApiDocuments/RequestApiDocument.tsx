@@ -18,14 +18,14 @@ export default function RequestApiDocument({ document, hideApproval = false }: I
     const [targetStatus, setTargetStatus] = useState<IMortgageDocumentStatus | null>('pending')
     const [showDeclineModal, setShowDeclineModal] = useState(false)
 
-    const updateStatus = useCallback(async (status: IMortgageDocumentStatus, reason: string | undefined = undefined) => {
+    const updateStatus = useCallback(async (status: IMortgageDocumentStatus, comment: string | undefined = undefined) => {
         setTargetStatus(status)
 
         try {
             const payload: IRequestApiDocumentStatusUpdateDto = {
                 id: document.id,
                 status,
-                reason,
+                comment,
             }
 
             await updateDocumentStatus(payload).unwrap();

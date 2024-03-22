@@ -1,10 +1,10 @@
 import { IToastSliceState, IToastState } from "@/types";
+// https://redux-toolkit.js.org/usage/usage-guide
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-const initialState: IToastSliceState = {
-  duration: 3000,
-  toasts: []
-};
+const DURATION = 3000
+
+const initialState: IToastSliceState = []
 
 export const setToast = createAsyncThunk(
   "toast/setToast",
@@ -20,7 +20,7 @@ export const setToast = createAsyncThunk(
 
     const timeout = setTimeout(() => {
       dispatch(pop());
-    }, payload.duration ?? initialState.duration);
+    }, DURATION);
 
     return () => {
       clearTimeout(timeout);
@@ -32,35 +32,21 @@ const toastSlice = createSlice({
   name: "toast",
   initialState,
   reducers: {
-    set(_, { payload }: { payload: IToastSliceState }) {
-      return payload
+    set(state, { payload }: { payload: IToastSliceState }) {
+      state = payload
     },
 
     push(state, { payload }: { payload: IToastState }) {
-      const newToast: IToastState = {
-        duration: payload.duration,
-        message: payload.message,
-        type: payload.type,
-        show: true,
-      }
-
-      const toasts = state.toasts
-      state.toasts.push(newToast)
-
-      const newState: IToastSliceState = {
-        duration: state.duration,
-        toasts,
-      }
-
-      state = newState
+      state.push(payload)
+      //state.push({ ...payload, message: `${payload.message}/${state.length}` })
     },
 
     pop(state) {
-      state.toasts.shift()
+      state.shift()
     },
 
-    clear() {
-      return initialState;
+    clear(state) {
+      state = initialState;
     },
   },
   extraReducers(builder) {

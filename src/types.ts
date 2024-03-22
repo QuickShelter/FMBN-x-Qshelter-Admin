@@ -292,10 +292,7 @@ export interface IToastState {
   show: boolean;
 }
 
-export interface IToastSliceState {
-  toasts: IToastState[],
-  duration: number;
-}
+export type IToastSliceState = IToastState[]
 
 export type IPropertyFinishStatus = 'finished' | 'semi_finished'
 
@@ -935,7 +932,7 @@ export interface IRequestStatusChangeDto {
 
 export interface IRequestApiDocumentStatusUpdateDto {
   status: IMortgageDocumentStatus,
-  reason?: string,
+  comment?: string,
   id: string
 }
 

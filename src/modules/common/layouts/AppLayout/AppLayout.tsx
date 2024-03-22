@@ -30,7 +30,7 @@ interface IProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> { }
 
 export default function AppLayout(props: IProps) {
-  const { toasts } = useAppSelector((state) => state.toast);
+  const toasts = useAppSelector((state) => state.toast);
   const { online } = useNetworkState()
   const previouslyOnline = usePrevious(online)
   const { pathname } = useLocation();
