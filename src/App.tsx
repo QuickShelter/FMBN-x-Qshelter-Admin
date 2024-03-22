@@ -9,6 +9,8 @@ import { useState } from "react";
 import { IToastState } from "./types";
 import { ToastContext } from "./context/ToastContext_";
 
+const DURATION = 3000
+
 function App() {
   const [toasts, setToasts] = useState<IToastState[]>([])
   const popToast = () => {
@@ -27,7 +29,7 @@ function App() {
 
     setTimeout(() => {
       popToast()
-    }, 3000);
+    }, toast.duration ?? DURATION);
   }
 
   return (

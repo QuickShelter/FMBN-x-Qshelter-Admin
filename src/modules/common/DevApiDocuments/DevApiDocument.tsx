@@ -3,7 +3,6 @@ import Document from "@/modules/common/icons/Document";
 import { IAPIError, IDevApiDocument, IDevApiStatus, IDevApiDocumentStatusUpdateDto } from "@/types";
 import { useUpdateDevApiDocumentStatusMutation } from "@/redux/services/api";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
-import { setToast } from "@/redux/services/toastSlice";
 import ApprovalButtons from "../ApprovalButtons";
 import DocumentDeclineModal from "./DocumentDeclineModal";
 import DocumentHelper from "@/helpers/DocumentHelper";
@@ -11,6 +10,7 @@ import Indicator from "../Indicator";
 import ColorHelper from "@/helpers/ColorHelper";
 import DocumentViewControl from "../DocumentViewControl";
 import RoleGuard from "../guards/RoleGuard";
+import { useToastContext } from "@/context/ToastContext_";
 
 interface IProps
     extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
@@ -27,6 +27,7 @@ const colorMap: Record<IDevApiStatus, string> = {
 export default function DevApiDocument({ document, hideApproval = false, className }: IProps) {
     const { profile } = useAppSelector(state => state.auth)
     const dispatch = useAppDispatch()
+    const { pushToast } = useToastContext()
     const [updateDocumentStatus, { isLoading }] = useUpdateDevApiDocumentStatusMutation()
     const [targetStatus, setTargetStatus] = useState<IDevApiStatus | null>('PENDING')
     const [showDeclineModal, setShowDeclineModal] = useState(false)
@@ -46,21 +47,17 @@ export default function DevApiDocument({ document, hideApproval = false, classNa
 
             await updateDocumentStatus(payload).unwrap();
 
-            dispatch(
-                setToast({
-                    message: "Updated",
-                    type: "success",
-                })
-            );
+            pushToast({
+                message: "Updated",
+                type: "success",
+            })
         } catch (error) {
             const err = error as IAPIError
             console.log(error);
-            dispatch(
-                setToast({
-                    message: err.data.message,
-                    type: "error",
-                })
-            );
+            pushToast({
+                message: err.data.message,
+                type: "error",
+            })
         } finally {
             setTargetStatus(null)
         }

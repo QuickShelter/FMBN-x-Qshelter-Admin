@@ -1,7 +1,5 @@
 import { DetailedHTMLProps, HTMLAttributes } from "react";
 import { IAPIError, IMortgageDocument, IRequestApiDocumentStatusUpdateDto } from "@/types";
-import { useAppDispatch } from "@/redux/store";
-import { setToast } from "@/redux/services/toastSlice";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import FormGroup from "@/modules/common/form/FormGroup";
 import FormLabel from "@/modules/common/form/FormLabel";
@@ -11,6 +9,7 @@ import Spinner from "@/modules/common/Spinner";
 import Modal from "@/modules/common/Modal";
 import TextArea from "../form/TextArea";
 import { useUpdateMortgageDocumentStatusMutation } from "@/redux/services/api";
+import { useToastContext } from "@/context/ToastContext_";
 interface IProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   document: IMortgageDocument
@@ -26,7 +25,7 @@ interface IProps
  * @returns
  */
 export default function RequestApiDocumentDeclineModal({ className, handleDecline, onClose, show, document, ...rest }: IProps) {
-  const dispatch = useAppDispatch()
+  const { pushToast } = useToastContext()
   const [updateDocumentStatus, { isLoading }] = useUpdateMortgageDocumentStatusMutation()
 
   const defaultValues: IRequestApiDocumentStatusUpdateDto = {
@@ -40,18 +39,16 @@ export default function RequestApiDocumentDeclineModal({ className, handleDeclin
   const onSubmit: SubmitHandler<IRequestApiDocumentStatusUpdateDto> = async (payload) => {
     try {
       await updateDocumentStatus(payload).unwrap();
-      dispatch(setToast({
+      pushToast({
         message: 'Declined',
         type: 'success'
-      }))
+      })
     } catch (error) {
       const err = error as IAPIError
-      dispatch(
-        setToast({
-          message: err.data.message,
-          type: "error",
-        })
-      );
+      pushToast({
+        message: err.data.message,
+        type: "error",
+      })
     } finally {
       onClose()
     }

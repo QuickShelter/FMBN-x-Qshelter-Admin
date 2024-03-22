@@ -19,7 +19,6 @@ import { useGetRefreshTokenMutation } from "@/redux/services/api";
 import { IAuth, IResponse } from "@/types";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
 import { saveToken } from "@/redux/services/authSlice";
-import { setToast } from "@/redux/services/toastSlice";
 import NotificationDropdown from "../../Nav/NotificationDropdown";
 import ProfileDropDown from "../../Nav/ProfileDropDown";
 import Mobile from "../../Mobile";
@@ -45,22 +44,23 @@ export default function AppLayout(props: IProps) {
 
   const contentRef = useRef<HTMLDivElement>(null);
   const dispatch = useAppDispatch();
+  const { pushToast } = useToastContext()
 
   useEffect(() => {
     if (!online) {
-      dispatch(setToast({
+      pushToast({
         message: 'You are offline',
         type: 'warning',
         duration: 1000
-      }))
+      })
     }
 
     if (previouslyOnline === false && online) {
-      dispatch(setToast({
+      pushToast({
         message: 'You are back online',
         type: 'success',
         duration: 1000
-      }))
+      })
 
     }
   }, [online, dispatch, previouslyOnline])
@@ -77,7 +77,7 @@ export default function AppLayout(props: IProps) {
 
         dispatch(saveToken(response.body.token.authToken));
       } catch (error) {
-        setToast({
+        pushToast({
           message: "Error getting refresh token",
           type: "success",
         });

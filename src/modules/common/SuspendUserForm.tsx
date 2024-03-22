@@ -4,12 +4,12 @@ import Select from "./form/Select";
 import Button from "./Button";
 import FormGroup from "./form/FormGroup";
 import FormLabel from "./form/FormLabel";
-import { useAppDispatch, useAppSelector } from "@/redux/store";
-import { setToast } from "@/redux/services/toastSlice";
 import { useSuspendUnsuspendUserMutation } from "@/redux/services/api";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import FormError from "./form/FormError";
 import Spinner from "./Spinner";
+import { useToastContext } from "@/context/ToastContext_";
+import useGetCurrentUser from "@/hooks/useGetCurrentUser";
 interface IProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   user: IUser;
@@ -23,8 +23,8 @@ interface IProps
  * @returns
  */
 export default function SuspendUserForm({ className, onClose, user, ...rest }: IProps) {
-  const { profile } = useAppSelector(state => state.auth)
-  const dispatch = useAppDispatch()
+  const profile = useGetCurrentUser()
+  const { pushToast } = useToastContext()
   const defaultValues = {
     id: user.id ?? "",
     user_id: profile?.id ?? "",
@@ -37,19 +37,17 @@ export default function SuspendUserForm({ className, onClose, user, ...rest }: I
   const onSubmit: SubmitHandler<ISuspendUserDto> = async (payload) => {
     try {
       await suspendUser(payload).unwrap()
-      dispatch(setToast({
+      pushToast({
         message: 'Suspended',
         type: 'success'
-      }))
+      })
     } catch (error) {
       const err = error as IAPIError
       console.log(error);
-      dispatch(
-        setToast({
-          message: err.data.message,
-          type: "error",
-        })
-      );
+      pushToast({
+        message: err.data.message,
+        type: "error",
+      })
     } finally {
       onClose()
     }

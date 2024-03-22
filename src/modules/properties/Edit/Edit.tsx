@@ -19,9 +19,7 @@ import {
   useUpdatePropertyByIdMutation
 } from "@/redux/services/api";
 import Spinner from "@/modules/common/Spinner/Spinner";
-import { useAppDispatch } from "@/redux/store";
 import ImageUpdater from "../ImageUpdater";
-import { setToast } from "@/redux/services/toastSlice";
 import FormError from "@/modules/common/form/FormError";
 import PageTitleAndActions from "@/modules/common/PageTitleAndActions";
 import PageBackButton from "@/modules/common/PageBackButton";
@@ -34,6 +32,7 @@ import BuildingEditCard from "./BuildingEditCard";
 import BuildingAmenitiesEditCard from "./BuildingAmenitiesEditCard";
 import Pill from "@/modules/common/Pill";
 import TextArea from "@/modules/common/form/TextArea";
+import { useToastContext } from "@/context/ToastContext_";
 
 interface IProps {
   _property: IProperty;
@@ -80,7 +79,7 @@ export default function Edit({ _property: property }: IProps) {
     defaultValues,
   });
 
-  const dispatch = useAppDispatch();
+  const { pushToast } = useToastContext()
 
   const onSubmit: SubmitHandler<IPropertyUpdateDto> = async (data) => {
     const payload = {
@@ -101,21 +100,17 @@ export default function Edit({ _property: property }: IProps) {
 
     try {
       const editResponse: IResponse<IProperty> = await editProperty(payload).unwrap();
-      dispatch(
-        setToast({
-          type: "success",
-          message: editResponse.message,
-        })
-      );
+      pushToast({
+        type: "success",
+        message: editResponse.message,
+      })
     } catch (error) {
       console.log({ error });
-      dispatch(
-        setToast({
-          message:
-            (error as IAPIError)?.data?.data.error ?? "Something went wrong",
-          type: "error",
-        })
-      );
+      pushToast({
+        message:
+          (error as IAPIError)?.data?.data.error ?? "Something went wrong",
+        type: "error",
+      })
     }
   };
 

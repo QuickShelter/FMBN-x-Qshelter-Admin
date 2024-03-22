@@ -1,7 +1,6 @@
 import { DetailedHTMLProps, HTMLAttributes } from "react";
 import { DevApiDocumentSubPath, IAPIError, IDevApiDocument, IDevApiDocumentStatusUpdateDto } from "@/types";
-import { useAppDispatch, useAppSelector } from "@/redux/store";
-import { setToast } from "@/redux/services/toastSlice";
+import { useAppSelector } from "@/redux/store";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import FormGroup from "@/modules/common/form/FormGroup";
 import FormLabel from "@/modules/common/form/FormLabel";
@@ -11,6 +10,7 @@ import Spinner from "@/modules/common/Spinner";
 import Modal from "@/modules/common/Modal";
 import { useUpdateDevApiDocumentStatusMutation } from "@/redux/services/api";
 import TextArea from "../form/TextArea";
+import { useToastContext } from "@/context/ToastContext_";
 interface IProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   document: IDevApiDocument
@@ -28,7 +28,7 @@ interface IProps
 export default function DocumentDeclineModal({ className, onClose, show, document, type, ...rest }: IProps) {
   const { profile } = useAppSelector(state => state.auth)
   const [updateDevApiDocumentStatus, { isLoading }] = useUpdateDevApiDocumentStatusMutation()
-  const dispatch = useAppDispatch()
+  const { pushToast } = useToastContext()
 
   const defaultValues: IDevApiDocumentStatusUpdateDto = {
     id: document.id,
@@ -43,18 +43,16 @@ export default function DocumentDeclineModal({ className, onClose, show, documen
   const onSubmit: SubmitHandler<IDevApiDocumentStatusUpdateDto> = async (payload) => {
     try {
       await updateDevApiDocumentStatus(payload).unwrap()
-      dispatch(setToast({
+      pushToast({
         message: 'Declined',
         type: 'success'
-      }))
+      })
     } catch (error) {
       const err = error as IAPIError
-      dispatch(
-        setToast({
-          message: err.data.message,
-          type: "error",
-        })
-      );
+      pushToast({
+        message: err.data.message,
+        type: "error",
+      })
     } finally {
       onClose()
     }

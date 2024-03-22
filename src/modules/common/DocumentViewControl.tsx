@@ -2,11 +2,11 @@ import { useAppDispatch, useAppSelector } from "@/redux/store"
 import LinkButton from "./LinkButton"
 import Spinner from "./Spinner"
 import Button from "./Button"
-import { setToast } from "@/redux/services/toastSlice"
 import { IAPIError } from "@/types"
 import { useState } from "react"
 import { useCreatePresignedUrlMutation } from "@/redux/services/api"
 import { addUrl } from "@/redux/services/presignerSlice"
+import { useToastContext } from "@/context/ToastContext_"
 
 interface IProps {
     url: string
@@ -14,6 +14,7 @@ interface IProps {
 
 export default function DocumentViewControl({ url }: IProps) {
     const dispatch = useAppDispatch()
+    const { pushToast } = useToastContext()
     const { cache } = useAppSelector(state => state.presigner)
     const [presignedUrl, setPresignedUrl] = useState<string | null | undefined>(() => {
         const item = cache.find(item => item.orginal == url)
@@ -36,16 +37,16 @@ export default function DocumentViewControl({ url }: IProps) {
                 presigned: response
             }))
 
-            dispatch(setToast({
+            pushToast({
                 message: 'Secure URL Created',
                 type: 'success'
-            }))
+            })
         } catch (err) {
             const error = err as IAPIError
-            dispatch(setToast({
+            pushToast({
                 message: error.data.message,
                 type: 'error'
-            }))
+            })
 
         }
     }

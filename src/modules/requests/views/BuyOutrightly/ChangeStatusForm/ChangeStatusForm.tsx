@@ -3,8 +3,7 @@ import styles from "./ChangeStatusForm.module.css";
 import FormGroup from "@/modules/common/form/FormGroup/FormGroup";
 import FormLabel from "@/modules/common/form/FormLabel/FormLabel";
 import Button from "@/modules/common/Button/Button";
-import { useAppDispatch, useAppSelector } from "@/redux/store";
-import { setToast } from "@/redux/services/toastSlice";
+import { useAppSelector } from "@/redux/store";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import Select from "@/modules/common/form/Select/Select";
 import {
@@ -19,6 +18,7 @@ import {
 import { useUpdateMortgageApplicationStatusMutation } from "@/redux/services/api";
 import Spinner from "@/modules/common/Spinner";
 import RequestHelper from "@/helpers/RequestHelper";
+import { useToastContext } from "@/context/ToastContext_";
 
 type IStatus =
   | IRequestStatus
@@ -59,8 +59,8 @@ const statusOptions: {
 
 export default function ChangeStatusForm({ request, ...rest }: IProps) {
   let status: IStatus;
+  const { pushToast } = useToastContext()
 
-  const dispatch = useAppDispatch();
   const {
     control,
     handleSubmit,
@@ -77,12 +77,10 @@ export default function ChangeStatusForm({ request, ...rest }: IProps) {
 
   const onSubmit: SubmitHandler<IData> = async (data) => {
     if (!data.status || data.status.length == 0) {
-      dispatch(
-        setToast({
-          type: "warning",
-          message: "Provide a valid status",
-        })
-      );
+      pushToast({
+        type: "warning",
+        message: "Provide a valid status",
+      })
 
       return;
     }
@@ -103,24 +101,20 @@ export default function ChangeStatusForm({ request, ...rest }: IProps) {
         }).unwrap();
 
         if (response?.ok) {
-          dispatch(
-            setToast({
-              message: "Updated",
-              type: "success",
-            })
-          );
+          pushToast({
+            message: "Updated",
+            type: "success",
+          })
         }
       } else if (RequestHelper.isPriceUpdateRequest(request)) {
         // TODO
       }
     } catch (error) {
-      dispatch(
-        setToast({
-          message:
-            (error as IAPIError)?.data?.data?.error ?? "Something went wrong",
-          type: "error",
-        })
-      );
+      pushToast({
+        message:
+          (error as IAPIError)?.data?.data?.error ?? "Something went wrong",
+        type: "error",
+      })
     }
   };
 

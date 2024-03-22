@@ -29,7 +29,6 @@ import PropertyHelper from "@/helpers/PropertyHelper";
 import ExportWrapper from "@/modules/common/ExportWrapper";
 import PropertyTemplate from "@/modules/common/export-templates/PropertyTemplate";
 import RoleGuard from "@/modules/common/guards/RoleGuard";
-import { setToast } from "@/redux/services/toastSlice";
 import Spinner from "@/modules/common/Spinner";
 import DeclinePropertyModal from "./DeclinePropertyModal";
 
@@ -38,6 +37,7 @@ import Amenities from "./tabs/Amenities";
 import Documents from "./tabs/Documents";
 import ApproveDeclineButtons from "../../common/ApproveDeclineButtons";
 import StringHelper from "@/helpers/StringHelper";
+import { useToastContext } from "@/context/ToastContext_";
 
 interface IProps {
   _property: IProperty;
@@ -62,6 +62,7 @@ export default function View({ _property: property }: IProps) {
   const { data: developer } = useGetDeveloperByUserIdQuery(property?.poster_id)
   const [deleteProperty, { isLoading }] = useDeletePropertyMutation()
   const dispatch = useAppDispatch()
+  const { pushToast } = useToastContext()
   const navigate = useNavigate()
   const [targetStatus, setTargetStatus] = useState<IPropertyStatus | null>()
 
@@ -116,21 +117,17 @@ export default function View({ _property: property }: IProps) {
       const response = status === 'approved' ? await approve(payload).unwrap() : await decline(payload).unwrap();
       console.log(response)
 
-      dispatch(
-        setToast({
-          message: "Updated",
-          type: "success",
-        })
-      );
+      pushToast({
+        message: "Updated",
+        type: "success",
+      })
     } catch (error) {
       const err = error as IAPIError
       console.log(error);
-      dispatch(
-        setToast({
-          message: err.data.message,
-          type: "error",
-        })
-      );
+      pushToast({
+        message: err.data.message,
+        type: "error",
+      })
     } finally {
       setTargetStatus(null)
     }
@@ -149,21 +146,17 @@ export default function View({ _property: property }: IProps) {
 
       await deleteProperty(payload).unwrap();
 
-      dispatch(
-        setToast({
-          message: "Deleted",
-          type: "success",
-        })
-      );
+      pushToast({
+        message: "Deleted",
+        type: "success",
+      })
     } catch (error) {
       const err = error as IAPIError
       console.log(error);
-      dispatch(
-        setToast({
-          message: err.data.message,
-          type: "error",
-        })
-      );
+      pushToast({
+        message: err.data.message,
+        type: "error",
+      })
     } finally {
       navigate('/properties')
       setShowDeleteModal(false)

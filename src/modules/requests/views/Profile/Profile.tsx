@@ -14,11 +14,10 @@ import Status from "@/modules/common/Status";
 import { Link } from "react-router-dom";
 import Desktop from "@/modules/common/Desktop";
 import Mobile from "@/modules/common/Mobile";
-import { setToast } from "@/redux/services/toastSlice";
-import { useAppDispatch } from "@/redux/store";
 import { usePDF } from "react-to-pdf";
 import ExportWrapper from "@/modules/common/ExportWrapper";
 import ApproveDeclineButtons from "@/modules/common/ApproveDeclineButtons";
+import { useToastContext } from "@/context/ToastContext_";
 
 interface IProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
@@ -41,7 +40,7 @@ export default function Profile({ canApprove = true, className, exportTemplate, 
   const [showDeclineModal, setShowDeclineModal] = useState(false);
   const [showApprovalModal, setShowApproveModal] = useState(false);
   const avatarComponent = <Avatar className="w-[4rem] h-[4rem] rounded-full" user={user} />
-  const dispatch = useAppDispatch()
+  const { pushToast } = useToastContext()
   const { targetRef, toPDF } = usePDF()
   const [targetStatus, setTargetStatus] = useState<IStatus | null>()
 
@@ -56,26 +55,22 @@ export default function Profile({ canApprove = true, className, exportTemplate, 
       const response = await approve();
 
       if (response.ok || response.success) {
-        dispatch(
-          setToast({
-            message: "Updated",
-            type: "success",
-          })
-        );
+        pushToast({
+          message: "Updated",
+          type: "success",
+        })
       }
     } catch (error) {
       const err = error as IAPIError
-      dispatch(
-        setToast({
-          message: err.data.message,
-          type: "error",
-        })
-      );
+      pushToast({
+        message: err.data.message,
+        type: "error",
+      })
     } finally {
       setShowApproveModal(false)
       setTargetStatus(null)
     }
-  }, [dispatch, approve])
+  }, [approve])
 
   const handleDecline = useCallback(async () => {
     if (!decline) {
@@ -89,28 +84,24 @@ export default function Profile({ canApprove = true, className, exportTemplate, 
       const response = await decline();
 
       if (response.ok) {
-        dispatch(
-          setToast({
-            message: "Updated",
-            type: "success",
-          })
-        );
+        pushToast({
+          message: "Updated",
+          type: "success",
+        })
       }
     } catch (error) {
       console.log(error)
       const err = error as IAPIError
-      dispatch(
-        setToast({
-          message: err.data.message,
-          type: "error",
-        })
-      );
+      pushToast({
+        message: err.data.message,
+        type: "error",
+      })
       setShowDeclineModal(false)
     } finally {
       setShowDeclineModal(false)
       setTargetStatus(null)
     }
-  }, [dispatch, decline])
+  }, [decline])
 
   return (
     <div {...rest} className={`${className} ${styles.container}`}>

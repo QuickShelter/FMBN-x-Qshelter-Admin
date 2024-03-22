@@ -13,11 +13,11 @@ import EmploymentInformation from "./tabs/EmploymentInformation";
 import Reports from "./tabs/Reports/Reports";
 import Documents from "./tabs/Documents";
 import Profile from "./Profile";
-import { useAppDispatch, useAppSelector } from "@/redux/store";
+import { useAppSelector } from "@/redux/store";
 import { useDeleteMortgageMutation, useGetUserByIdQuery } from "@/redux/services/api";
 import Button from "@/modules/common/Button";
 import ConfirmationModal from "@/modules/common/modals/ConfirmationModal";
-import { setToast } from "@/redux/services/toastSlice";
+import { useToastContext } from "@/context/ToastContext_";
 
 interface IProps {
   request: IMortgageRequest;
@@ -37,7 +37,7 @@ export default function Mortgage({ request }: IProps) {
     user_id: profile?.id ?? "",
   });
 
-  const dispatch = useAppDispatch()
+  const { pushToast } = useToastContext()
 
   const [tab, setTab] = useState<ITab>("application");
 
@@ -75,20 +75,18 @@ export default function Mortgage({ request }: IProps) {
       const response = await deleteMortgage(mortgageId).unwrap()
 
       if (response.ok) {
-        dispatch(setToast({
+        pushToast({
           message: 'Suspended',
           type: 'success'
-        }))
+        })
       }
     } catch (error) {
       const err = error as IAPIError
       console.log(error);
-      dispatch(
-        setToast({
-          message: err.data.message,
-          type: "error",
-        })
-      );
+      pushToast({
+        message: err.data.message,
+        type: "error",
+      })
     } finally {
       setShowCancelModal(false)
     }

@@ -14,9 +14,9 @@ import { useAppDispatch } from "@/redux/store";
 import { set } from "@/redux/services/authSlice";
 import Spinner from "@/modules/common/Spinner/Spinner";
 import { useNavigate } from "react-router-dom";
-import { setToast } from "@/redux/services/toastSlice";
 import { useNetworkState } from "@uidotdev/usehooks";
 import RequestHelper from "@/helpers/RequestHelper";
+import { useToastContext } from "@/context/ToastContext_";
 
 export default function SignInForm(
   props: DetailedHTMLProps<FormHTMLAttributes<HTMLFormElement>, HTMLFormElement>
@@ -34,6 +34,7 @@ export default function SignInForm(
   const { online } = useNetworkState()
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const { pushToast } = useToastContext()
 
   const [signIn, { isLoading, error }] = useSignInMutation();
 
@@ -51,12 +52,10 @@ export default function SignInForm(
         navigate("/");
 
         if (response?.status === 401) {
-          dispatch(
-            setToast({
-              message: "Invalid Request",
-              type: "error",
-            })
-          );
+          pushToast({
+            message: "Invalid Request",
+            type: "error",
+          })
         }
       }
     } catch (error) {

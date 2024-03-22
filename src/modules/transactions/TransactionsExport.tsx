@@ -1,10 +1,10 @@
 import { DetailedHTMLProps, HTMLAttributes } from "react";
 import { IAPIError, IPaginatedTransactionResponseBody, ITransactionExportDto } from "@/types";
-import { useAppDispatch, useAppSelector } from "@/redux/store";
-import { setToast } from "@/redux/services/toastSlice";
+import { useAppSelector } from "@/redux/store";
 import { useLazyGetAllTransactionsQuery } from "@/redux/services/api";
 import ExportHelper from "@/helpers/ExportHelper";
 import TransactionsExportForm from "./TransactionExportForm/TransactionsExportForm";
+import { useToastContext } from "@/context/ToastContext_";
 
 interface IProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLFormElement>, HTMLFormElement> {
@@ -12,7 +12,7 @@ interface IProps
 }
 
 export default function TransactionsExport(props: IProps) {
-  const dispatch = useAppDispatch();
+  const { pushToast } = useToastContext()
   const { profile } = useAppSelector(state => state.auth)
 
   const [trigger, result] = useLazyGetAllTransactionsQuery();
@@ -30,12 +30,10 @@ export default function TransactionsExport(props: IProps) {
     const data = paginatedData?.transactions;
 
     if (error) {
-      dispatch(
-        setToast({
-          type: "error",
-          message: (error as IAPIError)?.data?.message,
-        })
-      );
+      pushToast({
+        type: "error",
+        message: (error as IAPIError)?.data?.message,
+      })
 
       return;
     }

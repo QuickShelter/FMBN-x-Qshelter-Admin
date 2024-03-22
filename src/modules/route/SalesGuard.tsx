@@ -2,7 +2,7 @@ import { ReactElement, useCallback, useLayoutEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../redux/store";
 import AuthorizationHelper from "@/helpers/AuthorizationHelper";
-import { setToast } from "@/redux/services/toastSlice";
+import { useToastContext } from "@/context/ToastContext_";
 
 interface IProps {
   children: ReactElement;
@@ -12,6 +12,7 @@ const SalesGuard = ({ children }: IProps) => {
   const { profile } = useAppSelector((state) => state.auth);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const { pushToast } = useToastContext()
 
   const handleGoBack = useCallback(() => {
     navigate(-1);
@@ -20,12 +21,10 @@ const SalesGuard = ({ children }: IProps) => {
   useLayoutEffect(() => {
     if (!AuthorizationHelper.isSalesAdmin(profile)) {
       handleGoBack();
-      dispatch(
-        setToast({
-          message: "Unauthorized",
-          type: "warning",
-        })
-      );
+      pushToast({
+        message: "Unauthorized",
+        type: "warning",
+      })
     }
   }, [dispatch, handleGoBack, profile]);
 

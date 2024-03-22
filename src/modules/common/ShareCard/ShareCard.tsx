@@ -5,12 +5,11 @@ import Instagram from "../icons/Instagram";
 import Facebook from "../icons/Facebook";
 import LinkedIn from "../icons/LinkedIn";
 import Email from "../icons/Email";
-import { useAppDispatch } from "@/redux/store";
-import { setToast } from "@/redux/services/toastSlice";
 import X from "../icons/X";
 import { IProperty } from "@/types";
 import Copy from "../Copy";
 import styles from "./ShareCard.module.css";
+import { useToastContext } from "@/context/ToastContext_";
 
 interface IProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
@@ -24,24 +23,20 @@ export default function ShareCard({
   _property: property,
   ...rest
 }: IProps) {
-  const dispatch = useAppDispatch();
+  const { pushToast } = useToastContext()
 
   const handleCopy = async () => {
     try {
       await navigator.clipboard.writeText(link);
-      dispatch(
-        setToast({
-          type: "success",
-          message: "copied",
-        })
-      );
+      pushToast({
+        type: "success",
+        message: "copied",
+      })
     } catch (err) {
-      dispatch(
-        setToast({
-          type: "error",
-          message: "Unable to copy text to clipboard",
-        })
-      );
+      pushToast({
+        type: "error",
+        message: "Unable to copy text to clipboard",
+      })
     }
   };
   return (

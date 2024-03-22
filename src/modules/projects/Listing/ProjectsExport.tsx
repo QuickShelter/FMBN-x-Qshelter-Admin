@@ -1,10 +1,9 @@
 import { DetailedHTMLProps, HTMLAttributes } from "react";
 import { IAPIError, IExportDto, IProject } from "@/types";
-import { useAppDispatch } from "@/redux/store";
-import { setToast } from "@/redux/services/toastSlice";
 import { useLazyGetAllProjectsByDateRangeQuery } from "@/redux/services/api";
 import ExportForm from "@/modules/common/ExportForm";
 import ExportHelper from "@/helpers/ExportHelper";
+import { useToastContext } from "@/context/ToastContext_";
 
 interface IProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLFormElement>, HTMLFormElement> {
@@ -12,7 +11,7 @@ interface IProps
 }
 
 export default function ProjectsExport(props: IProps) {
-  const dispatch = useAppDispatch();
+  const { pushToast } = useToastContext()
 
   const [trigger, result] = useLazyGetAllProjectsByDateRangeQuery();
   const { error, isFetching } = result;
@@ -25,12 +24,10 @@ export default function ProjectsExport(props: IProps) {
     ).data;
 
     if (error) {
-      dispatch(
-        setToast({
-          type: "error",
-          message: (error as IAPIError)?.data?.message,
-        })
-      );
+      pushToast({
+        type: "error",
+        message: (error as IAPIError)?.data?.message,
+      })
 
       return;
     }

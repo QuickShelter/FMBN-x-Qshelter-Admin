@@ -1,7 +1,6 @@
 import { DetailedHTMLProps, HTMLAttributes } from "react";
 import { IAPIError, IDevApiProposedDevelopmentDeclineDto, IProject } from "@/types";
-import { useAppDispatch, useAppSelector } from "@/redux/store";
-import { setToast } from "@/redux/services/toastSlice";
+import { useAppSelector } from "@/redux/store";
 import { useDeclineProjectMutation } from "@/redux/services/api";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import FormGroup from "@/modules/common/form/FormGroup";
@@ -13,6 +12,7 @@ import Modal from "@/modules/common/Modal";
 import Checkbox from "@/modules/common/form/Checkbox";
 import TextArea from "@/modules/common/form/TextArea";
 import Hr from "@/modules/common/Hr";
+import { useToastContext } from "@/context/ToastContext_";
 
 interface IProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
@@ -30,7 +30,7 @@ interface IProps
 export default function DeclineProjectModal({ className, onClose, show, project, ...rest }: IProps) {
   const { profile } = useAppSelector(state => state.auth)
   const [updateProposedDevelopmentStatus, { isLoading }] = useDeclineProjectMutation()
-  const dispatch = useAppDispatch()
+  const { pushToast } = useToastContext()
 
   const defaultValues: IDevApiProposedDevelopmentDeclineDto = {
     id: project.id,
@@ -47,19 +47,17 @@ export default function DeclineProjectModal({ className, onClose, show, project,
 
     try {
       await updateProposedDevelopmentStatus(payload).unwrap()
-      dispatch(setToast({
+      pushToast({
         message: 'Declined',
         type: 'success'
-      }))
+      })
     } catch (error) {
       const err = error as IAPIError
       console.log(error);
-      dispatch(
-        setToast({
-          message: err.data.message,
-          type: "error",
-        })
-      );
+      pushToast({
+        message: err.data.message,
+        type: "error",
+      })
     } finally {
       onClose()
     }

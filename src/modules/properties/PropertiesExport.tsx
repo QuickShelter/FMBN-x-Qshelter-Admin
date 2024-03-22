@@ -1,10 +1,9 @@
 import { DetailedHTMLProps, HTMLAttributes } from "react";
 import { IAPIError, IPaginatedPropertyResponseBody } from "@/types";
-import { useAppDispatch } from "@/redux/store";
-import { setToast } from "@/redux/services/toastSlice";
 import { useLazyGetAllPropertiesQuery } from "@/redux/services/api";
 import ExportForm from "@/modules/common/ExportForm";
 import ExportHelper from "@/helpers/ExportHelper";
+import { useToastContext } from "@/context/ToastContext_";
 
 interface IProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLFormElement>, HTMLFormElement> {
@@ -18,7 +17,7 @@ interface IExportDto {
 }
 
 export default function PropertiesExport(props: IProps) {
-  const dispatch = useAppDispatch();
+  const { pushToast } = useToastContext()
 
   const [trigger, result] = useLazyGetAllPropertiesQuery();
   const { error, isFetching } = result;
@@ -45,12 +44,10 @@ export default function PropertiesExport(props: IProps) {
     const data = paginatedData?.properties;
 
     if (error) {
-      dispatch(
-        setToast({
-          type: "error",
-          message: (error as IAPIError)?.data?.message,
-        })
-      );
+      pushToast({
+        type: "error",
+        message: (error as IAPIError)?.data?.message,
+      })
 
       return;
     }

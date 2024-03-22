@@ -2,10 +2,10 @@ import { DetailedHTMLProps, HTMLAttributes, useCallback } from "react";
 import { IAPIError, IUser } from "@/types";
 import Button from "./Button";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
-import { setToast } from "@/redux/services/toastSlice";
 import { useSuspendUnsuspendUserMutation } from "@/redux/services/api";
 import Spinner from "./Spinner";
 import Hr from "./Hr";
+import { useToastContext } from "@/context/ToastContext_";
 interface IProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   user: IUser;
@@ -21,6 +21,7 @@ interface IProps
 export default function ReinstateUserForm({ className, onClose, user, ...rest }: IProps) {
   const { profile } = useAppSelector(state => state.auth)
   const dispatch = useAppDispatch()
+  const { pushToast } = useToastContext()
 
   const [suspendUser, { isLoading }] = useSuspendUnsuspendUserMutation()
 
@@ -30,19 +31,16 @@ export default function ReinstateUserForm({ className, onClose, user, ...rest }:
         id: user.id,
         user_id: profile?.id ?? "",
       }).unwrap()
-      dispatch(setToast({
+      pushToast({
         message: 'Reinstated',
         type: 'success'
-      }))
+      })
     } catch (error) {
       const err = error as IAPIError
-      console.log(error);
-      dispatch(
-        setToast({
-          message: err.data.message,
-          type: "error",
-        })
-      );
+      pushToast({
+        message: err.data.message,
+        type: "error",
+      })
     } finally {
       onClose()
     }

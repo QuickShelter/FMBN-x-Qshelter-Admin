@@ -8,10 +8,9 @@ import FormLabel from "@/modules/common/form/FormLabel";
 import FormError from "@/modules/common/form/FormError";
 import Modal from "@/modules/common/Modal";
 import { useGetCountriesQuery, useUpdateProfileMutation } from "@/redux/services/api";
-import { setToast } from "@/redux/services/toastSlice";
-import { useAppDispatch } from "@/redux/store";
 import CountryInput from "@/modules/common/form/CountryInput";
 import useDatalistSupported from "@/hooks/useDatalistSupported";
+import { useToastContext } from "@/context/ToastContext_";
 
 interface IProps
   extends DetailedHTMLProps<
@@ -41,7 +40,7 @@ export default function ProfileEditModal({ className, user, ...rest }: IProps) {
 
   const datalistSupported = useDatalistSupported()
 
-  const dispatch = useAppDispatch()
+  const { pushToast } = useToastContext()
   const [updateProfile, { isLoading }] = useUpdateProfileMutation()
 
   const {
@@ -57,17 +56,17 @@ export default function ProfileEditModal({ className, user, ...rest }: IProps) {
       const response = await updateProfile(data).unwrap()
 
       if (response.ok) {
-        dispatch(setToast({
+        pushToast({
           message: response.message,
           type: 'success'
-        }))
+        })
       }
     } catch (error) {
       const err = error as IAPIError
-      dispatch(setToast({
+      pushToast({
         message: err.data?.message,
         type: 'error'
-      }))
+      })
     } finally {
       rest.onCancel()
     }

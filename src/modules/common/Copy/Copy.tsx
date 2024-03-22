@@ -1,8 +1,7 @@
 import { DetailedHTMLProps, HTMLAttributes } from "react";
 import Button from "../Button/Button";
 import styles from "./Copy.module.css";
-import { useAppDispatch } from "@/redux/store";
-import { setToast } from "@/redux/services/toastSlice";
+import { useToastContext } from "@/context/ToastContext_";
 
 interface IProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
@@ -10,24 +9,20 @@ interface IProps
 }
 
 export default function Copy({ text, className, ...rest }: IProps) {
-  const dispatch = useAppDispatch();
+  const { pushToast } = useToastContext()
 
   const handleCopy = async () => {
     try {
       await navigator.clipboard.writeText(text);
-      dispatch(
-        setToast({
-          type: "success",
-          message: "copied",
-        })
-      );
+      pushToast({
+        type: "success",
+        message: "copied",
+      })
     } catch (err) {
-      dispatch(
-        setToast({
-          type: "error",
-          message: "Unable to copy text to clipboard",
-        })
-      );
+      pushToast({
+        type: "error",
+        message: "Unable to copy text to clipboard",
+      })
     }
   };
 

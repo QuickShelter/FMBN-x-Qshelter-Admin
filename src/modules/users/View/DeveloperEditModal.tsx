@@ -8,9 +8,8 @@ import FormLabel from "@/modules/common/form/FormLabel";
 import FormError from "@/modules/common/form/FormError";
 import Modal from "@/modules/common/Modal";
 import { useUpdateDeveloperMutation } from "@/redux/services/api";
-import { useAppDispatch } from "@/redux/store";
-import { setToast } from "@/redux/services/toastSlice";
 import Select from "@/modules/common/form/Select";
+import { useToastContext } from "@/context/ToastContext_";
 
 interface IProps
   extends DetailedHTMLProps<
@@ -46,7 +45,7 @@ const typeOptions: { label: string, value: undefined | IDeveloperModeOfRegistrat
  */
 export default function DeveloperEditModal({ className, developer, ...rest }: IProps) {
   const [updateDeveloper, { isLoading }] = useUpdateDeveloperMutation()
-  const dispatch = useAppDispatch()
+  const { pushToast } = useToastContext()
 
   const defaultValues = useMemo(() => {
     return {
@@ -71,17 +70,17 @@ export default function DeveloperEditModal({ className, developer, ...rest }: IP
       const response = await updateDeveloper(data).unwrap()
 
       if (response.statusCode == 200) {
-        dispatch(setToast({
+        pushToast({
           message: response.message ?? "Updated",
           type: 'success'
-        }))
+        })
       }
     } catch (error) {
       const err = error as IAPIError
-      dispatch(setToast({
+      pushToast({
         message: err.data.message,
         type: 'error'
-      }))
+      })
     } finally {
       rest.onCancel()
     }

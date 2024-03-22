@@ -19,8 +19,7 @@ const styleMap: Record<IToastType, string> = {
 
 /**
    * @usage
-   * dispatch(
-        setToast({
+   * pushToast({
         message: "Request was approved successfully",
         type: "success",
       })

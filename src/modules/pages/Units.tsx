@@ -16,15 +16,14 @@ import { IAPIError, IApartment, IUnitStatus, IUnitUpdateDto } from "@/types";
 import Button from "../common/Button";
 import ConfirmationModal from "../common/modals/ConfirmationModal";
 import ToggleCheckbox from "../common/form/ToggleCheckbox";
-import { useAppDispatch } from "@/redux/store";
-import { setToast } from "@/redux/services/toastSlice";
 import useGetCurrentUser from "@/hooks/useGetCurrentUser";
+import { useToastContext } from "@/context/ToastContext_";
 
 type IUnits = "" | IUnitStatus;
 
 export default function Units() {
   const { id, building_id } = useParams();
-  const dispatch = useAppDispatch();
+  const { pushToast } = useToastContext()
   const userId = useGetCurrentUser()?.id
   const { data: property, isLoading } = useGetPropertyByIdQuery(id ?? "");
   const building = property?.buildings.filter(building => building.id == building_id)?.[0]
@@ -131,22 +130,18 @@ export default function Units() {
       const response = await updateUnit(payload).unwrap()
 
       if (response?.ok) {
-        dispatch(
-          setToast({
-            message: "Updated",
-            type: "success",
-          })
-        );
+        pushToast({
+          message: "Updated",
+          type: "success",
+        })
         setSelectAll(false)
       }
     } catch (error) {
-      dispatch(
-        setToast({
-          message:
-            (error as IAPIError)?.data?.data?.error ?? "Something went wrong",
-          type: "error",
-        })
-      );
+      pushToast({
+        message:
+          (error as IAPIError)?.data?.data?.error ?? "Something went wrong",
+        type: "error",
+      })
     } finally {
       closeModals()
     }

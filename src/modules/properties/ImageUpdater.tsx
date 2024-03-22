@@ -7,8 +7,7 @@ import GalleryExport from "@/modules/common/icons/GalleryExport";
 import buttonStyles from "@/module-styles/buttons.module.css";
 import ControlledImageSlider from "./ControlledImageSlider";
 import ImageHelper from "@/helpers/ImageHelper";
-import { setToast } from "@/redux/services/toastSlice";
-import { useAppDispatch } from "@/redux/store";
+import { useToastContext } from "@/context/ToastContext_";
 
 interface IProps {
   photos: (IBase64Upload | string)[];
@@ -18,7 +17,7 @@ interface IProps {
 
 export default function ImageUpdater({ photos, field, setValue }: IProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const dispatch = useAppDispatch()
+  const { pushToast } = useToastContext()
 
   const handleImagePicked: ChangeEventHandler = async (e) => {
     const target = e.target as HTMLInputElement;
@@ -44,10 +43,10 @@ export default function ImageUpdater({ photos, field, setValue }: IProps) {
 
     } catch (error) {
       console.log(error)
-      dispatch(setToast({
+      pushToast({
         message: 'Something went wrong',
         type: 'error'
-      }))
+      })
     } finally {
       target.value = ''
     }

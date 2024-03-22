@@ -9,8 +9,7 @@ interface IProps
 
 /**
    * @usage
-   * dispatch(
-        setToast({
+   * pushToast({
         message: "Request was approved successfully",
         type: "success",
       })

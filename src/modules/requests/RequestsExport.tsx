@@ -1,11 +1,10 @@
 import { DetailedHTMLProps, HTMLAttributes } from "react";
 import { IAPIError, IPaginatedRequestResponseBody } from "@/types";
-import { useAppDispatch } from "@/redux/store";
-import { setToast } from "@/redux/services/toastSlice";
 import { useLazyGetAllRequestsQuery } from "@/redux/services/api";
 import ExportForm from "@/modules/common/ExportForm";
 import ExportHelper from "@/helpers/ExportHelper";
 import useGetCurrentUser from "@/hooks/useGetCurrentUser";
+import { useToastContext } from "@/context/ToastContext_";
 
 interface IProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLFormElement>, HTMLFormElement> {
@@ -19,7 +18,7 @@ interface IExportDto {
 }
 
 export default function RequestsExport(props: IProps) {
-  const dispatch = useAppDispatch();
+  const { pushToast } = useToastContext()
   const profile = useGetCurrentUser()
 
   const [trigger, result] = useLazyGetAllRequestsQuery();
@@ -47,12 +46,10 @@ export default function RequestsExport(props: IProps) {
     const data = paginatedData?.requests;
 
     if (error) {
-      dispatch(
-        setToast({
-          type: "error",
-          message: (error as IAPIError)?.data?.message,
-        })
-      );
+      pushToast({
+        type: "error",
+        message: (error as IAPIError)?.data?.message,
+      })
 
       return;
     }

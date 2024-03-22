@@ -6,11 +6,11 @@ import { IAPIError, IBuilding, IBuildingEditDto } from "@/types";
 import FormGroup from "@/modules/common/form/FormGroup";
 import FormLabel from "@/modules/common/form/FormLabel";
 import TextInput from "@/modules/common/form/TextInput";
-import { useAppDispatch, useAppSelector } from "@/redux/store";
+import { useAppSelector } from "@/redux/store";
 import { useUpdateBlockMutation } from "@/redux/services/api";
 import PropertyHelper from "@/helpers/PropertyHelper";
-import { setToast } from "@/redux/services/toastSlice";
 import Spinner from "@/modules/common/Spinner";
+import { useToastContext } from "@/context/ToastContext_";
 
 interface IProps
     extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
@@ -27,7 +27,7 @@ interface IProps
  */
 export default function BuildingEditModal({ className, building, show, onCancel, ...rest }: IProps) {
     const { profile } = useAppSelector(state => state.auth)
-    const dispatch = useAppDispatch()
+    const { pushToast } = useToastContext()
     const [updateBlock, { isLoading }] = useUpdateBlockMutation()
 
     const { control, handleSubmit } = useForm<IBuildingEditDto>({
@@ -48,19 +48,17 @@ export default function BuildingEditModal({ className, building, show, onCancel,
             const response = await updateBlock({ ...payload, amenities: undefined, units: undefined }).unwrap()
 
             if (response.ok) {
-                dispatch(setToast({
+                pushToast({
                     message: response.message,
                     type: 'success'
-                }))
+                })
             }
         } catch (error) {
             const err = error as IAPIError
-            dispatch(
-                setToast({
-                    message: err.data.message,
-                    type: 'error'
-                })
-            )
+            pushToast({
+                message: err.data.message,
+                type: 'error'
+            })
         } finally {
             onCancel()
         }

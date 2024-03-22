@@ -2,7 +2,6 @@ import { DetailedHTMLProps, HTMLAttributes, useCallback, useState } from "react"
 import { IAPIError, IMortgageDocument, IMortgageDocumentStatus, IRequestApiDocumentStatusUpdateDto } from "@/types";
 import { useUpdateMortgageDocumentStatusMutation } from "@/redux/services/api";
 import { useAppDispatch } from "@/redux/store";
-import { setToast } from "@/redux/services/toastSlice";
 import BaseDocument from "./BaseDocument";
 import RequestApiDocumentDeclineModal from "./RequestApiDocumentDeclineModal";
 import useGetCurrentUser from "@/hooks/useGetCurrentUser";
@@ -42,27 +41,21 @@ export default function RequestApiDocument({ document, hideApproval = false }: I
             })
 
 
-            dispatch(
-                setToast({
-                    message: "Updated",
-                    type: "success",
-                })
-            );
+            pushToast({
+                message: "Updated",
+                type: "success",
+            })
 
-            dispatch(
-                setToast({
-                    message: "Updated",
-                    type: "success",
-                })
-            );
+            pushToast({
+                message: "Updated",
+                type: "success",
+            })
         } catch (error) {
             const err = error as IAPIError
-            dispatch(
-                setToast({
-                    message: err.data.message,
-                    type: "error",
-                })
-            );
+            pushToast({
+                message: err.data.message,
+                type: "error",
+            })
         } finally {
             setTargetStatus(null)
         }

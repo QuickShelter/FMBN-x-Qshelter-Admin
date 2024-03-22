@@ -2,8 +2,7 @@ import { DetailedHTMLProps, HTMLAttributes, useMemo } from "react";
 import FormGroup from "@/modules/common/form/FormGroup/FormGroup";
 import FormLabel from "@/modules/common/form/FormLabel/FormLabel";
 import Button from "@/modules/common/Button/Button";
-import { useAppDispatch, useAppSelector } from "@/redux/store";
-import { setToast } from "@/redux/services/toastSlice";
+import { useAppSelector } from "@/redux/store";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import Select from "@/modules/common/form/Select/Select";
 import {
@@ -16,6 +15,7 @@ import {
 import FormError from "@/modules/common/form/FormError";
 import { useUpdateUnitByIdMutation } from "@/redux/services/api";
 import PropertyHelper from "@/helpers/PropertyHelper";
+import { useToastContext } from "@/context/ToastContext_";
 
 interface IProps
     extends DetailedHTMLProps<HTMLAttributes<HTMLFormElement>, HTMLFormElement> {
@@ -56,9 +56,9 @@ function resolveAvailability(status: IUnitStatus) {
 }
 
 export default function ChangeUnitStatusForm({ unit, closeModal, ...rest }: IProps) {
-    const dispatch = useAppDispatch();
     const profile = useAppSelector((state) => state.auth.profile);
     const [updateUnit, { isLoading }] = useUpdateUnitByIdMutation()
+    const { pushToast } = useToastContext()
 
     const defaultValues = useMemo(() => {
         return {
@@ -116,24 +116,20 @@ export default function ChangeUnitStatusForm({ unit, closeModal, ...rest }: IPro
             const response = await updateUnit(payload).unwrap()
 
             if (response?.ok) {
-                dispatch(
-                    setToast({
-                        message: "Updated",
-                        type: "success",
-                    })
-                );
+                pushToast({
+                    message: "Updated",
+                    type: "success",
+                })
 
                 reset(defaultValues)
                 await trigger('status')
             }
         } catch (error) {
-            dispatch(
-                setToast({
-                    message:
-                        (error as IAPIError)?.data?.data?.error ?? "Something went wrong",
-                    type: "error",
-                })
-            );
+            pushToast({
+                message:
+                    (error as IAPIError)?.data?.data?.error ?? "Something went wrong",
+                type: "error",
+            })
         } finally {
             closeModal()
         }

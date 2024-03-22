@@ -13,7 +13,7 @@ import TextArea from "@/modules/common/form/TextArea";
 import Hr from "@/modules/common/Hr";
 import PropertyHelper from "@/helpers/PropertyHelper";
 import { useDeclinePropertyMutation } from "@/redux/services/api";
-import { setToast } from "@/redux/services/toastSlice";
+import { useToastContext } from "@/context/ToastContext_";
 
 interface IProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
@@ -30,6 +30,7 @@ interface IProps
  */
 export default function DeclinePropertyModal({ className, onClose, show, _property: property, ...rest }: IProps) {
   const { profile } = useAppSelector(state => state.auth)
+  const { pushToast } = useToastContext()
   const documents: string[] = PropertyHelper.getPropertyDocuments(property)
 
   const defaultValues: IDevApiProposedDevelopmentDeclineDto = {
@@ -50,21 +51,17 @@ export default function DeclinePropertyModal({ className, onClose, show, _proper
       const response = await decline({ id: property.id }).unwrap();
       console.log(response)
 
-      dispatch(
-        setToast({
-          message: "Updated",
-          type: "success",
-        })
-      );
+      pushToast({
+        message: "Updated",
+        type: "success",
+      })
     } catch (error) {
       const err = error as IAPIError
       console.log(error);
-      dispatch(
-        setToast({
-          message: err.data.message,
-          type: "error",
-        })
-      );
+      pushToast({
+        message: err.data.message,
+        type: "error",
+      })
     } finally {
       onClose()
     }

@@ -4,10 +4,10 @@ import PillCheck from "@/modules/common/form/PillCheck";
 import Button from "@/modules/common/Button";
 import { IAPIError, IBuilding } from "@/types";
 import PropertyHelper from "@/helpers/PropertyHelper";
-import { useAppDispatch, useAppSelector } from "@/redux/store";
-import { setToast } from "@/redux/services/toastSlice";
+import { useAppSelector } from "@/redux/store";
 import { useUpdateBlockMutation } from "@/redux/services/api";
 import Spinner from "@/modules/common/Spinner";
+import { useToastContext } from "@/context/ToastContext_";
 
 interface IProps
     extends DetailedHTMLProps<HTMLAttributes<HTMLFormElement>, HTMLFormElement> {
@@ -40,7 +40,7 @@ const amenities = [
 export default function AmenitiesSelectModal({ className, block, show, onCancel, ...rest }: IProps) {
     const initialValue = PropertyHelper.getAmenitiesFromBuilding(block)
     const { profile } = useAppSelector(state => state.auth)
-    const dispatch = useAppDispatch()
+    const { pushToast } = useToastContext()
     const [updateBlock, { isLoading }] = useUpdateBlockMutation()
 
     const onSubmit: FormEventHandler = async (e) => {
@@ -57,19 +57,17 @@ export default function AmenitiesSelectModal({ className, block, show, onCancel,
             }).unwrap()
 
             if (response.ok) {
-                dispatch(setToast({
+                pushToast({
                     message: response.message,
                     type: 'success'
-                }))
+                })
             }
         } catch (error) {
             const err = error as IAPIError
-            dispatch(
-                setToast({
-                    message: err.data.message,
-                    type: 'error'
-                })
-            )
+            pushToast({
+                message: err.data.message,
+                type: 'error'
+            })
         } finally {
             onCancel()
         }

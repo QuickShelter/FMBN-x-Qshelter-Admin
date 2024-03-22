@@ -6,11 +6,10 @@ import Button from "@/modules/common/Button";
 import ToggleCheckbox from "@/modules/common/form/ToggleCheckbox";
 import ConfirmationModal from "@/modules/common/modals/ConfirmationModal";
 import PropertyHelper from "@/helpers/PropertyHelper";
-import { useAppDispatch } from "@/redux/store";
 import useGetCurrentUser from "@/hooks/useGetCurrentUser";
 import { useUpdateUnitByIdMutation } from "@/redux/services/api";
-import { setToast } from "@/redux/services/toastSlice";
 import Pagination from "@/modules/common/Pagination";
+import { useToastContext } from "@/context/ToastContext_";
 
 interface IProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
@@ -20,7 +19,7 @@ interface IProps
 
 export default function Buildings({ className, propertyId, buildings, ...rest }: IProps) {
   const [showSoldModal, setShowSoldModal] = useState(false)
-  const dispatch = useAppDispatch();
+  const { pushToast } = useToastContext()
   const [page, setPage] = useState(1)
   const LIMIT = 5
   const userId = useGetCurrentUser()?.id
@@ -79,22 +78,18 @@ export default function Buildings({ className, propertyId, buildings, ...rest }:
       const response = await updateUnit(payload).unwrap()
 
       if (response?.ok) {
-        dispatch(
-          setToast({
-            message: "Updated",
-            type: "success",
-          })
-        );
+        pushToast({
+          message: "Updated",
+          type: "success",
+        })
         setSelectAll(false)
       }
     } catch (error) {
-      dispatch(
-        setToast({
-          message:
-            (error as IAPIError)?.data?.data?.error ?? "Something went wrong",
-          type: "error",
-        })
-      );
+      pushToast({
+        message:
+          (error as IAPIError)?.data?.data?.error ?? "Something went wrong",
+        type: "error",
+      })
     } finally {
       closeModals()
     }

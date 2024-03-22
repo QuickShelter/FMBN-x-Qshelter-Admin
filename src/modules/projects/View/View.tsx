@@ -16,8 +16,7 @@ import Documents from "./tabs/Documents";
 import Properties from "./tabs/Properties";
 
 import { useDeleteProjectByIdMutation, useUpdateProjectStatusMutation } from "@/redux/services/api";
-import { useAppDispatch, useAppSelector } from "@/redux/store";
-import { setToast } from "@/redux/services/toastSlice";
+import { useAppSelector } from "@/redux/store";
 import Spinner from "@/modules/common/Spinner";
 import DeclineProjectModal from "./DeclineProjectModal";
 import PageBackButton from "@/modules/common/PageBackButton";
@@ -30,6 +29,7 @@ import Dot from "@/modules/common/Dot";
 import ConfirmationModal from "@/modules/common/modals/ConfirmationModal";
 import Trash from "@/modules/common/icons/Trash";
 import { useNavigate } from "react-router-dom";
+import { useToastContext } from "@/context/ToastContext_";
 
 interface IProps {
   project: IProject;
@@ -40,7 +40,7 @@ type IDeveloperTabs = "overview" | "documents" | "properties";
 export default function View({ project }: IProps) {
   const { developer } = project;
   const { profile } = useAppSelector(state => state.auth)
-  const dispatch = useAppDispatch()
+  const { pushToast } = useToastContext()
   const { targetRef, toPDF } = usePDF()
   const navigate = useNavigate()
   const [targetStatus, setTargetStatus] = useState<IProjectStatus | null>()
@@ -85,25 +85,21 @@ export default function View({ project }: IProps) {
     try {
       await deleteProject(project?.id ?? '').unwrap();
 
-      dispatch(
-        setToast({
-          message: "Deleted",
-          type: "success",
-        })
-      );
+      pushToast({
+        message: "Deleted",
+        type: "success",
+      })
     } catch (error) {
       const err = error as IAPIError
       console.log(error);
-      dispatch(
-        setToast({
-          message: err.data.message,
-          type: "error",
-        })
-      );
+      pushToast({
+        message: err.data.message,
+        type: "error",
+      })
     } finally {
       navigate('/projects')
     }
-  }, [dispatch, project.id, deleteProject, navigate])
+  }, [project.id, deleteProject, navigate])
 
   const updateStatus = useCallback(async (status: IProjectStatus) => {
     try {
@@ -117,25 +113,21 @@ export default function View({ project }: IProps) {
       const response = await updateProposedDevelopmentStatus(payload).unwrap();
       console.log(response)
 
-      dispatch(
-        setToast({
-          message: "Updated",
-          type: "success",
-        })
-      );
+      pushToast({
+        message: "Updated",
+        type: "success",
+      })
     } catch (error) {
       const err = error as IAPIError
       console.log(error);
-      dispatch(
-        setToast({
-          message: err.data.message,
-          type: "error",
-        })
-      );
+      pushToast({
+        message: err.data.message,
+        type: "error",
+      })
     } finally {
       setTargetStatus(null)
     }
-  }, [dispatch, profile?.id, project.id, updateProposedDevelopmentStatus])
+  }, [profile?.id, project.id, updateProposedDevelopmentStatus])
 
   const handleApprove = () => {
     updateStatus('APPROVED')
