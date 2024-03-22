@@ -60,7 +60,6 @@ export default function Profile({ className, user, request, ...rest }: IProps) {
         comment: '',
         admin_id: profile?.id ?? "",
         status,
-        affectedDocuments: []
       }
 
       await updateMortgageStatus(payload).unwrap();

@@ -14,6 +14,7 @@ import TextArea from "@/modules/common/form/TextArea";
 import Hr from "@/modules/common/Hr";
 import RequestHelper from "@/helpers/RequestHelper";
 import DocumentHelper from "@/helpers/DocumentHelper";
+import UserHelper from "@/helpers/UserHelper";
 
 interface IProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
@@ -36,22 +37,24 @@ export default function MortgageDeclineModal({ className, onCancel, show, reques
   const defaultValues: IMortgageStatusChangeDto = {
     id: request?.data?.mortgage?.id ?? '',
     comment: '',
-    affectedDocuments: [],
     admin_id: profile?.id ?? "",
     status: 'declined',
+    comment_by: profile?.id ? UserHelper.getFullName(profile) : ''
   }
 
   const { control, handleSubmit, formState: { errors } } = useForm({ defaultValues })
 
   const onSubmit: SubmitHandler<IMortgageStatusChangeDto> = async (payload) => {
-    const { comment, affectedDocuments, ...rest } = payload
+    const { comment, ...rest } = payload
+    const affectedDocuments = RequestHelper.getMortgageDocumentsFromRequest(request).filter(document => document.status !== 'approved')?.map(doc => {
+      return doc.name
+    })
 
     try {
-      await updateMortgageStatus({ ...rest, comment: `${comment} Affected Documents: ${affectedDocuments ? affectedDocuments.join(', ') + '.' : ''}` }).unwrap()
+      await updateMortgageStatus({ ...rest, comment: `${comment} ${affectedDocuments ? 'Affected Documents: ' + affectedDocuments.join(', ') + '.' : ''}` }).unwrap()
       dispatch(setToast({
         message: 'Declined',
         type: 'success',
-        show: true,
       }))
     } catch (error) {
       const err = error as IAPIError

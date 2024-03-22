@@ -7,11 +7,14 @@ interface IProps
   testId?: string;
 }
 
+const MAX_LENGTH = 750
+
 export default function TextArea(props: IProps) {
-  const { rows, disabled, required = false, testId, ...rest } = props;
+  const { rows, disabled, maxLength, required = false, testId, ...rest } = props;
   return (
     <textarea
       {...rest}
+      maxLength={maxLength ?? MAX_LENGTH}
       data-test-id={testId}
       value={props.value ?? undefined}
       rows={rows}

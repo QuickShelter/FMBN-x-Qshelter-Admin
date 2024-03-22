@@ -14,7 +14,6 @@ import {
   IDevApiResponse,
   IDeveloper,
   ILoginActivity,
-  IMortgageStatus,
   IPaginatedPropertyResponse,
   IPaginatedPropertyResponseBody,
   IPaginatedRequestResponse,
@@ -65,6 +64,7 @@ import {
   IRsaApprovalDto,
   IRsaDocumentApprovalDto,
   IRequestApiDocumentStatusUpdateDto,
+  IMortgageStatusChangeDto,
 } from "../../types";
 import EnvironmentHelper from "@/helpers/EnvironmentHelper";
 import { formatDate } from "@/helpers/dateFormat";
@@ -486,10 +486,13 @@ export const api = createApi({
       IMortgageResponse<string[]>,
       IRequestApiDocumentStatusUpdateDto
     >({
-      query: ({ id, ...body }) => ({
+      query: ({ id, comment, ...body }) => ({
         url: `/mortgage/api/update-doc-status/${id}`,
         method: "PUT",
-        body,
+        body: {
+          ...body,
+          comment: comment ?? 'OK'
+        },
       }),
       invalidatesTags: ["Property", "Request"],
     }),
@@ -497,13 +500,7 @@ export const api = createApi({
     // Mortgage Application
     updateMortgageApplicationStatus: builder.mutation<
       IResponse<IRequest>,
-      {
-        id: string;
-        admin_id: string;
-        status: IMortgageStatus;
-        file?: string,
-        comment?: string,
-      }
+      IMortgageStatusChangeDto
     >({
       query: ({ id, admin_id, status,
         comment,

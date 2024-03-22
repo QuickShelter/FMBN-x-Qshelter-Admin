@@ -13,7 +13,8 @@ const styleMap: Record<IToastType, string> = {
   error: styles.error,
   warning: styles.warning,
   success: styles.success,
-  clear: styles.clear,
+  default: styles.clear,
+  info: styles.clear,
 };
 
 /**

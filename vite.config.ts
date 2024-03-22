@@ -29,7 +29,6 @@ export default defineConfig({
           reactToPdf: ["react-to-pdf"],
           reactHookForm: ['react-hook-form'],
           useHooks: ['@uidotdev/usehooks'],
-          uuid: ['uuid'],
         },
       },
     },

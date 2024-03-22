@@ -5,6 +5,8 @@ import { useAppDispatch } from "@/redux/store";
 import { setToast } from "@/redux/services/toastSlice";
 import BaseDocument from "./BaseDocument";
 import RequestApiDocumentDeclineModal from "./RequestApiDocumentDeclineModal";
+import useGetCurrentUser from "@/hooks/useGetCurrentUser";
+import UserHelper from "@/helpers/UserHelper";
 
 interface IProps
     extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
@@ -17,15 +19,17 @@ export default function RequestApiDocument({ document, hideApproval = false }: I
     const [updateDocumentStatus, { isLoading }] = useUpdateMortgageDocumentStatusMutation()
     const [targetStatus, setTargetStatus] = useState<IMortgageDocumentStatus | null>('pending')
     const [showDeclineModal, setShowDeclineModal] = useState(false)
+    const profile = useGetCurrentUser()
 
     const updateStatus = useCallback(async (status: IMortgageDocumentStatus, comment: string | undefined = undefined) => {
         setTargetStatus(status)
 
         try {
-            const payload: IRequestApiDocumentStatusUpdateDto = {
+            const payload: IRequestApiDocumentStatusUpdateDto | IMortgageDocumentStatus = {
                 id: document.id,
                 status,
                 comment,
+                comment_by: profile?.id ? UserHelper.getFullName(profile) : ''
             }
 
             await updateDocumentStatus(payload).unwrap();
@@ -36,6 +40,7 @@ export default function RequestApiDocument({ document, hideApproval = false }: I
                     type: "success",
                 })
             );
+
             dispatch(
                 setToast({
                     message: "Updated",

@@ -284,7 +284,7 @@ export type IPropertySaleStatus = "sold" | "available" | "locked";
 export type IPropertyUploadStatus = "approved" | "declined" | "pending";
 export type IPriceUpdateStatus = "approved" | "declined";
 
-export type IToastType = "clear" | "error" | "warning" | "success";
+export type IToastType = "default" | "error" | "warning" | "info" | "success";
 export interface IToastState {
   message: string;
   type: IToastType;
@@ -908,11 +908,12 @@ export interface IRsaApplicationDocument {
 export type IMortgageDocumentStatus = 'pending' | 'declined' | 'approved'
 
 export interface IMortgageStatusChangeDto {
-  id: string,
-  admin_id: string,
-  status: IMortgageStatus,
-  comment: string,
-  affectedDocuments: string[],
+  id: string;
+  admin_id: string;
+  status: IMortgageStatus;
+  file?: string,
+  comment?: string,
+  comment_by?: string | null
 }
 
 export interface IRsaApprovalDto {
@@ -933,6 +934,7 @@ export interface IRequestApiDocumentStatusUpdateDto {
   status: IMortgageDocumentStatus,
   comment?: string,
   id: string
+  comment_by?: string | null
 }
 
 export interface IBankStatement {
