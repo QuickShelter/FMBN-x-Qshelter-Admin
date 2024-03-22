@@ -18,7 +18,7 @@ import TopNav from "../../Nav/TopNav";
 import { useGetRefreshTokenMutation } from "@/redux/services/api";
 import { IAuth, IResponse } from "@/types";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
-import { saveToken } from "@/redux/services/authSlice";
+import { saveToken } from "@/redux/services/authSlice";;
 import NotificationDropdown from "../../Nav/NotificationDropdown";
 import ProfileDropDown from "../../Nav/ProfileDropDown";
 import Mobile from "../../Mobile";
@@ -30,7 +30,7 @@ interface IProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> { }
 
 export default function AppLayout(props: IProps) {
-  const { toasts } = useToastContext()
+  const { toasts, pushToast } = useToastContext()
   const { online } = useNetworkState()
   const previouslyOnline = usePrevious(online)
   const { pathname } = useLocation();
@@ -44,10 +44,9 @@ export default function AppLayout(props: IProps) {
 
   const contentRef = useRef<HTMLDivElement>(null);
   const dispatch = useAppDispatch();
-  const { pushToast } = useToastContext()
 
   useEffect(() => {
-    if (!online) {
+    if (previouslyOnline && !online) {
       pushToast({
         message: 'You are offline',
         type: 'warning',
@@ -81,7 +80,7 @@ export default function AppLayout(props: IProps) {
           message: "Error getting refresh token",
           type: "success",
         });
-      }//
+      }
     }, 10 * 60 * 1000);
 
     return () => clearInterval(refreshTokenInterval);
