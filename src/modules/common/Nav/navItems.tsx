@@ -1,7 +1,5 @@
 import Properties from "../icons/Properties";
 import Home from "../icons/Home";
-import Projects from "../icons/Projects";
-import Transactions from "../icons/Transactions";
 import Requests from "../icons/Requests";
 import UserHelper from "@/helpers/UserHelper";
 import { ReactElement } from "react";

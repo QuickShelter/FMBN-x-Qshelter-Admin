@@ -67,7 +67,7 @@
   box-shadow: 0px 4px 8px 0px #CDDDD452;
   border: 1px solid #FAFBFA;
   border-radius: 12px;
-  color: var(--green-50);
+  color: var(--green-500);
 }
 
 .nav li>a,
