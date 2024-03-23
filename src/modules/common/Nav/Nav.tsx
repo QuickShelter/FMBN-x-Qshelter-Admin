@@ -13,6 +13,8 @@ import Logout from "../icons/Logout";
 import LogoutConfirmation from "./LogoutConfirmation";
 import { useAppSelector } from "@/redux/store";
 import navItems from "./navItems";
+import Logo from "../icons/Logo";
+import Hr from "../Hr";
 
 interface IProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> { }
@@ -50,20 +52,24 @@ export default function Nav({ className, ...rest }: IProps) {
       />
       {!isAuthRoute && (
         <div className={styles.items}>
-          <menu>
-            {NavItems.map(({ title, path, icon, isAuthorized }) =>
-              isAuthorized ? (
-                <li
-                  key={path}
-                  className={currentPath.includes(path) ? styles.active : ""}
-                >
-                  <Link to={path}>
-                    {icon} <span className={styles.title}>{title}</span>
-                  </Link>
-                </li>
-              ) : null
-            )}
-          </menu>
+          <div className="flex flex-col gap-2" >
+            <Logo />
+            <menu>
+              <Hr className="mb-6 mt-4" />
+              {NavItems.map(({ title, path, icon, isAuthorized }) =>
+                isAuthorized ? (
+                  <li
+                    key={path}
+                    className={currentPath.includes(path) ? styles.active : ""}
+                  >
+                    <Link to={path}>
+                      {icon} <span className={styles.title}>{title}</span>
+                    </Link>
+                  </li>
+                ) : null
+              )}
+            </menu>
+          </div>
           <menu>
             {navItems2.map(({ title, path, icon }) => (
               <li

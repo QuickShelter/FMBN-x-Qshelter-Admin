@@ -23,6 +23,7 @@ import LinkTab from "../common/LinkTab";
 import TableWrapper from "../common/TableWrapper";
 import Panel from "../common/Panel";
 import UserFilter from "../users/UserFilter";
+import Hr from "../common/Hr";
 
 export default function Users() {
   const navigate = useNavigate();
@@ -168,79 +169,89 @@ export default function Users() {
         <title>Users</title>
         <meta name="description" content="Helmet application" />
       </Helmet>
-      <PageTitle className="py-4">Users</PageTitle>
-      <div className="sm:pr-6 flex flex-col gap-8">
-        <TopCards isLoading={isFetching} shadow data={stats} />
-        <Card className={``}>
-          <LinkTab
-            className="pt-2"
-            field="role"
-            tabs={[
-              {
-                label: "All",
-                link: setRole(""),
-                value: "",
-              },
-              {
-                label: "Subscriber",
-                link: setRole("user"),
-                value: "user",
-              },
-              {
-                label: "Developers",
-                link: setRole("developer"),
-                value: "developer",
-              },
-              {
-                label: "Admins",
-                link: setRole("admin"),
-                value: "admin",
-              },
-            ]}
-          />
-          <div className="px-4 sm:px-6 py-6">
-            <Panel className="flex justify-between flex-col sm:flex-row pb-10">
-              <Search
-                className="sm:w-[400px]"
-                placeholder="Search"
-                onSearch={setSearch}
-              />
-              <div className={styles.filternExport}>
-                {/* <UserSort sort={_sort} handleSubmit={handleSubmitFilter} /> */}
-                <UserFilter qparams={_queryParams} />
-                <Button
-                  leadingIcon={<Export />}
-                  variant="outline"
-                  onClick={() => setShowExportModal(true)}
-                >
-                  Export
-                </Button>
-              </div>
-            </Panel>
-
-            {!isFetching &&
-              pagination?.users &&
-              pagination.users.length > 0 && (
-                <div className="flex flex-col gap-4">
-                  <TableWrapper>
-                    <Listing users={pagination.users} />
-                  </TableWrapper>
-                  <Pagination
-                    baseUrl="/users"
-                    setCurrentPage={setOffset}
-                    nPages={pagination?.total_pages}
-                    currentPage={_offset + 1}
-                  />
-                </div>
-              )}
-            {pagination?.users?.length === 0 && !isFetching && (
-              <EmptyState srcString="/users.svg" />
-            )}
-            {/* {isFetching && <Spinner size="md" />} */}
-            {isFetching && <AvataredTableSkeleton />}
+      <Card className="">
+        <div className="px-[24px] py-[14px]">
+          <PageTitle className="py-4">Users</PageTitle>
+        </div>
+        <Hr />
+        <div className="flex flex-col">
+          <div className="p-[2rem]">
+            <TopCards isLoading={isFetching} shadow data={stats} />
           </div>
-        </Card>
-      </div>
-    </div>
+          <Hr />
+          <div className="p-[2rem]">
+            <Card className={``}>
+              <LinkTab
+                className="pt-2"
+                field="role"
+                tabs={[
+                  {
+                    label: "All",
+                    link: setRole(""),
+                    value: "",
+                  },
+                  {
+                    label: "Subscriber",
+                    link: setRole("user"),
+                    value: "user",
+                  },
+                  {
+                    label: "Developers",
+                    link: setRole("developer"),
+                    value: "developer",
+                  },
+                  {
+                    label: "Admins",
+                    link: setRole("admin"),
+                    value: "admin",
+                  },
+                ]}
+              />
+              <div className="px-4 sm:px-6 py-6">
+                <Panel className="flex justify-between flex-col sm:flex-row pb-10">
+                  <Search
+                    className="sm:w-[400px]"
+                    placeholder="Search"
+                    onSearch={setSearch}
+                  />
+                  <div className={styles.filternExport}>
+                    {/* <UserSort sort={_sort} handleSubmit={handleSubmitFilter} /> */}
+                    <UserFilter qparams={_queryParams} />
+                    <Button
+                      leadingIcon={<Export />}
+                      variant="outline"
+                      onClick={() => setShowExportModal(true)}
+                    >
+                      Export
+                    </Button>
+                  </div>
+                </Panel>
+
+                {!isFetching &&
+                  pagination?.users &&
+                  pagination.users.length > 0 && (
+                    <div className="flex flex-col gap-4">
+                      <TableWrapper>
+                        <Listing users={pagination.users} />
+                      </TableWrapper>
+                      <Pagination
+                        baseUrl="/users"
+                        setCurrentPage={setOffset}
+                        nPages={pagination?.total_pages}
+                        currentPage={_offset + 1}
+                      />
+                    </div>
+                  )}
+                {pagination?.users?.length === 0 && !isFetching && (
+                  <EmptyState srcString="/users.svg" />
+                )}
+                {/* {isFetching && <Spinner size="md" />} */}
+                {isFetching && <AvataredTableSkeleton />}
+              </div>
+            </Card>
+          </div>
+        </div>
+      </Card>
+    </div >
   );
 }

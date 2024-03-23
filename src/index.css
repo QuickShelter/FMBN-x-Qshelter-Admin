@@ -16,10 +16,11 @@
   --black-400: #05150c;
   --black-300: #262219;
 
+  --green-50: #1B9D00;
   --green-100: rgb(238, 243, 240);
   --green-200: #b2bcb6;
-  --green-300: #70897b;
-  --green-500: #018f3b;
+  --green-300: #70897B;
+  --green-500: #1B9D00;
 
   --blue-50: #e2f5fd;
   --blue-100: #ecfaed;
@@ -27,7 +28,7 @@
   --blue-500-lighter: #018f3be2;
   --bg: #fcfcfc;
 
-  --grey-100: #f8f9f9;
+  --grey-100: #D7DED7;
   --primary-200: #147efa;
 
   --yellow-500: #9c5721;

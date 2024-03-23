@@ -7,6 +7,7 @@ export default {
         "app-bg": "#fcfcfc",
         "app-black-400": "#05150C",
 
+        "app-green-50": "#1B9D00",
         "app-green-100": "#eef3f0",
         "app-green-200": "#b2bcb6",
         "app-green-300": "#70897b",

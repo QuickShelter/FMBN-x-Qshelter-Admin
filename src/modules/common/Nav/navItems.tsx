@@ -7,6 +7,7 @@ import UserHelper from "@/helpers/UserHelper";
 import { ReactElement } from "react";
 import Users from "../icons/Users";
 import { IUser } from "@/types";
+import Contributions from "../icons/Contributions";
 
 interface IProps {
     currentPath: string,
@@ -33,10 +34,16 @@ export default function navItems({ currentPath, user }: IProps) {
                 icon: <Users active={currentPath.includes("/users")} />,
             },
             {
-                title: "Projects",
-                path: "/projects",
+                title: "Contributions",
+                path: "/contributions",
                 isAuthorized: UserHelper.isPermitted(['legal_admin'], user),
-                icon: <Projects active={currentPath.includes("/projects")} />,
+                icon: <Contributions active={currentPath.includes("/contributions")} />,
+            },
+            {
+                title: "Loans",
+                path: "/loans",
+                isAuthorized: UserHelper.isPermitted(['legal_admin'], user),
+                icon: <Contributions active={currentPath.includes("/loans")} />,
             },
             {
                 title: "Properties",
@@ -50,12 +57,12 @@ export default function navItems({ currentPath, user }: IProps) {
                 isAuthorized: true,
                 icon: <Requests active={currentPath.includes("/requests")} />,
             },
-            {
-                title: "Transactions",
-                path: "/transactions",
-                isAuthorized: UserHelper.isPermitted(['finance_admin'], user),
-                icon: <Transactions active={currentPath.includes("/transactions")} />,
-            },
+            // {
+            //     title: "Transactions",
+            //     path: "/transactions",
+            //     isAuthorized: UserHelper.isPermitted(['finance_admin'], user),
+            //     icon: <Transactions active={currentPath.includes("/transactions")} />,
+            // },
         ];
     return navItems
 }

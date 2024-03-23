@@ -2,6 +2,7 @@ import { DetailedHTMLProps, HTMLAttributes, useMemo } from "react";
 import styles from "./Avatar.module.css";
 import { IUser } from "@/types";
 import Image from "../Image";
+import AvatarFallback from "../icons/Avatar";
 
 interface IProps
   extends DetailedHTMLProps<
@@ -21,16 +22,6 @@ interface IProps
  */
 export default function AvatarWithSrc(props: IProps) {
   const { user, src, className, placeholderClassName, ...rest } = props;
-
-  const getAlt = (user?: IUser | null) => {
-    if (!user) return "";
-
-    if (user.first_name) return user.first_name[0].toUpperCase();
-
-    if (user.last_name) return user.last_name[0].toUpperCase();
-
-    if (user.email) return user.email[0].toUpperCase();
-  };
 
   const actualDisplay = useMemo(() => {
     if (src) {
@@ -59,9 +50,9 @@ export default function AvatarWithSrc(props: IProps) {
 
     return (
       <div
-        className={`${className} ${placeholderClassName} ${styles.placeholder}`}
+        className={`${className} ${placeholderClassName}`}
       >
-        {getAlt(user)}
+        <AvatarFallback />
       </div>
     );
   }, [src, user, placeholderClassName, rest, className]);

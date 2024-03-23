@@ -7,7 +7,7 @@ export default class ColorHelper {
 
   public static green100 = "#eef3f0";
   public static green200 = "#b2bcb6";
-  public static green300 = "#70897b";
+  public static green300 = "#70897B";
   public static green500 = "#018f3b";
 
   public static black400 = "#05150c";

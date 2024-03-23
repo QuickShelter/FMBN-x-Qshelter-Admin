@@ -65,7 +65,7 @@ export default function Card(props: IProps) {
         </div>
       </td>
       <td>
-        <span>{UserHelper.roleAsString(user)}</span>
+        <span className={styles.userTag}>{UserHelper.roleAsString(user)}</span>
       </td>
       <td>
         <Link className={styles.phone} to={`tel:${phone}`}>

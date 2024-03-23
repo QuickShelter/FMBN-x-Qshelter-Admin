@@ -1,11 +1,19 @@
 .nav {
-  /* background-color: #fff; */
   display: flex;
   flex-direction: column;
   gap: 2.5rem;
   padding-block: 2rem;
   padding-left: 42px;
   height: min(100%, 1200px);
+
+  min-width: 236px;
+
+  color: #70897B;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 14px;
+  letter-spacing: -0.01em;
+  text-align: left;
 }
 
 .qLogo {
@@ -25,11 +33,16 @@
   border-radius: 500px;
 }
 
+.nav li {
+  width: 100%;
+}
+
 .nav menu {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   padding: 0;
+  gap: 0.5rem;
 }
 
 .nav li a {
@@ -45,14 +58,16 @@
 
 .nav li a {
   list-style: none;
-  padding: 14px 16px;
+  padding: 10px 12px;
   width: 100%;
-  padding-right: 7rem;
-  border-radius: 500px;
 }
 
 .nav li.active {
-  background: var(--blue-100, #caecfc);
+  background: #ffff;
+  box-shadow: 0px 4px 8px 0px #CDDDD452;
+  border: 1px solid #FAFBFA;
+  border-radius: 12px;
+  color: var(--green-50);
 }
 
 .nav li>a,

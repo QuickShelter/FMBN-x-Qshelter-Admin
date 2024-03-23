@@ -16,6 +16,19 @@
   height: 40px;
 }
 
+.userTag {
+  padding: 1px 8px;
+  width: fit-content;
+  background: var(--green-100);
+  border-radius: 4px;
+  color: var(--green-500);
+
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 19.6px;
+  text-align: left;
+}
+
 .avatar::before {
   background: var(--dark-blue-500, #091525);
 }

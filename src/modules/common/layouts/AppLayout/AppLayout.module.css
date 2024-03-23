@@ -11,6 +11,8 @@
   flex: 1;
   background: var(--bg);
   width: min(var(--max-width), 100vw);
+  gap: 2rem;
+  /* Space between nav and content */
 }
 
 .container,

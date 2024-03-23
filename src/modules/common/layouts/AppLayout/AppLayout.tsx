@@ -14,7 +14,6 @@ import { ContentRefContext } from "@/context/ContentContext";
 import ErrorBoundary from "../../ErrorBoundary";
 import NavDrawerButton from "../../NavDrawerButton/NavDrawerButton";
 import Desktop from "../../Desktop";
-import TopNav from "../../Nav/TopNav";
 import { useGetRefreshTokenMutation } from "@/redux/services/api";
 import { IAuth, IResponse } from "@/types";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
@@ -88,9 +87,9 @@ export default function AppLayout(props: IProps) {
 
   return (
     <div className={styles.wrapper}>
-      <Desktop>
+      {/* <Desktop>
         <TopNav />
-      </Desktop>
+      </Desktop> */}
       <main {...props} className={`${props.className} ${styles.container}`}>
         {isAuth ? null : (
           <Desktop>
