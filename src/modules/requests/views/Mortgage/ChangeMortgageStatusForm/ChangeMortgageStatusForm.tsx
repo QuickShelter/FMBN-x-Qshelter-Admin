@@ -3,8 +3,7 @@ import styles from "./ChangeMortgageStatusForm.module.css";
 import FormGroup from "@/modules/common/form/FormGroup/FormGroup";
 import FormLabel from "@/modules/common/form/FormLabel/FormLabel";
 import Button from "@/modules/common/Button/Button";
-import { useAppDispatch, useAppSelector } from "@/redux/store";
-import { setToast } from "@/redux/services/toastSlice";
+import { useAppSelector } from "@/redux/store";;
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import Select from "@/modules/common/form/Select/Select";
 import {
@@ -21,6 +20,7 @@ import DocumentHelper from "@/helpers/DocumentHelper";
 import BlockRadio from "@/modules/common/form/BlockRadio";
 import TextArea from "@/modules/common/form/TextArea";
 import Checkbox from "@/modules/common/form/Checkbox";
+import useToast from "@/hooks/useToast";
 
 interface IProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLFormElement>, HTMLFormElement> {
@@ -39,14 +39,25 @@ interface IData {
 
 type IOfferOption = 'offer' | 'reject'
 
+
+const nextStatus: Record<IMortgageStatus, IMortgageStatus | undefined> = {
+  approved: 'paid_equity',
+  paid_equity: 'send_offer_letter_from_bank',
+  document_sent_to_bank: 'paid_equity',
+  send_offer_letter_from_bank: 'completed',
+  declined: undefined,
+  completed: undefined,
+  pending: undefined
+}
+
 export default function ChangeMortgageStatusForm({ request, closeModal, ...rest }: IProps) {
-  const dispatch = useAppDispatch();
   const [showCompleteMessage, setShowCompleteMessage] = useState(false)
   const admin_id = useAppSelector((state) => state.auth.profile?.id);
   const mortgage = request?.data?.mortgage
+  const { pushToast } = useToast()
   const [agreed, setAgreed] = useState(false)
-  const [showDoc, setShowDoc] = useState(mortgage?.status === 'send_offer_letter_from_bank')
-  const [showReceipt, setShowReceipt] = useState(mortgage?.status === 'paid_equity')
+  const [showDoc, setShowDoc] = useState(nextStatus[mortgage?.status] === 'send_offer_letter_from_bank')
+  const [showReceipt, setShowReceipt] = useState(nextStatus[mortgage?.status] === 'paid_equity')
   const [fileData, setFileData] = useState<{ fileName: string | null, size: string | null }>({
     fileName: null,
     size: null
@@ -67,35 +78,102 @@ export default function ChangeMortgageStatusForm({ request, closeModal, ...rest 
     },
   });
 
-  const statusOptions: {
+  // const statusOptions: {
+  //   label: string;
+  //   value: string;
+  // }[] = [
+  //     {
+  //       label: "Completed",
+  //       value: "completed",
+  //     },
+  //     {
+  //       label: "Send offer Letter from Bank",
+  //       value: "send_offer_letter_from_bank",
+  //     },
+  //     {
+  //       label: "Documents Sent to bank",
+  //       value: "document_sent_to_bank",
+  //     },
+  //     {
+  //       label: "Paid Equity",
+  //       value: "paid_equity",
+  //     },
+  //     {
+  //       label: "Approved",
+  //       value: "approved",
+  //     },
+  //     {
+  //       label: "Pending",
+  //       value: "pending",
+  //     },
+  //   ];
+
+
+  const resolveStatusOptions: {
     label: string;
     value: string;
-  }[] = [
-      {
-        label: "Completed",
-        value: "completed",
-      },
-      {
-        label: "Send offer Letter from Bank",
-        value: "send_offer_letter_from_bank",
-      },
-      {
-        label: "Documents Sent to bank",
-        value: "document_sent_to_bank",
-      },
-      {
-        label: "Paid Equity",
-        value: "paid_equity",
-      },
-      {
-        label: "Approved",
-        value: "approved",
-      },
-      {
-        label: "Pending",
-        value: "pending",
-      },
-    ];
+  }[] = useMemo(() => {
+    switch (request?.data?.mortgage?.status) {
+      case "pending":
+
+        return [
+          {
+            label: "Approved",
+            value: "approved",
+          },
+        ]
+
+      case "approved":
+        return [
+          {
+            label: "Paid Equity",
+            value: "paid_equity",
+          }
+        ]
+
+      case "completed":
+
+        return [
+
+        ]
+
+      case "declined":
+
+        return [
+
+        ]
+
+      case "document_sent_to_bank":
+
+        return [
+          {
+            label: "Send offer Letter from Bank",
+            value: "send_offer_letter_from_bank",
+          },
+        ]
+
+      case "paid_equity":
+
+        return [
+          {
+            label: "Documents Sent to bank",
+            value: "document_sent_to_bank",
+          },
+        ]
+
+      case "send_offer_letter_from_bank":
+
+        return [
+          {
+            label: "Mortgage Closed",
+            value: "completed",
+          },
+        ]
+
+      default:
+        return []
+    }
+  }, [request?.data?.mortgage?.status])
 
   const [updateMortgage, { isLoading }] =
     useUpdateMortgageApplicationStatusMutation();
@@ -118,12 +196,10 @@ export default function ChangeMortgageStatusForm({ request, closeModal, ...rest 
 
   const onSubmit: SubmitHandler<IData> = async (data) => {
     if (!data.status || data.status.length == 0) {
-      dispatch(
-        setToast({
-          type: "warning",
-          message: "Provide a valid status",
-        })
-      );
+      pushToast({
+        type: "warning",
+        message: "Provide a valid status",
+      })
 
       return;
     }
@@ -136,21 +212,17 @@ export default function ChangeMortgageStatusForm({ request, closeModal, ...rest 
       const response: IResponse<IRequest> = await updateMortgage(data).unwrap();
 
       if (response?.success) {
-        dispatch(
-          setToast({
-            message: "Updated",
-            type: "success",
-          })
-        );
+        pushToast({
+          message: "Updated",
+          type: "success",
+        })
       }
     } catch (error) {
-      dispatch(
-        setToast({
-          message:
-            (error as IAPIError)?.data?.data?.error ?? "Something went wrong",
-          type: "error",
-        })
-      );
+      pushToast({
+        message:
+          (error as IAPIError)?.data?.data?.error ?? "Something went wrong",
+        type: "error",
+      })
     } finally {
       closeModal()
     }
@@ -189,7 +261,7 @@ export default function ChangeMortgageStatusForm({ request, closeModal, ...rest 
               setShowReceipt(newStatus === 'paid_equity' && mortgage.status !== 'paid_equity')
               field.onChange(newStatus)
             }}>
-              {statusOptions.map(({ label, value }) => (
+              {resolveStatusOptions?.map(({ label, value }) => (
                 <option key={value} value={value}>
                   {label}
                 </option>
