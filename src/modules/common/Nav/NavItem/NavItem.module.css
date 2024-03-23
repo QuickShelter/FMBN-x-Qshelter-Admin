@@ -1,0 +1,51 @@
+.container,
+.container a {
+    border-radius: 500px;
+}
+
+.container {
+    width: 100%;
+}
+
+.container a {
+    text-decoration: none;
+    width: fit-content;
+    transition: 300ms;
+}
+
+.container a:not(:disabled):hover {
+    transform: scale(1.05);
+    color: var(--dark-blue-500);
+}
+
+.container a {
+    list-style: none;
+    padding: 10px 12px;
+    width: 100%;
+}
+
+.container.active {
+    background: #ffff;
+    box-shadow: 0px 4px 8px 0px #CDDDD452;
+    border: 1px solid #FAFBFA;
+    border-radius: 12px;
+    color: var(--green-500);
+}
+
+.container>a,
+.nav .logout {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    text-align: center;
+    list-style: none;
+}
+
+.container>a {
+    color: var(--blue-400);
+
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}

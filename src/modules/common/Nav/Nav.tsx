@@ -15,6 +15,7 @@ import { useAppSelector } from "@/redux/store";
 import navItems from "./navItems";
 import Logo from "../icons/Logo";
 import Hr from "../Hr";
+import NavItem from "./NavItem";
 
 interface IProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> { }
@@ -55,31 +56,32 @@ export default function Nav({ className, ...rest }: IProps) {
           <div className="flex flex-col gap-2" >
             <Logo />
             <menu>
-              <Hr className="mb-6 mt-4" />
+              <Hr className="mb-6 mt-3 h-[2px]" />
               {NavItems.map(({ title, path, icon, isAuthorized }) =>
                 isAuthorized ? (
-                  <li
+                  <NavItem
+                    isActive={currentPath.includes(path)}
                     key={path}
                     className={currentPath.includes(path) ? styles.active : ""}
                   >
                     <Link to={path}>
                       {icon} <span className={styles.title}>{title}</span>
                     </Link>
-                  </li>
+                  </NavItem>
                 ) : null
               )}
             </menu>
           </div>
           <menu>
             {navItems2.map(({ title, path, icon }) => (
-              <li
+              <NavItem
+                isActive={currentPath.includes(path)}
                 key={path}
-                className={currentPath.includes(path) ? styles.active : ""}
               >
                 <Link to={path}>
                   {icon} <span className={styles.title}>{title}</span>
                 </Link>
-              </li>
+              </NavItem>
             ))}
             <li className={styles.logout}>
               <Button onClick={() => setShowLogoutModal(true)} variant="clear">

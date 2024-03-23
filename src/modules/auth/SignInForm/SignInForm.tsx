@@ -76,7 +76,7 @@ export default function SignInForm(
       onSubmit={handleSubmit(onSubmit)}
       className={`${props.className} ${styles.container}`}
     >
-      <h2>Log In</h2>
+      <h2>Log in to FMBN Admin</h2>
       {!online && <FormError>
         Your network is out
       </FormError>}

@@ -28,15 +28,6 @@
   height: 100%;
 }
 
-.nav li,
-.nav li a {
-  border-radius: 500px;
-}
-
-.nav li {
-  width: 100%;
-}
-
 .nav menu {
   display: flex;
   flex-direction: column;
@@ -45,32 +36,6 @@
   gap: 0.5rem;
 }
 
-.nav li a {
-  text-decoration: none;
-  width: fit-content;
-  transition: 300ms;
-}
-
-.nav li a:not(:disabled):hover {
-  transform: scale(1.05);
-  color: var(--dark-blue-500);
-}
-
-.nav li a {
-  list-style: none;
-  padding: 10px 12px;
-  width: 100%;
-}
-
-.nav li.active {
-  background: #ffff;
-  box-shadow: 0px 4px 8px 0px #CDDDD452;
-  border: 1px solid #FAFBFA;
-  border-radius: 12px;
-  color: var(--green-500);
-}
-
-.nav li>a,
 .nav .logout {
   display: flex;
   gap: 1rem;
@@ -79,11 +44,6 @@
   list-style: none;
 }
 
-.logout {
-  padding-left: 15px;
-}
-
-.nav li>a,
 .nav .logout button {
   color: var(--blue-400);
 
@@ -91,6 +51,10 @@
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+}
+
+.logout {
+  padding-left: 15px;
 }
 
 .logout button {
