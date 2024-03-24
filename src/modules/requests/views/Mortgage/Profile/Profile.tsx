@@ -160,7 +160,7 @@ export default function Profile({ className, user, request, ...rest }: IProps) {
                           disabled={
                             mortgage?.status == 'completed'
                             || mortgage?.status == 'declined'
-                            || mortgage?.status !== 'pending'
+                            || mortgage?.status == 'pending'
                           }
                           testId="mortgage-change-status-modal-trigger"
                           onClick={() => setShowStatusModal(true)}
