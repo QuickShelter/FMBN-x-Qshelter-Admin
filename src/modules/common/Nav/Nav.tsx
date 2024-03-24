@@ -56,7 +56,7 @@ export default function Nav({ className, ...rest }: IProps) {
           <div className="flex flex-col gap-2" >
             <Logo />
             <menu>
-              <Hr className="mb-6 mt-3 h-[2px]" />
+              <Hr className="mb-6 mt-3" />
               {NavItems.map(({ title, path, icon, isAuthorized }) =>
                 isAuthorized ? (
                   <NavItem

@@ -17,8 +17,9 @@
   --black-300: #262219;
 
   --green-50: #FAFBFA;
-  --green-100: rgb(238, 243, 240);
-  --green-200: #b2bcb6;
+  --green-100: #eef3f0;
+  --green-200: #D7DED7;
+  --line: var(--green-200);
   --green-300: #70897B;
   --green-400: #71867A;
   --green-500: #1B9D00;
@@ -152,12 +153,12 @@ select:-webkit-autofill:focus {
 
 /* Tailwind */
 .card-no-mobile {
-  @apply bg-white rounded-2xl sm:shadow-sm sm:border sm:border-zinc-100;
+  @apply bg-white rounded-2xl sm:shadow-sm sm:border sm:border-app-line;
 }
 
 .card {
   border-radius: 10px;
-  border: 1px solid var(--green-100);
+  border: 1px solid var(--line);
   background: #fff;
   box-shadow: 0px 4px 12px 0px rgba(237, 244, 240, 0.6);
 }

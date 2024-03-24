@@ -42,8 +42,8 @@ type IOfferOption = 'offer' | 'reject'
 
 const nextStatus: Record<IMortgageStatus, IMortgageStatus | undefined> = {
   approved: 'paid_equity',
-  paid_equity: 'send_offer_letter_from_bank',
-  document_sent_to_bank: 'paid_equity',
+  paid_equity: 'document_sent_to_bank',
+  document_sent_to_bank: 'send_offer_letter_from_bank',
   send_offer_letter_from_bank: 'completed',
   declined: undefined,
   completed: undefined,
@@ -133,15 +133,11 @@ export default function ChangeMortgageStatusForm({ request, closeModal, ...rest 
 
       case "completed":
 
-        return [
-
-        ]
+        return []
 
       case "declined":
 
-        return [
-
-        ]
+        return []
 
       case "document_sent_to_bank":
 
@@ -194,8 +190,8 @@ export default function ChangeMortgageStatusForm({ request, closeModal, ...rest 
     return true
   }, [showDoc, isLoading, fileData, agreed])
 
-  const onSubmit: SubmitHandler<IData> = async (data) => {
-    if (!data.status || data.status.length == 0) {
+  const onSubmit: SubmitHandler<IData> = async ({ status, ...rest }) => {
+    if (nextStatus[status] == null || nextStatus[status]?.length == 0) {
       pushToast({
         type: "warning",
         message: "Provide a valid status",
@@ -204,7 +200,7 @@ export default function ChangeMortgageStatusForm({ request, closeModal, ...rest 
       return;
     }
 
-    await handleUpdateStatus(data);
+    await handleUpdateStatus({ ...rest, status: nextStatus[status] as IMortgageStatus });
   };
 
   const handleUpdateStatus = async (data: IData) => {

@@ -3,7 +3,7 @@
   width: fit-content;
   gap: 1.5rem;
   width: 100%;
-  border-bottom: 1px solid var(--green-100, #eef3f0);
+  border-bottom: 1px solid var(--line);
 
   color: #091525;
   font-size: 14px;

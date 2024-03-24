@@ -1,7 +1,4 @@
 .container {
-  border-radius: 100px;
-  background: var(--green-100);
-
   display: flex;
   padding: 4px 8px 4px 4px;
   align-items: center;

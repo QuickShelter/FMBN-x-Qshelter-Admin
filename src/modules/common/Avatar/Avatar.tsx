@@ -49,11 +49,7 @@ export default function AvatarWithSrc(props: IProps) {
     }
 
     return (
-      <div
-        className={`${className} ${placeholderClassName}`}
-      >
-        <AvatarFallback />
-      </div>
+      <AvatarFallback className={`${className} ${placeholderClassName}`} />
     );
   }, [src, user, placeholderClassName, rest, className]);
 

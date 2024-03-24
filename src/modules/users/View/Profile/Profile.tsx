@@ -81,25 +81,28 @@ export default function Profile({ className, user, ...rest }: IProps) {
         )}
         <div className="flex flex-col gap-4 sm:flex-row sm:justify-between">
           <div className="flex flex-col sm:flex-row gap-6">
-            {user?.avatar ? <Link target="_blank" to={user.avatar}>
-              {avatarComponent}
-            </Link> : avatarComponent}
             <div className="flex flex-col gap-4">
-              <div className="">
-                <div className="font-semibold leading-[21px] text-[15px] text-app-black-400">
-                  {UserHelper.getFullName(user)}
-                </div>
-                <div className="text-app-green-300">
-                  Created On{" "}
-                  {FormatHelper.dateFormatter.format(user.created_at)}{" "}
-                  {/* <Dot />{" "}
+              <div className="flex flex-col gap-5">
+                {user?.avatar ? <Link target="_blank" to={user.avatar}>
+                  {avatarComponent}
+                </Link> : avatarComponent}
+                <div className="">
+                  <div className="font-semibold leading-[21px] text-[15px] text-app-black-400">
+                    {UserHelper.getFullName(user)}
+                  </div>
+                  <div className="text-app-green-300 text-sm font-normal">
+                    Joined On{" "}
+                    {FormatHelper.dateFormatter.format(user.created_at)}{" "}
+                    {/* <Dot />{" "}
                   Last Login{" "}
                   {FormatHelper.dateFormatter.format(user.last_login_at)} */}
+                  </div>
                 </div>
               </div>
               <RoleGuard allowedRoles={['super_admin']}>
-                <div className="gap-2 flex flex-wrap">
+                <div className="gap-2 flex sm:items-center flex-wrap">
                   <Button
+                    className="px-3 py-2"
                     variant="outline"
                     leadingIcon={<Edit />}
                     onClick={() => setShowProfileModal(true)}

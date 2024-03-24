@@ -9,11 +9,12 @@ export default {
 
         "app-green-50": "#1B9D00",
         "app-green-100": "#eef3f0",
-        "app-green-200": "#b2bcb6",
+        "app-green-200": "#D7DED7",
         "app-green-300": "#70897b",
         "app-green-300": "#71867A",
         "app-green-500": "#018F3B",
         "app-accent": "#C42E1C",
+        "app-line": "#D7DED7",
 
         "app-purple-100": "#ece3fc",
 

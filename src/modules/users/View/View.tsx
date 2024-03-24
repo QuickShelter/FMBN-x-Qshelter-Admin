@@ -9,6 +9,7 @@ import { useMemo } from "react";
 import Subscriber from "./Subscriber/Subscriber";
 import Hr from "@/modules/common/Hr";
 import PageBackButton from "@/modules/common/PageBackButton";
+import ViewLayout from "@/modules/common/layouts/ViewLayout";
 
 interface IProps {
   user: IUser;
@@ -30,18 +31,12 @@ export default function View({ user }: IProps) {
   }, [user]);
 
   return (
-    <div className={styles.container}>
-      <PageTitle>Users</PageTitle>
-
-      <Card className={styles.card}>
-        <div className="px-4 sm:px-6 py-4">
-          <PageBackButton text="Back" />
-        </div>
-        <Hr />
+    <ViewLayout>
+      <div className={styles.card}>
         <div>
           {appropriateView}
         </div>
-      </Card>
-    </div>
+      </div>
+    </ViewLayout>
   );
 }

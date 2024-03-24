@@ -97,7 +97,7 @@ export default function AppLayout(props: IProps) {
           </Desktop>
         )}
         <div
-          className={`${styles.content} ${isAuth ? "" : styles.hasNav}`}
+          className={`${styles.content} ${isAuth ? "" : styles.hasNav} pb-6`}
           ref={contentRef}
         >
           <Mobile>

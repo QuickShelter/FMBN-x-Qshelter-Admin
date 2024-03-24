@@ -14,7 +14,7 @@ import TransactionView from "../pages/TransactionView";
 import ProtectedRoute from "./ProtectedRoute";
 import AuthRoute from "./AuthRoute";
 import UnImplemented from "../pages/UnImplemented";
-//import Test from "../pages/Test";
+import Test from "../pages/Test";
 import Projects from "../pages/Projects";
 import ProjectView from "../pages/ProjectView";
 import Properties from "../pages/Properties";
@@ -35,11 +35,10 @@ const Router = createBrowserRouter([
         path: "/",
         element: <Navigate to="/dashboard" />,
       },
-
-      // {
-      //   path: "/test",
-      //   element: <Test />,
-      // },
+      {
+        path: "/test",
+        element: <Test />,
+      },
       {
         path: "/dashboard",
         element: (

@@ -1,6 +1,6 @@
 .container {
   border-radius: 8px;
-  border: 1px solid var(--green-100);
+  border: 1px solid var(--line);
   background: #fff;
 
   display: flex;
