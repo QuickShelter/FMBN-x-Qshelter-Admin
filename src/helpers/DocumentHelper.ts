@@ -56,6 +56,10 @@ export default class DocumentHelper {
         jobConfirmationLetter: "Job Confirmation Letter",
         jobAppointmentLetter: "Job Appointment Letter",
         employmentVerificationLetter: "Employment Verification Letter",
+        spouse_employmentVerificationLetter: "Spouse Employment Verification Letter",
+        spouse_staffId: "Spouse Staff ID",
+        spouse_paySlip: "Spouse Pay Slip",
+        "spouse consent letter": "Spouse Consent Letter",
     }
 
     public static getHumanNames(name: string | null) {

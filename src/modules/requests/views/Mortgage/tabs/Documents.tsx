@@ -14,7 +14,11 @@ interface IProps
 export default function Documents({ className, request, ...rest }: IProps) {
   const spousalDocumentNames: string[] = [
     'spouse consent letter',
-    'spouse tax information'
+    'spouse tax information',
+    'spouse_paySlip',
+    'spouse_staffId',
+    'spouse_paySlip',
+    'spouse_employmentVerificationLetter',
   ]
   const appplicationDocuments = request?.data?.mortgage?.mortgage_application_documents ?? []
   const appplicantDocuments = request?.data?.mortgage?.mortgage_applicant?.mortgage_applicant_documents ?? []
