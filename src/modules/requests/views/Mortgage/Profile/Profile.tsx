@@ -9,8 +9,7 @@ import FormError from "@/modules/common/form/FormError";
 import RoleTag from "@/modules/common/RoleTag";
 import ConfirmationModal from "@/modules/common/modals/ConfirmationModal";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
-import { useUpdateMortgageApplicationStatusMutation } from "@/redux/services/api";
-import { setToast } from "@/redux/services/toastSlice";
+import { useUpdateMortgageApplicationStatusMutation } from "@/redux/services/api";;
 import MortgageDeclineModal from "../MortgageDeclineModal";
 import Spinner from "@/modules/common/Spinner";
 import RoleGuard from "@/modules/common/guards/RoleGuard";
@@ -25,6 +24,7 @@ import Refresh from "@/modules/common/icons/Refresh";
 import ColorHelper from "@/helpers/ColorHelper";
 import Export from "@/modules/common/icons/Export";
 import RequestHelper from "@/helpers/RequestHelper";
+import useToast from "@/hooks/useToast";
 
 interface IProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
@@ -42,6 +42,7 @@ export default function Profile({ className, user, request, ...rest }: IProps) {
   const { profile } = useAppSelector(state => state.auth)
   const [showDeclineModal, setShowDeclineModal] = useState(false);
   const [showApprovalModal, setShowApproveModal] = useState(false);
+  const { pushToast } = useToast()
 
   const dispatch = useAppDispatch()
   const mortgage = request?.data?.mortgage
@@ -64,21 +65,17 @@ export default function Profile({ className, user, request, ...rest }: IProps) {
 
       await updateMortgageStatus(payload).unwrap();
 
-      dispatch(
-        setToast({
-          message: "Updated",
-          type: "success",
-        })
-      );
+      pushToast({
+        message: "Updated",
+        type: "success",
+      })
     } catch (error) {
       const err = error as IAPIError
       console.log(error);
-      dispatch(
-        setToast({
-          message: err.data.message,
-          type: "error",
-        })
-      );
+      pushToast({
+        message: err.data.message,
+        type: "error",
+      })
     } finally {
       setTargetStatus(null)
     }
@@ -145,7 +142,7 @@ export default function Profile({ className, user, request, ...rest }: IProps) {
                 </div>
               </div>
               <div className="flex gap-4 items-center flex-wrap">
-                <RoleGuard allowedRoles={['mortgage_ops_admin']}>
+                {(mortgage?.status == 'pending' || mortgage?.status == 'declined') && <RoleGuard allowedRoles={['mortgage_ops_admin']}>
                   <ApprovalButtons
                     isLoading={isLoading}
                     status={request?.data?.mortgage?.status}
@@ -154,12 +151,17 @@ export default function Profile({ className, user, request, ...rest }: IProps) {
                     handleApprove={handleApprove}
                     handleDecline={handleDecline}
                     handleUndo={handleUndo} />
-                </RoleGuard>
+                </RoleGuard>}
                 <RoleGuard allowedRoles={['mortgage_ops_admin']}>
                   <div className="flex gap-4 flex-wrap items-center">
-                    {mortgage && mortgage?.status !== 'pending' &&
+                    {mortgage &&
                       <RoleGuard allowedRoles={['mortgage_ops_admin']}>
                         <Button
+                          disabled={
+                            mortgage?.status == 'completed'
+                            || mortgage?.status == 'declined'
+                            || mortgage?.status !== 'pending'
+                          }
                           testId="mortgage-change-status-modal-trigger"
                           onClick={() => setShowStatusModal(true)}
                           variant="outline"
