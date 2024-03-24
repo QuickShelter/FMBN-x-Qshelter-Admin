@@ -41,9 +41,8 @@ export default function LinkButton(props: IProps) {
       to={to}
       style={style}
       type={type}
-      className={`${props.className} ${styles.container} ${styleMap[variant]} ${
-        stretch ? styles.stretch : ""
-      }`}
+      className={`${props.className} ${styles.container} ${styleMap[variant]} ${stretch ? styles.stretch : ""
+        }`}
     >
       {leadingIcon}
       {props.children}

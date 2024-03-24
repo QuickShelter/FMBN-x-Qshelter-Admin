@@ -1,0 +1,9 @@
+.container {}
+
+.container .chevron {
+    transition: 300ms;
+}
+
+.container:hover .chevron {
+    transform: translateX(0.6rem);
+}

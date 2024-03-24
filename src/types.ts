@@ -10,6 +10,8 @@ export interface StandardLoginResponseProps {
   status?: number | string;
 }
 
+export type INullableString = string | null;
+
 export interface INotificationCardData {
   id: string;
   heading: string;
@@ -50,6 +52,21 @@ export interface IPaginatedRequest {
     "address": string | null,
     "id": string
   }
+}
+
+export interface IEmploymentHistory {
+  employer: IEmployer | null,
+  employee: IEmployee | null,
+}
+
+export interface IEmployee {
+  nhfNumber: INullableString,
+}
+
+export interface IEmployer {
+  name: INullableString,
+  employerNumber: INullableString,
+  nEmployees: number,
 }
 
 export interface IUser {
@@ -292,6 +309,8 @@ export interface IToastState {
   show?: boolean;
   id?: string
 }
+
+export type IButtonVariants = "primary" | "clear" | "secondary" | "outline";
 
 export type IToastSliceState = IToastState[]
 

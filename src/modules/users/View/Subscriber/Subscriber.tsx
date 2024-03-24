@@ -1,28 +1,82 @@
 import { DetailedHTMLProps, HTMLAttributes, useMemo, useState } from "react";
 import styles from "./Subscriber.module.css";
-import { IUser } from "@/types";
+import { IEmploymentHistory, IUser } from "@/types";
 import Profile from "../Profile";
 import Tab from "@/modules/common/Tab";
-import Documents from "./Documents";
-import OverView from "../OverView";
+import EmploymentDetails from "./tabs/EmploymentDetails";
+import BankDetails from "./tabs/BankDetails";
+import NextOfKin from "./tabs/NextOfKin";
+import PersonalDetails from "./tabs/PersonalDetails";
+import EmploymentHistory from "./tabs/EmploymentHistory";
 
 interface IProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   user: IUser;
 }
 
-type ISubscriberTabs = "overview" | "documents" | "projects";
+type ITabs = "personal_details" | "employment_history" | "employment_details" | "bank_details" | "next_of_kin";
+const employmentHistory: IEmploymentHistory[] = [
+  {
+    employee: {
+      nhfNumber: ''
+    },
+    employer: {
+      employerNumber: '',
+      name: '',
+      nEmployees: 23
+    }
+  },
+  {
+    employee: {
+      nhfNumber: ''
+    },
+    employer: {
+      employerNumber: '',
+      name: '',
+      nEmployees: 23
+    }
+  },
+  {
+    employee: {
+      nhfNumber: ''
+    },
+    employer: {
+      employerNumber: '',
+      name: '',
+      nEmployees: 23
+    }
+  },
+  {
+    employee: {
+      nhfNumber: ''
+    },
+    employer: {
+      employerNumber: '',
+      name: '',
+      nEmployees: 23
+    }
+  }
+]
 
 export default function Subscriber({ className, user, ...rest }: IProps) {
-  const [tab, setTab] = useState<ISubscriberTabs>("overview");
+  const [tab, setTab] = useState<ITabs>("personal_details");
 
   const resolvedTab = useMemo(() => {
     switch (tab) {
-      case "overview":
-        return <OverView user={user} />;
+      case "personal_details":
+        return <PersonalDetails user={user} />;
 
-      case "documents":
-        return <Documents user={user} />;
+      case "employment_details":
+        return <EmploymentDetails user={user} />;
+
+      case "employment_history":
+        return <EmploymentHistory history={employmentHistory} user={user} />;
+
+      case "bank_details":
+        return <BankDetails user={user} />;
+
+      case "next_of_kin":
+        return <NextOfKin user={user} />;
 
       default:
         break;
@@ -40,15 +94,27 @@ export default function Subscriber({ className, user, ...rest }: IProps) {
 
       <Tab
         currentTab={tab}
-        setTab={(val: string) => setTab(val as ISubscriberTabs)}
+        setTab={(val: string) => setTab(val as ITabs)}
         tabs={[
           {
-            label: "Overview",
-            value: "overview",
+            label: "Personal Details",
+            value: "personal_details",
           },
           {
-            label: "Documents",
-            value: "documents",
+            label: "Employment Details",
+            value: "employment_details",
+          },
+          {
+            label: "Employment History",
+            value: "employment_history",
+          },
+          {
+            label: "Bank Details",
+            value: "bank_details",
+          },
+          {
+            label: "Next of Kin",
+            value: "next_of_kin",
           },
         ]}
       />
