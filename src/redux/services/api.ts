@@ -913,7 +913,7 @@ export const api = createApi({
         }
 
         return {
-          url: `/developer/api/proposed-developments/paginate`,
+          url: `/developer/proposed-developments/paginate`,
           params: { ...rest, 'filter.status': status, ...dateParam },
         }
       },
@@ -931,7 +931,7 @@ export const api = createApi({
     >({
       query: (params) => {
         return {
-          url: `/developer/api/proposed-developments/by-date-range`,
+          url: `/developer/proposed-developments/by-date-range`,
           params
         }
       },
@@ -944,7 +944,7 @@ export const api = createApi({
     }),
 
     getProjectById: builder.query<IProject, string>({
-      query: (id) => `/developer/api/proposed-developments/${id}`,
+      query: (id) => `/developer/proposed-developments/${id}`,
       providesTags: (_result, _error, id) => [{ type: "Project", id }],
       transformResponse: (response: { data: IProject }) => {
         return response.data;
@@ -953,21 +953,21 @@ export const api = createApi({
 
     deleteProjectById: builder.mutation<IProject, string>({
       query: (id) => ({
-        url: `/developer/api/proposed-developments/${id}`,
+        url: `/developer/proposed-developments/${id}`,
         method: 'DELETE'
       }),
       invalidatesTags: ['Project'],
     }),
 
     getProjectsStats: builder.query<IApprovalStats, void>({
-      query: () => "/developer/api/proposed-developments/stats",
+      query: () => "/developer/proposed-developments/stats",
       transformResponse: (response: IDevApiResponse<IApprovalStats>) => {
         return response.data;
       },
     }),
 
     getProjectsByUserId: builder.query<IProject[], string>({
-      query: (id) => `/developer/api/proposed-developments/by-user/${id}`,
+      query: (id) => `/developer/proposed-developments/by-user/${id}`,
       providesTags: (_result, _error, id) => [{ type: "Project", id }],
       transformResponse: (response: IDevApiResponse<IProject[]>) => {
         return response.data;
@@ -976,7 +976,7 @@ export const api = createApi({
 
     // DEVELOPER ONBOARDING DOCUMENTS
     getDocumentsByUserId: builder.query<IDevApiDocument[], string>({
-      query: (id) => `/developer/api/common/all-documents-by-user/${id}`,
+      query: (id) => `/developer/common/all-documents-by-user/${id}`,
       providesTags: () => ["Developer Documents"],
       transformResponse: (response: IDevApiResponse<IDevApiDocument[]>) => {
         return response.data;
@@ -1034,7 +1034,7 @@ export const api = createApi({
       IDevApiDocumentStatusUpdateDto
     >({
       query: ({ type, id, status, user_id, declineReason }) => ({
-        url: `/developer/api/${type}/${id}/update-status`,
+        url: `/developer/${type}/${id}/update-status`,
         method: "POST",
         body: {
           status: status,
@@ -1050,7 +1050,7 @@ export const api = createApi({
 
 
     getDeveloperByUserId: builder.query<IDeveloper, string>({
-      query: (id) => `/developer/api/developers/by-user/${id}`,
+      query: (id) => `/developer/developers/by-user/${id}`,
       providesTags: (_result, _error, id) => [{ type: "Developer", id }],
       transformResponse: (response: IDevApiResponse<IDeveloper>) => {
         return response.data;
@@ -1058,7 +1058,7 @@ export const api = createApi({
     }),
 
     getDeveloperById: builder.query<IDeveloper, string>({
-      query: (id) => `/developer/api/developers/${id}`,
+      query: (id) => `/developer/developers/${id}`,
       providesTags: (_result, _error, id) => [{ type: "Developer", id }],
       transformResponse: (response: IDevApiResponse<IDeveloper>) => {
         return response.data;
@@ -1070,7 +1070,7 @@ export const api = createApi({
       IDeveloperUpdateDto
     >({
       query: ({ id, ...body }) => ({
-        url: `/developer/api/developers/${id}`,
+        url: `/developer/developers/${id}`,
         method: "PATCH",
         body: body,
       }),
@@ -1084,7 +1084,7 @@ export const api = createApi({
       IDevApiProposedDevelopmentStatusUpdateDto
     >({
       query: ({ id, status, user_id }) => ({
-        url: `/developer/api/proposed-developments/${id}/update-status`,
+        url: `/developer/proposed-developments/${id}/update-status`,
         method: "POST",
         body: {
           status: status,
@@ -1102,7 +1102,7 @@ export const api = createApi({
       IDevApiProposedDevelopmentDeclineDto
     >({
       query: ({ id, status, user_id, declineReason, affectedDocuments }) => ({
-        url: `/developer/api/proposed-developments/${id}/decline`,
+        url: `/developer/proposed-developments/${id}/decline`,
         method: "POST",
         body: {
           status: status,
@@ -1126,7 +1126,7 @@ export const api = createApi({
         // }
 
         return {
-          url: "/uploader/api/document/presign",
+          url: "/uploader/document/presign",
           method: "POST",
           body: {
             url
