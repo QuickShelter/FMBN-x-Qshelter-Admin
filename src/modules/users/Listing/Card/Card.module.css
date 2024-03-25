@@ -63,7 +63,7 @@
 }
 
 .container td {
-  border-bottom: 1px solid var(--dark-blue-100, #edf3fc);
+  border-bottom: 1px solid var(--line);
   padding-bottom: 1rem;
 
   color: var(--dark-blue-400, #10244f);

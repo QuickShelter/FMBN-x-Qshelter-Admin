@@ -15,7 +15,7 @@
 
 .container th {
   vertical-align: top;
-  border-bottom: 1px solid var(--dark-blue-100, #edf3fc);
+  border-bottom: 1px solid var(--line);
   padding-bottom: 1rem;
   border-collapse: collapse;
   text-align: start;
@@ -24,10 +24,10 @@
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
-  line-height: 140%; /* 19.6px */
+  line-height: 140%;
+  /* 19.6px */
 }
 
 @media screen and (max-width: 420px) {
-  .container {
-  }
+  .container {}
 }
