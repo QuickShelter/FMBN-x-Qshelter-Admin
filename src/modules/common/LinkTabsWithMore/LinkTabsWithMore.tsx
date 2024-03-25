@@ -6,6 +6,7 @@ import LinkTabPresentational from "../LinkTabPresentational";
 import Card from "../Card";
 import ChevronDown from "../icons/ChevronDown";
 import { useClickAway } from '@uidotdev/usehooks'
+import LinkTab from "../LinkTab";
 
 interface IProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
@@ -17,9 +18,10 @@ interface IProps
   field: string;
   threshold: number;
   check?: "query" | "path";
+  defaultPath?: string
 }
 
-export default function LinkTabWithMore(props: IProps) {
+export default function LinkTabWithMore({ defaultPath, ...props }: IProps) {
   const { tabs, field, check = "query", threshold, ...rest } = props;
   const searchParamsString = useLocation().search;
   const currentPath = useLocation().pathname;
@@ -32,25 +34,26 @@ export default function LinkTabWithMore(props: IProps) {
   const currentValue = useMemo(
     () => {
       if (check === "query") {
+
         if (Object.keys(queryParamsMap).length < 1) {
-          return ""
+          return defaultPath ?? ""
         }
 
         if (!(field in queryParamsMap)) {
-          return ""
+          return defaultPath ?? ""
         }
 
-        const res = queryParamsMap[field]
+        const res = queryParamsMap[field] ?? defaultPath
         return res
       } else if (check === 'path') {
         return currentPath.split("/").at(-1)
       }
     },
-    [check, queryParamsMap, field, currentPath]
+    [check, queryParamsMap, field, currentPath, defaultPath]
   );
 
-  if (tabs.length < 5) {
-    return <LinkTabPresentational tabs={tabs} currentValue={currentValue} />
+  if (tabs.length < threshold) {
+    return <LinkTab {...props} defaultPath={defaultPath} />
   }
 
   const main = tabs.slice(0, threshold)

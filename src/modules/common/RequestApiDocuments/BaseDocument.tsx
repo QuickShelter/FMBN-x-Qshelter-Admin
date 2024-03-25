@@ -29,7 +29,7 @@ const colorMap: Record<IMortgageDocumentStatus, string> = {
     declined: ColorHelper.systemError,
 };
 
-export default function BaseDocument({ document, isLoading, handleApprove, handleDecline, handleUndo, targetStatus, hideApproval = false, className }: IProps) {
+export default function BaseDocument({ document, canApprove, isLoading, handleApprove, handleDecline, handleUndo, targetStatus, hideApproval = false, className }: IProps) {
 
     const [showDeclineModal, setShowDeclineModal] = useState(false)
     const resolvedName = useMemo(() => {
@@ -61,7 +61,7 @@ export default function BaseDocument({ document, isLoading, handleApprove, handl
                         isLoading={isLoading}
                         status={document.status}
                         targetStatus={targetStatus}
-                        canApprove={true}
+                        canApprove={canApprove}
                         handleApprove={handleApprove}
                         handleDecline={handleDecline}
                         handleUndo={handleUndo} />

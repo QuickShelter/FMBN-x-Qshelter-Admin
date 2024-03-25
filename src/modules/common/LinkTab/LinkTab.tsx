@@ -12,10 +12,11 @@ interface IProps
   }[];
   field: string;
   check?: "query" | "path";
+  defaultPath?: string
 }
 
 export default function LinkTab(props: IProps) {
-  const { tabs, field, check = "query", ...rest } = props;
+  const { tabs, defaultPath, field, check = "query", ...rest } = props;
   const searchParamsString = useLocation().search;
   const currentPath = useLocation().pathname;
   const queryParamsMap = queryString.parse(searchParamsString);
@@ -24,11 +25,11 @@ export default function LinkTab(props: IProps) {
     () => {
       if (check === "query") {
         if (Object.keys(queryParamsMap).length < 1) {
-          return ""
+          return defaultPath ?? ""
         }
 
         if (!(field in queryParamsMap)) {
-          return ""
+          return defaultPath ?? ""
         }
 
         return queryParamsMap[field]
@@ -36,7 +37,7 @@ export default function LinkTab(props: IProps) {
         return currentPath.split("/").at(-1)
       }
     },
-    [check, queryParamsMap, field, currentPath]
+    [check, queryParamsMap, field, currentPath, defaultPath]
   );
 
   return (

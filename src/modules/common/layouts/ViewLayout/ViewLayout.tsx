@@ -14,7 +14,7 @@ export default function ViewLayout({ children, ...rest }: IProps) {
             <div className={styles.backSection}>
                 <PageBackButton text="Back" className="" />
             </div>
-            <div className="flex-1 flex flex-col px-[140px]">
+            <div className="flex-1 flex flex-col sm:px-[140px]">
                 <Card className={styles.content}>
                     {children}
                 </Card>

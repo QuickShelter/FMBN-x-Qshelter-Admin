@@ -11,7 +11,6 @@ interface IProps {
 }
 
 export default function LinkTabPresentational({ currentValue, tabs }: IProps) {
-
   return (
     <>
       {tabs.map(({ label, value, link }) => {

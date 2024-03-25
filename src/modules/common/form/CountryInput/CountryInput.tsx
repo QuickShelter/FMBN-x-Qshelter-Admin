@@ -18,7 +18,7 @@ export default function CountryInput({ className, ...rest }: IProps) {
       />
       <datalist id="country-list">
         {
-          countries?.map((country: string) => <option value={country}>country</option>)
+          countries?.map((country: string) => <option key={country} value={country}>country</option>)
         }
       </datalist>
     </>

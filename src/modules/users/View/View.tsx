@@ -1,14 +1,10 @@
 import styles from "./View.module.css";
 import { IUser } from "@/types";
-import Card from "@/modules/common/Card/Card";
 import { useGetAllPropertiesQuery } from "@/redux/services/api";
-import PageTitle from "@/modules/common/PageTitle/PageTitle";
 import Developer from "./Developer/Developer";
 import UserHelper from "@/helpers/UserHelper";
 import { useMemo } from "react";
 import Subscriber from "./Subscriber/Subscriber";
-import Hr from "@/modules/common/Hr";
-import PageBackButton from "@/modules/common/PageBackButton";
 import ViewLayout from "@/modules/common/layouts/ViewLayout";
 
 interface IProps {
