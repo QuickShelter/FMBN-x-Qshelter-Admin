@@ -14,7 +14,7 @@ import TransactionView from "../pages/TransactionView";
 import ProtectedRoute from "./ProtectedRoute";
 import AuthRoute from "./AuthRoute";
 import UnImplemented from "../pages/UnImplemented";
-import Test from "../pages/Test";
+// import Test from "../pages/Test";
 import Projects from "../pages/Projects";
 import ProjectView from "../pages/ProjectView";
 import Properties from "../pages/Properties";
@@ -25,6 +25,9 @@ import UnitsView from "../projects/View/Applications/UnitsView";
 import RoleBasedRouteGuard from "../common/guards/RoleBasedRouteGuard";
 import { Suspense } from "react";
 import Spinner from "../common/Spinner";
+import Organisations from "../pages/Organisations";
+import Contributions from "../pages/Contributions";
+import Products from "../pages/Products";
 
 const Router = createBrowserRouter([
   {
@@ -35,10 +38,10 @@ const Router = createBrowserRouter([
         path: "/",
         element: <Navigate to="/dashboard" />,
       },
-      {
-        path: "/test",
-        element: <Test />,
-      },
+      // {
+      //   path: "/test",
+      //   element: <Test />,
+      // },
       {
         path: "/dashboard",
         element: (
@@ -173,6 +176,93 @@ const Router = createBrowserRouter([
             element: (
               <ProtectedRoute>
                 <Users />
+              </ProtectedRoute>
+            ),
+          },
+        ],
+      },
+      {
+        path: "/contributions",
+        children: [
+          {
+            path: "/contributions/:id/edit",
+            element: (
+              <ProtectedRoute>
+                <ProperyEdit />
+              </ProtectedRoute>
+            ),
+          },
+          {
+            path: "/contributions/:id",
+            element: (
+              <ProtectedRoute>
+                <UserView />
+              </ProtectedRoute>
+            ),
+          },
+          {
+            path: "/contributions",
+            element: (
+              <ProtectedRoute>
+                <Contributions />
+              </ProtectedRoute>
+            ),
+          },
+        ],
+      },
+      {
+        path: "/organisations",
+        children: [
+          {
+            path: "/organisations/:id/edit",
+            element: (
+              <ProtectedRoute>
+                <ProperyEdit />
+              </ProtectedRoute>
+            ),
+          },
+          {
+            path: "/organisations/:id",
+            element: (
+              <ProtectedRoute>
+                <UserView />
+              </ProtectedRoute>
+            ),
+          },
+          {
+            path: "/organisations",
+            element: (
+              <ProtectedRoute>
+                <Organisations />
+              </ProtectedRoute>
+            ),
+          },
+        ],
+      },
+      {
+        path: "/products",
+        children: [
+          {
+            path: "/products/:id/edit",
+            element: (
+              <ProtectedRoute>
+                <ProperyEdit />
+              </ProtectedRoute>
+            ),
+          },
+          {
+            path: "/products/:id",
+            element: (
+              <ProtectedRoute>
+                <UserView />
+              </ProtectedRoute>
+            ),
+          },
+          {
+            path: "/products",
+            element: (
+              <ProtectedRoute>
+                <Products />
               </ProtectedRoute>
             ),
           },

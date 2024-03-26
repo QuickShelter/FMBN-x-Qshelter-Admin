@@ -29,6 +29,10 @@ export default defineConfig({
           reactToPdf: ["react-to-pdf"],
           reactHookForm: ['react-hook-form'],
           useHooks: ['@uidotdev/usehooks'],
+          visxGroup: ['@visx/group'],
+          visxTooltip: ['@visx/tooltip'],
+          visxResponsive: ['@visx/responsive'],
+          visxScale: ['@visx/scale']
         },
       },
     },

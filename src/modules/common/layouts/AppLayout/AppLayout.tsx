@@ -16,10 +16,9 @@ import NavDrawerButton from "../../NavDrawerButton/NavDrawerButton";
 import Desktop from "../../Desktop";
 import { useGetRefreshTokenMutation } from "@/redux/services/api";
 import { IAuth, IResponse } from "@/types";
-import { useAppDispatch, useAppSelector } from "@/redux/store";
+import { useAppDispatch, } from "@/redux/store";
 import { saveToken } from "@/redux/services/authSlice";;
 import NotificationDropdown from "../../Nav/NotificationDropdown";
-import ProfileDropDown from "../../Nav/ProfileDropDown";
 import Mobile from "../../Mobile";
 import { useNetworkState, usePrevious } from "@uidotdev/usehooks";
 import useIsGuest from "@/hooks/useIsGuest";
@@ -33,7 +32,6 @@ export default function AppLayout(props: IProps) {
   const { online } = useNetworkState()
   const previouslyOnline = usePrevious(online)
   const { pathname } = useLocation();
-  const { profile } = useAppSelector(state => state.auth)
   const isAuth = useIsGuest();
   const [getRefreshToken] = useGetRefreshTokenMutation();
 
@@ -105,7 +103,7 @@ export default function AppLayout(props: IProps) {
               <NavDrawerButton />
               <div className="flex gap-4 items-center">
                 <NotificationDropdown />
-                {profile && <ProfileDropDown user={profile} />}
+                {/* {profile && <ProfileDropDown user={profile} />} */}
               </div>
             </div>
           </Mobile>

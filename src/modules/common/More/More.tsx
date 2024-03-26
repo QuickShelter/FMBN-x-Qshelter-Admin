@@ -4,6 +4,7 @@ import { useClickAway } from "@uidotdev/usehooks";
 import styles from "./More.module.css";
 import Ellipses from "../icons/Ellipses";
 import Button from "../Button/Button";
+import Card from "../Card";
 
 interface IProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
@@ -46,7 +47,7 @@ export default function More({
       dropdownRef.current.style.bottom = "1.5rem";
     }
 
-    return () => {};
+    return () => { };
   }, [show]);
 
   return (
@@ -63,12 +64,12 @@ export default function More({
         <Ellipses />
       </Button>
       {show && (
-        <div
+        <Card
           ref={dropdownRef}
           className={`${styles.dropdown} ${dropdownClassName}`}
         >
           {children}
-        </div>
+        </Card>
       )}
     </div>
   );

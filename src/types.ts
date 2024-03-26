@@ -59,6 +59,32 @@ export interface IEmploymentHistory {
   employee: IEmployee | null,
 }
 
+export type IDoughnutStats = {
+  label: string,
+  value: number | null,
+}
+
+export interface IOrganisation {
+  id: string,
+  name: INullableString,
+  image: INullableString,
+  type: string,
+  created_at: INullableString,
+  updated_at: INullableString,
+}
+
+export interface IProduct {
+  id: string,
+  name: INullableString,
+  activeLoans: number | null,
+  pastLoans: number | null,
+  interest: number | null,
+  maxTenor: string | null,
+  maxAmount: number | null,
+  created_at: INullableString,
+  updated_at: INullableString,
+}
+
 export interface IEmployee {
   nhfNumber: INullableString,
 }
@@ -1580,9 +1606,13 @@ export type IRole =
   | "finance"
   | "legal"
   | "buyer"
+  | "employer"
+  | "pmb"
   | "vendor"
   | "developer"
   | "mortgage_operations";
+
+export type IOrganisationType = 'employer' | 'pmb';
 
 export interface IDashboardStats {
   user_count: number,
@@ -1713,6 +1743,16 @@ export interface IRequestsSearchParams extends IQueryParams {
   q?: string;
   offset?: number;
   user_id?: string;
+}
+
+export interface IOrganisationSearchParams extends IQueryParams {
+  type?: string;
+  date_from?: string,
+  date_to?: string,
+  search?: string;
+  status?: string;
+  q?: string;
+  offset?: number;
 }
 
 export interface IPartner {

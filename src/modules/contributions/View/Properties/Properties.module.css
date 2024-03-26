@@ -1,0 +1,14 @@
+.container {
+}
+
+.container .no {
+  display: flex;
+  padding: 48px 24px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  align-self: stretch;
+
+  color: var(--dark-blue-400, #10244f);
+}

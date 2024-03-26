@@ -1,0 +1,33 @@
+.container {
+  width: 100%;
+}
+
+.container th,
+.container td {
+  border-collapse: collapse;
+  padding-inline: 0.5rem;
+}
+
+.container td {
+  padding-block: 1rem;
+  border-collapse: collapse;
+}
+
+.container th {
+  vertical-align: top;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 1rem;
+  border-collapse: collapse;
+  text-align: start;
+
+  color: var(--green-300);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 140%;
+  /* 19.6px */
+}
+
+@media screen and (max-width: 420px) {
+  .container {}
+}

@@ -35,15 +35,15 @@ export default function ProfileDropDown({ className, user, ...rest }: IProps) {
         show={showLogoutModal}
         onCancel={() => setShowLogoutModal(false)}
       />
-      <button className={`${className} ${styles.button}`} onClick={toggleShow}>
-        <Avatar user={user} />
+      <Button variant="outline" className={`${className} ${styles.button}`} onClick={toggleShow}>
+        <Avatar className="h-6 w-6" user={user} />
         <span className="text-app-black-400 text-[15px] font-medium">
           {UserHelper.getOneName(user)}
         </span>
         <ChevronDown
           className={`${styles.icon} ${show ? styles.showIcon : ""}`}
         />
-      </button>
+      </Button>
       <div className={`${styles.dropdown} ${show ? styles.show : styles.hide}`}>
         <Button
           onClick={() => setShowLogoutModal(true)}

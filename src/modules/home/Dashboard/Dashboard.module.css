@@ -1,9 +1,6 @@
 .container {
-  padding: 1.25rem;
   display: flex;
   flex-direction: column;
-  padding-right: 3rem;
-  gap: 2rem;
 }
 
 .container .sectionHeader {
@@ -12,7 +9,8 @@
   font-size: 18px;
   font-style: normal;
   font-weight: 600;
-  line-height: 140%; /* 25.2px */
+  line-height: 140%;
+  /* 25.2px */
 }
 
 .chartHeader {
@@ -20,7 +18,8 @@
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
-  line-height: 140%; /* 22.4px */
+  line-height: 140%;
+  /* 22.4px */
   margin-top: 1rem;
 }
 
@@ -29,7 +28,8 @@
   font-size: 18px;
   font-style: normal;
   font-weight: 600;
-  line-height: 140%; /* 25.2px */
+  line-height: 140%;
+  /* 25.2px */
 }
 
 .chartnApprovals {
@@ -58,7 +58,8 @@
   font-size: 20px;
   font-style: normal;
   font-weight: 600;
-  line-height: 140%; /* 28px */
+  line-height: 140%;
+  /* 28px */
 }
 
 .chart {
@@ -86,8 +87,7 @@
     flex-direction: column;
   }
 
-  .approvals {
-  }
+  .approvals {}
 }
 
 @media screen and (max-width: 420px) {

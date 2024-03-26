@@ -4,11 +4,13 @@ import TopCards from "../../common/TopCards/TopCards";
 import PageTitle from "@/modules/common/PageTitle/PageTitle";
 import Card from "@/modules/common/Card";
 import Hr from "@/modules/common/Hr";
-import FormatHelper from "@/helpers/FormatHelper";
 import { useGetDashboardStatsQuery } from "@/redux/services/api";
-import { IDashboardStats, ITopCard } from "@/types";
+import { IDashboardStats } from "@/types";
 import { useAppSelector } from "@/redux/store";
 import UserHelper from "@/helpers/UserHelper";
+import appleStock from '@visx/mock-data/lib/mocks/appleStock'
+import BarChartVisx, { IData } from "@/modules/common/visualisations/BarChartVisx";
+import ListingLayout from "@/modules/common/layouts/ListingLayout";
 
 const defaultValues: IDashboardStats = {
   user_count: 0,
@@ -27,8 +29,8 @@ const defaultValues: IDashboardStats = {
 
 export default function Dashboard() {
   const { profile } = useAppSelector(state => state.auth)
-  const { data: _stats, isLoading: isLoadingProjectStats } = useGetDashboardStatsQuery()
-
+  const { data: _stats, isLoading } = useGetDashboardStatsQuery()
+  console.log(isLoading)
 
   const stats: IDashboardStats = useMemo(() => {
     if (!_stats) {
@@ -56,80 +58,41 @@ export default function Dashboard() {
     { label: "PFAs", value: "N/A" },
   ];
 
-  const projectStats: ITopCard[] = [
-    { label: "Active Projects", value: stats?.active_projects },
-    { label: "Pending Projects", value: stats?.pending_projects },
-  ];
-
-  const propertyStats2: { label: string; value: number | string }[] = [
-    { label: "All", value: stats.all_properties },
-    { label: "Available", value: stats.approved_properties },
-    { label: "Pending", value: stats.pending_properties },
-  ];
-
-  const propertyStats3: {
-    label: string;
-    value: number | string | undefined | null;
-    subValue?: string;
-  }[] = [
-      { label: "All Sold", value: stats?.all_sold },
-      {
-        label: "Total Value",
-        value: FormatHelper.nairaFormatter.format(stats?.total_contribution_sales + stats?.total_nhf_sales + stats?.total_outright_sales + stats?.total_rto_sales),
-      },
-      {
-        label: "Outright Sales",
-        value: FormatHelper.nairaFormatter.format(stats?.total_outright_sales),
-        subValue: `${"N/A"} Units`,
-      },
-      { label: "NHF Mortgage", value: FormatHelper.nairaFormatter.format(stats?.total_nhf_sales) },
-      { label: "Rent to Own", value: FormatHelper.nairaFormatter.format(stats?.total_rto_sales) },
-      { label: "Commercial Mortgage", value: FormatHelper.nairaFormatter.format(stats?.total_contribution_sales) },
-    ];
+  const data = appleStock.slice(0, 10) // End exclusive
+  const accessors = {
+    xAccessor: (d: IData) => new Date(d.date).toLocaleDateString(),
+    yAccessor: (d: IData) => d.close,
+  }
 
   return (
-    <div className={styles.container}>
-      <div className="flex justify-between items-center">
-        {profile && <PageTitle>Hi, {`${UserHelper.getFullName(profile)}`}</PageTitle>}
-        {/* <Button
-          onClick={() => setShowInvitationModal(true)}
-          className=""
-          leadingIcon={<Plus fill="#fff" />}
-        >
-          Add Admin
-        </Button> */}
-      </div>
-      <TopCards shadow data={top} />
-      <Card className="flex flex-col gap-12">
-        <div className="flex flex-col">
-          <h2 className="py-3 px-8 text-neutral-950 text-base font-semibold leading-snug">
-            Projects
-          </h2>
-          <Hr />
-          <div className="p-4 sm:p-6 grid sm:grid-cols-[1fr_2fr] gap-3">
-            <div className="flex flex-col gap-4">
-              <TopCards
-                isLoading={isLoadingProjectStats}
-                cardClassName="p-3"
-                className="flex sm:grid sm:grid-cols-2"
-                data={projectStats}
-              />
-              <h2>Properties</h2>
-              <TopCards className="flex flex-col" data={propertyStats2} />
-            </div>
-            <Card className="p-4 sm:p-6 flex flex-col gap-0.5 h-fit">
-              <h3 className="text-neutral-500 text-sm font-normal leading-tight tracking-wider">
-                SALES
-              </h3>
-              <TopCards
-                className="grid grid-cols-[auto_auto]"
-                cardClassName="border-none pl-0"
-                data={propertyStats3}
-              />
+    <ListingLayout pageTitle="Home">
+      <div className={styles.container}>
+        <div className="flex flex-col py-4 sm:p-8 gap-5">
+          <div className="flex justify-between items-center">
+            {profile && <PageTitle>Hi, {`${UserHelper.getFullName(profile)}`}</PageTitle>}
+          </div>
+          <TopCards shadow data={top} />
+        </div>
+        <Hr className="sm:block hidden" />
+        <div className="flex flex-col sm:p-8 gap-4">
+          <div className="flex flex-col sm:grid sm:grid-cols-[724fr_272fr] gap-3">
+            <Card shadow className="">
+              <div className="pt-4 pl-4 sm:pt-6 sm:pl-6">
+                <h2 className="text-neutral-950 text-base font-semibold leading-snug">
+                  Projects
+                </h2>
+              </div>
+              <div className='mb-10'>
+                <BarChartVisx accessor={accessors} data={data} />
+              </div>
+            </Card>
+            <Card shadow className="flex flex-col py-4 px-6 gap-6">
+              <h3 className="font-semibold text-[18px]">Past Contributions</h3>
+              <h4 className="text-app-green-300">No Contributions Yet</h4>
             </Card>
           </div>
         </div>
-      </Card>
-    </div>
+      </div >
+    </ListingLayout >
   );
 }

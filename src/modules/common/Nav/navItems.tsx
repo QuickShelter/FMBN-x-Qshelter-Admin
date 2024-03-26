@@ -26,10 +26,16 @@ export default function navItems({ currentPath, user }: IProps) {
                 icon: <Home active={currentPath.includes("/dashboard")} />,
             },
             {
-                title: "Users",
+                title: "Subscribers",
                 path: "/users",
                 isAuthorized: true,
                 icon: <Users active={currentPath.includes("/users")} />,
+            },
+            {
+                title: "Organizations",
+                path: "/organisations",
+                isAuthorized: UserHelper.isPermitted(['legal_admin'], user),
+                icon: <Contributions active={currentPath.includes("/loans")} />,
             },
             {
                 title: "Contributions",
@@ -38,10 +44,10 @@ export default function navItems({ currentPath, user }: IProps) {
                 icon: <Contributions active={currentPath.includes("/contributions")} />,
             },
             {
-                title: "Loans",
-                path: "/loans",
+                title: "Products",
+                path: "/products",
                 isAuthorized: UserHelper.isPermitted(['legal_admin'], user),
-                icon: <Contributions active={currentPath.includes("/loans")} />,
+                icon: <Contributions active={currentPath.includes("/contributions")} />,
             },
             {
                 title: "Properties",

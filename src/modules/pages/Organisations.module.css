@@ -1,0 +1,28 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.container .stats {}
+
+.panel {
+  display: flex;
+  justify-content: space-between;
+}
+
+.filternExport {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+@media screen and (max-width: 420px) {
+  .container {
+    padding-inline: 1rem;
+  }
+
+  .container .card {
+    padding: 1rem;
+  }
+}

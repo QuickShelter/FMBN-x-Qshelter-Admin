@@ -1,4 +1,5 @@
 import {
+  IOrganisationSearchParams,
   IProjectSearchParams,
   IPropertySearchParams,
   IRequestsSearchParams,
@@ -121,6 +122,40 @@ class QueryParamsHelper {
     return qParams;
   }
 
+  public static stripInvalidOrganisationParams(
+    data: IOrganisationSearchParams
+  ): Record<string, string> {
+    const qParams: Record<string, string> = {};
+    const { search, offset, type: _type, date_from, date_to
+    } = data;
+
+    if (search && search !== "") {
+      qParams["search"] = search;
+    }
+
+    if (_type && _type !== "") {
+      qParams["type"] = _type;
+    }
+
+    if (offset) {
+      qParams["offset"] = `${offset}`;
+    }
+
+    // if (sort) {
+    //   qParams["sort"] = `${sort}`;
+    // }
+
+    if (date_from && date_from !== "") {
+      qParams["date_from"] = date_from;
+    }
+
+    if (date_to && date_to !== "") {
+      qParams["date_to"] = date_to;
+    }
+
+    return qParams;
+  }
+
   public static stripInvalidUserParams(
     data: IUserSearchParams
   ): Record<string, string> {
@@ -213,6 +248,11 @@ class QueryParamsHelper {
 
   public static generateUserQueryParams(data: IUserSearchParams): string {
     const stripped = this.stripInvalidUserParams(data);
+    return `?${createSearchParams(stripped).toString()}`;
+  }
+
+  public static generateOrganisationQueryParams(data: IOrganisationSearchParams): string {
+    const stripped = this.stripInvalidOrganisationParams(data);
     return `?${createSearchParams(stripped).toString()}`;
   }
 
