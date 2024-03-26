@@ -22,21 +22,37 @@ export default function Application({ className, request, ...rest }: IProps) {
       {...rest}
       className={`${className} card-no-mobile flex flex-col py-6 sm:px-6 px-0 py-4 gap-4`}
     >
-      <h2 className="text-neutral-950 text-[15px] font-medium leading-snug font-semibold">Application Details</h2>
-      <div className="sm:grid sm:grid-cols-2 grid grid-cols-2 gap-4">
-        <DetailCard label="Type" value={RequestHelper.typeToHumanMap[request.type]} />
-        <DetailCard label="Property Code" value={request?.data.property?.id} />
-        <DetailCard label="TIN" value={request?.data?.mortgage?.mortgage_applicant?.tin} />
-        <DetailCard label="Price" value={FormatHelper.nairaFormatter.format(request?.data.property?.price)} />
-        <DetailCard label="Mortgage Amount" value={FormatHelper.nairaFormatter.format(applicationData?.mortgage_amount)} />
-        {request.type === 'commercial_mortgage' ? <DetailCard label="Initial Payment" value={request.data.initial_payment} /> : null}
-        <DetailCard label="Equity" value={FormatHelper.nairaFormatter.format(applicationData?.equity)} />
-        <DetailCard label="Duration" value={`${applicationData?.duration ? `${applicationData?.duration} month(s)` : 'N/A'}`} />
-        {RequestHelper.typeToInterestRateMap[request.type] ? <DetailCard label="Interest Rate" value={FormatHelper.percentageFormatter.format(RequestHelper.typeToInterestRateMap[request.type] / 100)} /> : null}
-        <DetailCard label="Joint Application" value={request.data.mortgage.is_joint_mortgage ? 'Yes' : 'No'} />
-        {/* <DetailCard label="Date" value={request.created_at ? FormatHelper.dateTimeFormatter.format(new Date(request.created_at)) : null} /> */}
+      <div className="flex flex-col gap-4">
+        <h2 className="text-neutral-950 text-[15px] font-medium leading-snug font-semibold">Application Details</h2>
+        <div className="sm:grid sm:grid-cols-2 grid grid-cols-2 gap-4">
+          <DetailCard label="Type" value={RequestHelper.typeToHumanMap[request.type]} />
+          <DetailCard label="Property Code" value={request?.data.property?.id} />
+          <DetailCard label="Age" value={applicationData?.age} />
+          <DetailCard label="TIN" value={request?.data?.mortgage?.mortgage_applicant?.tin} />
+          <DetailCard label="Price" value={FormatHelper.nairaFormatter.format(request?.data.property?.price)} />
+          <DetailCard label="Mortgage Amount" value={FormatHelper.nairaFormatter.format(applicationData?.mortgage_amount)} />
+          {request.type === 'commercial_mortgage' ? <DetailCard label="Initial Payment" value={request.data.initial_payment} /> : null}
+          <DetailCard label="Equity" value={FormatHelper.nairaFormatter.format(applicationData?.equity)} />
+          <DetailCard label="Duration" value={`${applicationData?.duration ? `${applicationData?.duration} month(s)` : 'N/A'}`} />
+          {RequestHelper.typeToInterestRateMap[request.type] ? <DetailCard label="Interest Rate" value={FormatHelper.percentageFormatter.format(RequestHelper.typeToInterestRateMap[request.type] / 100)} /> : null}
+          <DetailCard label="Joint Application" value={request.data.mortgage.is_joint_mortgage ? 'Yes' : 'No'} />
+        </div>
       </div>
-      <Hr className="my-4" />
+      <Hr />
+      {
+        RequestHelper.isMortgageRequest(request) && applicationData?.rsa_balance && (applicationData?.rsa_balance > 0) ?
+          <>
+            <div className="flex flex-col gap-4">
+              <h2 className="text-neutral-950 text-[15px] font-medium leading-snug font-semibold">RSA Details</h2>
+              <div className="sm:grid sm:grid-cols-2 grid grid-cols-2 gap-4">
+                <DetailCard label="RSA Balance" value={FormatHelper.nairaFormatter.format(applicationData?.rsa_balance)} />
+                <DetailCard label="RSA Percentage" value={applicationData?.rsa_percentage ? FormatHelper.percentageFormatter.format(applicationData?.rsa_percentage / 100) : null} />
+                <DetailCard label="Equity Contribution from RSA Balance" value={applicationData?.equity_from_rsa ? FormatHelper.nairaFormatter.format(applicationData?.equity_from_rsa) : null} />
+              </div>
+            </div>
+            <Hr className="my-4" />
+          </> : null
+      }
       {(request?.data?.property != null && building) ?
         unitIds?.map((unitId) => {
           return <UnitLinkCard key={unitId} unitId={`${unitId}`} building={building} _property={request.data.property} />
