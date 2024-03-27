@@ -45,7 +45,7 @@ interface IData {
 type IOfferOption = 'offer' | 'reject'
 
 
-const nextStatus: Record<IMortgageStatus, IMortgageStatus | undefined> = {
+const nextStatusMap: Record<IMortgageStatus, IMortgageStatus | undefined> = {
   approved: 'paid_equity',
   paid_equity: 'document_sent_to_bank',
   document_sent_to_bank: 'send_offer_letter_from_bank',
@@ -59,31 +59,39 @@ export default function ChangeMortgageStatusForm({ request, closeModal, ...rest 
   const [showCompleteMessage, setShowCompleteMessage] = useState(false)
   const admin_id = useAppSelector((state) => state.auth.profile?.id);
   const mortgage = request?.data?.mortgage
+
+  const nextStatus: IMortgageStatus | undefined = useMemo(() => {
+    return nextStatusMap[mortgage?.status]
+  }, [mortgage?.status])
+
   const { pushToast } = useToast()
   const [reason, setReason] = useState('')
   const [agreed, setAgreed] = useState(false)
-  const [showDoc, setShowDoc] = useState(nextStatus[mortgage?.status] === 'send_offer_letter_from_bank')
-  const [showReceipt, setShowReceipt] = useState(nextStatus[mortgage?.status] === 'paid_equity')
+  const [showDoc, setShowDoc] = useState(nextStatus === 'send_offer_letter_from_bank')
+  const [showReceipt, setShowReceipt] = useState(nextStatus === 'paid_equity')
   const [fileData, setFileData] = useState<{ fileName: string | null, size: string | null }>(_fileData)
   const [offerOption, setOfferOption] = useState<IOfferOption>('offer')
+
+  const defaultValues: IData = useMemo(() => {
+    return {
+      status: request?.data?.mortgage?.status,
+      admin_id: admin_id ?? '',
+      id: request?.data?.mortgage?.id,
+      comment: '',
+      file: null
+    }
+  }, [request])
 
   const {
     control,
     handleSubmit,
     setValue,
     formState: { errors },
-  } = useForm<IData>({
-    defaultValues: {
-      status: request.data.mortgage.status,
-      admin_id: admin_id ?? '',
-      id: request?.data?.mortgage?.id,
-      comment: ''
-    },
-  });
+  } = useForm<IData>({ defaultValues });
 
   useEffect(() => {
-    setShowDoc(nextStatus[mortgage?.status] === 'send_offer_letter_from_bank')
-    setShowReceipt(nextStatus[mortgage?.status] === 'paid_equity')
+    setShowDoc(nextStatus === 'send_offer_letter_from_bank')
+    setShowReceipt(nextStatus === 'paid_equity')
   }, [mortgage?.status])
 
   const resolveStatusOptions: {
@@ -105,7 +113,7 @@ export default function ChangeMortgageStatusForm({ request, closeModal, ...rest 
           {
             label: "Paid Equity",
             value: "paid_equity",
-          }
+          },
         ]
 
       case "mortgage_closed":
@@ -139,7 +147,7 @@ export default function ChangeMortgageStatusForm({ request, closeModal, ...rest 
         return [
           {
             label: "Mortgage Closed",
-            value: "completed",
+            value: "mortgage_closed",
           },
         ]
 
@@ -147,6 +155,7 @@ export default function ChangeMortgageStatusForm({ request, closeModal, ...rest 
         return []
     }
   }, [request?.data?.mortgage?.status])
+
 
   const [updateMortgage, { isLoading }] =
     useUpdateMortgageApplicationStatusMutation();
@@ -169,10 +178,10 @@ export default function ChangeMortgageStatusForm({ request, closeModal, ...rest 
     }
 
     return true
-  }, [showDoc, isLoading, fileData, agreed, reason])
+  }, [showDoc, isLoading, fileData, agreed, reason, offerOption])
 
   const onSubmit: SubmitHandler<IData> = async ({ status, ...rest }) => {
-    if (nextStatus[status] == null || nextStatus[status]?.length == 0) {
+    if (nextStatus == null || nextStatus?.length == 0) {
       pushToast({
         type: "warning",
         message: "Provide a valid status",
@@ -181,28 +190,22 @@ export default function ChangeMortgageStatusForm({ request, closeModal, ...rest 
       return;
     }
 
-    if (showDoc && nextStatus[status] == 'send_offer_letter_from_bank' && offerOption == 'reject') {
+    if (showDoc && nextStatus == 'send_offer_letter_from_bank' && offerOption == 'reject') {
       delete rest.file
     }
 
-    if (showDoc && nextStatus[status] == 'send_offer_letter_from_bank' && offerOption == 'offer') {
+    if (showDoc && nextStatus == 'send_offer_letter_from_bank' && offerOption == 'offer') {
       rest.comment = ""
     }
 
-    if (showReceipt && nextStatus[status] == 'paid_equity') {
+    if (showReceipt && nextStatus == 'paid_equity') {
       rest.comment = ""
     }
 
-    if (showDoc) {
-
-    }
-
-    await handleUpdateStatus({ ...rest, status: nextStatus[status] as IMortgageStatus });
+    await handleUpdateStatus({ ...rest, status: nextStatus as IMortgageStatus });
   };
 
   const handleUpdateStatus = async (data: IData) => {
-    console.log(data)
-    return
     try {
       const response: IResponse<IRequest> = await updateMortgage(data).unwrap();
 
@@ -212,6 +215,9 @@ export default function ChangeMortgageStatusForm({ request, closeModal, ...rest 
           type: "success",
         })
       }
+
+      setValue('file', null)
+      setFileData(_fileData)
     } catch (error) {
       pushToast({
         message:

@@ -13,7 +13,6 @@ import useToast from "@/hooks/useToast";
 import { setToast } from "@/redux/services/toastSlice";
 import Modal from "@/modules/common/Modal";
 import TextInput from "@/modules/common/form/TextInput";
-import Grid2 from "@/modules/common/layouts/Grid2";
 
 interface IProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLFormElement>, HTMLFormElement> {
