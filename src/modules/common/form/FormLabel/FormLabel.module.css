@@ -1,6 +1,10 @@
 .container {
-  color: var(--black-300);
   display: flex;
   gap: 1rem;
+
+  color: var(--black-300);
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
   font-size: 13px;
 }

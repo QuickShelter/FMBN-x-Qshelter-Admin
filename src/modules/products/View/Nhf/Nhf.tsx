@@ -26,6 +26,7 @@ import Hr from "@/modules/common/Hr";
 import Edit from "@/modules/common/icons/Edit";
 import DetailCard from "@/modules/common/DetailCard";
 import Grid2 from "@/modules/common/layouts/Grid2";
+import NhfSettingsModal from "./NhfSettings/NhfSettingsModal";
 
 type ITab = 'active' | 'history' | 'requests';
 
@@ -47,6 +48,7 @@ const tabs: { label: string, value: ITab | "" }[] = [
 export default function Nhf() {
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
+  const [showEditModal, setShowEditModal] = useState(false)
   const [showExportModal, setShowExportModal] = useState(false);
 
   /**
@@ -154,9 +156,10 @@ export default function Nhf() {
           <title>NHF Loans</title>
           <meta name="description" content="Helmet application" />
         </Helmet>
+        <NhfSettingsModal onClose={() => setShowEditModal(false)} show={showEditModal} />
         <div className="px-4 py-[10px] flex justify-between items-center">
           <PageTitle>NHF Loans</PageTitle>
-          <Button className="" variant="outline" leadingIcon={<Edit />}>Edit</Button>
+          <Button onClick={() => setShowEditModal(true)} className="" variant="outline" leadingIcon={<Edit />}>Edit</Button>
         </div>
         <Hr />
         <div className="px-8 py-5">

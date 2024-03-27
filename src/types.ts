@@ -1476,6 +1476,13 @@ export interface IMakeAdminDto {
   roles: string[];
 }
 
+export interface INhfSettingsDto {
+  maxLoanAmount: number,
+  annualInterest: number,
+  maxTenor: number,
+  maxPropertyPrice: number,
+  maxAge: number
+}
 
 export interface IBuildingEditDto {
   user_id: string,

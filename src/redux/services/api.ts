@@ -65,6 +65,7 @@ import {
   IRsaDocumentApprovalDto,
   IRequestApiDocumentStatusUpdateDto,
   IMortgageStatusChangeDto,
+  INhfSettingsDto,
 } from "../../types";
 import EnvironmentHelper from "@/helpers/EnvironmentHelper";
 import { formatDate } from "@/helpers/dateFormat";
@@ -684,6 +685,19 @@ export const api = createApi({
       }),
       invalidatesTags: () => [{ type: "User", id: "avatar" }],
     }),
+
+    updateNhfSettings: builder.mutation<
+      IResponse<void>,
+      INhfSettingsDto
+    >({
+      query: (body) => ({
+        url: `auth/api/products/nhf`,
+        method: "POST",
+        body: body,
+      }),
+      invalidatesTags: () => [{ type: "User", id: "avatar" }],
+    }),
+
     deleteUserById: builder.mutation<Response, string>({
       query: (id: string) => ({
         url: `/users/${id}`,
@@ -701,6 +715,24 @@ export const api = createApi({
         url: `/request/list-requests`,
         params: { ...params, limit: LIMIT },
       }),
+      transformResponse: (response: IPaginatedRequestResponse) => {
+        return response.body;
+      },
+      providesTags: () => ["Request"],
+    }),
+
+    // REQUESTS
+    getAllNhf: builder.query<
+      IPaginatedRequestResponseBody,
+      IRequestsSearchParams
+    >({
+      query: (params: IRequestsSearchParams) => {
+        return {
+          url: `/request/list-requests`,
+          params: { ...params, type: 'nhf', limit: LIMIT },
+        }
+      }
+      ,
       transformResponse: (response: IPaginatedRequestResponse) => {
         return response.body;
       },
@@ -1265,4 +1297,7 @@ export const {
   // Settings
   useGetAllLoginActivitiesQuery,
   useGetTransactionByIdQuery,
+
+  // NHF
+  useUpdateNhfSettingsMutation,
 } = api;
