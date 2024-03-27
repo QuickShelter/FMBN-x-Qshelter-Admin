@@ -28,6 +28,8 @@ import Spinner from "../common/Spinner";
 import Organisations from "../pages/Organisations";
 import Contributions from "../pages/Contributions";
 import Products from "../pages/Products";
+import Nhf from "../products/View/Nhf/Nhf";
+import ListingLayout from "../common/layouts/ListingLayout";
 
 const Router = createBrowserRouter([
   {
@@ -243,6 +245,14 @@ const Router = createBrowserRouter([
         path: "/products",
         children: [
           {
+            path: "/products/nhf",
+            element: (
+              <ProtectedRoute>
+                <Nhf />
+              </ProtectedRoute>
+            ),
+          },
+          {
             path: "/products/:id/edit",
             element: (
               <ProtectedRoute>
@@ -332,7 +342,9 @@ const Router = createBrowserRouter([
       },
       {
         path: "*",
-        element: <NotFound />,
+        element: <ListingLayout pageTitle="" contentClassName="flex place-items-center flex-1">
+          <NotFound />
+        </ListingLayout>,
       },
     ],
   },

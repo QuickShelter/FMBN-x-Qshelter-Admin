@@ -6,10 +6,11 @@ import useGetCurrentUser from "@/hooks/useGetCurrentUser";
 import Button from "../../Button";
 
 interface IProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
-    pageTitle: string
+    pageTitle: string,
+    contentClassName?: string
 }
 
-export default function ListingLayout({ children, pageTitle, ...rest }: IProps) {
+export default function ListingLayout({ children, contentClassName, pageTitle, ...rest }: IProps) {
     const user = useGetCurrentUser()
     const [_, setShowInvitationModal] = useState(false)
 
@@ -28,7 +29,7 @@ export default function ListingLayout({ children, pageTitle, ...rest }: IProps) 
                 </div>
             </div>
             <div className="flex-1 flex flex-col">
-                <div className={styles.content}>
+                <div className={`${styles.content} ${contentClassName}`}>
                     {children}
                 </div>
             </div>

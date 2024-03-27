@@ -27,7 +27,6 @@ export default function Card(props: IProps) {
     maxTenor,
     name,
     pastLoans,
-    id,
   } = data;
 
   const [showMore, setShowMore] = useState(false);
@@ -51,7 +50,7 @@ export default function Card(props: IProps) {
           }}
           className="h-fit"
         >
-          <LinkButton to={`/users/${id}`} variant="clear" stretch>
+          <LinkButton to={`/products/nhf`} variant="clear" stretch>
             <Eye /> View
           </LinkButton>
           <Hr />

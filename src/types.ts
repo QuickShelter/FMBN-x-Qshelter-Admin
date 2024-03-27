@@ -64,6 +64,16 @@ export type IDoughnutStats = {
   value: number | null,
 }
 
+export interface INhfFilterDto {
+  from_date: string;
+  to_date: string;
+  status: string;
+  baths: string,
+  beds: string,
+  location: string,
+  type: string,
+}
+
 export interface IOrganisation {
   id: string,
   name: INullableString,
@@ -314,7 +324,7 @@ export type IMortgageStatus =
   | "paid_equity"
   | "pending"
   | "approved"
-  | "completed"
+  | "mortgage_closed"
   | "declined";
 
 export type IPropertyStatus = "pending" | "approved" | "rejected";

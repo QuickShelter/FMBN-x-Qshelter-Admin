@@ -9,7 +9,7 @@ export class StatusHelper {
     approved: ColorHelper.emerald500,
     pending: ColorHelper.systemWarning,
     paid_equity: ColorHelper.systemSuccess,
-    completed: ColorHelper.systemSuccess
+    mortgage_closed: ColorHelper.systemSuccess
   };
 
   public static projectStatusToColor: Record<
@@ -60,6 +60,9 @@ export class StatusHelper {
       case 'completed':
         return ColorHelper.systemSuccess
 
+      case 'mortgage_closed':
+        return ColorHelper.systemSuccess
+
       case 'available':
         return ColorHelper.systemSuccess
 
@@ -98,6 +101,9 @@ export class StatusHelper {
         return ColorHelper.white;
 
       case 'completed':
+        return ColorHelper.white;
+
+      case 'mortgage_closed':
         return ColorHelper.white;
 
       case 'declined':

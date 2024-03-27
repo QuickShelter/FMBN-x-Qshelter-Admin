@@ -142,23 +142,24 @@ export default function Profile({ className, user, request, ...rest }: IProps) {
                 </div>
               </div>
               <div className="flex gap-4 items-center flex-wrap">
-                {(mortgage?.status == 'pending' || mortgage?.status == 'declined') && <RoleGuard allowedRoles={['mortgage_ops_admin']}>
-                  <ApprovalButtons
-                    isLoading={isLoading}
-                    status={request?.data?.mortgage?.status}
-                    targetStatus={targetStatus}
-                    canApprove={RequestHelper.allMortgageDocumentsAreApproved(request)}
-                    handleApprove={handleApprove}
-                    handleDecline={handleDecline}
-                    handleUndo={handleUndo} />
-                </RoleGuard>}
+                {(mortgage?.status == 'pending' || mortgage?.status == 'declined') &&
+                  <RoleGuard allowedRoles={['mortgage_ops_admin']}>
+                    <ApprovalButtons
+                      isLoading={isLoading}
+                      status={request?.data?.mortgage?.status}
+                      targetStatus={targetStatus}
+                      canApprove={RequestHelper.allMortgageDocumentsAreApproved(request)}
+                      handleApprove={handleApprove}
+                      handleDecline={handleDecline}
+                      handleUndo={handleUndo} />
+                  </RoleGuard>}
                 <RoleGuard allowedRoles={['mortgage_ops_admin']}>
                   <div className="flex gap-4 flex-wrap items-center">
                     {mortgage &&
                       <RoleGuard allowedRoles={['mortgage_ops_admin']}>
                         <Button
                           disabled={
-                            mortgage?.status == 'completed'
+                            mortgage?.status == 'mortgage_closed'
                             || mortgage?.status == 'declined'
                             || mortgage?.status == 'pending'
                           }

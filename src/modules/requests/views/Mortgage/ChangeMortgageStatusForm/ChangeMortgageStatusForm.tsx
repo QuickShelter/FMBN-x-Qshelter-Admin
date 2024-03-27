@@ -1,4 +1,4 @@
-import { ChangeEventHandler, DetailedHTMLProps, HTMLAttributes, useMemo, useState } from "react";
+import { ChangeEventHandler, DetailedHTMLProps, HTMLAttributes, useEffect, useMemo, useState } from "react";
 import styles from "./ChangeMortgageStatusForm.module.css";
 import FormGroup from "@/modules/common/form/FormGroup/FormGroup";
 import FormLabel from "@/modules/common/form/FormLabel/FormLabel";
@@ -28,6 +28,11 @@ interface IProps
   closeModal: () => void
 }
 
+const _fileData = {
+  fileName: null,
+  size: null
+}
+
 interface IData {
   status: IMortgageStatus;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -44,9 +49,9 @@ const nextStatus: Record<IMortgageStatus, IMortgageStatus | undefined> = {
   approved: 'paid_equity',
   paid_equity: 'document_sent_to_bank',
   document_sent_to_bank: 'send_offer_letter_from_bank',
-  send_offer_letter_from_bank: 'completed',
+  send_offer_letter_from_bank: 'mortgage_closed',
   declined: undefined,
-  completed: undefined,
+  mortgage_closed: undefined,
   pending: undefined
 }
 
@@ -55,13 +60,11 @@ export default function ChangeMortgageStatusForm({ request, closeModal, ...rest 
   const admin_id = useAppSelector((state) => state.auth.profile?.id);
   const mortgage = request?.data?.mortgage
   const { pushToast } = useToast()
+  const [reason, setReason] = useState('')
   const [agreed, setAgreed] = useState(false)
   const [showDoc, setShowDoc] = useState(nextStatus[mortgage?.status] === 'send_offer_letter_from_bank')
   const [showReceipt, setShowReceipt] = useState(nextStatus[mortgage?.status] === 'paid_equity')
-  const [fileData, setFileData] = useState<{ fileName: string | null, size: string | null }>({
-    fileName: null,
-    size: null
-  })
+  const [fileData, setFileData] = useState<{ fileName: string | null, size: string | null }>(_fileData)
   const [offerOption, setOfferOption] = useState<IOfferOption>('offer')
 
   const {
@@ -78,36 +81,10 @@ export default function ChangeMortgageStatusForm({ request, closeModal, ...rest 
     },
   });
 
-  // const statusOptions: {
-  //   label: string;
-  //   value: string;
-  // }[] = [
-  //     {
-  //       label: "Completed",
-  //       value: "completed",
-  //     },
-  //     {
-  //       label: "Send offer Letter from Bank",
-  //       value: "send_offer_letter_from_bank",
-  //     },
-  //     {
-  //       label: "Documents Sent to bank",
-  //       value: "document_sent_to_bank",
-  //     },
-  //     {
-  //       label: "Paid Equity",
-  //       value: "paid_equity",
-  //     },
-  //     {
-  //       label: "Approved",
-  //       value: "approved",
-  //     },
-  //     {
-  //       label: "Pending",
-  //       value: "pending",
-  //     },
-  //   ];
-
+  useEffect(() => {
+    setShowDoc(nextStatus[mortgage?.status] === 'send_offer_letter_from_bank')
+    setShowReceipt(nextStatus[mortgage?.status] === 'paid_equity')
+  }, [mortgage?.status])
 
   const resolveStatusOptions: {
     label: string;
@@ -131,7 +108,7 @@ export default function ChangeMortgageStatusForm({ request, closeModal, ...rest 
           }
         ]
 
-      case "completed":
+      case "mortgage_closed":
 
         return []
 
@@ -183,12 +160,16 @@ export default function ChangeMortgageStatusForm({ request, closeModal, ...rest 
       return false
     }
 
-    if (showDoc && !fileData.fileName) {
+    if (showDoc && offerOption == 'offer' && !fileData.fileName) {
+      return false
+    }
+
+    if (showDoc && offerOption == 'reject' && (!reason || reason.length < 1)) {
       return false
     }
 
     return true
-  }, [showDoc, isLoading, fileData, agreed])
+  }, [showDoc, isLoading, fileData, agreed, reason])
 
   const onSubmit: SubmitHandler<IData> = async ({ status, ...rest }) => {
     if (nextStatus[status] == null || nextStatus[status]?.length == 0) {
@@ -200,10 +181,28 @@ export default function ChangeMortgageStatusForm({ request, closeModal, ...rest 
       return;
     }
 
+    if (showDoc && nextStatus[status] == 'send_offer_letter_from_bank' && offerOption == 'reject') {
+      delete rest.file
+    }
+
+    if (showDoc && nextStatus[status] == 'send_offer_letter_from_bank' && offerOption == 'offer') {
+      rest.comment = ""
+    }
+
+    if (showReceipt && nextStatus[status] == 'paid_equity') {
+      rest.comment = ""
+    }
+
+    if (showDoc) {
+
+    }
+
     await handleUpdateStatus({ ...rest, status: nextStatus[status] as IMortgageStatus });
   };
 
   const handleUpdateStatus = async (data: IData) => {
+    console.log(data)
+    return
     try {
       const response: IResponse<IRequest> = await updateMortgage(data).unwrap();
 
@@ -225,7 +224,8 @@ export default function ChangeMortgageStatusForm({ request, closeModal, ...rest 
   };
 
   const handleChangeOfferOption: ChangeEventHandler<HTMLInputElement> = (e) => {
-    setOfferOption(e.target.value as IOfferOption)
+    const value = e.target.value as IOfferOption
+    setOfferOption(value)
   }
 
   return (
@@ -252,7 +252,7 @@ export default function ChangeMortgageStatusForm({ request, closeModal, ...rest 
                 size: null
               })
               setValue('file', null)
-              setShowCompleteMessage(newStatus === 'completed' && mortgage.status !== 'completed')
+              setShowCompleteMessage(newStatus === 'mortgage_closed' && mortgage.status !== 'mortgage_closed')
               setShowDoc(newStatus === 'send_offer_letter_from_bank' && mortgage.status !== 'send_offer_letter_from_bank')
               setShowReceipt(newStatus === 'paid_equity' && mortgage.status !== 'paid_equity')
               field.onChange(newStatus)
@@ -283,7 +283,10 @@ export default function ChangeMortgageStatusForm({ request, closeModal, ...rest 
           control={control}
           rules={{ required: 'Please provide a reason' }}
           render={({ field }) => (
-            <TextArea {...field} placeholder="Reason" />
+            <TextArea {...field} onChange={e => {
+              setReason(e.target.value)
+              field.onChange(e)
+            }} placeholder="Reason" />
           )}
         />
       }
