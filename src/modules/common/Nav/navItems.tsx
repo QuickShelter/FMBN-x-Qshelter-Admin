@@ -38,7 +38,7 @@ export default function navItems({ currentPath, user }: IProps) {
                 path: "/organisations",
                 isAuthorized: true,
                 //isAuthorized: UserHelper.isPermitted(['legal_admin'], user),
-                icon: <Organisations active={currentPath.includes("/loans")} />,
+                icon: <Organisations active={currentPath.includes("/organisations")} />,
             },
             {
                 title: "Contributions",
@@ -51,7 +51,7 @@ export default function navItems({ currentPath, user }: IProps) {
                 path: "/products",
                 isAuthorized: true,
                 //isAuthorized: UserHelper.isPermitted(['legal_admin'], user),
-                icon: <Products active={currentPath.includes("/contributions")} />,
+                icon: <Products active={currentPath.includes("/products")} />,
             },
             {
                 title: "Properties",
