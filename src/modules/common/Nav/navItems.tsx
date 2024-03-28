@@ -5,6 +5,8 @@ import { ReactElement } from "react";
 import Users from "../icons/Users";
 import { IUser } from "@/types";
 import Contributions from "../icons/Contributions";
+import Products from "../icons/Products";
+import Organisations from "../icons/Organisations";
 
 interface IProps {
     currentPath: string,
@@ -36,7 +38,7 @@ export default function navItems({ currentPath, user }: IProps) {
                 path: "/organisations",
                 isAuthorized: true,
                 //isAuthorized: UserHelper.isPermitted(['legal_admin'], user),
-                icon: <Contributions active={currentPath.includes("/loans")} />,
+                icon: <Organisations active={currentPath.includes("/loans")} />,
             },
             {
                 title: "Contributions",
@@ -49,7 +51,7 @@ export default function navItems({ currentPath, user }: IProps) {
                 path: "/products",
                 isAuthorized: true,
                 //isAuthorized: UserHelper.isPermitted(['legal_admin'], user),
-                icon: <Contributions active={currentPath.includes("/contributions")} />,
+                icon: <Products active={currentPath.includes("/contributions")} />,
             },
             {
                 title: "Properties",
