@@ -30,6 +30,7 @@ import Contributions from "../pages/Contributions";
 import Products from "../pages/Products";
 import Nhf from "../products/View/Nhf/Nhf";
 import ListingLayout from "../common/layouts/ListingLayout";
+import ContributionView from "../pages/ContributionView";
 
 const Router = createBrowserRouter([
   {
@@ -198,7 +199,7 @@ const Router = createBrowserRouter([
             path: "/contributions/:id",
             element: (
               <ProtectedRoute>
-                <UserView />
+                <ContributionView />
               </ProtectedRoute>
             ),
           },

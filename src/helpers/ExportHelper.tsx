@@ -10,9 +10,9 @@ import CurrencyHelper from "./CurrencyHelper";
 import logo from '../assets/data-urls/logo'
 
 const TRANSACTION_REF_LENGTH = 8
-const LOGO_WIDTH = 100
-const LOGO_ALIGNMENT = 'center'
-const LOGO_MARGIN_BOTTOM = 40
+const LOGO_WIDTH = 50
+const LOGO_ALIGNMENT = 'left'
+const LOGO_MARGIN_BOTTOM = 20
 
 export default class ExportHelper {
   /**
@@ -73,7 +73,7 @@ export default class ExportHelper {
    * @param {array} items
    * @returns
    */
-  public static exportUserCsv = (items: IUser[]) => {
+  public static exportUserCsv(items: IUser[]): Promise<void> {
     const headings: string[] = ["Name", "Phone Number", "Roles", "Date Joined"];
 
     const augList = [
@@ -92,7 +92,14 @@ export default class ExportHelper {
       ),
     ];
 
-    this.encodeAndExportCsv(augList);
+    return new Promise((resolve, reject) => {
+      try {
+        resolve(this.encodeAndExportCsv(augList))
+      } catch (error) {
+        reject(error)
+      }
+    })
+
   };
 
   /**
@@ -100,7 +107,7 @@ export default class ExportHelper {
    * @param {array} items
    * @returns
    */
-  public static exportTransactionsCsv = (items: ITransaction[]) => {
+  public static exportTransactionsCsv(items: ITransaction[]): Promise<void> {
     const headings: string[] = ["S/N", "Wallet ID", "Currency", "Amount", "Type", "Status", "Ref", "Date"];
 
     const augList = [
@@ -123,7 +130,13 @@ export default class ExportHelper {
       ),
     ];
 
-    this.encodeAndExportCsv(augList);
+    return new Promise((resolve, reject) => {
+      try {
+        resolve(this.encodeAndExportCsv(augList))
+      } catch (error) {
+        reject(error)
+      }
+    })
   };
 
   /**
@@ -131,7 +144,7 @@ export default class ExportHelper {
    * @param {array} items
    * @returns
    */
-  public static exportProjectsCsv = (items: IProject[]) => {
+  public static exportProjectsCsv(items: IProject[]): Promise<void> {
     const headings: string[] = ["Location", "Developer", "Status", "Review Date"];
 
     const augList = [
@@ -150,7 +163,13 @@ export default class ExportHelper {
       ),
     ];
 
-    this.encodeAndExportCsv(augList);
+    return new Promise((resolve, reject) => {
+      try {
+        resolve(this.encodeAndExportCsv(augList))
+      } catch (error) {
+        reject(error)
+      }
+    })
   };
 
   /**
@@ -179,7 +198,13 @@ export default class ExportHelper {
       ),
     ];
 
-    this.encodeAndExportCsv(augList);
+    return new Promise((resolve, reject) => {
+      try {
+        resolve(this.encodeAndExportCsv(augList))
+      } catch (error) {
+        reject(error)
+      }
+    })
   };
 
   /**
@@ -350,7 +375,7 @@ export default class ExportHelper {
     pdfMake.createPdf(docDefinition).download("test.pdf");
   }
 
-  public static exportTransactionsPDF(data: ITransaction[], type: ITransactionType | undefined | '') {
+  public static exportTransactionsPDF(data: ITransaction[], type: ITransactionType | undefined | ''): Promise<void> {
     const tableBody = [];
     const tableHeader = ["S/N", "Wallet ID", "Currency", "Amount", "Type", "Status", "Ref", "Date"];
 
@@ -404,7 +429,10 @@ export default class ExportHelper {
       pageOrientation: pageOrientation,
     };
 
-    pdfMake.createPdf(docDefinition).download("transactions.pdf");
+
+    return new Promise((resolve, _) => {
+      resolve(pdfMake.createPdf(docDefinition).download("transactions.pdf"))
+    })
   }
 
   public static exportPropertiesPDF(data: IProperty[]) {
@@ -450,7 +478,13 @@ export default class ExportHelper {
       },
     };
 
-    pdfMake.createPdf(docDefinition).download("table.pdf");
+    const returnValue = pdfMake.createPdf(docDefinition).download("table.pdf");
+
+    return new Promise((resolve, _) => {
+      resolve(returnValue)
+    })
+
+
   }
 
   public static async exportPropertyToPDF(property: IProperty, displayImageDataUrl: string) {

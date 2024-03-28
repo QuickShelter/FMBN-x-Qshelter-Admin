@@ -2,7 +2,7 @@ import { Helmet } from "react-helmet";
 import Listing from "../contributions/Listing";
 import { IRole, ISortOrder, ITopCard } from "@/types";
 import { useMemo, useEffect, useContext, useState, useCallback } from "react";
-import styles from "./Users.module.css";
+import styles from "./Contributions.module.css";
 import Button from "../common/Button/Button";
 import Export from "../common/icons/Export";
 import { useNavigate, useSearchParams } from "react-router-dom";

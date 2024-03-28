@@ -8,11 +8,10 @@ import Hr from "@/modules/common/Hr/Hr";
 import Eye from "@/modules/common/icons/Eye";
 import Edit from "@/modules/common/icons/Edit";
 import UserHelper from "@/helpers/UserHelper";
-import MakeAdmin from "@/modules/common/icons/MakeAdmin";
 import AdminInviteConfirmationModal from "@/modules/common/AdminInviteModal";
-import ProfileEditModal from "../../View/ProfileEditModal";
 import { Link } from "react-router-dom";
 import LinkButton from "@/modules/common/LinkButton";
+import FormatHelper from "@/helpers/FormatHelper";
 
 interface IProps
   extends DetailedHTMLProps<
@@ -30,14 +29,11 @@ export default function Card(props: IProps) {
     first_name,
     last_name,
     id,
-    phone,
-    created_at,
   } = user;
 
   const [showMore, setShowMore] = useState(false);
   const [showInvitationModal, setShowInvitationModal] =
     useState<boolean>(false);
-  const [showEditModal, setShowEditModal] = useState<boolean>(false);
 
   return (
     <tr {...rest} className={`${props.className} ${styles.container}`}>
@@ -45,11 +41,6 @@ export default function Card(props: IProps) {
         user={user}
         show={showInvitationModal}
         onCancel={() => setShowInvitationModal(false)}
-      />
-      <ProfileEditModal
-        user={user}
-        show={showEditModal}
-        onCancel={() => setShowEditModal(false)}
       />
       <td className={styles.profile}>
         <Link className={styles.avatarLink} to={`/users/${id}`}>
@@ -67,16 +58,14 @@ export default function Card(props: IProps) {
       <td>
         <span className={styles.userTag}>{UserHelper.roleAsString(user)}</span>
       </td>
-      <td>
-        <Link className={styles.phone} to={`tel:${phone}`}>
-          {phone}
-        </Link>
-      </td>
-      <td className="whitespace-nowrap">{created_at ? new Date(created_at).toLocaleDateString() : 'N/A'}</td>
+      <td className="whitespace-nowrap">1000002314</td>
       {/* <td>
         {last_login_at ? new Date(last_login_at).toLocaleDateString() : "N/A"}
       </td> */}
-      <td>
+      <td>Jan 30, 2024</td>
+      <td>Jan 30, 2024</td>
+      <td>{FormatHelper.nairaFormatter.format(319475.73)}</td>
+      <td className="flex justify-end">
         <More
           show={showMore}
           onClose={() => setShowMore(false)}
@@ -86,30 +75,15 @@ export default function Card(props: IProps) {
             setShowMore(true);
           }}
         >
-          <LinkButton to={`/users/${id}`} variant="clear" stretch>
+          <LinkButton to={`/contributions/${id}`} variant="clear" stretch>
             <Eye /> View
           </LinkButton>
           <Hr />
           <Button
             leadingIcon={<Edit />}
             variant="clear"
-            onClick={() => {
-              setShowEditModal(true);
-              setShowMore(false);
-            }}
           >
-            Edit
-          </Button>
-          <Hr />
-          <Button
-            leadingIcon={<MakeAdmin />}
-            variant="clear"
-            onClick={() => {
-              // TODO
-              setShowMore(false);
-            }}
-          >
-            Make Admin
+            Something
           </Button>
         </More>
       </td>

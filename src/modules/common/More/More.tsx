@@ -37,12 +37,12 @@ export default function More({
     // and if it is, reposition it
     if (!(dropdownRef.current && window)) return;
 
-    const overflowing =
+    const overflowingBottom =
       dropdownRef.current.getBoundingClientRect().bottom > window.innerHeight;
 
     //const outOfSight = dropdownRef.current.getBoundingClientRect().bottom > window.innerHeight + dropdownRef.current.clientHeight;
 
-    if (overflowing) {
+    if (overflowingBottom) {
       dropdownRef.current.style.top = "unset";
       dropdownRef.current.style.bottom = "1.5rem";
     }

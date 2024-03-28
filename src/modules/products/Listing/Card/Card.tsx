@@ -39,7 +39,7 @@ export default function Card(props: IProps) {
       <td>{interest}</td>
       <td>{maxTenor}</td>
       <td>{maxAmount}</td>
-      <td>
+      <td className="flex justify-end">
         <More
           show={showMore}
           onClose={() => setShowMore(false)}

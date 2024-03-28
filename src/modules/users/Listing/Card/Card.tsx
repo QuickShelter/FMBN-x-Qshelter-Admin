@@ -76,7 +76,7 @@ export default function Card(props: IProps) {
       {/* <td>
         {last_login_at ? new Date(last_login_at).toLocaleDateString() : "N/A"}
       </td> */}
-      <td>
+      <td className="flex justify-end">
         <More
           show={showMore}
           onClose={() => setShowMore(false)}
