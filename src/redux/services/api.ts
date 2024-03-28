@@ -66,6 +66,8 @@ import {
   IRequestApiDocumentStatusUpdateDto,
   IMortgageStatusChangeDto,
   INhfSettingsDto,
+  IContributionsSearchParams,
+  IPaginatedContributionsResponseBody,
 } from "../../types";
 import EnvironmentHelper from "@/helpers/EnvironmentHelper";
 import { formatDate } from "@/helpers/dateFormat";
@@ -101,6 +103,7 @@ export const api = createApi({
     "Property",
     "Profile",
     "User",
+    "Contrbution",
     "Request",
     "LoginActivities",
     "Transaction",
@@ -1169,6 +1172,7 @@ export const api = createApi({
         return response.data;
       },
     }),
+
     getCountries: builder.query<string[], void>({
       query: () => ({
         url: 'https://restcountries.com/v3.1/all?fields=name'
@@ -1179,7 +1183,24 @@ export const api = createApi({
           return datum.name.common
         })
       }
-    })
+    }),
+
+    // CONTRIBUTIONS
+    getAllContributions: builder.query<
+      IPaginatedContributionsResponseBody,
+      IContributionsSearchParams
+    >({
+      query: (params: IProjectSearchParams) => {
+        return {
+          url: `/filter-contributions-admin`,
+          params: { ...params, limit: LIMIT },
+        };
+      },
+      transformResponse: (response: IResponse<IPaginatedContributionsResponseBody>) => {
+        return response.body;
+      },
+      providesTags: () => ["Contrbution"],
+    }),
   }),
 });
 
@@ -1300,4 +1321,7 @@ export const {
 
   // NHF
   useUpdateNhfSettingsMutation,
+
+  // Contributions
+  useGetAllContributionsQuery,
 } = api;

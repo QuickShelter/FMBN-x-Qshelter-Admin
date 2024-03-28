@@ -8,7 +8,7 @@ import Export from "../common/icons/Export";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import QueryParamsHelper from "@/helpers/QueryParamsHelper";
 import Pagination from "../common/Pagination/Pagination";
-import { useGetAllUsersQuery } from "@/redux/services/api";
+import { useGetAllContributionsQuery } from "@/redux/services/api";
 import Modal from "../common/Modal/Modal";
 import Card from "../common/Card/Card";
 import TopCards from "../common/TopCards/TopCards";
@@ -94,7 +94,7 @@ export default function Contributions() {
 
   const { profile } = useAppSelector((state) => state.auth);
 
-  const { data: pagination, isFetching } = useGetAllUsersQuery({
+  const { data: pagination, isFetching } = useGetAllContributionsQuery({
     ..._queryParams,
     user_id: profile?.id ?? "",
   });
@@ -133,28 +133,26 @@ export default function Contributions() {
   const [showExportModal, setShowExportModal] = useState(false);
 
   const stats: ITopCard[] = useMemo(() => {
-    const all = Number(pagination?.overview.user_count) + Number(pagination?.overview.admin_count) + Number(pagination?.overview.developer_count)
+    const all = Number(pagination?.total_contributions)
     const stats: { label: string; value: number | string }[] = [
       { label: "All", value: isNaN(all) ? '' : all },
       {
-        label: "Subscribers",
-        value: pagination?.overview.user_count ?? "",
+        label: "Total Contribution Volume",
+        value: pagination?.total_contributions ?? "",
       },
       {
         label: "Developers",
-        value: pagination?.overview.developer_count ?? "",
+        value: pagination?.total_count ?? "",
       },
       {
         label: "Admin",
-        value: pagination?.overview.admin_count ?? "",
+        value: pagination?.total_contributions_count ?? "",
       },
     ];
 
     return stats;
   }, [
-    pagination?.overview.admin_count,
-    pagination?.overview.developer_count,
-    pagination?.overview.user_count,
+    pagination
   ]);
 
   return (
@@ -228,11 +226,11 @@ export default function Contributions() {
                 </Panel>
 
                 {!isFetching &&
-                  pagination?.users &&
-                  pagination.users.length > 0 && (
+                  pagination?.contributions &&
+                  pagination.contributions.length > 0 && (
                     <div className="flex flex-col gap-4">
                       <TableWrapper>
-                        <Listing users={pagination.users} />
+                        <Listing data={pagination.contributions} />
                       </TableWrapper>
                       <Pagination
                         baseUrl="/users"
@@ -242,7 +240,7 @@ export default function Contributions() {
                       />
                     </div>
                   )}
-                {pagination?.users?.length === 0 && !isFetching && (
+                {pagination?.contributions?.length === 0 && !isFetching && (
                   <EmptyState srcString="/users.svg" />
                 )}
                 {/* {isFetching && <Spinner size="md" />} */}

@@ -1,4 +1,5 @@
 import {
+  IContributionsSearchParams,
   IOrganisationSearchParams,
   IProjectSearchParams,
   IPropertySearchParams,
@@ -80,6 +81,30 @@ class QueryParamsHelper {
 
     if (type && type !== "") {
       qParams["type"] = type;
+    }
+
+    return qParams;
+  }
+  public static stripInvalidContributionsParams(
+    data: IContributionsSearchParams
+  ): Record<string, string> {
+    const qParams: Record<string, string> = {};
+    const { search, offset, category, limit } = data;
+
+    if (search && search !== "") {
+      qParams["search"] = search;
+    }
+
+    if (category && category !== "") {
+      qParams["category"] = category;
+    }
+
+    if (limit) {
+      qParams["limit"] = `${limit}`;
+    }
+
+    if (offset) {
+      qParams["offset"] = `${offset}`;
     }
 
     return qParams;
@@ -248,6 +273,11 @@ class QueryParamsHelper {
 
   public static generateUserQueryParams(data: IUserSearchParams): string {
     const stripped = this.stripInvalidUserParams(data);
+    return `?${createSearchParams(stripped).toString()}`;
+  }
+
+  public static generateContributionQueryParams(data: IContributionsSearchParams): string {
+    const stripped = this.stripInvalidContributionsParams(data);
     return `?${createSearchParams(stripped).toString()}`;
   }
 

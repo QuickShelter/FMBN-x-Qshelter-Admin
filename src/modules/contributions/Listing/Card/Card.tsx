@@ -1,62 +1,50 @@
 import { DetailedHTMLProps, HTMLAttributes, useState } from "react";
 import styles from "./Card.module.css";
-import { IUser } from "@/types";
+import { IContribution } from "@/types";
 import More from "@/modules/common/More/More";
 import Button from "@/modules/common/Button/Button";
-import Avatar from "@/modules/common/Avatar/Avatar";
 import Hr from "@/modules/common/Hr/Hr";
 import Eye from "@/modules/common/icons/Eye";
 import Edit from "@/modules/common/icons/Edit";
 import UserHelper from "@/helpers/UserHelper";
-import AdminInviteConfirmationModal from "@/modules/common/AdminInviteModal";
 import { Link } from "react-router-dom";
 import LinkButton from "@/modules/common/LinkButton";
 import FormatHelper from "@/helpers/FormatHelper";
+import { useGetUserByIdQuery } from "@/redux/services/api";
 
 interface IProps
   extends DetailedHTMLProps<
     HTMLAttributes<HTMLTableRowElement>,
     HTMLTableRowElement
   > {
-  user: IUser;
+  data: IContribution;
   perPage: number;
 }
 
 export default function Card(props: IProps) {
-  const { user, ...rest } = props;
-  const {
-    email,
-    first_name,
-    last_name,
-    id,
-  } = user;
+  const { data, ...rest } = props;
+
+  const { data: customer, isLoading: isLoadingUser } = useGetUserByIdQuery({
+    id: data.user_id ?? "",
+    user_id: data?.user_id ?? "",
+  });
 
   const [showMore, setShowMore] = useState(false);
-  const [showInvitationModal, setShowInvitationModal] =
-    useState<boolean>(false);
 
   return (
     <tr {...rest} className={`${props.className} ${styles.container}`}>
-      <AdminInviteConfirmationModal
-        user={user}
-        show={showInvitationModal}
-        onCancel={() => setShowInvitationModal(false)}
-      />
       <td className={styles.profile}>
-        <Link className={styles.avatarLink} to={`/users/${id}`}>
-          <Avatar className={styles.avatar} user={user} />
-        </Link>
-        <div className="flex flex-col gap-1">
-          <Link className={styles.email} to={`mailto:${email}`}>
-            {email}
-          </Link>
-          <Link data-test-id="user-card-link" className={styles.name} to={`/users/${id}`}>
-            {`${first_name} ${last_name}`}
-          </Link>
+        <div className="flex flex-col gap-0">
+          {isLoadingUser ? <span>Loading...</span> : (customer ? <Link className={styles.name} to={`/users/${customer.id}`}>
+            {UserHelper.getFullName(customer)}
+          </Link> : 'N/A')}
+          {isLoadingUser ? <span></span> : (customer ? <Link className={styles.email} to={`mailto:${customer?.email}`}>
+            {customer?.email}
+          </Link> : 'N/A')}
         </div>
       </td>
       <td>
-        <span className={styles.userTag}>{UserHelper.roleAsString(user)}</span>
+        {customer ? <span className={styles.userTag}>{UserHelper.roleAsString(customer)}</span> : "N/A"}
       </td>
       <td className="whitespace-nowrap">1000002314</td>
       {/* <td>
@@ -75,7 +63,7 @@ export default function Card(props: IProps) {
             setShowMore(true);
           }}
         >
-          <LinkButton to={`/contributions/${id}`} variant="clear" stretch>
+          <LinkButton to={`/contributions/${data.id}`} variant="clear" stretch>
             <Eye /> View
           </LinkButton>
           <Hr />

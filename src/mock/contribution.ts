@@ -10,4 +10,5 @@ export const mockContribution: IContribution = {
     total_paid: 0,
     created_at: '',
     updated_at: '',
+    user_id: "1"
 }

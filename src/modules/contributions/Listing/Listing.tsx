@@ -1,20 +1,20 @@
 import { DetailedHTMLProps, HTMLAttributes } from "react";
 import styles from "./Listing.module.css";
 import Card from "./Card/Card";
-import { IUser } from "@/types";
+import { IContribution } from "@/types";
 
 interface IProps
   extends DetailedHTMLProps<
     HTMLAttributes<HTMLTableElement>,
     HTMLTableElement
   > {
-  users: IUser[];
+  data: IContribution[];
 }
 
 const LIMIT = Number(import.meta.env.VITE_PAGINATION_LIMIT);
 
 export default function Listing(props: IProps) {
-  const { users, ...rest } = props;
+  const { data, ...rest } = props;
   return (
     <table {...rest} className={`${props.className} ${styles.container}`}>
       <tr>
@@ -27,8 +27,8 @@ export default function Listing(props: IProps) {
         <th>Actions</th>
       </tr>
       <tbody>
-        {users?.map((user) => (
-          <Card key={user.id} user={user} perPage={LIMIT} />
+        {data?.map((datum) => (
+          <Card key={datum.id} data={datum} perPage={LIMIT} />
         ))}
       </tbody>
     </table>

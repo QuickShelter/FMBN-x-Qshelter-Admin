@@ -1,5 +1,4 @@
 import { Helmet } from "react-helmet";
-import { useGetProjectByIdQuery } from "@/redux/services/api";
 import NotFound from "./NotFound/NotFound";
 import { useParams } from "react-router-dom";
 import Spinner from "../common/Spinner/Spinner";
@@ -8,19 +7,22 @@ import { mockContribution } from "@/mock/contribution";
 
 export default function ContributionView() {
   const { id } = useParams();
-  const { data: project, isLoading } = useGetProjectByIdQuery(id ?? "");
+  console.log(id)
+  //const { data: project, isLoading } = useGetProjectByIdQuery(id ?? "");
+  const contribution = mockContribution
+  const isLoading = false
 
   return (
     <>
       <Helmet>
-        <title>{project?.proposedLocation}</title>
+        <title>Contribution</title>
         <meta name="description" content="Helmet application" />
       </Helmet>
-      {project && <View contribution={mockContribution} />}
+      {contribution && <View contribution={mockContribution} />}
       <div className="flex flex-1 items-center justify-center">
         {isLoading && <Spinner size="lg" />}
       </div>
-      {!isLoading && !project && <NotFound />}
+      {!isLoading && !contribution && <NotFound />}
     </>
   );
 }

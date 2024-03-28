@@ -1,7 +1,6 @@
 import Properties from "../icons/Properties";
 import Home from "../icons/Home";
 import Requests from "../icons/Requests";
-import UserHelper from "@/helpers/UserHelper";
 import { ReactElement } from "react";
 import Users from "../icons/Users";
 import { IUser } from "@/types";
@@ -13,6 +12,7 @@ interface IProps {
 }
 
 export default function navItems({ currentPath, user }: IProps) {
+    console.log(user)
     const navItems: {
         path: string;
         icon: ReactElement;
@@ -34,19 +34,21 @@ export default function navItems({ currentPath, user }: IProps) {
             {
                 title: "Organizations",
                 path: "/organisations",
-                isAuthorized: UserHelper.isPermitted(['legal_admin'], user),
+                isAuthorized: true,
+                //isAuthorized: UserHelper.isPermitted(['legal_admin'], user),
                 icon: <Contributions active={currentPath.includes("/loans")} />,
             },
             {
                 title: "Contributions",
                 path: "/contributions",
-                isAuthorized: UserHelper.isPermitted(['legal_admin'], user),
+                isAuthorized: true,
                 icon: <Contributions active={currentPath.includes("/contributions")} />,
             },
             {
                 title: "Products",
                 path: "/products",
-                isAuthorized: UserHelper.isPermitted(['legal_admin'], user),
+                isAuthorized: true,
+                //isAuthorized: UserHelper.isPermitted(['legal_admin'], user),
                 icon: <Contributions active={currentPath.includes("/contributions")} />,
             },
             {

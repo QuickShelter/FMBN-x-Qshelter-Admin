@@ -1089,6 +1089,7 @@ export interface IPriceUpdateRequestPaginated extends IBasePropertyRequest {
 
 export interface IContribution {
   id: string;
+  user_id: string | null,
   monthly_payment: number | null;
   total_paid: number;
   balance: number;
@@ -1268,6 +1269,17 @@ export interface IPaginatedTransactionResponseBody {
   total_count: number,
   total_pages: number
   transaction_volume: number | null
+}
+
+export interface IPaginatedContributionsResponseBody {
+  offset: number;
+  limit: number;
+  contributions: IContribution[];
+  total_count: number,
+  total_pages: number,
+
+  total_contributions_count: number,
+  total_contributions: number,
 }
 
 export interface IPaginatedRequestResponseBody {
@@ -1607,7 +1619,8 @@ export interface IPaginationParams {
 }
 
 export interface IQueryParams {
-  page?: number;
+  page?: string | number | null;
+  offset?: string | null | number,
   limit?: number;
   from_date?: string | null;
   to_date?: string | null;
@@ -1653,7 +1666,6 @@ export interface IUserSearchParams extends IQueryParams {
   email?: string | null;
   role?: string | null;
   sort?: ISortOrder;
-  offset?: number;
   user_id?: string
 }
 
@@ -1713,12 +1725,10 @@ export interface IPropertySearchParams extends IQueryParams {
   type?: string | null;
   from_date?: string | null;
   to_date?: string | null;
-  offset?: number;
   user_id?: string;
   baths?: string;
   beds?: string;
   location?: string;
-  limit?: number;
   min_price?: string;
   max_price?: string;
   search?: string;
@@ -1727,13 +1737,20 @@ export interface IPropertySearchParams extends IQueryParams {
   sortBy?: string
 }
 
+export type IContributorCategory = 'employees' | 'employers' | 'voluntary_contributors'
+
+export interface IContributionsSearchParams extends IQueryParams {
+  user_id?: string;
+  search?: string | null;
+  category?: string | null;
+}
+
 export interface IProjectSearchParams extends IQueryParams {
   status?: string | null;
   type?: string | null;
   to_date?: string | null;
   from_date?: string | null;
-  search?: string;
-  page?: number;
+  search?: string | null;
   user_id?: string;
   sortBy?: string
 }
@@ -1743,9 +1760,7 @@ export interface ITransactionSearchParams extends IQueryParams {
   type?: string | null;
   date_from?: string | null;
   date_to?: string | null;
-  offset?: number;
   search?: string;
-  page?: number;
   user_id?: string;
 }
 
@@ -1758,7 +1773,6 @@ export interface IRequestsSearchParams extends IQueryParams {
   search?: string;
   status?: string;
   q?: string;
-  offset?: number;
   user_id?: string;
 }
 
@@ -1769,7 +1783,6 @@ export interface IOrganisationSearchParams extends IQueryParams {
   search?: string;
   status?: string;
   q?: string;
-  offset?: number;
 }
 
 export interface IPartner {
@@ -1797,8 +1810,6 @@ export interface IPartner {
 export interface ITransactionsSearchParams extends IQueryParams {
   type?: string;
   search?: string;
-  offset?: number;
-  limit?: number;
   status?: string;
   user_id?: string;
   date_from?: string;
@@ -1808,8 +1819,6 @@ export interface ITransactionsSearchParams extends IQueryParams {
 export interface IProjectsSearchParams extends IQueryParams {
   type?: string;
   search?: string;
-  offset?: number;
-  limit?: number;
   status?: string;
   from_date?: string;
   to_date?: string
