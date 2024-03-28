@@ -5,6 +5,7 @@ import Hr from "@/modules/common/Hr";
 import { IMortgageRequest } from "@/types";
 import { DetailedHTMLProps, HTMLAttributes } from "react";
 import UnitLinkCard from "../UnitLinkCard";
+import MortgageHelper from "@/helpers/MortgageHelper";
 
 interface IProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
@@ -16,6 +17,8 @@ export default function Application({ className, request, ...rest }: IProps) {
   const applicationData = RequestHelper.getApplicationDataFromRequest(request)
   const unitIds = RequestHelper.getAffectedUnitIdsFromRequest(request)
   const building = RequestHelper.getTargetBuildingFromRequest(request)
+
+  const values = MortgageHelper.getMortgageValues(applicationData, request.data.total_price)
 
   return (
     <div
@@ -29,10 +32,14 @@ export default function Application({ className, request, ...rest }: IProps) {
           <DetailCard label="Property Code" value={request?.data.property?.id} />
           <DetailCard label="Age" value={applicationData?.age} />
           <DetailCard label="TIN" value={request?.data?.mortgage?.mortgage_applicant?.tin} />
-          <DetailCard label="Price" value={FormatHelper.nairaFormatter.format(request?.data.property?.price)} />
-          <DetailCard label="Mortgage Amount" value={FormatHelper.nairaFormatter.format(applicationData?.mortgage_amount)} />
+
+          <DetailCard label="Price" value={FormatHelper.nairaFormatter.format(request?.data.total_price)} />
+          <DetailCard label="Mortgage Amount" value={FormatHelper.nairaFormatter.format(values?.mortgage)} />
           {request.type === 'commercial_mortgage' ? <DetailCard label="Initial Payment" value={request.data.initial_payment} /> : null}
-          <DetailCard label="Equity" value={FormatHelper.nairaFormatter.format(applicationData?.equity)} />
+          <DetailCard label="Equity Percentage" value={FormatHelper.percentageFormatter.format(Number(applicationData?.equity_percentage) / 100)} />
+          <DetailCard label="Equity From RSA" value={FormatHelper.nairaFormatter.format(values.equityFromRsa)} />
+          <DetailCard label="Cash" value={FormatHelper.nairaFormatter.format(values?.cash)} />
+          <DetailCard label="Equity" value={FormatHelper.nairaFormatter.format(values?.equity)} />
           <DetailCard label="Duration" value={`${applicationData?.duration ? `${applicationData?.duration} month(s)` : 'N/A'}`} />
           {RequestHelper.typeToInterestRateMap[request.type] ? <DetailCard label="Interest Rate" value={FormatHelper.percentageFormatter.format(RequestHelper.typeToInterestRateMap[request.type] / 100)} /> : null}
           <DetailCard label="Joint Application" value={request.data.mortgage.is_joint_mortgage ? 'Yes' : 'No'} />

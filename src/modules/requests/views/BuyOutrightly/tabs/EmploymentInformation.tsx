@@ -35,16 +35,14 @@ export default function EmploymentInformation({
           }
         />
         <DetailCard
-          className="col-span-2"
           label="Years with current employer"
           value={user.years_of_work}
         />
+        <DetailCard label="PFA" value={user.pfa} />
         <DetailCard
-          className="col-span-2"
           label="RSA Number"
           value={user.rsa}
         />
-        <DetailCard className="col-span-2" label="PFA" value={user.pfa} />
       </div>
     </div>
   );
